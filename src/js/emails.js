@@ -16,7 +16,7 @@ function submitPortfolioContactForm(event) {
 
   if (form && form.checkValidity()) {
   
-    await fetch('https://')
+    
   
 }
 
