@@ -13,11 +13,9 @@ function enableSubmitButton() {
 function submitPortfolioContactForm(event) {
   const form = document.querySelector("#portfolioContactForm");
 
-
   if (form && form.checkValidity()) {
-  
-    
-  
+    // fetch post
+  }
 }
 
 function convertFormDataToJson(form) {
