@@ -12,7 +12,6 @@ exports.handler = (event, context, callback) => {
   });
 
   console.log(transporter);
-
   console.log(event.body);
 
   /* send me some mails */
