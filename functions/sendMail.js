@@ -10,6 +10,9 @@ exports.handler = (event, context, callback) => {
       password: "MFS0vP12LHGcmKw5",
     },
   });
+
+  console.log(transporter);
+
   console.log(event.body);
 
   /* send me some mails */
