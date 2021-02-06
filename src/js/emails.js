@@ -10,11 +10,31 @@ function enableSubmitButton() {
   return (contactFormBtn.disabled = false);
 }
 
-function submitPortfolioContactForm(event) {
+async function submitPortfolioContactForm(event) {
   const form = document.querySelector("#portfolioContactForm");
 
   if (form && form.checkValidity()) {
     // fetch post
+
+    const formData = convertFormDataToJson(form);
+    const formRequest = await fetch(
+      "https://lukemorgan-web-cv.netlify.app/.netlify/functions/sendMail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formData,
+      }
+    );
+
+    formRequest
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 
