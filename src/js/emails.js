@@ -1,15 +1,15 @@
 window.addEventListener("DOMContentLoaded", () => {
+  const contactFormBtn = document.querySelector("#portfolioContactSubmit");
   if (contactFormBtn) {
     contactFormBtn.addEventListener("click", submitPortfolioContactForm);
   }
 });
 
 function enableSubmitButton() {
-  const contactFormBtn = document.querySelector("#portfolioContactSubmit");
   return (contactFormBtn.disabled = false);
 }
 
-async function submitPortfolioContactForm(event) {
+async function submitPortfolioContactForm() {
   const form = document.querySelector("#portfolioContactForm");
 
   if (form && form.checkValidity()) {
