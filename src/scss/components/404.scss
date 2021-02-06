@@ -1,0 +1,31 @@
+.not-found {
+  &-bg {
+    height: 100%;
+    position: relative;
+    background-image: url("../resources/svg/background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+  }
+  &-title {
+    color: #fff;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .not-found {
+    &-title,
+    &-text {
+      color: #fff;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .not-found {
+    &-container {
+      position: relative;
+      min-height: 150vh;
+    }
+  }
+}

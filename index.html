@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Page meta -->
+    <title>Luke Morgan | Web developer portfolio. Hastings, East Sussex</title>
+    <meta name="description"
+        content="Luke Morgan | Web Developer based in Hastings, East Sussex. Full-time Web Developer at The Jamieson Consultancy working with WordPress">
+    <meta name="keywords"
+        content="Luke Morgan, Luke Morgan Web Developer, Web Developer Hastings, Front-end Developer" />
+    <!-- content directive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- canonical tags -->
+    <link rel="canonical" href="https://luke-morgan.com" />
+    <!-- favicons and icons -->
+    <link rel="icon" type="image/png" href="./dist/resources/img/myLogo-web.png" />
+    <link rel="shortcut icon" type="image/png" href="./dist/resources/img/myLogo-web.png" />
+    <!-- preloaded resources-->
+    <link rel="preload" href="./dist/css/portfolio_styles.min.css" as="style">
+    <link rel="preload" href="./dist/js/splide/dist/css/themes/splide-default.min.css" as="style">
+    <link rel="preload" href="./dist/js/splide/dist/js/splide.min.js" as="script">
+    <link rel="preload" href="./dist/js/portfolio_scripts.min.js" as="script">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!-- slider stylesheet -->
+    <link rel="stylesheet" href="./dist/js/splide/dist/css/themes/splide-default.min.css">
+    <!-- page stylesheets-->
+    <link rel="stylesheet" href="./dist/css/portfolio_styles.min.css">
+</head>
+
+<body ontouchstart="">
+    <div class="nav__container">
+        <img class="nav__logo logo" src="./dist/resources/svg/myLogo-web.svg"
+            alt="Luke Morgan | Web Developer based in Hastings, East Sussex">
+        <nav class="nav">
+            <div class="nav__close"><i class="fas fa-times"></i></div>
+            <ul class="nav__items">
+                <li class="nav__item"><a href="https://luke-morgan.com" class="nav__link">Portfolio</a></li>
+                <li class="nav__item"><a href="https://luke-morgan.com/personal-projects" class="nav__link">Personal
+                        projects</a></li>
+                <li class="nav__item"><a href="https://luke-morgan.com/design" class="nav__link">Design</a></li>
+                <li class="nav__item"><a href="https://luke-morgan.com/contact" class="nav__link">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
+    <header>
+        <section id="portfolio-banner" class="splide portfolio-splide">
+            <div id="particles-js"></div>
+            <div class="page-banner-overlay"></div>
+            <img src="./dist/resources/img/me.jpeg" alt="Luke Morgan" class="mugShot firstSceneItem">
+            <div class="banner__title-box firstSceneItem">
+                <h2 class="banner__title">Luke Morgan</h2>
+                <h3 class="banner__subtitle">Web Development Portfolio</h3>
+            </div>
+            <div id="bannerSlider" class="splide__track container-fluid" data-splide-el="track">
+                <!-- The slideshow -->
+                <ul class="splide__list slider-inner">
+                    <li class="splide__slide banner__slide">
+                        <img class="slide lazyloaded" data-src="./dist/resources/img/keyboard.jpg"
+                            alt="A modern looking laptop">
+                    </li>
+                    <li class="splide__slide banner__slide">
+                        <img class="slide lazyloaded" data-src="./dist/resources/img/code.jpg"
+                            alt="A laptop screen showing a text-editor">
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </header>
+    <main>
+        <section class="about svg-banner-parent">
+            <img src="./dist/resources/svg/svg-banner-1.svg" class="svg-banner" alt="">
+            <div class="container p-t-s p-b-s">
+                <strong class="heading__secondary about__heading secondSceneItem text-center">
+                    A little bit about me
+                </strong>
+                <div class="secondSceneItem m-t-l m-b-l">
+                    <i class="fa fa-arrow-circle-down bounce"></i>
+                </div>
+                <article class="row p-t-s">
+                    <div id="aboutSceneTrigger"></div>
+                    <div class="col-8 col-sm-12 p-2 about__skills">
+                        <h1 class="textStagger1 p-b-s">Web Developer based in Hastings, East Sussex</h1>
+                        <p class="paragraph p-b-s textStagger1">
+                            I've attained over a year of proven experience working independantly as a developer on
+                            projects with advertising and marketing business goals.
+                        </p>
+                        <p class="paragraph p-b-s textStagger1">
+                            My day-to-day job involves a healthy mix of HTML e-mail design and delivery, WordPress
+                            development, front-end development, UX decision making, and helping with JIRA tickets for
+                            two enterprise level web applications.
+                        </p>
+                        <p class="paragraph p-b-s textStagger1">
+                            I also assist in the delivery of digital circulation for <a target="_blank"
+                                href="https://www.mitpublishing.com/">MIT Publishing</a>, whilst keeping the company's
+                            own <a href="https://tjcuk.co.uk/author/luketjcuk-co-uk/" target="_blank">blog</a> up to
+                            date with fresh and relevant articles which advertise our services.</a>
+                        </p>
+                        <p class="paragraph p-b-s textStagger1">
+                            In my spare time, I'm working hard on developing; some design chops, learning about modern
+                            javascript client-side frameworks, knowledge of general
+                            server-side programming in the PHP, Node.JS and Python eco-systems as well as hosting and
+                            deployment concepts.
+                        </p>
+                    </div>
+                    <aside class="col-4 col-sm-12 p-2 about__skillBadges">
+                        <i id="html5" class="skill-badge htmlBadge fab fa-html5"></i>
+                        <i id="css3" class="skill-badge cssBadge fab fa-css3"></i>
+                        <i id="WP" class="skill-badge WPbadge fab fa-wordpress"></i>
+                    </aside>
+                </article>
+            </div>
+        </section>
+        <section class="work-experience bgBlue p-t-l p-b-l">
+            <div class="m-b-m">
+                <strong class="heading__primary work-experience__heading text-center">
+                    Work History
+                </strong>
+            </div>
+            <div id="pinContainer">
+                <div class="clearfix p-t-l p-b-l" id="slideContainer">
+                    <article class="wex neptune panel">
+                        <div class="wex__contents">
+                            <h3 class="heading__secondary p-1">
+                                <a href="https://neptunemedia.co.uk" target="_blank"
+                                    class="link wex__link neptune__link">Neptune Media</a>
+                            </h3>
+                            <div class="row">
+                                <div class="col-6 col-sm-12 wex__text p-1">
+                                    <strong>
+                                        <p class="m-b-s">WEB INTERNSHIP (AUG 2018 - NOV 2018)</p>
+                                    </strong>
+                                    <p class="paragraph m-b-s">
+                                        I started at Neptune Media with some elementary knowledge of front-end coding. I
+                                        spent around 3 months working with the Wordpress CMS,
+                                        and learning about the life cycle of a website.
+                                    </p>
+                                    <p class="paragraph m-b-s">
+                                        Initially I was given some flyer website projects to put together with a
+                                        template, which was a great place to start. There was a clear focus on producing
+                                        a small, but effective website with all of the key components you'd need to
+                                        convert visitors.
+                                    </p>
+                                </div>
+                                <aside class="col-6 col-sm-12 p-1">
+                                    <strong>
+                                        <p class="m-b-s">PROJECTS I'VE CONTRIBUTED TO:</p>
+                                    </strong>
+                                    <div id="neptuneSlider" class="splide wex-splide">
+                                        <div class="splide__track" data-splide-el="track">
+                                            <!-- The slideshow -->
+                                            <ul class="splide__list slider-inner">
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://dfjoinery.co.uk/" target="_blank"
+                                                        class="carousel-link">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded slide"
+                                                            data-src="./dist/resources/img/dfJoinery.png"
+                                                            alt="The homepage for DFJOINERY.CO.UK">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://eastsussexgas.co.uk/" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded slide"
+                                                            data-src="./dist/resources/img/east_sussex_gas.png"
+                                                            alt="The homepage for east sussex gas">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </article> <!-- </neptune -->
+                    <article class="FAT wex panel">
+                        <div class="wex__contents">
+                            <h3 class="heading__secondary p-1">
+                                <a href="https://fatpromotions.co.uk" target="_blank"
+                                    class="link wex__link FAT__link">FAT
+                                    promotions</a>
+                            </h3>
+                            <div class="row">
+                                <div class="col-6 col-sm-12 p-1 wex__text">
+                                    <strong>
+                                        <p class="m-b-s">JUNIOR FRONT-END DEVELOPER (NOV 2018 - MAR 2019)</p>
+                                    </strong>
+                                    <p class="paragraph m-b-s">
+                                        Mostly WordPress, but also some legacy sites created in static HTML, Joomla, a
+                                        custom Shopify project and also some front-end development on a shift and
+                                        volunteer management focused web-applcation created for a local charity.
+                                    </p>
+                                    <p class="paragraph m-b-s">
+                                        Aspects of this role I excelled with were:
+                                    </p>
+                                    <ul class="paragraph m-b-s">
+                                        <li>PSD -> HTML/CSS/WordPress</li>
+                                        <li>Microanimations using HTML/CSS/JS</li>
+                                        <li>Junior-level WordPress development</li>
+                                    </ul>
+                                </div>
+                                <aside class="col-6 col-sm-12 p-1">
+                                    <strong>
+                                        <p class="m-b-s">PROJECTS I'VE CONTRIBUTED TO:</p>
+                                    </strong>
+                                    <div id="fatSlider" class="splide wex-splide">
+                                        <div class="splide__track">
+                                            <!-- The slideshow -->
+                                            <ul class="splide__list">
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://vapourguard.co.uk/" target="_blank"
+                                                        class="carousel-link">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded slide"
+                                                            data-src="./dist/resources/img/vaporguard.png"
+                                                            alt="The homepage vapourguard">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://ss8000cars.org/" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded slide"
+                                                            data-src="./dist/resources/img/ss8000.png"
+                                                            alt="The homepage for ss8000 cars">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://awastefreeworld.com/" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded slide"
+                                                            data-src="./dist/resources/img/aWasteFreeWorld.png"
+                                                            alt="The homepage for a waste free world">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://friendsagainstscams.org.uk/" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded slide"
+                                                            data-src="./dist/resources/img/FAS.png"
+                                                            alt="The homepage for friends against scams">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </article> <!-- </FAT promotions -->
+                    <div class="freelance wex panel">
+                        <div class="wex__contents">
+                            <h3 class="heading__secondary p-1">
+                                <a href="https://www.peopleperhour.com/freelancer/luke/wordpress-administrator-developer/2660820"
+                                    target="_blank" class="link wex__link freelance__link ">FREELANCE</a>
+                            </h3>
+                            <div class="row">
+                                <div class="col-6 col-sm-12 p-1 wex__text">
+                                    <strong>
+                                        <p class="m-b-s">FREELANCE JACK OF ALL TRADES</p>
+                                    </strong>
+                                    <p class="paragraph m-b-s">
+                                        I've been known to dabble in the odd freelance gig.
+                                    </p>
+                                    <p class="paragraph m-b-s">
+                                        Breifs generally cover content creation, WordPress Core or plugin updates and
+                                        aesthetic improvements.
+                                    </p>
+                                    <p class="paragraph m-b-s">
+                                        Freelancing is a nice way to improve my own process. I enjoy the motions of
+                                        bidding for work, scoping requirements and delivering a geniune, and helpful
+                                        service. Honestly though, it's also very time consuming, and so I decided to
+                                        re-distribute most of this time and focus completely on my <a
+                                            href="https://github.com/Morgscode" class="text-link"
+                                            target="_blank">learning</a>.
+                                    </p>
+                                </div>
+                                <div class="col-6 col-sm-12 p-1">
+                                    <strong>
+                                        <p class="m-b-s">PROJECTS I'VE CONTRIBUTED TO:</p>
+                                    </strong>
+                                    <div id="freelanceSlider" class="splide wex-splide">
+                                        <div class="splide__track">
+                                            <!-- The slideshow -->
+                                            <ul class="splide__list">
+
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://firstchoicemortgages.co.uk/" target="_blank"
+                                                        class="carousel-link">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/firstChoice.png"
+                                                            alt="The homepage for 1st choice mortgages">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://www.honeybarrettmedical.co.uk/"
+                                                        class="carousel-link" target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/honeyBarrettMedical.png"
+                                                            alt="The homepage for honey barrett medical accountants">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://southerncountycare.co.uk/" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/southern-county-care.png"
+                                                            alt="The homepage for Southern County Care">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://procartoonists.org/forum/index.php"
+                                                        class="carousel-link" target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/professional-cartoonist.png"
+                                                            alt="The Login page for the Professional Cartoonist organisation forum">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- </freelance -->
+                    <div class="tjc wex panel">
+                        <div class="wex__contents">
+                            <h3 class="heading__secondary p-1">
+                                <a href="https://tjcuk.co.uk/" target="_blank" class="link wex__link tjc__link">The
+                                    Jamieson
+                                    Consultancy</a>
+                            </h3>
+                            <div class="row">
+                                <div class="col-6 col-sm-12 p-1 wex__text">
+                                    <strong>
+                                        <p class="m-b-s">Web Developer (July 2019 - present)</p>
+                                    </strong>
+                                    <p class="paragraph m-b-s">
+                                        I work simultaneously on multiple projects with our managing director, our tech
+                                        lead and our designer.
+                                        I'm comfortable working directly with stakeholders,
+                                        and scoping technical requirements from non-technical conversations.
+                                    </p>
+                                    <p class="paragraph m-b-s">
+                                        My Primary responsibilities are WordPress development and assisting with overall
+                                        project management, HTML E-mail creation with international despatch lists,
+                                        digital magazine creation for 5 titles across two publishers and helping to
+                                        maintain the companies own internal network and it systems.
+                                    </p>
+                                    <p class="paragraph m-b-s">
+                                        As a team we've defined our own workflow utilising modern tooling. We mainly
+                                        support LAMP stack projects, managing tasks with the Atlassian Suite (JIRA,
+                                        Confluence and JIRA Service desk). Niche techincal tools we use are Git, VSCode
+                                        and its seemingly endless extensions, Gulp, and MAMP.
+                                    </p>
+                                </div>
+                                <div class="col-6 col-sm-12 p-1">
+                                    <strong>
+                                        <p class="m-b-s">PROJECTS I'VE CONTRIBUTED TO:</p>
+                                    </strong>
+                                    <div id="tjcSlider" class="splide wex-splide">
+                                        <div class="splide__track">
+                                            <!-- The slideshow -->
+                                            <div class="splide__list">
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://fuzion4.co.uk" target="_blank"
+                                                        class="carousel-link">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/fuzion4.png"
+                                                            alt="The Landing Page for a Fuzion 4 marketing campaign">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://www.tfc.eu.com" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/tfc.png"
+                                                            alt="The homepage for TFC EU.">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://www.tandymedia.com/digital-editions"
+                                                        class="carousel-link" target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/tandy-media.png"
+                                                            alt="Tandy media">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://englishelectric.uk/" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/englishelectric.png"
+                                                            alt="English Electric Landing Page">
+                                                    </a>
+                                                </li>
+                                                <li class="splide__slide wex__slide">
+                                                    <a href="https://spotlighthr.co.uk" class="carousel-link"
+                                                        target="_blank">
+                                                        <div class="item__overlay--left"></div>
+                                                        <div class="item__overlay--right"></div>
+                                                        <img class="lazyloaded d-block w-100 slide"
+                                                            data-src="./dist/resources/img/spotlighthr.png"
+                                                            alt="Spotlight HR Landing Page">
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- </tjc -->
+        </section>
+        </div> <!-- </pinContainer -->
+        <section class="core-skills">
+            <div class="container bgGrey p-t-l p-b-l">
+                <article class="skills">
+                    <h2 class="skills__header heading__primary text-center pt-5 pb-5">skills and competencies</h2>
+                    <div class="col-12 text-center m-t-l m-b-l"><i class="fa fa-arrow-circle-down bounce"></i></div>
+                    <div class="row skill-row m-b-m">
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge htmlBadge fab fa-html5"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">HTML5</h3>
+                            </div>
+                            <div class="col-12">
+                                <p class="paragraph  skillP  m-b-s">
+                                    Like many others, HTML is where it all started for me.
+                                    <br /><br />
+                                    I spend my working days between generating the modern, semantic markup for the
+                                    websites we create in-house. And then a few times a week, I have to throw the modern
+                                    approach out of the window and put on a different hat for creating html e-mail
+                                    templates from scratch, ensuring they look clean for Microsoft Outlook email
+                                    clients, as well as responsive on modern mobile devices.
+                                </p>
+                            </div>
+                        </aside> <!-- </HTML 5-->
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge cssBadge fab fa-css3"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">CSS3</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP m-b-s">
+                                    CSS... some love it, some hate it.
+                                    <br /><br />
+                                    Well, I love it. It's one of my strongest skills. I really enjoy the
+                                    process of making a design prototype come to life.
+                                    <br /><br />
+                                    I'm more than comfortable with what CSS has to offer, and I'm primarily skilled as a
+                                    front-end developer. For prodution projects (mostly greenfield brochure sites), I'll
+                                    often utilise a battle-tested CSS
+                                    framework, and for personal side projects, I'll utilise modern CSS grid techniques.
+                                </p>
+                            </div>
+                        </aside> <!-- </CSS3 -->
+                    </div> <!-- </row -->
+                    <div class="row skill-row m-b-m">
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge jsBadge fab fa-js"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">JavaScript</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP m-b-s">
+                                    Javascript is another one of my strongest skills as a Developer. I'm keen to produce
+                                    client-side code that not only works, but is maintainable. This was really the hook
+                                    that made me want to pursure Web Development as a Career path as opposed to just a
+                                    hobby.
+                                    <br /><br />
+                                    In my current role as a web developer, I've updated our development team's
+                                    Javascript guidelines to move away from jQuery, and jQuery plug-ins,
+                                    and to modern, es6 syntax.
+                                    I've introduced the team to lightweight, modern javascript libraries such as GSAP,
+                                    scroll magic, Rellax for brochure website projects.
+                                    <br /><br />
+                                    My team are now exploring working with Vue and Nuxt.JS for production projects in
+                                    the scope of dynamic websites and applications.
+                                </p>
+                            </div>
+                        </aside> <!-- </JS-->
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge SassBadge fab fa-sass"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center">Sass</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    Sass is a great way to make CSS easier to maintain, and was a good progression point
+                                    once I felt comfortable working with CSS3.
+                                    <br /><br />
+                                    I strive for a modular, clean and re-usable Sass architecture and keep things clean
+                                    and team-mate friendly by insisting upon BEM naming conventions.
+                                    <br /><br />
+                                    Of all the joy that Sass brings with it, I'd say I'm comfortable with Mixins and
+                                    Nesting. Nesting works for me as mentioned, I like to use BEM methodology when
+                                    writing CSS rules. I'm also comfortable with variables,
+                                    but this is nothing new as I liked to make good use of CSS's native custom
+                                    properties.
+                                </p>
+                            </div>
+                        </aside> <!-- </Sass -->
+                    </div> <!-- </row -->
+                    <div class="row skill-row m-b-m">
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge WPbadge fab fa-wordpress"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">WordPress</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    WordPress powers around 1/3 of the web now, and all agencies where I have spent some
+                                    time have used it as their main platform for new brochure websites.
+                                    <br /><br />
+                                    In my curent role, I take on a majority of the WordPress development and maintenance
+                                    projects. I create custom themes from scratch, as well as small plugins.
+                                    <br /><br />
+                                    WordPress may not be the solution to every brief, but its flexible, secure and
+                                    boasts a large and dedicated open-source community, whilst offering great value to
+                                    it's many users.
+                                </p>
+                            </div>
+                        </aside> <!-- </wordpress-->
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge fab fa-gulp gulpBadge"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">Gulp</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    WordPress theme develpoment needs to be done right. Its vital for reaching a balance
+                                    between a good page load time and a maintainable client-side codebase
+                                    <br /><br />
+                                    Every team should consider a build-tool like gulp to help automate tasks such as
+                                    Sass and ES6+ Javascript compilation, and minification, image optimising, and the
+                                    many other useful funcitons you can levearge a build-tool like gulp for.
+                                    <br /><br />
+                                    We're currently working with Gulp 4 on new projects, and most often Gulp 3 on legacy
+                                    code bases.
+                                </p>
+                            </div>
+                        </aside> <!-- </wordpress-->
+                    </div> <!-- </row -->
+                    <div class="row skill-row m-b-m">
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge resBadge fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">Responsive process</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    Today, making websites responsive is a standard expectation not only just by
+                                    clients, but also by search engines if they
+                                    want their site to do well.
+                                    <br /><br />
+                                    I've been taught to take a thourough approach to responsive testing, ensuring that
+                                    projects are tested on various mobile devices, as opposed to just the broswer's
+                                    developer tools.
+                                </p>
+                            </div>
+                        </aside> <!-- </Responsive process-->
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge broswerBadge fas fa-window-restore"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">Cross-Browser testing</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    Like everyone who has ever worked as a Developer, I'm glad we're not having to
+                                    maintain sites for IE anymore, but this doesn't mean that cross-browser testing
+                                    isn't still an essential aspects of building a web-based product.
+                                    <br /><br />
+                                    I'm well aware of the importance of cross-broswer testing, and can sometimes
+                                    anticipate the pitfalls associated with using modern CSS, or Javascript techniques
+                                    in older broswers.
+                                </p>
+                            </div>
+                        </aside> <!-- </Cross browser testing -->
+                    </div> <!-- </row -->
+                    <div class="row skill-row m-b-m">
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge fab adobeBadge fa-adobe"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">Photoshop</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    Images can make or break a website, and so I decided early on that working with
+                                    image editors like Photoshop or GNU was a worthwhile tool to have in the box.
+                                    <br /><br />
+                                    In my curent role, I use photoshop for both web and email development tasks, from
+                                    precsion cut-outs, to template mock-ups.
+                                    <br /><br />
+                                    Whilst photoshop is a skill-area in and of itself, I appreciate the transferable
+                                    principles such as working with layers, and masks that means we can happily jump
+                                    into another editing suite like GNU-IMP, and still have a fair command of the
+                                    interface.
+                                </p>
+                            </div>
+                        </aside> <!-- </photoshop-->
+                        <aside class="col-md-6 col-sm-12 skill-col">
+                            <div class="skill-col-trigger"></div>
+                            <div class="col-12 text-center m-b-s">
+                                <i class="skill-badge maintainBadge fas fa-tools"></i>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <h3 class="heading__secondary text-center pt-3 pb-3">Maintainance</h3>
+                            </div>
+                            <div class="col-12 m-b-s">
+                                <p class="paragraph skillP">
+                                    Initially I spent lots of time teaching myself about creating websites, but when
+                                    starting to gain active work experience I began to gain an understanding of how a
+                                    website is maintained.
+                                    <br><br>
+                                    Using tools like Google Search Console and Page Speed insights, I find myself
+                                    updating cache policies, implementing re-directs and handling other common problems
+                                    which may arise during the lifecycle of a website.
+                                </p>
+                            </div>
+                        </aside> <!-- </website maintainance -->
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__text">
+            <p class="heading__primary-light footer__credits">This Website was handcrafted by me :)</p>
+            <p class="heading__primary-light footer__credits-small">&copy; 2020 luke-morgan.com</p>
+        </div>
+    </footer>
+    <!-- slider module -->
+    <script src="./dist/js/splide/dist/js/splide.min.js"></script>
+    <!-- Particles module -->
+    <script src="./dist/js/particles.min.js"></script>
+    <!-- scroll magic -->
+    <script src="./dist/js/scrollMagic-min/ScrollMagic.min.js"></script>
+    <script src="./dist/js/scrollMagic-min/plugins/animation.gsap.min.js"></script>
+    <script src="./dist/js/scrollMagic-min/plugins/debug.addIndicators.min.js"></script>
+    <!-- gsap plugins -->
+    <script src="./dist/js/gsap-min/TweenMax.min.js"></script>
+    <script src="./dist/js/gsap-min/TimelineMax.min.js"></script>
+    <!-- page script -->
+    <script src="./dist/js/portfolio_scripts.min.js"></script>
+</body>
+
+</html>

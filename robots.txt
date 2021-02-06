@@ -1,0 +1,4 @@
+Sitemap: https://luke-morgan.com/sitemap.xml
+User-agent: *
+Crawl-delay: 120
+Disallow: /src/

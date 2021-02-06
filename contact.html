@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Contact Luke Morgan | Web Developer based in Hastings, East Sussex</title>
+  <meta name="description"
+    content="Contact Luke Morgan | Web Developer based in Hastings, East Sussex. Mostly front-end with a healthy amount of WordPress and PHP">
+  <!-- content directives -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- canoncial tag -->
+  <link rel="canonical" href="https://luke-morgan.com/contact">
+  <!-- favicons and icons -->
+  <link rel="icon" type="image/png" href="./dist/resources/img/myLogo-web.png" />
+  <link rel="shortcut icon" type="image/png" href="./dist/resources/img/myLogo-web.png" />
+  <link rel="shortcut icon" type="image/png" href="https://luke-morgan.com" />
+  <!-- page stylesheet -->
+  <link rel="preload" href="./dist/css/portfolio_styles.min.css" as="style">
+  <link rel="preload" href="./dist/js/portfolio_scripts.min.js" as="script">
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- page stylesheet -->
+  <link rel="stylesheet" href="./dist/css/portfolio_styles.min.css">
+</head>
+
+<body ontouchstart="">
+  <div class="nav__container">
+    <img class="nav__logo logo" src="./dist/resources/svg/myLogo-web.svg"
+      alt="Luke Morgan | Web Developer based in Hastings, East Sussex">
+    <nav class="nav">
+      <div class="nav__close"><i class="fas fa-times"></i></div>
+      <ul class="nav__items">
+        <li class="nav__item"><a href="https://luke-morgan.com" class="nav__link">Portfolio</a></li>
+        <li class="nav__item"><a href="https://luke-morgan.com/personal-projects" class="nav__link">Personal
+            projects</a></li>
+        <li class="nav__item"><a href="https://luke-morgan.com/design" class="nav__link">Design</a></li>
+        <li class="nav__item"><a href="https://luke-morgan.com/contact" class="nav__link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
+  <header>
+    <div class="container-fluid page-banner">
+      <img src="./dist/resources/svg/background-3.svg" class="sub-page-banner" alt="">
+      <div class="page-banner__contents-wrapper">
+        <h1 class="heading__primary heading__primary-light page-banner__title">Web Developer based in Hastings, East
+          Sussex</h1>
+      </div>
+    </div>
+  </header>
+  <main>
+    <article class="container bgGrey form-container">
+      <strong class="heading__secondary form-heading m-b-s p-1">If you've landed on this page, chances are you have
+        something you'd like to talk about</strong>
+      <p class="m-b-s p-1 text-center paragraph">Feel free to get in contact using the form below. You'll need to leave
+        your email and name if you want me to get back to you of course!</p>
+      <p class="m-b-s p-1 text-center paragraph">Your details will not be stored in any of my databases or log files</p>
+      <h2 class="heading__secondary form-heading m-b-s p-1 text-center">Web design and development in Hastings, East
+        Sussex</h2>
+      <p class="m-b-s paragraph p-1 text-center">
+        If you're looking for someone to help with your own website or project, Then I'd love to hear about it. I've got
+        a healthy amount of experience producing high quality brochure websites, and in my spare time I tend to work on
+        dynamic web applications. If you haven't already seen it, then take a look at my <a
+          href="https://luke-morgan.com">portfolio</a> and <a href="https://luke-morgan.com/personal-projects">personal
+          projects</a>. If you like my work, and you'd like to work with me, get in touch
+      </p>
+      <p class="m-b-m paragraph p-1 text-center">
+        I'll try to get back to you as quickly as possible
+      </p>
+      <p class="m-b-m paragraph p-1 text-center">
+        I hope you've enjoyed visiting this website. It was handcrafted by me at the early stage in my career as a web
+        developer. In today's world, We all need a flagpole in the ground. A place to say "this is me, and this is what
+        I can do".
+      </p>
+      <form id="portfolioContactForm" class="form m-b-m">
+        <div class="form-group">
+          <label class="form-label" for="from_name">Name:</label>
+          <input type="text" class="form-input" name="from_name" id="from_name" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="from_name">Email:</label>
+          <input type="email" class="form-input" name="from_email" id="from_email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="from_name">Message:</label>
+          <textarea name="message_html" class="form-input" id="message_html" cols="30" rows="10" required
+            minlength="15"></textarea>
+        </div>
+        <div class="g-recaptcha m-b-s" data-sitekey="6LfIPPAUAAAAAOmKUbqH6Hy4HwKNHUQdy4vV2-1O"
+          data-callback="enableSubmitButton"></div>
+        <button type="button" class="btn form-submit" id="portfolioContactSubmit">Submit</button>
+      </form>
+      <article class="container-fluid p-3 text-center">
+        <div class="icon-wrapper icon-large m-b-m">
+          <i class="fas fa-database"></i>
+        </div>
+        <strong class="heading__primary">About your data</strong>
+        <p class="m-b-m paragraph m-t-m p-1">
+          The form above is a good old fashioned contact form. It simply gets your message from A to B. At no point are
+          your personal details added to any lists. So not to worry, you won't get a stream of third party emails by
+          getting in touch.
+        </p>
+
+      </article>
+    </article>
+  </main>
+  <footer class="footer">
+    <div class="footer__text">
+      <p class="heading__primary-light footer__credits">This Website was handcrafted by me :)</p>
+      <p class="heading__primary-light footer__credits-small">&copy; 2020 luke-morgan.com</p>
+    </div>
+  </footer>
+  <!-- email js -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js">
+  </script>
+  <!-- google captcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="./dist/js/particles.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/ScrollMagic.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/plugins/animation.gsap.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/plugins/debug.addIndicators.min.js"></script>
+  <script src="./dist/js/gsap-min/TweenMax.min.js"></script>
+  <script src="./dist/js/gsap-min/TimelineMax.min.js"></script>
+  <!-- slider module -->
+  <script src="./dist/js/splide/dist/js/splide.min.js"></script>
+  <script src="./dist/js/portfolio_scripts.min.js"></script>
+</body>
+
+</html>

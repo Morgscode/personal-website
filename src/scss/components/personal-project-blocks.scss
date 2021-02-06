@@ -1,0 +1,100 @@
+.personal-projects-section {
+  background-color: $color-primary;
+
+  .personal-project {
+    background: rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    &__heading {
+      display: inline-block;
+      font-size: 32px;
+      position: relative;
+      padding-bottom: 30px;
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 50%;
+        height: 3px;
+        background-color: $color-primary-light;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+      }
+    }
+  }
+}
+
+.project-slide {
+  min-height: 100%;
+  width: 360px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  &-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    z-index: 3;
+    justify-content: center;
+    &-block {
+      position: relative;
+    }
+    &-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 4;
+      transform: translate(-50%, 750px);
+      transition: all 0.3s cubic-bezier(1, 0, 0, 1);
+      background-color: #212121;
+      border: 3px solid $color-primary-light;
+      opacity: 0;
+      color: $color-secondary;
+      text-decoration: none;
+      &:hover {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+    &:hover + .project-slide-link-btn {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+  &__shadow {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%) rotateX(65deg);
+    z-index: 1;
+    display: block;
+    width: 325px;
+    max-width: 80%;
+    height: 15px;
+    border-radius: 40px;
+    -webkit-box-shadow: 0 20px 12px -3px #000000;
+    -moz-box-shadow: 0 20px 12px -3px #000000;
+    box-shadow: 0 20px 12px -3px #000000;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .project-slide {
+    &__shadow {
+      bottom: 7.5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .project-slide-link-btn {
+    transform: translate(-50%, -50%) !important;
+  }
+  .project-slide {
+    &__shadow {
+      max-width: 80%;
+    }
+  }
+}

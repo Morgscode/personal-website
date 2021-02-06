@@ -1,0 +1,9 @@
+.btn {
+   padding: 12px 22px;
+   border-radius: 10px;
+   &:not(:disabled) {
+    &:hover {
+      cursor: pointer;
+    }
+   }
+}

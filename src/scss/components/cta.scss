@@ -1,0 +1,35 @@
+.github-cta {
+  background-color: $color-primary;
+  border-bottom: 8px solid $color-primary-light;
+  margin-top: -1px;
+  &__container {
+    text-align: center;
+    border-radius: 50px;
+    background: #273c75;
+    box-shadow: inset 20px 20px 60px #213363, inset -20px -20px 60px #2d4587;
+  }
+  &__link {
+    text-decoration: none;
+    color: $color-secondary;
+    font-size: 48px;
+    &--icon {
+      transition: transform 0.7s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .github-cta {
+    &__link {
+      font-size: 26px;
+      display: inline-block;
+      margin: 0 auto;
+    }
+    &__text {
+      margin-bottom: 30px;
+    }
+  }
+}

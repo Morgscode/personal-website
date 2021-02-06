@@ -1,0 +1,43 @@
+.skill {
+  &-row {
+    width: 100%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    &:last-child {
+      margin-bottom: 0px !important;
+    }
+  }
+  &-col {
+    position: relative;
+    flex: 1 !important;
+    padding: 30px;
+    border-radius: 50px;
+    background: #f9f9f9;
+    box-shadow: 20px 20px 60px #d4d4d4, -20px -20px 60px #ffffff;
+    margin-left: 15px;
+    margin-right: 15px;
+    &-trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .heading__secondary {
+    text-align: center;
+  }
+
+  .skill {
+    &-col {
+      padding: 15px;
+      flex: none !important;
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+      &:first-child {
+        margin-bottom: 35px;
+      }
+    }
+  }
+}

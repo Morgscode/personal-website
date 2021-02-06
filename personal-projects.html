@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Luke Morgan | Personal Web Development Projects</title>
+  <meta name="description"
+    content="Luke Morgan | Web Developer. Take a look at my personal code projects to see what I get up to in my spare time.">
+  <!-- content directive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- canonical tag -->
+  <link rel="canonical" href="https://luke-morgan.com/personal-projects" />
+  <!-- favicons and icons -->
+  <link rel="icon" type="image/png" href="./dist/resources/img/myLogo-web.png" />
+  <link rel="shortcut icon" type="image/png" href="./dist/resources/img/myLogo-web.png" />
+  <link rel="shortcut icon" type="image/png" href="http://example.com/favicon.png" />
+  <!-- page stylesheet -->
+  <link rel="preload" href="./dist/css/portfolio_styles.min.css" as="style">
+  <link rel="preload" href="./dist/js/portfolio_scripts.min.js" as="script">
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" href="./dist/js/splide/dist/css/splide-core.min.css">
+  <link rel="stylesheet" href="./dist/js/splide/dist/css/themes/splide-default.min.css">
+  <!-- page stylesheet -->
+  <link rel="stylesheet" href="./dist/css/portfolio_styles.min.css">
+</head>
+
+<body ontouchstart="">
+  <div class="nav__container">
+    <img class="nav__logo logo" src="./dist/resources/svg/myLogo-web.svg"
+      alt="Luke Morgan | Web Developer based in Hastings, East Sussex">
+    <nav class="nav">
+      <div class="nav__close"><i class="fas fa-times"></i></div>
+      <ul class="nav__items">
+        <li class="nav__item"><a href="https://luke-morgan.com" class="nav__link">Portfolio</a></li>
+        <li class="nav__item"><a href="https://luke-morgan.com/personal-projects" class="nav__link">Personal
+            projects</a></li>
+        <li class="nav__item"><a href="https://luke-morgan.com/design" class="nav__link">Design</a></li>
+        <li class="nav__item"><a href="https://luke-morgan.com/contact" class="nav__link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
+  <header>
+    <div class="container-fluid page-banner">
+      <img src="./dist/resources/svg/background-3.svg" class="sub-page-banner" alt="">
+      <div class="page-banner__contents-wrapper">
+        <h1 class="heading__primary heading__primary-light page-banner__title">Personal web development projects</h1>
+      </div>
+    </div>
+  </header>
+  <main>
+    <article class="container bgGrey p-t-l p-b-l">
+      <h2 class="heading__secondary m-b-m p-1 text-center">I'm primarily employed as a front-end developer. <br />In my
+        spare time, It's a different story</h2>
+      <p class="paragraph m-t-m p-1 text-center">
+        I generally always have a small side-project on the go. It's a great way to discover new tech
+        and stay on the outer-edge of my comfort zone.
+        The most rewarding aspect of self-directed learning, is finding oppurtunities at my day job
+        to really make use of the concepts learnt in my own time.
+      </p>
+    </article>
+    <section class="container-fluid personal-projects-section p-t-l p-b-l">
+      <div class="personal-projects-wrapper container row">
+        <article class="personal-project p-t-s p-b-s col-12 m-b-m">
+          <div class="row">
+            <div class="col-8 col-lg-6 col-sm-12 p-1">
+              <strong>
+                <p class="m-b-s personal-project__heading">Web Scraps</p>
+              </strong>
+              <p class="paragraph m-b-s">
+                I'd been coding a little under 3 years, a fancied learning a new language.
+                Python seemed like the perfect candidate.
+                <br /><br />
+                This was a fun side-project to build. You can use it to scrape text and json
+                responses from around the web and download them as text files.
+                <br /><br />
+                I decided to write my own databse abstraction layer (which, for simple crud,
+                isn't exactly a chore), user and authenication flow is handled by flask sessions,
+                passwords are hashed with bcrypt.
+                <br /><br />
+                Technologies used: Python3, Flask, MySQL, SQLite3, Beautiful Soup, Bcrypt, Gunicorn wsgi, Heroku
+              </p>
+            </div>
+            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"><a
+                href="https://web-scraps.herokuapp.com/" target="_blank" class="project-slide-link"><img
+                  class="slide lazyloaded project-slide" data-src="./dist/resources/img/scraps.png"
+                  alt="Find my next favourite song - web development hastings"></a>
+              <a class="project-slide-link-btn p-2" target="_blank" href="https://web-scraps.herokuapp.com/">
+                View project
+              </a>
+              <div class="project-slide__shadow">&nbsp;</div>
+            </div>
+          </div>
+        </article>
+        <article class="personal-project p-t-s p-b-s col-12 m-b-m">
+          <div class="row">
+            <div class="col-8 col-lg-6 col-sm-12 p-1">
+              <strong>
+                <p class="m-b-s personal-project__heading">Find my next favourite song</p>
+              </strong>
+              <p class="paragraph m-b-s">
+                I was pretty intrigued by digging through the documentation for the spotify api.
+                <br /><br />
+                This is was fun little side-project that you can use to find new music on Spotify
+                based on your favourite top songs, personal taste and mood.
+                You can add songs you find to your 'liked songs' playlist on Spotify.
+                <br /><br />
+                Technologies used: Spotify api, Vue.js, VueX, CSS Grid, Netlify
+              </p>
+            </div>
+            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"><a
+                href="https://findmynextfavouritesong.netlify.app/" target="_blank" class="project-slide-link"><img
+                  class="slide lazyloaded project-slide" data-src="./dist/resources/img/findmynextfavouritesong.png"
+                  alt="Find my next favourite song - web development hastings"></a>
+              <a class="project-slide-link-btn p-2" target="_blank" href="https://findmynextfavouritesong.netlify.app/">
+                View project
+              </a>
+              <div class="project-slide__shadow">&nbsp;</div>
+            </div>
+          </div>
+        </article>
+        <article class="personal-project col-12 p-t-s p-b-s m-b-m">
+          <div class="row">
+            <div class="col-8 col-lg-6 col-sm-12 p-1">
+              <strong>
+                <p class="m-b-s personal-project__heading">UK coronavirus dashboard</p>
+              </strong>
+              <p class="paragraph m-b-s">
+                This is what I did with all of my free time during the lockdown. I'd been learning about Angular
+                and Slim PHP and wanted to put them to good use on a small project.<br /><br />
+                The api acts as gatway between the front-end, the <a
+                  href="https://developer.api.nhs.uk/nhs-api#api-conditions" class="page-link">NHS Conditions
+                  API</a> and the RDBMS, exposing the statistics or widgets through endpoints. The front-end is
+                completely decoupled and hosted on a seperate server running node.js. This serves compressed the
+                compressed static files, forces https connections and routes all requests through the Angular
+                entry point, the Index HTML file<br /><br />
+                Technologies used: Angular, Node.js, Chart.js, SlimPHP v3, MySQL, Heroku
+              </p>
+            </div>
+            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"><a
+                href="https://uk-coronavirus-dashboard.herokuapp.com" target="_blank" class="project-slide-link"><img
+                  class="slide lazyloaded project-slide" data-src="./dist/resources/img/covid-dashboard.png"
+                  alt="UK Coronavirus statistics dashboard - web development hastings"></a>
+              <a class="project-slide-link-btn p-2" target="_blank"
+                href="https://uk-coronavirus-dashboard.herokuapp.com">
+                View project
+              </a>
+              <div class="project-slide__shadow">&nbsp;</div>
+            </div>
+          </div>
+        </article>
+        <article class="personal-project col-12 p-t-s p-b-s">
+          <div class="row">
+            <div class="col-8 col-lg-6 col-sm-12 p-1">
+              <strong>
+                <p class="m-b-s personal-project__heading">Budget manager</p>
+              </strong>
+              <p class="paragraph m-b-s">
+                Our team is moving the tech stack towards Laravel and Vue. As a keen front-end developer, I felt
+                it was time to update the toolbox, and put this together whilst combing through the docs and a few
+                short 'intro to vue' playlists on youtube.
+                <br /><br />
+                It's a fairly simple CRUD app. The UI could do with a designers touch. I'd like to go on to extend
+                this out to utilise Indexed DB.
+                <br /><br />
+                Technologies used: Vue.js, VueX, CSS Grid, Netlify
+              </p>
+            </div>
+            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"><a
+                href="https://lite-budget.netlify.app/" target="_blank" class="project-slide-link"><img
+                  class="slide lazyloaded project-slide" data-src="./dist/resources/img/budget-manager.png"
+                  alt="The lite budget client-side CRUD app - web development hastings">
+              </a>
+              <a class="project-slide-link-btn p-2" target="_blank" href="https://lite-budget.netlify.app/">
+                View project
+              </a>
+              <div class="project-slide__shadow">&nbsp;</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="github-cta container-fluid p-b-s">
+      <div class="container github-cta__container p-t-s p-b-s">
+        <div class="row">
+          <div class="col-8 col-xs-12">
+            <a class="github-cta__link github-cta__link--text" href="https://github.com/Morgscode" target="_blank">
+              <p class="github-cta__text">View my GitHub&nbsp;<i class="fas fa-code-branch"></i></p>
+            </a>
+          </div>
+          <div class="col-4 col-xs-12"><a class="github-cta__link github-cta__link--icon"
+              href="https://github.com/Morgscode" target="_blank"><i class="fab fa-github-alt"></i></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__text">
+      <p class="heading__primary-light footer__credits mb-4">This Website was handcrafted by me :)</p>
+      <p class="heading__primary-light footer__credits-small">&copy; 2020 luke-morgan.com</p>
+    </div>
+  </footer>
+  <script src="./dist/js/particles.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/ScrollMagic.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/plugins/animation.gsap.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/plugins/debug.addIndicators.min.js"></script>
+  <script src="./dist/js/gsap-min/TweenMax.min.js"></script>
+  <script src="./dist/js/gsap-min/TimelineMax.min.js"></script>
+  <!-- slider module -->
+  <script src="./dist/js/splide/dist/js/splide.min.js"></script>
+  <script src="./dist/js/portfolio_scripts.min.js"></script>
+</body>
+
+</html>

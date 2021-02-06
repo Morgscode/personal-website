@@ -1,0 +1,127 @@
+#bannerSlider {
+  height: 100%;
+  .banner__slide {
+    .slide {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+
+#bannerSlider .splide__list {
+  height: 100%;
+  & li {
+    height: 100%;
+    & {
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
+
+.project-slide {
+  height: 450px;
+  max-height: 450px;
+}
+
+.splide__slide {
+  position: relative;
+}
+
+.wex-splide {
+  width: 100%;
+  .wex__slide {
+    height: 320px;
+    max-height: 320px;
+    img.slide {
+      border-radius: 6px;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.carousel-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-indicators {
+  padding: 7px 12px;
+  background-color: rgba(58, 58, 58, 0.8);
+  border-radius: 6px;
+}
+
+#neptuneSlider {
+  .item__overlay--right,
+  .item__overlay--left {
+    background-color: rgba($color-primary-light, 0.4);
+  }
+}
+
+#fatSlider {
+  .item__overlay--right,
+  .item__overlay--left {
+    background-color: rgba(70, 4, 128, 0.6);
+  }
+}
+
+#freelanceSlider {
+  .item__overlay--right,
+  .item__overlay--left {
+    background-color: rgba($color-primary, 0.8);
+  }
+}
+
+#tjcSlider {
+  .item__overlay--right,
+  .item__overlay--left {
+    background-color: rgba(66, 130, 170, 0.8);
+  }
+}
+
+.item__overlay--left,
+.item__overlay--right {
+  display: block;
+  min-width: 101%;
+  min-height: 101%;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.1s;
+}
+
+.item__overlay--left {
+  border-radius: 6px;
+  transform: translateX(-100%);
+  -webkit-clip-path: polygon(0 0, 100% 0%, 0 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 0 100%, 0% 100%);
+}
+
+.item__overlay--right {
+  border-radius: 6px;
+  transform: translateX(100%);
+  -webkit-clip-path: polygon(100% 100%, 100% 0%, 0 100%, 0% 100%);
+  clip-path: polygon(100% 100%, 100% 0%, 0 100%, 0% 100%);
+}
+
+@media only screen and (max-width: 576px) {
+  .wex-splide {
+    width: 100%;
+    .wex__slide {
+      height: 200px;
+      max-height: 200px;
+      img.slide {
+        border-radius: 6px;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}

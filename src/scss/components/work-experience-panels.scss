@@ -1,0 +1,143 @@
+.work-experience__heading {
+  background-image: linear-gradient(to right bottom, #fff, #f1c40f) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.wex {
+  max-width: 1300px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(58, 58, 58);
+  &:first-child {
+    margin-left: 50px;
+  }
+  &__link {
+    display: inline-block;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.neptune {
+  &__link::before {
+    background-color: $color-primary-light;
+  }
+}
+
+.tjc {
+  &__link::before {
+    background-color: #4282aa;
+  }
+}
+
+.FAT__link::before {
+  background-color: rgba(70, 4, 128, 1);
+}
+
+.freelance {
+  &__link::before {
+    background-color: rgba($color-primary, 0.8);
+  }
+}
+
+@media only screen and (min-width: 1040px) and (max-width: 1300px) {
+  .wex__contents {
+    height: 100%;
+  }
+}
+
+// bespoke to all sreens < tablet H
+@media only screen and (max-width: 991px) {
+  .work-experience__heading {
+    background-image: linear-gradient(
+      180deg,
+      $wexHeaderRGB1 0%,
+      $wexHeaderRGB1 50%,
+      $color-secondary 51%
+    ) !important;
+    color: #fff;
+    background-color: transparent;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #pinContainer {
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    width: 5500px;
+    max-width: 5500px;
+    overflow: hidden;
+  }
+
+  #slideContainer {
+    width: 5600px;
+    /* to contain 4 panels */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scrollmagic-pin-spcer {
+    max-width: 5600px !important;
+  }
+
+  .panel {
+    width: 22.5%;
+    max-width: 1300px; /* relative to parent -> 25% of #slideContainer width minus overall margin - 200px*/
+    float: left;
+    box-shadow: 1px 2px 30px $color-black;
+    flex: 1 !important;
+    padding: 1% !important;
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #slideContainer {
+    width: 5200px;
+  }
+  .panel {
+    max-width: 1020px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #slideContainer {
+    width: 3500px;
+  }
+  .panel {
+    max-width: 768px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  #pinContainer {
+    width: 100vw;
+  }
+  #slideContainer {
+    width: 100%;
+  }
+  .wex {
+    &:first-child {
+      margin-left: 0px !important;
+    }
+  }
+  .panel {
+    margin-top: 25px;
+    margin-right: 0px;
+    max-width: 100%;
+  }
+}
