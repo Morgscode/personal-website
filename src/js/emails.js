@@ -1,12 +1,11 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const contactFormBtn = document.querySelector("#portfolioContactSubmit");
-
   if (contactFormBtn) {
     contactFormBtn.addEventListener("click", submitPortfolioContactForm);
   }
 });
 
 function enableSubmitButton() {
+  const contactFormBtn = document.querySelector("#portfolioContactSubmit");
   return (contactFormBtn.disabled = false);
 }
 
