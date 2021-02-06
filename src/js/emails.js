@@ -9,14 +9,14 @@ function enableSubmitButton() {
   return (contactFormBtn.disabled = false);
 }
 
-async function submitPortfolioContactForm() {
+function submitPortfolioContactForm() {
   const form = document.querySelector("#portfolioContactForm");
 
   if (form && form.checkValidity()) {
     // fetch post
 
     const formData = convertFormDataToJson(form);
-    const formRequest = await fetch(
+    const formRequest = fetch(
       "https://lukemorgan-web-cv.netlify.app/.netlify/functions/sendMail",
       {
         method: "POST",
