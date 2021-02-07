@@ -6,7 +6,7 @@ exports.handler = (event, context, callback) => {
     port: 587,
     secure: false,
     auth: {
-      user: "morgan.luke94@gmail.com",
+      user: "Morgan.luke94@gmail.com",
       pass: "MFS0vP12LHGcmKw5",
     },
   });
