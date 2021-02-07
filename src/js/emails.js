@@ -31,8 +31,7 @@ function submitPortfolioContactForm() {
     formRequest
       .then((res) => {
         console.log(res);
-        res.body;
-        form.reset();
+        //form.reset();
       })
       .catch((err) => {
         console.log(err);
