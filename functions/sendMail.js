@@ -4,7 +4,7 @@ exports.handler = (event, context, callback) => {
   let transporter = nodemailer.createTransport({
     host: "smtp-relay.sendinblue.com",
     port: 587,
-    secure: true,
+    secure: false,
     auth: {
       user: "morgan.luke94@gmail.com",
       password: "MFS0vP12LHGcmKw5",
