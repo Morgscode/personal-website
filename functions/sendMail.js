@@ -11,6 +11,8 @@ exports.handler = async (event, context) => {
     },
   });
 
+  console.log(transporter);
+
   let emailMeta = JSON.parse(event.body);
 
   let emailTemplate = `
