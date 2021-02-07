@@ -17,7 +17,7 @@ function submitPortfolioContactForm() {
 
     const formDataJSON = convertFormDataToJson(form);
     const formRequest = fetch(
-      "https://luke-morgan.com/.netlify/functions/sendMail",
+      "https://www.luke-morgan.com/.netlify/functions/sendMail",
       {
         method: "POST",
         headers: {
