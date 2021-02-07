@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 
 exports.handler = async (event, context) => {
+  // init our smtp handler
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT),
@@ -14,8 +15,18 @@ exports.handler = async (event, context) => {
 
   console.log(transporter);
 
+  // verify connection configuration
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Server is ready to take our messages");
+    }
+  });
+
   let emailMeta = JSON.parse(event.body);
 
+  // let's build the html email template with the values passed from client
   let emailTemplate = `
   <!DOCTYPE html>
 <html>
@@ -93,7 +104,7 @@ exports.handler = async (event, context) => {
       subject: "contact form submission from luke-morgan.com",
       text: emailTemplate,
     },
-    (error) => {
+    (error, info) => {
       if (error) {
         console.log("error runs!!");
         console.log(error);
@@ -105,7 +116,7 @@ exports.handler = async (event, context) => {
           }),
         };
       } else {
-        console.log("success!!");
+        console.log(info);
         return {
           status: "ok",
           statusCode: 200,
