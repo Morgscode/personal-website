@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 
 exports.handler = async (event, context) => {
-  console.log(context);
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
@@ -12,6 +11,7 @@ exports.handler = async (event, context) => {
     },
   });
 
+  console.log(context);
   console.log(event);
 
   let emailMeta = JSON.parse(event.body);
