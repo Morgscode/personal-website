@@ -13,9 +13,9 @@ exports.handler = (event, context, callback) => {
 
   console.log(event);
 
-  let email = JSON.parse(event.body);
+  let emailMeta = JSON.parse(event.body);
 
-  console.log(email);
+  console.log(emailMeta);
 
   /* send me some mails */
   transporter.sendMail(
