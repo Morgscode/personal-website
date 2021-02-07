@@ -11,9 +11,6 @@ exports.handler = async (event, context) => {
     },
   });
 
-  console.log(context);
-  console.log(event);
-
   let emailMeta = JSON.parse(event.body);
 
   let emailTemplate = ``;
@@ -34,11 +31,13 @@ exports.handler = async (event, context) => {
         return {
           statusCode: 500,
           body: "fail",
+          statusText: "There was a problem sending the contact form submission",
         };
       } else {
         return {
           statusCode: 200,
           body: "Ok",
+          statusText: "Contact form submission has been sent!",
         };
       }
     }
