@@ -98,32 +98,29 @@ exports.handler = async (event, context) => {
 `;
 
   /* send me some mails */
-  transporter.sendMail(
-    {
+  transporter
+    .sendMail({
       from: process.env.MAIL_FROM,
       to: process.env.EMAIL_TARGET,
       subject: "contact form submission from luke-morgan.com",
       text: emailTemplate,
-    },
-    (error, info) => {
-      if (error) {
-        console.log("error runs!!");
-        console.log(error);
-        return {
-          status: "fail",
-          statusCode: 500,
-          body: JSON.stringify({
-            meaasge: "There was a problem sending the contact form submission",
-          }),
-        };
-      } else {
-        console.log(info);
-        return {
-          status: "ok",
-          statusCode: 200,
-          body: JSON.stringify({ message: "Contact form submission sent!" }),
-        };
-      }
-    }
-  );
+    })
+    .then((res) => {
+      console.log(res);
+      return {
+        status: "ok",
+        statusCode: 200,
+        body: JSON.stringify({ message: "Contact form submission sent!" }),
+      };
+    })
+    .catch((err) => {
+      console.log(error);
+      return {
+        status: "fail",
+        statusCode: 500,
+        body: JSON.stringify({
+          meaasge: "There was a problem sending the contact form submission",
+        }),
+      };
+    });
 };
