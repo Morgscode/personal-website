@@ -93,6 +93,7 @@ exports.handler = async (event, context) => {
   );
 
   console.log(emailMeta);
+  console.log(emailTemplate);
 
   /* send me some mails */
   transporter.sendMail(
