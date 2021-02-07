@@ -24,6 +24,7 @@ exports.handler = (event, context, callback) => {
     },
     (error) => {
       if (error) {
+        console.log(error);
         return {
           statusCode: 500,
           body: "fail",
