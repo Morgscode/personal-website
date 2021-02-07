@@ -13,8 +13,6 @@ exports.handler = async (event, context) => {
     logger: true,
   });
 
-  console.log(transporter);
-
   // verify connection configuration
   transporter.verify(function (error, success) {
     if (error) {
@@ -97,14 +95,18 @@ exports.handler = async (event, context) => {
 </html>
 `;
 
+  const messageEnvelope = {
+    from: process.env.MAIL_FROM,
+    to: process.env.EMAIL_TARGET,
+    subject: "contact form submission from luke-morgan.com",
+    html: emailTemplate,
+  };
+
+  console.log(messageEnvelope);
+
   /* send me some mails */
   transporter
-    .sendMail({
-      from: process.env.MAIL_FROM,
-      to: process.env.EMAIL_TARGET,
-      subject: "contact form submission from luke-morgan.com",
-      text: emailTemplate,
-    })
+    .sendMail(messageEnvelope)
     .then((res) => {
       console.log(res);
       return {
