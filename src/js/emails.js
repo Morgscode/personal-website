@@ -15,15 +15,15 @@ function submitPortfolioContactForm() {
   if (form && form.checkValidity()) {
     // fetch post
 
-    const formData = convertFormDataToJson(form);
+    const formDataJSON = convertFormDataToJson(form);
     const formRequest = fetch(
-      "https://lukemorgan-web-cv.netlify.app/.netlify/functions/sendMail",
+      "https://luke-morgan.com/.netlify/functions/sendMail",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: formData,
+        body: formDataJSON,
       }
     );
 
