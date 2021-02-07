@@ -124,7 +124,7 @@ exports.handler = async (event, context) => {
         status: "fail",
         statusCode: 500,
         body: {
-          meaasge: "There was a problem sending the contact form submission",
+          message: "There was a problem sending the contact form submission",
         },
       });
     });
