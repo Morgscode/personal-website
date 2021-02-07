@@ -14,10 +14,13 @@ exports.handler = async (event, context) => {
     debug: true,
   });
 
+  console.log(transporter);
+
   // verify connection configuration
-  transporter.verify(function (error, success) {
+  transporter.verify((error, success) => {
     if (error) {
       console.log(error);
+      console.log("problem connecting to smtp");
     } else {
       console.log(success);
       console.log("Server is ready to take our messages");
@@ -107,8 +110,8 @@ exports.handler = async (event, context) => {
   /* send me some mails */
   transporter
     .sendMail(messageEnvelope)
-    .then((res) => {
-      console.log(res);
+    .then((info) => {
+      console.log(info);
       return {
         status: "ok",
         statusCode: 200,
