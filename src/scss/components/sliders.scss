@@ -31,6 +31,13 @@
 
 .wex-splide {
   width: 100%;
+  overflow: hidden;
+  .splide__pagination {
+    background-color: rgba($color-primary, 0.9);
+    padding: 1rem;
+    width: 25%;
+    border-radius: $portfolio-border-radius;
+  }
   .wex__slide {
     height: 320px;
     max-height: 320px;
@@ -112,6 +119,10 @@
 @media only screen and (max-width: 576px) {
   .wex-splide {
     width: 100%;
+    .splide__pagination {
+      padding: 0.5rem;
+      width: 80%;
+    }
     .wex__slide {
       height: 200px;
       max-height: 200px;

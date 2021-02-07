@@ -1,5 +1,5 @@
 .page-banner {
-  min-height: 80vh;
+  min-height: 75vh;
   position: relative;
   z-index: 0;
   overflow: visible;
@@ -26,6 +26,11 @@
     left: 0;
     z-index: 2;
   }
+}
+
+.design-page-banner {
+  height: 550px;
+  overflow: hidden;
 }
 
 .sub-page-banner {

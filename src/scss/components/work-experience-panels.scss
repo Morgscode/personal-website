@@ -7,7 +7,7 @@
 
 .wex {
   max-width: 1300px;
-  border-radius: 6px;
+  border-radius: $portfolio-border-radius;
   background-color: rgba(255, 255, 255, 0.9);
   color: rgb(58, 58, 58);
   &:first-child {
@@ -55,6 +55,12 @@
   }
 }
 
+@media only screen and (min-width: 1040px) {
+  .wex {
+    max-height: 95vh;
+  }
+}
+
 // bespoke to all sreens < tablet H
 @media only screen and (max-width: 991px) {
   .work-experience__heading {
@@ -94,7 +100,7 @@
 
   .panel {
     width: 22.5%;
-    max-width: 1300px; /* relative to parent -> 25% of #slideContainer width minus overall margin - 200px*/
+    max-width: 1300px;
     float: left;
     box-shadow: 1px 2px 30px $color-black;
     flex: 1 !important;
