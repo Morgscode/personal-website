@@ -83,7 +83,10 @@ exports.handler = async (event, context) => {
 `;
 
   emailTemplate = emailTemplate.replace(/{% FROM_NAME %}/, emailMeta.from_name);
-  emailTemplate = emailTemplate.replace(/{% MESSAGE %/, emailMeta.message_html);
+  emailTemplate = emailTemplate.replace(
+    /{% MESSAGE %}/,
+    emailMeta.message_html
+  );
   emailTemplate = emailTemplate.replace(
     /{% REPLY_TO %}/g,
     emailMeta.from_email
