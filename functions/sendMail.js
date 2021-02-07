@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context) => {
+  console.log(context);
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
