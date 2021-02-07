@@ -90,7 +90,7 @@ exports.handler = async (event, context) => {
     {
       from: process.env.MAIL_FROM,
       to: process.env.EMAIL_TARGET,
-      subject: process.env.MAIL_SUBJECT,
+      subject: "contact form submission from luke-morgan.com",
       text: emailTemplate,
     },
     (error) => {
@@ -102,6 +102,7 @@ exports.handler = async (event, context) => {
           statusText: "There was a problem sending the contact form submission",
         };
       } else {
+        console.log("success!!");
         let res = JSON.stringify({
           statusCode: 200,
           body: "Ok",
