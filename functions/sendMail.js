@@ -64,7 +64,7 @@ exports.handler = async (event, context) => {
             </tr>
             <tr style="height: 50px;">
               <td style="width: 30px">&nbsp;</td>
-              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: {% FROM_NAME %}</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: {% MESSAGE %}</td>
               <td style=" width: 30px">&nbsp;</td>
             </tr>
             <tr style="height: 50px;">
@@ -82,6 +82,13 @@ exports.handler = async (event, context) => {
 </html>
 `;
 
+  emailTemplate = emailTemplate.replace(/{% FROM_NAME %}/, emailMeta.from_name);
+  emailTemplate = emailTemplate.replace(/{% MESSAGE %/, emailMeta.message_html);
+  emailTemplate = emailTemplate.replace(
+    /{% REPLY_TO %}/g,
+    emailMeta.from_email
+  );
+
   console.log(emailMeta);
 
   /* send me some mails */
@@ -90,7 +97,7 @@ exports.handler = async (event, context) => {
       from: process.env.MAIL_FROM,
       to: process.env.EMAIL_TARGET,
       subject: process.env.MAIL_SUBJECT,
-      text: event.body,
+      text: emailTemplate,
     },
     (error) => {
       if (error) {
