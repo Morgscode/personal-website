@@ -108,18 +108,9 @@ exports.handler = async (event, context) => {
   };
 
   /* send me some mails */
-  transporter
-    .sendMail(messageEnvelope)
-    .then((info) => {
-      console.log(info);
-      return JSON.stringify({
-        status: "ok",
-        statusCode: 200,
-        body: { message: "Contact form submission sent!" },
-      });
-    })
-    .catch((err) => {
-      console.log(err);
+  transporter.sendMail(messageEnvelope, (error, info) => {
+    if (error) {
+      console.log(error);
       return JSON.stringify({
         status: "fail",
         statusCode: 500,
@@ -127,5 +118,13 @@ exports.handler = async (event, context) => {
           message: "There was a problem sending the contact form submission",
         },
       });
-    });
+    } else {
+      console.log(info);
+      return JSON.stringify({
+        status: "ok",
+        statusCode: 200,
+        body: { message: "Contact form submission sent!" },
+      });
+    }
+  });
 };
