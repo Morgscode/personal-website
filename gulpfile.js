@@ -89,8 +89,8 @@ gulp.task(`${projectName}_scripts`, () => {
       )
       .pipe(sourcemaps.init())
       .pipe(concat(`${projectName}_scripts.min.js`))
-      // .pipe(babel({ presets: ["@babel/preset-env"] }))
-      // .pipe(uglify())
+      .pipe(babel({ presets: ["@babel/preset-env"] }))
+      .pipe(uglify())
       // Move it into the js folder
       .pipe(gulp.dest(`${distPath}js`))
   );
