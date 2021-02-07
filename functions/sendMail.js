@@ -99,18 +99,19 @@ exports.handler = async (event, context) => {
       if (error) {
         console.log(error);
         return {
+          status: "fail",
           statusCode: 500,
-          body: "fail",
-          statusText: "There was a problem sending the contact form submission",
+          body: JSON.stringify({
+            meaasge: "There was a problem sending the contact form submission",
+          }),
         };
       } else {
         console.log("success!!");
-        let res = JSON.stringify({
+        return {
+          status: "ok",
           statusCode: 200,
-          body: "Ok",
-          statusText: "Contact form submission has been sent!",
-        });
-        return res;
+          body: JSON.stringify({ message: "Contact form submission sent!" }),
+        };
       }
     }
   );
