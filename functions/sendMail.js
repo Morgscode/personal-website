@@ -97,6 +97,7 @@ exports.handler = async (event, context) => {
     },
     (error) => {
       if (error) {
+        console.log("error runs!!");
         console.log(error);
         return {
           status: "fail",
