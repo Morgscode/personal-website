@@ -25,12 +25,8 @@ function submitPortfolioContactForm() {
         },
         body: formDataJSON,
       }
-    );
-
-    formRequest
-      .then((res) => {
-        return res.json();
-      })
+    )
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
       })
