@@ -22,6 +22,7 @@ function submitPortfolioContactForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          cors: "no-cors",
         },
         body: formDataJSON,
       }
