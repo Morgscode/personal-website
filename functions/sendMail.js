@@ -2,9 +2,9 @@ const nodemailer = require("nodemailer");
 
 exports.handler = (event, context, callback) => {
   let transporter = nodemailer.createTransport({
-    host: "smtp-relay.sendinblue.com",
-    port: 587,
-    secure: false,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: process.env.SMTP_SECURE_CONNECTION_TYPE,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
