@@ -26,7 +26,7 @@ function submitPortfolioContactForm() {
         body: formDataJSON,
       }
     )
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   }

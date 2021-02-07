@@ -112,20 +112,20 @@ exports.handler = async (event, context) => {
     .sendMail(messageEnvelope)
     .then((info) => {
       console.log(info);
-      return {
+      return JSON.stringify({
         status: "ok",
         statusCode: 200,
-        body: JSON.stringify({ message: "Contact form submission sent!" }),
-      };
+        body: { message: "Contact form submission sent!" },
+      });
     })
     .catch((err) => {
       console.log(err);
-      return {
+      return JSON.stringify({
         status: "fail",
         statusCode: 500,
-        body: JSON.stringify({
+        body: {
           meaasge: "There was a problem sending the contact form submission",
-        }),
-      };
+        },
+      });
     });
 };
