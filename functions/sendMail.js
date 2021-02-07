@@ -11,6 +11,7 @@ exports.handler = async (event, context) => {
       pass: process.env.SMTP_KEY,
     },
     logger: true,
+    debug: true,
   });
 
   // verify connection configuration
