@@ -7,7 +7,7 @@ exports.handler = (event, context, callback) => {
     secure: false,
     auth: {
       user: "morgan.luke94@gmail.com",
-      password: "MFS0vP12LHGcmKw5",
+      pass: "MFS0vP12LHGcmKw5",
     },
   });
 
