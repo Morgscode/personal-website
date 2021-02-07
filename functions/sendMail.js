@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 exports.handler = async (event, context) => {
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: process.env.SMTP_SECURE_CONNECTION_TYPE,
+    port: parseInt(process.env.SMTP_PORT),
+    secure: parseInt(process.env.SMTP_SECURE_CONNECTION_TYPE),
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
