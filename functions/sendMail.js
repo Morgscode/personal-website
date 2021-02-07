@@ -9,6 +9,7 @@ exports.handler = async (event, context) => {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
+    logger: true,
   });
 
   console.log(transporter);
@@ -84,9 +85,6 @@ exports.handler = async (event, context) => {
 </html>
 `;
 
-  console.log(emailMeta);
-  console.log(emailTemplate);
-
   /* send me some mails */
   transporter.sendMail(
     {
@@ -97,6 +95,7 @@ exports.handler = async (event, context) => {
     },
     (error) => {
       if (error) {
+        console.log("error runs!!");
         console.log(error);
         return {
           status: "fail",
