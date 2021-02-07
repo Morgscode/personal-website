@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 exports.handler = async (event, context) => {
   // init our smtp handler
   let transporter = nodemailer.createTransport({
+    name: process.env.SMTP_NAME,
     host: process.env.SMTP_HOST,
     port: 587,
     secure: false,
@@ -108,9 +109,9 @@ exports.handler = async (event, context) => {
   };
 
   /* send me some mails */
-  transporter.sendMail(messageEnvelope, (error, info) => {
-    if (error) {
-      console.log(error);
+  transporter.sendMail(messageEnvelope, (err, info) => {
+    if (err) {
+      console.log(err);
       return JSON.stringify({
         status: "fail",
         statusCode: 500,
