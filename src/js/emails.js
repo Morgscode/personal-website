@@ -30,11 +30,12 @@ function submitPortfolioContactForm() {
 
     formRequest
       .then((res) => {
-        res.json();
         console.log(res);
+        form.reset();
       })
       .catch((err) => {
         console.log(err);
+        alert("there was a problem submitting your contact form");
       });
   }
 }
