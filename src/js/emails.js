@@ -30,7 +30,6 @@ function submitPortfolioContactForm() {
 
     formRequest
       .then((res) => {
-        res.json();
         console.log(res);
       })
       .catch((err) => {
