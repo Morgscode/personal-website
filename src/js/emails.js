@@ -27,13 +27,8 @@ function submitPortfolioContactForm() {
       }
     )
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("there was a problem submitting your contact form");
-      });
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 }
 
