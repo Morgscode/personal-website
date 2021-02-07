@@ -4,6 +4,7 @@
   .personal-project {
     background: rgba(255, 255, 255, 0.6);
     overflow: hidden;
+    border-radius: $portfolio-border-radius;
     &__heading {
       display: inline-block;
       font-size: 32px;

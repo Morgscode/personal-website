@@ -11,8 +11,11 @@ exports.handler = (event, context, callback) => {
     },
   });
 
-  console.log(transporter);
-  console.log(event.body);
+  console.log(event);
+
+  let email = JSON.parse(event.body);
+
+  console.log(email);
 
   /* send me some mails */
   transporter.sendMail(
