@@ -5,7 +5,7 @@ exports.handler = async (event, context) => {
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT),
-    secure: false,
+    secure: true,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
@@ -20,6 +20,7 @@ exports.handler = async (event, context) => {
     if (error) {
       console.log(error);
     } else {
+      console.log(success);
       console.log("Server is ready to take our messages");
     }
   });
