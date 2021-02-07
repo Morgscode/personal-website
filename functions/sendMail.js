@@ -59,18 +59,18 @@ exports.handler = async (event, context) => {
           <td v-align="top">
             <tr style="height: 50px;">
               <td style="width: 30px">&nbsp;</td>
-              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif">From: {% FROM_NAME %}</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif">From: ${emailMeta.from_name}</td>
               <td style="width: 30px">&nbsp;</td>
             </tr>
             <tr style="height: 50px;">
               <td style="width: 30px">&nbsp;</td>
-              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: {% MESSAGE %}</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: ${emailMeta.message_html}</td>
               <td style=" width: 30px">&nbsp;</td>
             </tr>
             <tr style="height: 50px;">
               <td style="width: 30px">&nbsp;</td>
-              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Reply to: <a href=" mailto:{%
-                REPLY_TO %}">{% REPLY_TO %}</a></td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif">Reply to: <a href=" mailto:${emailMeta.from_email}">
+                ${emailMeta.from_email}</a></td>
               <td style="width: 30px">&nbsp;</td>
             </tr>
           </td>
@@ -81,16 +81,6 @@ exports.handler = async (event, context) => {
 </body>
 </html>
 `;
-
-  emailTemplate = emailTemplate.replace(/{% FROM_NAME %}/, emailMeta.from_name);
-  emailTemplate = emailTemplate.replace(
-    /{% MESSAGE %}/,
-    emailMeta.message_html
-  );
-  emailTemplate = emailTemplate.replace(
-    /{% REPLY_TO %}/g,
-    emailMeta.from_email
-  );
 
   console.log(emailMeta);
   console.log(emailTemplate);
