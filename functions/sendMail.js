@@ -6,8 +6,8 @@ exports.handler = (event, context, callback) => {
     port: 587,
     secure: false,
     auth: {
-      user: "Morgan.luke94@gmail.com",
-      pass: "MFS0vP12LHGcmKw5",
+      user: process.env.SMTP_PASS,
+      pass: process.env.SMTP_USER,
     },
   });
 
@@ -17,9 +17,9 @@ exports.handler = (event, context, callback) => {
   /* send me some mails */
   transporter.sendMail(
     {
-      from: "website@luke-morgan.com",
-      to: "morgan.luke94@gmail.com",
-      subject: "contact form submission from luke-morgan.com",
+      from: process.env.MAIL_FROM,
+      to: process.env.EMAIL_TARGET,
+      subject: process.env.MAIL_SUBJECT,
       text: event.body,
     },
     (error) => {
