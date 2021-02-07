@@ -6,8 +6,8 @@ exports.handler = (event, context, callback) => {
     port: 587,
     secure: false,
     auth: {
-      user: process.env.SMTP_PASS,
-      pass: process.env.SMTP_USER,
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
     },
   });
 
