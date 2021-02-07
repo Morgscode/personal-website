@@ -32,20 +32,34 @@
         <td>&nbsp;</td>
       </tr>
     </table>
-    <table
-      style="width: 660px; background-color:  #ebebeb; margin: 0 auto; cell-padding: 0; cell-spacing: 0; border: 0;"
-      align="center">
+    <table style="width: 660px; background-color: #ebebeb; margin: 0 auto; border: 0;" align="center">
       <td>
-        <table id="header"
-          style="cell-padding: 0; cell-spacing: 0; border: 0; width: 660px; height: 50px; background-color: #f1c40f">
+        <table id="header" style="border: 0; width: 660px; height: 50px; background-color: #f1c40f">
           <th>
             <h1 style="font-size:22px; font-weight: 300; font-family: Arial, Helvetica, sans-serif">Contact Form
               Submission from
               luke-morgan.com</h1>
           </th>
         </table>
-        <table style="height: 600px; width: 660px">
-          &nbsp;
+        <table style="width: 660px">
+          <td v-align="top">
+            <tr style="height: 50px;">
+              <td style="width: 30px">&nbsp;</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif">From: {% FROM_NAME %}</td>
+              <td style="width: 30px">&nbsp;</td>
+            </tr>
+            <tr style="height: 50px;">
+              <td style="width: 30px">&nbsp;</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: {% FROM_NAME %}</td>
+              <td style=" width: 30px">&nbsp;</td>
+            </tr>
+            <tr style="height: 50px;">
+              <td style="width: 30px">&nbsp;</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Reply to: <a href=" mailto:{%
+                REPLY_TO %}">{% REPLY_TO %}</a></td>
+              <td style="width: 30px">&nbsp;</td>
+            </tr>
+          </td>
         </table>
       </td>
     </table>
