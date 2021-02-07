@@ -5,7 +5,7 @@ exports.handler = async (event, context) => {
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT),
-    secure: true,
+    secure: false,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_KEY,
@@ -95,14 +95,13 @@ exports.handler = async (event, context) => {
 </html>
 `;
 
+  /* lets define the contents of the email */
   const messageEnvelope = {
     from: process.env.MAIL_FROM,
     to: process.env.EMAIL_TARGET,
     subject: "contact form submission from luke-morgan.com",
     html: emailTemplate,
   };
-
-  console.log(messageEnvelope);
 
   /* send me some mails */
   transporter
@@ -116,7 +115,7 @@ exports.handler = async (event, context) => {
       };
     })
     .catch((err) => {
-      console.log(error);
+      console.log(err);
       return {
         status: "fail",
         statusCode: 500,
