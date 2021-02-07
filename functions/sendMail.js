@@ -4,11 +4,11 @@ exports.handler = async (event, context) => {
   // init our smtp handler
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT),
+    port: 587,
     secure: false,
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_KEY,
+      pass: process.env.SMTP_MASTER_PASS,
     },
     logger: true,
     debug: true,
