@@ -87,6 +87,7 @@ body {
 </html>
 `;
 
+  // lets also build a text email as a fallback
   const textEmail = `
 Hey Luke, You've recieved a contact form submission from ${emailMeta.from_name} \n
 They wanted to say: \n
@@ -112,22 +113,22 @@ regards.... your serverless email function
       /* send me some mails */
       transporter.sendMail(messageEnvelope, (err, info) => {
         if (err) {
-          // console.log(err);
-          return JSON.stringify({
+          console.log(err);
+          return {
             status: "fail",
             statusCode: 500,
-            body: {
+            body: JSON.stringify({
               message:
                 "There was a problem sending the contact form submission",
-            },
-          });
+            }),
+          };
         } else {
-          // console.log(info);
-          return JSON.stringify({
+          console.log(info);
+          return {
             status: "ok",
             statusCode: 200,
-            body: { message: "Contact form submission sent!" },
-          });
+            body: JSON.stringify({ message: "Contact form submission sent!" }),
+          };
         }
       });
     }
