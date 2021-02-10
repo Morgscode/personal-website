@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-exports.handler = async (event, context) => {
+exports.handler = (event, context, callback) => {
   // init our smtp handler
   let transporter = nodemailer.createTransport({
     name: process.env.SMTP_NAME,
@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
   console.log(transporter);
 
   // verify connection configuration
-  await transporter.verify((error, success) => {
+  transporter.verify((error, success) => {
     if (error) {
       console.log(error);
       console.log("problem connecting to smtp");
@@ -110,7 +110,7 @@ exports.handler = async (event, context) => {
   };
 
   /* send me some mails */
-  await transporter.sendMail(messageEnvelope, (err, info) => {
+  transporter.sendMail(messageEnvelope, (err, info) => {
     if (err) {
       console.log(err);
       console.log("message error block runs");
