@@ -18,13 +18,13 @@ exports.handler = async (event, context) => {
   console.log(transporter);
 
   // verify connection configuration
-  transporter.verify((error, success) => {
+  await transporter.verify((error, success) => {
     if (error) {
       console.log(error);
       console.log("problem connecting to smtp");
     } else {
       console.log(success);
-      console.log("Server is ready to take our messages");
+      console.log("SMTP Connection susccessful");
     }
   });
 
@@ -106,12 +106,14 @@ exports.handler = async (event, context) => {
     to: process.env.EMAIL_TARGET,
     subject: "contact form submission from luke-morgan.com",
     html: emailTemplate,
+    text: event.body,
   };
 
   /* send me some mails */
-  transporter.sendMail(messageEnvelope, (err, info) => {
+  await transporter.sendMail(messageEnvelope, (err, info) => {
     if (err) {
       console.log(err);
+      console.log("message error block runs");
       return JSON.stringify({
         status: "fail",
         statusCode: 500,
@@ -120,6 +122,7 @@ exports.handler = async (event, context) => {
         },
       });
     } else {
+      console.log("message sent block runs...");
       console.log(info);
       return JSON.stringify({
         status: "ok",
