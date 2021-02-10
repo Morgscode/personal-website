@@ -14,7 +14,6 @@ function submitPortfolioContactForm() {
 
   if (form && form.checkValidity()) {
     // fetch post
-
     const formDataJSON = convertFormDataToJson(form);
     const formRequest = fetch(
       "https://luke-morgan.com/.netlify/functions/sendMail",
@@ -26,8 +25,9 @@ function submitPortfolioContactForm() {
         body: formDataJSON,
       }
     )
-      .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((res) => {
+        form.reset();
+      })
       .catch((err) => console.log(err));
   }
 }
