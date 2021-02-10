@@ -36,9 +36,7 @@ function convertFormDataToJson(form) {
   const formData = new FormData(form);
   let postData = new Object();
   formData.forEach((value, key) => (postData[key] = value));
-  console.log(postData);
   delete postData["g-recaptcha-response"];
-  console.log(postData);
   const json = JSON.stringify(postData);
   return json;
 }
