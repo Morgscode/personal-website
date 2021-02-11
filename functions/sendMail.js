@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context) => {
   // init our smtp handler
   let transporter = nodemailer.createTransport({
     name: process.env.SMTP_NAME,
@@ -106,66 +106,56 @@ Your serverless email function
     text: textEmail,
   };
 
-  const smtpConnection = await transporter
-    .verify()
-    .then((success) => {
-      return success;
-    })
-    .catch((error) => {
-      console.log(error);
-      return false;
-    });
+  try {
+    await transporter.verify();
 
-  if (smtpConnection) {
-    transporter
-      .sendMail(messageEnvelope)
-      .then((info) => {
-        console.log(info);
-        return {
-          status: "ok",
-          statusCode: 200,
-          body: JSON.stringify({ message: "Contact form submission sent!" }),
-        };
-      })
-      .catch((err) => {
-        console.log(err);
-        return {
-          status: "fail",
-          statusCode: 500,
-          body: JSON.stringify({
-            message: "There was a problem sending the contact form submission",
-          }),
-        };
-      });
+    await transporter.sendMail(messageEnvelope);
+
+    return {
+      status: "ok",
+      statusCode: 200,
+      body: JSON.stringify({ message: "Contact form submission sent!" }),
+    };
+  } catch (error) {
+    return {
+      status: "fail",
+      statusCode: 500,
+      body: JSON.stringify({
+        message: "There was a problem sending the contact form submission",
+      }),
+    };
   }
 
-  // // verify connection configuration
-  //  transporter.verify((error, success) => {
-  //   if (error) {
+  // const smtpConnection = await transporter
+  //   .verify()
+  //   .then((success) => {
+  //     return success;
+  //   })
+  //   .catch((error) => {
   //     console.log(error);
-  //   } else {
-  //     /* send me some mails */
-  //     transporter
-  //       .sendMail(messageEnvelope)
-  //       .then((info) => {
-  //         console.log(info);
-  //         return {
-  //           status: "ok",
-  //           statusCode: 200,
-  //           body: JSON.stringify({ message: "Contact form submission sent!" }),
-  //         };
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         return {
-  //           status: "fail",
-  //           statusCode: 500,
-  //           body: JSON.stringify({
-  //             message:
-  //               "There was a problem sending the contact form submission",
-  //           }),
-  //         };
-  //       });
-  //   }
-  // });
+  //     return false;
+  //   });
+
+  // if (smtpConnection) {
+  //   transporter
+  //     .sendMail(messageEnvelope)
+  //     .then((info) => {
+  //       console.log(info);
+  //       return {
+  //         status: "ok",
+  //         statusCode: 200,
+  //         body: JSON.stringify({ message: "Contact form submission sent!" }),
+  //       };
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       return {
+  //         status: "fail",
+  //         statusCode: 500,
+  //         body: JSON.stringify({
+  //           message: "There was a problem sending the contact form submission",
+  //         }),
+  //       };
+  //     });
+  // }
 };
