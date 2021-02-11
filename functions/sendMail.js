@@ -113,14 +113,12 @@ Your serverless email function
     await transporter.sendMail(messageEnvelope);
 
     return {
-      status: "ok",
       statusCode: 200,
       body: JSON.stringify({ message: "Contact form submission sent!" }),
     };
   } catch (error) {
     console.log(error);
     return {
-      status: "fail",
       statusCode: 500,
       body: JSON.stringify({
         message: "There was a problem sending the contact form submission",
