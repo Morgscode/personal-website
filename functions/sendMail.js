@@ -107,6 +107,7 @@ Your serverless email function
   };
 
   try {
+    // let's verify our smtp connection
     await transporter.verify();
 
     await transporter.sendMail(messageEnvelope);
@@ -117,6 +118,7 @@ Your serverless email function
       body: JSON.stringify({ message: "Contact form submission sent!" }),
     };
   } catch (error) {
+    console.log(error);
     return {
       status: "fail",
       statusCode: 500,
@@ -125,37 +127,4 @@ Your serverless email function
       }),
     };
   }
-
-  // const smtpConnection = await transporter
-  //   .verify()
-  //   .then((success) => {
-  //     return success;
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //     return false;
-  //   });
-
-  // if (smtpConnection) {
-  //   transporter
-  //     .sendMail(messageEnvelope)
-  //     .then((info) => {
-  //       console.log(info);
-  //       return {
-  //         status: "ok",
-  //         statusCode: 200,
-  //         body: JSON.stringify({ message: "Contact form submission sent!" }),
-  //       };
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return {
-  //         status: "fail",
-  //         statusCode: 500,
-  //         body: JSON.stringify({
-  //           message: "There was a problem sending the contact form submission",
-  //         }),
-  //       };
-  //     });
-  // }
 };
