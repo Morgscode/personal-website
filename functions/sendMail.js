@@ -93,7 +93,8 @@ Hey Luke, You've recieved a contact form submission from ${emailMeta.from_name} 
 They wanted to say: \n
 ${emailMeta.message_html} \n
 You can contact them at ${emailMeta.from_email} \n
-regards.... your serverless email function
+regards, \n 
+Your serverless email function
 `;
 
   /* lets define the contents of the email */
@@ -111,8 +112,17 @@ regards.... your serverless email function
       console.log(error);
     } else {
       /* send me some mails */
-      transporter.sendMail(messageEnvelope, (err, info) => {
-        if (err) {
+      transporter
+        .sendMail(messageEnvelope)
+        .then((info) => {
+          console.log(info);
+          return {
+            status: "ok",
+            statusCode: 200,
+            body: JSON.stringify({ message: "Contact form submission sent!" }),
+          };
+        })
+        .catch((err) => {
           console.log(err);
           return {
             status: "fail",
@@ -122,15 +132,7 @@ regards.... your serverless email function
                 "There was a problem sending the contact form submission",
             }),
           };
-        } else {
-          console.log(info);
-          return {
-            status: "ok",
-            statusCode: 200,
-            body: JSON.stringify({ message: "Contact form submission sent!" }),
-          };
-        }
-      });
+        });
     }
   });
 };
