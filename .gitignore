@@ -4,3 +4,5 @@
 /*/.DS_Store
 /dist/css
 /dist/js/portfolio_scripts.min.js
+# Local Netlify folder
+.netlify
