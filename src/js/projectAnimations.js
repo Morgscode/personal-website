@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let portfolioScene = new ScrollMagic.Scene({
         triggerElement: triggerElement,
         triggerHook: triggerHook,
-        reverse: true,
+        reverse: false,
       })
         .setTween(timeline)
         //.addIndicators({ name: "portolio-trigger" })
