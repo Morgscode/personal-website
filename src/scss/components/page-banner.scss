@@ -53,10 +53,12 @@
     left: 43%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 3px solid $color-secondary;
+    border: 5px solid $color-secondary;
     opacity: 0;
+    width: 300px; 
+    height: 300px;
   }
-
+ 
   .banner {
     &__title-box {
       position: absolute;
