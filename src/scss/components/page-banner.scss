@@ -55,10 +55,10 @@
     border-radius: 50%;
     border: 5px solid $color-secondary;
     opacity: 0;
-    width: 300px; 
+    width: 300px;
     height: 300px;
   }
- 
+
   .banner {
     &__title-box {
       position: absolute;
@@ -151,8 +151,7 @@
     }
 
     .mugShot {
-      height: 140px;
-      top: 180px !important;
+      top: 250px !important;
       left: 75% !important;
       transform: translate(-50%, -50%) !important;
       z-index: 12 !important;
