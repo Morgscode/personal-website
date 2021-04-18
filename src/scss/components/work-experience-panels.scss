@@ -7,17 +7,12 @@
 
 .wex {
   max-width: 1300px;
+  height: auto !important;
   border-radius: $portfolio-border-radius;
   background-color: rgba(255, 255, 255, 0.9);
   color: rgb(58, 58, 58);
   &:first-child {
     margin-left: 50px;
-  }
-  &__link {
-    display: inline-block;
-
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   &__text {
@@ -25,27 +20,9 @@
     flex-direction: column;
     justify-content: center;
   }
-}
 
-.neptune {
-  &__link::before {
-    background-color: $color-primary-light;
-  }
-}
-
-.tjc {
-  &__link::before {
-    background-color: #4282aa;
-  }
-}
-
-.FAT__link::before {
-  background-color: rgba(70, 4, 128, 1);
-}
-
-.freelance {
-  &__link::before {
-    background-color: rgba($color-primary, 0.8);
+  &__project-img {
+    max-width: 100%;
   }
 }
 
