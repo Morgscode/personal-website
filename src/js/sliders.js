@@ -17,20 +17,6 @@ window.addEventListener("load", () => {
     );
 
     portfolioSlider.mount();
-
-    const wexSliderOptions = {
-      type: "loop",
-      autoplay: true,
-      interval: 6000,
-      speed: 3500,
-      gap: 0,
-    };
-
-    let wexSliders = document.querySelectorAll(".wex-splide");
-
-    wexSliders.forEach((slider) => {
-      new Splide(slider, wexSliderOptions).mount();
-    });
   }
 
   if (document.querySelector(".projects-splide")) {
