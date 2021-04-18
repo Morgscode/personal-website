@@ -11,11 +11,8 @@
   border-radius: $portfolio-border-radius;
   background-color: rgba(255, 255, 255, 0.9);
   color: rgb(58, 58, 58);
-  &:first-child {
-    margin-left: 50px;
-  }
 
-  &__text {
+  &__text-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,6 +46,12 @@
     ) !important;
     color: #fff;
     background-color: transparent;
+  }
+
+  .wex {
+    &:first-child {
+      margin-left: 50px;
+    }
   }
 }
 
@@ -108,19 +111,19 @@
 
 @media only screen and (max-width: 576px) {
   #pinContainer {
-    width: 100vw;
+    width: 100%;
   }
   #slideContainer {
     width: 100%;
   }
   .wex {
-    &:first-child {
-      margin-left: 0px !important;
+    &__image-block {
+      padding: 1%;
     }
   }
   .panel {
-    margin-top: 25px;
-    margin-right: 0px;
-    max-width: 100%;
+    margin: 45px auto 0px auto;
+    max-width: 95%;
+    padding: 4% 2%;
   }
 }
