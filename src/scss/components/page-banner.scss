@@ -50,7 +50,7 @@
     position: absolute;
     z-index: 4;
     top: 50%;
-    left: 43%;
+    left: 75%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     border: 5px solid $color-secondary;
@@ -62,8 +62,8 @@
   .banner {
     &__title-box {
       position: absolute;
-      top: 50%;
-      left: 56%;
+      top: 65%;
+      left: 55%;
       transform: translate(-50%, -50%);
       z-index: 5;
       border-radius: 6px;
