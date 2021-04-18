@@ -15,7 +15,7 @@
     margin-left: 50px;
   }
 
-  &__text {
+  &__text-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,7 +108,7 @@
 
 @media only screen and (max-width: 576px) {
   #pinContainer {
-    width: 100vw;
+    width: 100%;
   }
   #slideContainer {
     width: 100%;
@@ -116,6 +116,9 @@
   .wex {
     &:first-child {
       margin-left: 0px !important;
+    }
+    &__image-block {
+      padding: 1%;
     }
   }
   .panel {
