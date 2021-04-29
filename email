@@ -50,7 +50,7 @@
             </tr>
             <tr style="height: 50px;">
               <td style="width: 30px">&nbsp;</td>
-              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: {% FROM_NAME %}</td>
+              <td style="width: 600px; font-family: Arial, Helvetica, sans-serif"">Message: {% EMAIL_CONTENT %}</td>
               <td style=" width: 30px">&nbsp;</td>
             </tr>
             <tr style="height: 50px;">
