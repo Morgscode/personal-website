@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // instantiate controller
   const controller = new ScrollMagic.Controller();
   // --------------- banner slider animations
-
+ 
   const firstSceneItems = document.querySelectorAll(".firstSceneItem");
 
   if (firstSceneItems) {
@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
         ".firstSceneItem",
         0.6,
         { x: "-50px", opacity: 0 },
-        { x: "-50%", opacity: 1 },
+        { x: "0%", opacity: 1 },
         "0.15"
       )
       .staggerTo(".secondSceneItem", 0.2, { opacity: 1 }, "0.15", "-=0.15");
