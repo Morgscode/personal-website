@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // instantiate controller
   const controller = new ScrollMagic.Controller();
   // --------------- banner slider animations
- 
+
   const firstSceneItems = document.querySelectorAll(".firstSceneItem");
 
   if (firstSceneItems) {
