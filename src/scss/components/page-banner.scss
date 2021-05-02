@@ -1,4 +1,3 @@
-
 #portfolio-banner {
   position: relative;
   height: 80vh;
@@ -23,7 +22,7 @@
         color: #ffffff;
         opacity: 0;
         margin-bottom: 2%;
-      } 
+      }
     }
 
     .mugShot {
@@ -35,7 +34,6 @@
       height: 450px;
     }
   }
-
 
   #particles-js {
     position: absolute;
@@ -54,6 +52,7 @@
   z-index: 0;
   overflow: visible;
   &__contents-wrapper {
+    min-width: 75%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -90,7 +89,6 @@
   width: 100%;
 }
 
-
 .svg-banner-parent {
   position: relative;
 }
@@ -99,13 +97,9 @@
   width: 100%;
 }
 
-
-
 @media only screen and (min-width: 1140px) {
   #portfolio-banner {
-
     .profile--wrapper {
-
       .mugShot {
         height: 500px;
         width: 500px;
@@ -122,15 +116,16 @@
           font-size: 28px;
         }
       }
-
     }
-  
   }
 }
 
 @media only screen and (max-width: 576px) {
   .page-banner {
-    min-height: 50vh;
+    min-height: 65vh;
+    &__contents-wrapper {
+      padding: 15px;
+    }
   }
 
   .sub-page-banner {
@@ -139,12 +134,12 @@
 
   #portfolio-banner {
     height: 85vh;
-    
+
     .profile--wrapper {
       .banner__title-box {
         width: 300px;
       }
-  
+
       .mugShot {
         height: 300px;
         width: 300px;
