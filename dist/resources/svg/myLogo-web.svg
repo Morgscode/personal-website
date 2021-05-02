@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 152 118" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:10;">
-    <g id="morgan" transform="matrix(0.827698,0,0,0.827698,46.42,25.1931)">
+    <g id="morgan" transform="matrix(0.827698,0,0,0.827698,46.42,24.1931)">
         <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:16px;">MOR</text>
         <g transform="matrix(1,0,0,1,35.6918,0)">
             <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:16px;">G</text>
@@ -10,14 +10,16 @@
             <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:16px;">AN</text>
         </g>
     </g>
-    <g id="luke" transform="matrix(0.759683,0,0,0.759683,60.5667,12.4457)">
+    <g id="luke" transform="matrix(0.759683,0,0,0.759683,59.5832,11.4457)">
         <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:16px;">L</text>
         <g transform="matrix(1,0,0,1,7.74,0)">
             <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:16px;">UKE</text>
         </g>
     </g>
-    <g id="developer" transform="matrix(1,0,0,1,33.8533,108.86)">
-        <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:15px;">DEVE</text>
+    <g id="developer" transform="matrix(0.948295,0,0,0.948295,33.5273,108.871)">
+        <g transform="matrix(1,0,0,1,1.05452,0)">
+            <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:15px;">DEVE</text>
+        </g>
         <g transform="matrix(1,0,0,1,38.43,0)">
             <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:15px;">L</text>
         </g>
@@ -25,16 +27,16 @@
             <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:15px;">OPER</text>
         </g>
     </g>
-    <g id="web" transform="matrix(1,0,0,1,58.9058,93.9604)">
+    <g id="web" transform="matrix(0.948295,0,0,0.948295,59.6126,94.7409)">
         <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:15px;">WEB</text>
     </g>
-    <g transform="matrix(0.862404,0,0,0.862404,9.64803,8.85008)">
+    <g transform="matrix(0.862404,0,0,0.862404,10.4229,8.85008)">
         <path d="M150.79,6.59L145.79,1.59L101.26,46.14L75.71,20.59L50.25,46.05L5.79,1.59L0.79,6.59L45.25,51.05L0.71,95.59L5.71,100.59L50.25,56.05L75.79,81.59L101.25,56.14L145.7,100.59L150.7,95.59L106.26,51.14L150.79,6.59ZM75.79,71.59L55.25,51.05L75.71,30.59L96.26,51.14L75.79,71.59Z" style="fill-rule:nonzero;stroke:black;stroke-width:1px;"/>
     </g>
-    <g transform="matrix(0.862404,0,0,0.862404,66.032,57.4293)">
+    <g transform="matrix(0.862404,0,0,0.862404,66.592,56.654)">
         <text x="0px" y="0px" style="font-family:'NotoSansTC-Regular', 'Noto Sans TC', sans-serif;font-size:14.14px;">&lt;/&gt;</text>
     </g>
-    <g transform="matrix(0.862404,0,0,0.862404,9.64803,8.85008)">
+    <g transform="matrix(0.862404,0,0,0.862404,10.7097,8.76815)">
         <path d="M123.327,38.249L134.415,27.176L145.883,38.661L134.795,49.733L123.327,38.249ZM40.79,51.19L22.79,69.19L22.79,34.38M20.36,33.19L14.36,27.18L15.36,76.19L20.36,71.19M12.79,25.18L6.79,18.18L6.79,53.19L12.79,48.19M6.79,55.19L12.79,50.19L12.79,52.19L6.79,57.19M6.79,59.19L12.79,54.19L12.79,78.19L6.79,84.19M110.535,51.078L121.42,39.805L133.095,51.08L122.21,62.352L110.535,51.078ZM123.804,64.272L134.689,53L146.364,64.274L135.479,75.546L123.804,64.272Z" style="fill-rule:nonzero;"/>
     </g>
 </svg>
