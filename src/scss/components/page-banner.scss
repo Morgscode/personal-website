@@ -53,7 +53,7 @@
   overflow: visible;
   text-align: center;
   &__contents-wrapper {
-    min-width: 75%;
+    min-width: 50%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -125,6 +125,7 @@
   .page-banner {
     min-height: 65vh;
     &__contents-wrapper {
+      min-width: 75%;
       padding: 15px;
     }
   }
