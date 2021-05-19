@@ -2,3 +2,5 @@ Sitemap: https://www.luke-morgan.com/sitemap.xml
 User-agent: *
 Crawl-delay: 120
 Disallow: /src/
+Disallow: /.netlify/
+Disallow: /functions/
