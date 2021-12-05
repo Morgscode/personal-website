@@ -27,7 +27,8 @@
         opacity: 0;
         margin-bottom: 2%;
         text-align: center;
-        line-height: 2; 
+        line-height: 2;
+        box-shadow: 8px 12px 20px -8px #222222;
       }
     }
 
@@ -36,11 +37,13 @@
       border-radius: 6px;
       border: 3px solid $color-primary-light;
       opacity: 0;
+      width: 750px;
       max-width: 90%;  
       padding-bottom: 60%;
       background-size: cover;
       background-position: 50% 50%;
       background-repeat: no-repeat;
+      box-shadow: 8px 12px 30px -8px #222222;
     }
   }
 
@@ -107,7 +110,7 @@
   width: 100%;
 } 
 
-@media only screen and (min-width: 980px) {
+@media only screen and (min-width: 1020px) {
   #portfolio-banner {
     .profile--wrapper {
       .banner {
@@ -124,8 +127,8 @@
     }
   }
 }
-
-@media only screen and (max-width: 576px) {
+  
+@media only screen and (max-width: 978px) {
   .page-banner {
     min-height: 50vh;
     &__contents-wrapper {
@@ -139,9 +142,13 @@
   }
 
   #portfolio-banner {
-    height: 50vh;
+    height: 75vh;
     min-height: 500px;
     .profile--wrapper {
+      width: 90vw;
+      .mugShot {
+        width: 90vw;
+      }
       .banner__title-box {
         max-width: 90%;
       }
