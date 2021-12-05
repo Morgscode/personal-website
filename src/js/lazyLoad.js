@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
     elements.forEach((image) => {
       if (image.intersectionRatio > 0) {
         image.target.src = image.target.dataset.src;
-        image.target.classList.add("visible");
+        image.target.classList.add("visible"); 
         observer.unobserve(image.target);
       }
     });
@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
 
   const observer = new IntersectionObserver(lazyLoadImages, {
     rootMargin: "100px",
-    threshold: 0.2,
+    threshold: 0,
   });
 
   documentImages.forEach((img) => {
