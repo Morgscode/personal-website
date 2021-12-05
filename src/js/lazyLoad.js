@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
 
   const observer = new IntersectionObserver(lazyLoadImages, {
     rootMargin: "100px",
-    threshold: 0,
+    threshold: 0.1,
   });
 
   documentImages.forEach((img) => {
