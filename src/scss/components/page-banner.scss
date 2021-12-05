@@ -27,7 +27,8 @@
         opacity: 0;
         margin-bottom: 2%;
         text-align: center;
-        line-height: 2; 
+        line-height: 2;
+        box-shadow: 8px 12px 20px -8px #222222;
       }
     }
 
@@ -41,6 +42,7 @@
       background-size: cover;
       background-position: 50% 50%;
       background-repeat: no-repeat;
+      box-shadow: 8px 12px 30px -8px #222222;
     }
   }
 
@@ -142,6 +144,10 @@
     height: 50vh;
     min-height: 500px;
     .profile--wrapper {
+      width: 90vw;
+      .mugShot {
+        width: 90vw;
+      }
       .banner__title-box {
         max-width: 90%;
       }
