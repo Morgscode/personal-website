@@ -155,3 +155,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 576px) {
+  .design-page-banner {
+    height: 250px;
+    min-height: unset;
+  } 
+}

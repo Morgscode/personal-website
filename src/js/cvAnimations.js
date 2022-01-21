@@ -51,13 +51,13 @@ window.addEventListener("DOMContentLoaded", () => {
   let pulseTl = new TimelineMax();
 
   pulseTl
-    .to("#html5", 0.2, { scale: 1.3 })
-    .to("#html5", 0.2, { scale: 1 })
-    .to("#css3", 0.2, { scale: 1.3 }, "-=0.15")
-    .to("#css3", 0.2, { scale: 1 })
-    .to("#WP", 0.2, { scale: 1.3 }, "-=0.15")
-    .to("#WP", 0.2, { scale: 1 });
-
+    .to("#html5", 0.2, { scale: 1.3, ease: "back.out(1.7)" })
+    .to("#html5", 0.2, { scale: 1, ease: "back.out(1.7)"})
+    .to("#css3", 0.2, { scale: 1.3, ease: "back.out(1.7)" }, "-=0.15")
+    .to("#css3", 0.2, { scale: 1, ease: "back.out(1.7)" })
+    .to("#WP", 0.2, { scale: 1.3, ease: "back.out(1.7)" }, "-=0.15")
+    .to("#WP", 0.2, { scale: 1, ease: "back.out(1.7)" });  
+    
   setInterval(() => {
     pulseTl.restart();
   }, 3000);

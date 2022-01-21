@@ -5,7 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function enableSubmitButton() {
+function enableSubmitButton(captchaResult) {
+  console.log(captchaResult);
   return (contactFormBtn.disabled = false);
 }
 
