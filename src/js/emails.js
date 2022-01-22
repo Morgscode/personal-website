@@ -7,8 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function enableSubmitButton(captchaResult) {
   if (captchaResult) {
-    return (contactFormBtn.disabled = false);
     resolve();
+    return (contactFormBtn.disabled = false);
   } else {
     reject();
   }
