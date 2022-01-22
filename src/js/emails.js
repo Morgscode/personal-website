@@ -1,3 +1,5 @@
+const { resolveContent } = require("nodemailer/lib/shared");
+
 window.addEventListener("DOMContentLoaded", () => {
   const contactFormBtn = document.querySelector("#portfolioContactSubmit");
   if (contactFormBtn) {
@@ -6,8 +8,12 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function enableSubmitButton(captchaResult) {
-  console.log(captchaResult);
-  return (contactFormBtn.disabled = false);
+  if (captchaResult) {
+    return (contactFormBtn.disabled = false);
+    resolve();
+  } else {
+    reject();
+  }
 }
 
 function submitPortfolioContactForm() {
