@@ -17,6 +17,7 @@ function enableSubmitButton(captchaResult) {
 }
 
 function submitPortfolioContactForm() {
+  contactFormBtn.disabled = true;
   const form = document.querySelector("#portfolioContactForm");
 
   if (form && form.checkValidity()) {
@@ -32,8 +33,8 @@ function submitPortfolioContactForm() {
         },
         body: formDataJSON,
       }
-    )
-      .then((res) => {
+    );
+    formRequest.then((res) => {
         form.reset();
         return res.json();
       })
