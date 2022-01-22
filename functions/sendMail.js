@@ -114,7 +114,13 @@ Your serverless email function
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Contact form submission sent!" }),
+      body: JSON.stringify({ 
+        status: "success",
+        statusCode: 200,
+        data: {
+          message: "contact form submitted",
+        }
+      }),
     };
   } catch (error) {
     console.log(error);
