@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function enableSubmitButton(captchaResult) {
+  console.log(captchaResult);
   if (captchaResult) {
     contactFormBtn.disabled = false;
     resolve();
@@ -28,6 +29,8 @@ function submitPortfolioContactForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
+          "X-Requested-With": "XMLHttpRequest"
         },
         body: formDataJSON,
       }
