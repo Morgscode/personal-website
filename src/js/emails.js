@@ -1,5 +1,3 @@
-const { resolveContent } = require("nodemailer/lib/shared");
-
 window.addEventListener("DOMContentLoaded", () => {
   const contactFormBtn = document.querySelector("#portfolioContactSubmit");
   if (contactFormBtn) {
