@@ -6,11 +6,16 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function enableSubmitButton(captchaResult) {
-  console.log(captchaResult);
-  return (contactFormBtn.disabled = false);
+  if (captchaResult) {
+    resolve();
+    return (contactFormBtn.disabled = false);
+  } else {
+    reject();
+  }
 }
 
 function submitPortfolioContactForm() {
+  contactFormBtn.disabled = true;
   const form = document.querySelector("#portfolioContactForm");
 
   if (form && form.checkValidity()) {
@@ -26,8 +31,8 @@ function submitPortfolioContactForm() {
         },
         body: formDataJSON,
       }
-    )
-      .then((res) => {
+    );
+    formRequest.then((res) => {
         form.reset();
         return res.json();
       })

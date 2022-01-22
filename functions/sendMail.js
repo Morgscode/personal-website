@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
     name: process.env.SMTP_NAME,
     host: process.env.SMTP_HOST,
     port: 587,
-    secure: false,
+    secure: true,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_MASTER_PASS,
@@ -114,7 +114,13 @@ Your serverless email function
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Contact form submission sent!" }),
+      body: JSON.stringify({ 
+        status: "success",
+        statusCode: 200,
+        data: {
+          message: "contact form submitted",
+        }
+      }),
     };
   } catch (error) {
     console.log(error);
