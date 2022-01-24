@@ -11,7 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (form && form.checkValidity()) {
       // fetch post
       const formDataJSON = convertFormDataToJson(form);
-      console.log(window.location);
       const formRequest = fetch(
         `${window.location.origin}/.netlify/functions/sendMail`,
         {
