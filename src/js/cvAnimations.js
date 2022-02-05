@@ -113,7 +113,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       new ScrollMagic.Scene({
         triggerElement: element,
-        triggerHook: 0.75,
+        triggerHook: 0.7,
         reverse: true,
       })
         .setTween(skillColTween)
