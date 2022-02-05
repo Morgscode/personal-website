@@ -140,7 +140,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const headings = document.querySelectorAll(
-    ".portfolio .heading__primary, .portfolio .heading__secondary:not(.panel .heading__secondary)"
+    ".heading__primary:not(.anim-false), .heading__secondary:not(.anim-false)"
   );
 
   headings.forEach((heading, headingIndex) => {
