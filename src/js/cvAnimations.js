@@ -162,7 +162,7 @@ window.addEventListener("DOMContentLoaded", () => {
       reverse: false,
     })
       .setTween(tl)
-      .addIndicators({ name: "text-in-trigger" })
+      //.addIndicators({ name: "text-in-trigger" })
       .addTo(controller);
   });
 });
