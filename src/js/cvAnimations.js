@@ -52,12 +52,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
   pulseTl
     .to("#html5", 0.2, { scale: 1.3, ease: "back.out(1.7)" })
-    .to("#html5", 0.2, { scale: 1, ease: "back.out(1.7)"})
+    .to("#html5", 0.2, { scale: 1, ease: "back.out(1.7)" })
     .to("#css3", 0.2, { scale: 1.3, ease: "back.out(1.7)" }, "-=0.15")
     .to("#css3", 0.2, { scale: 1, ease: "back.out(1.7)" })
     .to("#WP", 0.2, { scale: 1.3, ease: "back.out(1.7)" }, "-=0.15")
-    .to("#WP", 0.2, { scale: 1, ease: "back.out(1.7)" });  
-    
+    .to("#WP", 0.2, { scale: 1, ease: "back.out(1.7)" });
+
   setInterval(() => {
     pulseTl.restart();
   }, 3000);
@@ -121,4 +121,48 @@ window.addEventListener("DOMContentLoaded", () => {
         .addTo(controller);
     });
   }
+
+  function textWrap(el) {
+    // split heading into words
+    const elArray = el.innerText.split(" ");
+    // map words into characters
+    const wrappedWords = elArray.map((word, wordIndex) => {
+      // split each word into a char array
+      const chars = word.split("");
+      // wrap each character into a span
+      wrappedChars = chars.map((char, chardIndex) => `<span>${char}</span>`);
+      // rejoin chards into a word and return
+      return wrappedChars.join("");
+    });
+    // rejoin headings
+    el.innerHTML = wrappedWords.join(" ");
+    return el;
+  }
+
+  const headings = document.querySelectorAll(
+    ".portfolio .heading__primary, .portfolio .heading__secondary:not(.panel .heading__secondary)"
+  );
+
+  headings.forEach((heading, headingIndex) => {
+    heading = textWrap(heading);
+    const spans = heading.querySelectorAll("span");
+    const tl = new TimelineMax();
+    tl.staggerFromTo(
+      spans,
+      0.35,
+      { y: 20, x: 20, opacity: 0 },
+      { y: 0, x: 0, opacity: 1, ease: "back.out2" },
+      "0.05",
+      "-=0.025"
+    );
+
+    new ScrollMagic.Scene({
+      triggerElement: heading,
+      triggerHook: 0.7,
+      reverse: false,
+    })
+      .setTween(tl)
+      .addIndicators({ name: "text-in-trigger" })
+      .addTo(controller);
+  });
 });
