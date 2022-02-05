@@ -8,6 +8,10 @@
   font-weight: 300;
   font-size: 2rem;
   line-height: 1.5;
+
+  span {
+    display: inline-block;
+  }
 }
 
 .heading__primary {
@@ -47,31 +51,6 @@
 
   .heading__primary-light {
     color: $text-color !important;
-  }
-}
-
-//bespoke for all screen > tabelt H
-@media only screen and (min-width: 991px) {
-  .heading__primary {
-    background-image: linear-gradient(
-      to right bottom,
-      $headerPrimaryRGB1,
-      $color-secondary
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    &-light {
-      background-image: linear-gradient(
-        to right bottom,
-        #fff,
-        $color-secondary
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    white-space: nowrap;
   }
 }
 
