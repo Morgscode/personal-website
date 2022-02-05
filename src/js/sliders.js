@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   if (document.querySelector(".portfolio-splide")) {
     const portfolioSliderOptions = {
       type: "loop",
@@ -11,24 +11,11 @@ window.addEventListener("load", () => {
       gap: 0,
     };
 
-    let portfolioSlider = new Splide(
+    const portfolioSlider = new Splide(
       ".portfolio-splide",
       portfolioSliderOptions
     );
 
     portfolioSlider.mount();
-  }
-
-  if (document.querySelector(".projects-splide")) {
-    const projectSliderOptions = {
-      type: "loop",
-      autoplay: false,
-      speed: 3500,
-      gap: 0,
-    };
-
-    const projectSlider = new Splide(".projects-splide", projectSliderOptions);
-
-    projectSlider.mount();
   }
 });
