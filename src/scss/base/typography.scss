@@ -8,7 +8,6 @@
   font-weight: 300;
   font-size: 2rem;
   line-height: 1.5;
-
   span {
     display: inline-block;
   }
@@ -16,6 +15,9 @@
 
 .heading__primary {
   color: $headerPrimaryRGB1;
+  &-light {
+    color: $color-primary-light;
+  }
 }
 
 .heading__secondary {
