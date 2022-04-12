@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
         ".firstSceneItem",
         0.6,
         { x: "-50px", opacity: 0 },
-        { x: "0%", opacity: 1 },
+        { x: "0%", opacity: 1, ease: Power2.easeOut},
         "0.15"
       )
       .staggerTo(".secondSceneItem", 0.2, { opacity: 1 }, "0.15", "-=0.15");
@@ -30,8 +30,8 @@ window.addEventListener("DOMContentLoaded", () => {
       ".textStagger1",
       0.6,
       { x: "-50px", opacity: 0 },
-      { x: 0, opacity: 1, ease: "power3" },
-      "0.15"
+      { x: 0, opacity: 1, ease: Power2.easeOut },
+      "0.2"
     );
 
     let aboutTextScene = new ScrollMagic.Scene({
@@ -49,19 +49,18 @@ window.addEventListener("DOMContentLoaded", () => {
   // -------------- skill badge pulse animations
 
   let pulseTl = new TimelineMax();
-
   pulseTl
-    .to("#html5", 0.2, { scale: 1.3, ease: "back.out(1.7)" })
-    .to("#html5", 0.2, { scale: 1, ease: "back.out(1.7)" })
-    .to("#css3", 0.2, { scale: 1.3, ease: "back.out(1.7)" }, "-=0.15")
-    .to("#css3", 0.2, { scale: 1, ease: "back.out(1.7)" })
-    .to("#WP", 0.2, { scale: 1.3, ease: "back.out(1.7)" }, "-=0.15")
-    .to("#WP", 0.2, { scale: 1, ease: "back.out(1.7)" });
+    .to("#html5", 0.2, { scale: 1.3, ease: Back.easeOut.config(1.7) })
+    .to("#html5", 0.2, { scale: 1, ease: Back.easeOut.config(1.7) })
+    .to("#css3", 0.2, { scale: 1.3, ease: Back.easeOut.config(1.7) }, "-=0.15")
+    .to("#css3", 0.2, { scale: 1, ease: Back.easeOut.config(1.7) })
+    .to("#WP", 0.2, { scale: 1.3, ease: Back.easeOut.config(1.7) }, "-=0.15")
+    .to("#WP", 0.2, { scale: 1, ease: Back.easeOut.config(1.7) });
 
   setInterval(() => {
     pulseTl.restart();
   }, 3000);
-
+ 
   // ------------------ work history slide animtaions
 
   const pinContainer = document.querySelector("#pinContainer");
@@ -107,6 +106,7 @@ window.addEventListener("DOMContentLoaded", () => {
           opacity: 1,
           scale: 1,
           boxShadow: "20px 20px 60px #d4d4d4, -20px -20px 60px #ffffff;",
+          ease: Power2.easeOut,
         },
         "0.15"
       );
@@ -151,7 +151,7 @@ window.addEventListener("DOMContentLoaded", () => {
       spans,
       0.35,
       { y: 20, x: 20, opacity: 0 },
-      { y: 0, x: 0, opacity: 1, ease: "back.out2" },
+      { y: 0, x: 0, opacity: 1, ease: Power2.easeOut },
       "0.05",
       "-=0.025"
     );

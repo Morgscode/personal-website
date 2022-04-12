@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
       if (image.intersectionRatio > 0) {
         image.target.src = image.target.dataset.src;
         image.target.classList.add("visible"); 
-        observer.unobserve(image.target);
+        observer.unobserve(image);
       }
     });
   }
