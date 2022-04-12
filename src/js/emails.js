@@ -36,22 +36,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
     let postData = new Object();
     formData.forEach((value, key) => (postData[key] = value));
-    delete postData["g-recaptcha-response"];
     const json = JSON.stringify(postData);
     return json;
   }
-
-  function enableSubmitButton(captchaResult) {
-  console.log(captchaResult);
-  if (captchaResult) {
-    contactFormBtn.disabled = false;
-    resolve();
-  } else {
-    reject();
-  }
-}
-
-  
 });
 
 
