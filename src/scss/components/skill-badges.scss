@@ -23,6 +23,7 @@
     align-self: center;
     margin-right: 50px;
   }
+
 }
 
 .skill-badge {
@@ -83,6 +84,14 @@
 
 .dockerBadge {
   color: #3793ef;
+}
+
+.nodeBadge {
+  color: #026e00;
+}
+
+.vueBadge {
+  color: #42b883;
 }
 
 @media only screen and (max-width: 768px) {
