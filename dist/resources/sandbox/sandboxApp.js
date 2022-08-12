@@ -6,7 +6,7 @@
  */
 const uiController = (() => {
   const initialSceneSetupFunctions = {
-    loadGameAssets: (gameObject) => {
+    loadGameAssets(gameObject) {
       gameObject.load.image('sky', './dist/resources/sandbox/sky.png');
       gameObject.load.image('ground', './dist/resources/sandbox/platform.png');
       gameObject.load.image('star', './dist/resources/sandbox/star.png');
@@ -17,11 +17,11 @@ const uiController = (() => {
       });
       return gameObject;
     },
-    renderBlueSkyBackground: (gameObject) => {
+    renderBlueSkyBackground(gameObject) {
       gameObject.add.image(0, 0, 'sky').setOrigin(0, 0);
       return gameObject;
     },
-    renderScenePlatforms: (gameObject) => {
+    renderScenePlatforms(gameObject) {
       const platforms = gameObject.physics.add.staticGroup();
       // ground layer
       platforms.create(400, 600, 'ground').setScale(2).refreshBody();
@@ -46,7 +46,7 @@ const uiController = (() => {
       return platforms;
     },
 
-    displayGameTitle: (gameObject) => {
+    displayGameTitle(gameObject) {
       const titleCss = {
         font: '16px Courier',
         fill: '#fff',
@@ -59,11 +59,11 @@ const uiController = (() => {
       );
       return gameObject;
     },
-    bindCursorKeys: (gameObject) => {
+    bindCursorKeys(gameObject) {
       const cursors = gameObject.input.keyboard.createCursorKeys();
       return cursors;
     },
-    renderScoreBoardText: (gameObject, score) => {
+    renderScoreBoardText(gameObject, score) {
       const scoreText = gameObject.add.text(16, 16, `score: ${score}`, {
         fontSize: `32px`,
         fontFamily: 'Courier',
@@ -71,7 +71,7 @@ const uiController = (() => {
       });
       return scoreText;
     },
-    renderGameLevelText: (gameObject, level) => {
+    renderGameLevelText(gameObject, level) {
       const levelText = gameObject.add.text(600, 16, `Level: ${level}`, {
         fontSize: `32px`,
         fontFamily: 'Courier',
@@ -82,29 +82,28 @@ const uiController = (() => {
   };
 
   const starSetupFunctions = {
-    renderStarGroup: (gameObject, xVal, yVal, stepXVal) => {
+    renderStarGroup(gameObject, xVal, yVal, stepXVal) {
       const stars = gameObject.physics.add.group({
         key: 'star',
-        repeat: 11,
+        repeat: 10,
         setXY: { x: xVal, y: yVal, stepX: stepXVal },
       });
-
       stars.children.iterate(function (child) {
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
       });
       return stars;
     },
-    setupPlatformStarsCollision: (gameObject, stars, platforms) => {
+    setupPlatformStarsCollision(gameObject, stars, platforms) {
       gameObject.physics.add.collider(stars, platforms);
       return gameObject;
     },
-    starCollected: (player, star) => {
+    starCollected(player, star) {
       star.disableBody(true, true);
       let score = parseInt(window.localStorage.getItem('playerOneScore'));
       score += 10;
       return window.localStorage.setItem('playerOneScore', score);
     },
-    renderRandomStarGroup: (stars) => {
+    renderRandomStarGroup(stars) {
       stars.children.iterate((child) => {
         yVal = Phaser.Math.Between(0, 500);
         child.enableBody(true, child.x, yVal, true, true);
@@ -114,17 +113,17 @@ const uiController = (() => {
   };
 
   const playerOneSetupFunctions = {
-    renderPlayerOne: (gameObject) => {
+    renderPlayerOne(gameObject) {
       const playerOne = gameObject.physics.add.sprite(50, 545, 'dude');
       return playerOne;
     },
-    setPlayerOneInitialPhysics: (player) => {
+    setPlayerOneInitialPhysics(player) {
       player.setBounce(0.2);
       player.body.setGravity(0, 300);
       player.setCollideWorldBounds(true);
       return player;
     },
-    setPlayerOneAnimations: (gameObject) => {
+    setPlayerOneAnimations(gameObject) {
       gameObject.anims.create({
         key: 'left',
         frames: gameObject.anims.generateFrameNumbers('dude', {
@@ -152,7 +151,7 @@ const uiController = (() => {
       });
       return gameObject;
     },
-    setupPlayerOneMovement: (player, cursors, dataCtrl) => {
+    setupPlayerOneMovement(player, cursors, dataCtrl) {
       /**
        *
        * Let's asses which cursor is being pressed,
@@ -209,11 +208,11 @@ const uiController = (() => {
 
       return player;
     },
-    setupPlayerPlatformCollision: (gameObject, player, platforms) => {
+    setupPlayerPlatformCollision(gameObject, player, platforms) {
       gameObject.physics.add.collider(player, platforms);
       return gameObject;
     },
-    setupPlayerStarCollection: (player, stars, collectStarFn, gameObject) => {
+    setupPlayerStarCollection(player, stars, collectStarFn, gameObject) {
       gameObject.physics.add.overlap(
         player,
         stars,
@@ -287,7 +286,6 @@ const dataController = (() => {
     getGameLevel() {
       return window.localStorage.getItem('playerOneLevel');
     }
-
   };
 
   return {
@@ -336,20 +334,18 @@ const gameController = ((uiCtrl, dataCtrl) => {
     rootMargin: '0px',
     threshold: 0,
   };
-
   let observer = new IntersectionObserver(triggerGame, options);
   let target = document.querySelector('#sandbox-game');
   observer.observe(target);
   function triggerGame(entries, observer) {
     entries.forEach((entry) => {
-      console.log(entry);
       if (entry.intersectionRatio > 0) {
         if (!game) {
           game = new Phaser.Game(config);
         }
       }
     });
-  }
+  };
 
   // ------ lets define some variables to make them available to the game scene functions
   let cursors;

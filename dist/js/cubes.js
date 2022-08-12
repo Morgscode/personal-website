@@ -1,27 +1,33 @@
 'use strict';
 
 const cubeModule = (function () {
-  let scene;
-  let renderer;
+  const scene = new THREE.Scene();
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+  const renderer = new THREE.WebGLRenderer();
+  const geometry = new THREE.BoxGeometry();
   let camera;
-  let geometry;
   let cubePosX = 0;
   let cubePosY = 0;
   let cameraPosX = 0;
   let cameraPosY = 0;
   let cameraRotY = 0;
   let cameraRotX = 0;
-  let cameraPosZ = 4;
+  let cameraPosZ = 6;
   let cubeA;
   let cubeB;
   let cubeC;
   let cubeD;
   let animationFrame;
   let inputFrame;
+  let prevPageX = 0;
+  let prevPageY = 0;
+  let mouseMovingUp = false;
+  let mouseMovingDown = false;
+  let mouseMovingLeft = false;
+  let mouseMovingRight = false;
 
   function setup() {
-    scene = new THREE.Scene();
-    // console.log('scene - ', scene);
     scene.background = new THREE.Color(0x222222);
     scene.name = 'lmwd-cube-scene';
     camera = new THREE.PerspectiveCamera(
@@ -30,13 +36,8 @@ const cubeModule = (function () {
       0.1,
       1000
     );
-    // console.log('camera - ', camera);
-    renderer = new THREE.WebGLRenderer();
-    // console.log('renderer - ', renderer);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    geometry = new THREE.BoxGeometry();
-    // console.log('geometry - ', geometry);
-
+  
     for (let i = 0; i < geometry.groups.length; i++) {
       switch (i) {
         case 0:
@@ -70,21 +71,19 @@ const cubeModule = (function () {
     const lightMaterial = new THREE.MeshBasicMaterial({
       color: new THREE.Color(0x6225fa),
     });
-    // console.log('Light material - ', lightMaterial);
     const darkMaterial = new THREE.MeshBasicMaterial({
       color: new THREE.Color(0x361a7d),
     });
-    // console.log('dark material - ', darkMaterial);
     const accentMaterial = new THREE.MeshBasicMaterial({
       color: new THREE.Color(0x101357),
     });
-    // console.log('accent material - ', accentMaterial);
+
     cubeA = new THREE.Mesh(geometry, [
       lightMaterial,
       darkMaterial,
       accentMaterial,
     ]);
-    // console.log('cube - ', cubeA);
+
     cubeB = cubeA.clone();
     cubeC = cubeA.clone();
     cubeD = cubeA.clone();
@@ -100,7 +99,7 @@ const cubeModule = (function () {
 
     scene.add(cubeA, cubeB, cubeC, cubeD);
 
-    document.querySelector('#app').appendChild(renderer.domElement);
+    document.querySelector('#cubes-app').appendChild(renderer.domElement);
     window.addEventListener('keydown', handleInput);
     window.addEventListener('mousemove', handleMouseMove);
     return true;
@@ -144,36 +143,36 @@ const cubeModule = (function () {
           // ----- cubes
           case 37:
             // left
-            cubePosX -= 0.015;
+            cubePosX -= 0.02;
             break;
           case 38:
             // up
-            cubePosY += 0.015;
+            cubePosY += 0.02;
             break;
           case 39:
             // right
-            cubePosX += 0.015;
+            cubePosX += 0.02;
             break;
           case 40:
             // down
-            cubePosY -= 0.015;
+            cubePosY -= 0.02;
             break;
           case 32:
             // space
-            cameraPosZ -= 0.045;
+            cameraPosZ -= 0.02;
             break;
           case 8:
             // delete
-            cameraPosZ += 0.045;
+            cameraPosZ += 0.02;
             break;
           // ---- camera
           case 87:
             // w - up
-            cameraRotX += 0.175;
+            cameraRotX += 0.075;
             break;
           case 65:
             // a - left
-            cameraRotY += 0.175;
+            cameraRotY += 0.075;
             break;
           case 68:
             // d - right
@@ -187,9 +186,64 @@ const cubeModule = (function () {
       });
   }
 
-  function handleMouseMove(e) {
-    // console.log(e);
+  function calculateMouseMoveDirection(mousemove) {
+    if (mousemove.pageX < prevPageX) {
+      mouseMovingLeft = true;
+      mouseMovingRight = false;
+    } else {
+      mouseMovingLeft = false;
+      mouseMovingRight = true;
+    }
+    if (mousemove.pageY < prevPageY) {
+      mouseMovingUp = true;
+      mouseMovingDown = false;
+    } else {
+      mouseMovingUp = false;
+      mouseMovingDown = true;
+    }
   }
 
-  return { setup: setup(), animating: animate(), scene, renderer, camera, geometry, inputFrame, animationFrame };
+  function handleMouseMove(mousemove) {
+    calculateMouseMoveDirection(mousemove);
+    pointer.x = ( mousemove.clientX / window.innerWidth ) * 2 - 1;
+	  pointer.y = - ( mousemove.clientY / window.innerHeight ) * 2 + 1;
+    pointer.up = mouseMovingUp;
+    pointer.down = mouseMovingDown;
+    pointer.left = mouseMovingLeft;
+    pointer.right = mouseMovingRight;
+    prevPageX = mousemove.pageX;
+    prevPageY = mousemove.pageY;
+  }
+
+  function initIntersectionObserver() {
+    function disableWindowScrollOnKeyPress(keypress) {
+      const targets = [32, 37, 38, 39, 40];
+      if (targets.includes(parseInt(keypress.keyCode, 10))) {
+        keypress.preventDefault();
+        return false;
+      }
+    }
+    let options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.9,
+    };
+    let observer = new IntersectionObserver(triggerKeyPressDisable, options);
+    let target = document.querySelector('#cubes-app');
+    observer.observe(target);
+    function triggerKeyPressDisable(entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          window.addEventListener('keydown', disableWindowScrollOnKeyPress);
+        } else {
+          window.removeEventListener('keydown', disableWindowScrollOnKeyPress);
+        }
+      });
+    };
+    return observer;
+  }
+
+  window.addEventListener('mousemove', handleMouseMove);
+  
+  return { setup: setup(), animating: animate(), cubesObserver: initIntersectionObserver() ,scene, renderer, camera, geometry, inputFrame, animationFrame };
 })();
