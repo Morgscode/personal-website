@@ -1,17 +1,14 @@
 /**
- *
  * UI Controller (VIEW)
- * This is our 'V' in MVC
- *
  */
 const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
-      gameObject.load.image('sky', './dist/resources/sandbox/sky.png');
-      gameObject.load.image('ground', './dist/resources/sandbox/platform.png');
-      gameObject.load.image('star', './dist/resources/sandbox/star.png');
-      gameObject.load.image('bomb', './dist/resources/sandbox/bomb.png');
-      gameObject.load.spritesheet('dude', './dist/resources/sandbox/dude.png', {
+      gameObject.load.image('sky', './dist/resources/little-lebowski/sky.png');
+      gameObject.load.image('ground', './dist/resources/little-lebowski/platform.png');
+      gameObject.load.image('star', './dist/resources/little-lebowski/star.png');
+      gameObject.load.image('bomb', './dist/resources/little-lebowski/bomb.png');
+      gameObject.load.spritesheet('dude', './dist/resources/little-lebowski/dude.png', {
         frameWidth: 32,
         frameHeight: 48,
       });
@@ -247,10 +244,7 @@ const uiController = (() => {
 })();
 
 /**
- *
  * Data Controller (MODEL)
- * This is our 'M' in MVC
- *
  */
 const dataController = (() => {
   const playerJumpState = {
@@ -301,18 +295,15 @@ const dataController = (() => {
 })();
 
 /**
- *
  * GameController (Controller)
- * This our 'C' in MVC
- *
  */
 const gameController = ((uiCtrl, dataCtrl) => {
   //------- GAME CONFIG
   let game;
   const config = {
     type: Phaser.AUTO,
-    parent: 'sandbox-game',
-    title: "Where's the game lebowski?",
+    parent: 'little-lebowski-game',
+    title: "The Little Lebowski",
     width: 800,
     height: 600,
     physics: {
@@ -335,7 +326,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
     threshold: 0,
   };
   let observer = new IntersectionObserver(triggerGame, options);
-  let target = document.querySelector('#sandbox-game');
+  let target = document.querySelector('#little-lebowski-game');
   observer.observe(target);
   function triggerGame(entries, observer) {
     entries.forEach((entry) => {
@@ -407,7 +398,5 @@ const gameController = ((uiCtrl, dataCtrl) => {
       });
     }
   }
-
-  // LET'S MAKE THE GAME AVAILABLE TO THE GLOBAL SCOPE
   return { game, config };
 })(uiController, dataController);
