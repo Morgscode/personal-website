@@ -21,8 +21,8 @@ const phaserLoaderModule = (function () {
                             if (script) {
                                 resolve(script);
                             } else {
-                                reject(false);
                                 loadScriptAsync(script, id);
+                                reject(false);
                             }
                         }, 300);
                     });
