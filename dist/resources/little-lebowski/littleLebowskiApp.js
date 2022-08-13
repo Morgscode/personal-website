@@ -314,20 +314,21 @@ const gameController = ((uiCtrl, dataCtrl) => {
       },
     },
     scene: {
-      preload: preload,
-      create: create,
-      update: update,
+      preload,
+      create,
+      update,
     },
   };
 
-  let options = {
+  // for performance, only trigger the game to load when its in the viewport
+  let observerOptions = {
     root: null,
     rootMargin: '0px',
     threshold: 0,
   };
-  let observer = new IntersectionObserver(triggerGame, options);
-  let target = document.querySelector('#little-lebowski-game');
-  observer.observe(target);
+  let observer = new IntersectionObserver(triggerGame, observerOptions);
+  let observerTarget = document.querySelector('#little-lebowski-game');
+  observer.observe(observerTarget);
   function triggerGame(entries, observer) {
     entries.forEach((entry) => {
       if (entry.intersectionRatio > 0) {
@@ -347,15 +348,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
   let activeStarGroups;
 
   //----- GAME SCENE FUNCTIONS DEFINITIONS
-  /**
-   *
-   * We use Javascript's binding of `this` to the
-   * 'object in question calling the function'.
-   * so, in this context...`this` will be the
-   * game object (at the time of execution).
-   *
-   */
-
   function preload() {
     uiCtrl.loadAssets(this);
   }
