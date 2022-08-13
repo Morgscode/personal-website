@@ -1,7 +1,7 @@
 /**
  * Data Controller (MODEL)
  */
- const dataController = (() => {
+const dataController = (() => {
   const playerJumpState = {
     setJumpCount() {
       return window.localStorage.setItem('jumpCount', 1);
@@ -34,7 +34,7 @@
     },
     getGameLevel() {
       return window.localStorage.getItem('playerOneLevel');
-    }
+    },
   };
 
   return {
@@ -56,13 +56,26 @@ const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
       gameObject.load.image('sky', './dist/resources/little-lebowski/sky.png');
-      gameObject.load.image('ground', './dist/resources/little-lebowski/platform.png');
-      gameObject.load.image('star', './dist/resources/little-lebowski/star.png');
-      gameObject.load.image('bomb', './dist/resources/little-lebowski/bomb.png');
-      gameObject.load.spritesheet('dude', './dist/resources/little-lebowski/dude.png', {
-        frameWidth: 32,
-        frameHeight: 48,
-      });
+      gameObject.load.image(
+        'ground',
+        './dist/resources/little-lebowski/platform.png'
+      );
+      gameObject.load.image(
+        'star',
+        './dist/resources/little-lebowski/star.png'
+      );
+      gameObject.load.image(
+        'bomb',
+        './dist/resources/little-lebowski/bomb.png'
+      );
+      gameObject.load.spritesheet(
+        'dude',
+        './dist/resources/little-lebowski/dude.png',
+        {
+          frameWidth: 32,
+          frameHeight: 48,
+        }
+      );
       return gameObject;
     },
     renderBlueSkyBackground(gameObject) {
@@ -300,10 +313,17 @@ const uiController = (() => {
 const gameController = ((uiCtrl, dataCtrl) => {
   //------- GAME CONFIG
   let game;
+  let cursors;
+  let player;
+  let platforms;
+  let stars = [];
+  let scoreText;
+  let activeStarGroups;
+
   const config = {
     type: Phaser.AUTO,
     parent: 'little-lebowski-game',
-    title: "The Little Lebowski",
+    title: 'The Little Lebowski',
     width: 800,
     height: 600,
     physics: {
@@ -320,7 +340,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
     },
   };
 
-  // for performance, only trigger the game to load when its in the viewport
   let observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -329,25 +348,25 @@ const gameController = ((uiCtrl, dataCtrl) => {
   let observer = new IntersectionObserver(triggerGame, observerOptions);
   let observerTarget = document.querySelector('#little-lebowski-game');
   observer.observe(observerTarget);
+
   function triggerGame(entries, observer) {
     entries.forEach((entry) => {
       if (entry.intersectionRatio > 0) {
         if (!game) {
           game = new Phaser.Game(config);
+        } else {
+          game.scene.resume();
+        }
+      } else {
+        if (game) {
+          game.scene.pause();
         }
       }
     });
-  };
-
-  // ------ lets define some variables to make them available to the game scene functions
-  let cursors;
-  let player;
-  let platforms;
-  let stars = [];
-  let scoreText;
-  let activeStarGroups;
+  }
 
   //----- GAME SCENE FUNCTIONS DEFINITIONS
+
   function preload() {
     uiCtrl.loadAssets(this);
   }
