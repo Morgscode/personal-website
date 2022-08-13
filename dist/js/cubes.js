@@ -7,6 +7,10 @@ const cubeModule = (function () {
   const renderer = new THREE.WebGLRenderer();
   const geometry = new THREE.BoxGeometry();
   let camera;
+  let cubeA;
+  let cubeB;
+  let cubeC;
+  let cubeD;
   let cubePosX = 0;
   let cubePosY = 0;
   let cameraPosX = 0;
@@ -14,18 +18,15 @@ const cubeModule = (function () {
   let cameraRotY = 0;
   let cameraRotX = 0;
   let cameraPosZ = 6;
-  let cubeA;
-  let cubeB;
-  let cubeC;
-  let cubeD;
-  let animationFrame;
-  let inputFrame;
   let prevPageX = 0;
   let prevPageY = 0;
   let mouseMovingUp = false;
   let mouseMovingDown = false;
   let mouseMovingLeft = false;
   let mouseMovingRight = false;
+  let mouseIsDown = false;
+  let animationFrame;
+  let inputFrame;
 
   function setup() {
     scene.background = new THREE.Color(0x222222);
@@ -37,7 +38,7 @@ const cubeModule = (function () {
       1000
     );
     renderer.setSize(window.innerWidth, window.innerHeight);
-  
+
     for (let i = 0; i < geometry.groups.length; i++) {
       switch (i) {
         case 0:
@@ -100,7 +101,7 @@ const cubeModule = (function () {
     scene.add(cubeA, cubeB, cubeC, cubeD);
 
     document.querySelector('#cubes-app').appendChild(renderer.domElement);
-    window.addEventListener('keydown', handleInput);
+    window.addEventListener('keydown', handleKeyPress);
     window.addEventListener('mousemove', handleMouseMove);
     return true;
   }
@@ -137,54 +138,55 @@ const cubeModule = (function () {
     return true;
   }
 
-  function handleInput(event) {
-      inputFrame = window.requestAnimationFrame(function () {
-        switch (event?.keyCode) {
-          // ----- cubes
-          case 37:
-            // left
-            cubePosX -= 0.02;
-            break;
-          case 38:
-            // up
-            cubePosY += 0.02;
-            break;
-          case 39:
-            // right
-            cubePosX += 0.02;
-            break;
-          case 40:
-            // down
-            cubePosY -= 0.02;
-            break;
-          case 32:
-            // space
-            cameraPosZ -= 0.02;
-            break;
-          case 8:
-            // delete
-            cameraPosZ += 0.02;
-            break;
-          // ---- camera
-          case 87:
-            // w - up
-            cameraRotX += 0.075;
-            break;
-          case 65:
-            // a - left
-            cameraRotY += 0.075;
-            break;
-          case 68:
-            // d - right
-            cameraRotY -= 0.175;
-            break;
-          case 83:
-            // s - down
-            cameraRotX -= 0.175;
-            break;
-        }
-      });
+  function handleKeyPress(keypress) {
+    inputFrame = window.requestAnimationFrame(function () {
+      switch (keypress?.keyCode) {
+        // ----- cubes
+        case 37:
+          // left
+          cubePosX -= 0.02;
+          break;
+        case 38:
+          // up
+          cubePosY += 0.02;
+          break;
+        case 39:
+          // right
+          cubePosX += 0.02;
+          break;
+        case 40:
+          // down
+          cubePosY -= 0.02;
+          break;
+        case 32:
+          // space
+          cameraPosZ -= 0.02;
+          break;
+        case 8:
+          // delete
+          cameraPosZ += 0.02;
+          break;
+        // ---- camera
+        case 87:
+          // w - up
+          cameraRotX += 0.075;
+          break;
+        case 65:
+          // a - left
+          cameraRotY += 0.075;
+          break;
+        case 68:
+          // d - right
+          cameraRotY -= 0.175;
+          break;
+        case 83:
+          // s - down
+          cameraRotX -= 0.175;
+          break;
+      }
+    });
   }
+  handleKeyPress();
 
   function calculateMouseMoveDirection(mousemove) {
     if (mousemove.pageX < prevPageX) {
@@ -204,15 +206,43 @@ const cubeModule = (function () {
   }
 
   function handleMouseMove(mousemove) {
+    const app = document.querySelector('#cubes-app');
     calculateMouseMoveDirection(mousemove);
     pointer.x = ( mousemove.clientX / window.innerWidth ) * 2 - 1;
 	  pointer.y = - ( mousemove.clientY / window.innerHeight ) * 2 + 1;
-    pointer.up = mouseMovingUp;
-    pointer.down = mouseMovingDown;
-    pointer.left = mouseMovingLeft;
-    pointer.right = mouseMovingRight;
+    raycaster.setFromCamera(pointer, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+    for (let i = 0; i < intersects.length; i++) {
+      // console.log(intersects[i]);
+    }
     prevPageX = mousemove.pageX;
     prevPageY = mousemove.pageY;
+  }
+
+  function handleMouseDown(mousedown) {
+    mouseIsDown = true;
+    const app = document.querySelector('#cubes-app');
+    calculateMouseMoveDirection(mousedown);
+    pointer.x = ( mousedown.clientX / window.innerWidth ) * 2 - 1;
+	  pointer.y = - ( mousedown.clientY / window.innerHeight ) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+    for (let i = 0; i < intersects.length; i++) {
+      console.log(intersects[i]);
+    }
+  }
+
+  function handleMouseUp(mouseup) {
+    mouseIsDown = false;
+    const app = document.querySelector('#cubes-app');
+    calculateMouseMoveDirection(mouseup);
+    pointer.x = ( mouseup.clientX / app.offsetWidth ) * 2 - 1;
+	  pointer.y = - ( mouseup.clientY / app.offsetHeight ) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+    for (let i = 0; i < intersects.length; i++) {
+      console.log(intersects[i]);
+    }
   }
 
   function initIntersectionObserver() {
@@ -239,11 +269,23 @@ const cubeModule = (function () {
           window.removeEventListener('keydown', disableWindowScrollOnKeyPress);
         }
       });
-    };
+    }
     return observer;
   }
 
   window.addEventListener('mousemove', handleMouseMove);
-  
-  return { setup: setup(), animating: animate(), cubesObserver: initIntersectionObserver() ,scene, renderer, camera, geometry, inputFrame, animationFrame };
+  window.addEventListener('mousedown', handleMouseDown);
+  window.addEventListener('mouseup', handleMouseUp);
+
+  return {
+    setup: setup(),
+    animating: animate(),
+    cubesObserver: initIntersectionObserver(),
+    scene,
+    renderer,
+    camera,
+    geometry,
+    inputFrame,
+    animationFrame,
+  };
 })();
