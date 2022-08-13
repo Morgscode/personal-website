@@ -1,4 +1,55 @@
 /**
+ * Data Controller (MODEL)
+ */
+ const dataController = (() => {
+  const playerJumpState = {
+    setJumpCount() {
+      return window.localStorage.setItem('jumpCount', 1);
+    },
+    resetJumpCount() {
+      return window.localStorage.setItem('jumpCount', 0);
+    },
+    getJumpCount() {
+      return window.localStorage.getItem('jumpCount');
+    },
+  };
+
+  const scoreState = {
+    setGameScore() {
+      return window.localStorage.setItem('playerOneScore', 0);
+    },
+    getGameScore() {
+      return parseInt(window.localStorage.getItem('playerOneScore'));
+    },
+  };
+
+  const levelState = {
+    setupGameLevel() {
+      return window.localStorage.setItem('playerOneLevel', 1);
+    },
+    incrementGameLevel() {
+      let level = parseInt(window.localStorage.getItem('playerOneLevel'), 10);
+      level++;
+      return window.localStorage.setItem('playerOneLevel', level);
+    },
+    getGameLevel() {
+      return window.localStorage.getItem('playerOneLevel');
+    }
+  };
+
+  return {
+    setJumpCount: playerJumpState.setJumpCount,
+    resetJumpCount: playerJumpState.resetJumpCount,
+    getJumpCount: playerJumpState.getJumpCount,
+    setupPlayerOneScore: scoreState.setGameScore,
+    getPlayerOneGameScore: scoreState.getGameScore,
+    setupLevel: levelState.setupGameLevel,
+    getLevel: levelState.getGameLevel,
+    levelUp: levelState.incrementGameLevel,
+  };
+})();
+
+/**
  * UI Controller (VIEW)
  */
 const uiController = (() => {
@@ -240,57 +291,6 @@ const uiController = (() => {
     renderScoreText: initialSceneSetupFunctions.renderScoreBoardText,
     renderLevelText: initialSceneSetupFunctions.renderGameLevelText,
     renderRandomStars: starSetupFunctions.renderRandomStarGroup,
-  };
-})();
-
-/**
- * Data Controller (MODEL)
- */
-const dataController = (() => {
-  const playerJumpState = {
-    setJumpCount() {
-      return window.localStorage.setItem('jumpCount', 1);
-    },
-    resetJumpCount() {
-      return window.localStorage.setItem('jumpCount', 0);
-    },
-    getJumpCount() {
-      return window.localStorage.getItem('jumpCount');
-    },
-  };
-
-  const scoreState = {
-    setGameScore() {
-      return window.localStorage.setItem('playerOneScore', 0);
-    },
-    getGameScore() {
-      return parseInt(window.localStorage.getItem('playerOneScore'));
-    },
-  };
-
-  const levelState = {
-    setupGameLevel(){
-      return window.localStorage.setItem('playerOneLevel', 1);
-    },
-    incrementGameLevel() {
-      let level = parseInt(window.localStorage.getItem('playerOneLevel'), 10);
-      level++;
-      return window.localStorage.setItem('playerOneLevel', level);
-    },
-    getGameLevel() {
-      return window.localStorage.getItem('playerOneLevel');
-    }
-  };
-
-  return {
-    setJumpCount: playerJumpState.setJumpCount,
-    resetJumpCount: playerJumpState.resetJumpCount,
-    getJumpCount: playerJumpState.getJumpCount,
-    setupPlayerOneScore: scoreState.setGameScore,
-    getPlayerOneGameScore: scoreState.getGameScore,
-    setupLevel: levelState.setupGameLevel,
-    getLevel: levelState.getGameLevel,
-    levelUp: levelState.incrementGameLevel,
   };
 })();
 
