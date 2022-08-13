@@ -72,6 +72,7 @@ gulp.task(`${projectName}_scripts`, () => {
     gulp
       .src(
         [
+          `${srcPath}js/index.js`,
           `${srcPath}js/particleAnimation.js`,
           `${srcPath}js/sliders.js`,
           `${srcPath}js/lazyLoad.js`,
@@ -82,7 +83,7 @@ gulp.task(`${projectName}_scripts`, () => {
           `${srcPath}js/gameLoader.js`,
           `${srcPath}js/emails.js`,
         ],
-        {
+        { 
           allowEmpty: true,
         }
       )

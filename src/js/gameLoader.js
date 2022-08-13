@@ -1,6 +1,4 @@
-"use strict";
-
-const phaserLoaderModule = (function () {
+const gameLoaderModule = (function () {
     if (window.innerWidth >= 1200) {
         const target = document.querySelector('#phaser-game');
         if (target) {

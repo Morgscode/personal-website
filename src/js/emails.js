@@ -1,8 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const contactFormBtn = document.querySelector("#portfolioContactSubmit");
-  if (contactFormBtn) {
-    contactFormBtn.addEventListener("click", submitPortfolioContactForm);
-  }
+const emailModule = (function() {
 
   function submitPortfolioContactForm() {
     contactFormBtn.disabled = true;
@@ -39,7 +35,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const json = JSON.stringify(postData);
     return json;
   }
-});
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const contactFormBtn = document.querySelector("#portfolioContactSubmit");
+    if (contactFormBtn) {
+      contactFormBtn.addEventListener("click", submitPortfolioContactForm);
+    }
+  });
+
+})();
+
 
 
 
