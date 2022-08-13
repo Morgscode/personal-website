@@ -55,22 +55,22 @@ const dataController = (() => {
 const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
-      gameObject.load.image('sky', './dist/resources/little-lebowski/sky.png');
+      gameObject.load.image('sky', './dist/resources/little-lebowski/assets/sky.png');
       gameObject.load.image(
         'ground',
-        './dist/resources/little-lebowski/platform.png'
+        './dist/resources/little-lebowski/assets/platform.png'
       );
       gameObject.load.image(
         'star',
-        './dist/resources/little-lebowski/star.png'
+        './dist/resources/little-lebowski/assets/star.png'
       );
       gameObject.load.image(
         'bomb',
-        './dist/resources/little-lebowski/bomb.png'
+        './dist/resources/little-lebowski/assets/bomb.png'
       );
       gameObject.load.spritesheet(
         'dude',
-        './dist/resources/little-lebowski/dude.png',
+        './dist/resources/little-lebowski/assets/dude.png',
         {
           frameWidth: 32,
           frameHeight: 48,
@@ -364,7 +364,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
       }
     });
   }
-
+  
   //----- GAME SCENE FUNCTIONS DEFINITIONS
 
   function preload() {

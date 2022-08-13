@@ -79,6 +79,7 @@ gulp.task(`${projectName}_scripts`, () => {
           `${srcPath}js/nav.js`,
           `${srcPath}js/projectAnimations.js`,
           `${srcPath}js/matchHeight.js`,
+          `${srcPath}js/gameLoader.js`,
           `${srcPath}js/emails.js`,
         ],
         {
