@@ -1,4 +1,5 @@
 const navModule = (function() {
+  let nav;
   let activateNav = () => {
     nav.classList.add("nav__active");
   };
@@ -6,7 +7,7 @@ const navModule = (function() {
     nav.classList.remove("nav__active");
   };
   window.addEventListener("DOMContentLoaded", () => {
-    const nav = document.querySelector(".nav__container");
+    nav = document.querySelector(".nav__container");
     const navBtn = document.querySelector(".nav__button");
     const navCloseBtn = document.querySelector(".nav__close");
     navBtn.addEventListener("click", activateNav);
