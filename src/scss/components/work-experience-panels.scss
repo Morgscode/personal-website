@@ -1,5 +1,9 @@
 .work-experience__heading {
   color: white;
+  span {
+    display: inline-block;
+    margin: 0px 1px;
+  }
 }
 
 .panel {
@@ -92,13 +96,6 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .work-experience__heading {
-    font-size: 1.25rem;
-    span {
-      display: inline-block;
-      margin: 0px 1px;
-    }
-  }
   #pinContainer {
     width: 100%;
   }
