@@ -2,9 +2,8 @@
 <html>
 
 <head>
-  <title>Luke Morgan - Cubes</title>
-  <meta name="description" content="Luke Morgan | Freelance web developer based in Sussex.">
-  <meta name="keywords" content="Freelance web developer, Front-end developer, PHP developer, WordPress developer" />
+  <title>Cubes and what now? </title>
+  <meta name="description" content="Where's the cubes lebowski?">
   <!-- content directive -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- canonical tags -->
@@ -14,11 +13,11 @@
   <link rel="shortcut icon" type="image/png" href="./dist/resources/img/myLogo-web.webp" />
   <!-- preloaded resources-->
   <link rel="preload" href="./dist/css/portfolio_styles.min.css" as="style">
-  <link rel="preload" href="./dist/js/splide/dist/css/themes/splide-default.min.css" as="style">
-  <link rel="preload" href="./dist/js/splide/dist/js/splide.min.js" as="script">
+  <link rel="preload" href="./dist/resources/splide/dist/css/themes/splide-default.min.css" as="style">
+  <link rel="preload" href="./dist/resources/splide/dist/js/splide.min.js" as="script">
   <link rel="preload" href="./dist/js/portfolio_scripts.min.js" as="script">
   <!-- slider stylesheet -->
-  <link rel="stylesheet" href="./dist/js/splide/dist/css/themes/splide-default.min.css">
+  <link rel="stylesheet" href="./dist/resources/splide/dist/css/themes/splide-default.min.css">
   <!-- page stylesheets-->
   <link rel="stylesheet" href="./dist/css/portfolio_styles.min.css">
   <style>
@@ -27,63 +26,13 @@
       width: 100%;
       height: 100%;
       z-index: 5;
-      margin-top: -15%;
+      margin-top: -5%;
       background-color: #222222;
-    }
-
-    #cubes-app canvas {
-        background-color: #222222;
     }
 
     header {
       position: relative;
       z-index: 10;
-    }
-
-    footer {
-      padding: 12px 22px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    .label {
-      margin-right: 20px;
-    }
-
-    #controls-container {
-      visibility: hidden;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 3rem;
-      color: #fff;
-      font-family: courier;
-    }
-
-    #controls-container .label {
-      margin: 22px;
-      padding: 12px 22px;
-      color: #fff;
-    }
-
-    .controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      list-style: none;
-     
-    }
-
-    .controls li {
-      text-align: center;
-      padding: 1.5rem 0;
-    }
-
-    .controls li:not(:last-child) {
-      border-right: 1px solid #ffffff;
     }
   </style>
 </head>
@@ -114,36 +63,26 @@
       </div>
     </header>
     <div id="cubes-app">
-        <aside id="controls-container">
-          <p class="label">Controls</p>
-          <ul class="controls">
-            <li>W - Camera Up</li>
-            <li>A - Camera Left</li>
-            <li>S - Camera Down</li>
-            <li>D - Camera Right</li>
-            <li>Arrows - Cubes Direction</li>
-            <li>Space - Zoom in</li>
-            <li>Delete - Zoom out</li>
-          </ul>
-        </aside>
     </div>
-    <footer>
-
-    </footer>
   </main>
   <!-- font awesome -->
   <script src="https://kit.fontawesome.com/f2ad0cb5b1.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-    integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./dist/js/cubes.js"></script>
+  <script type="importmap">
+			{
+				"imports": {
+					"three": "./dist/js/three/three.mjs"
+				}
+			}
+		</script>
+  <script type="module" src="./dist/js/three/three.mjs"></script>
+  <script type="module" src="./dist/js/cubes.mjs"></script>
   <script src="./dist/js/scrollMagic-min/ScrollMagic.min.js"></script>
   <script src="./dist/js/scrollMagic-min/plugins/animation.gsap.min.js"></script>
   <script src="./dist/js/scrollMagic-min/plugins/debug.addIndicators.min.js"></script>
   <script src="./dist/js/gsap-min/TweenMax.min.js"></script>
   <script src="./dist/js/gsap-min/TimelineMax.min.js"></script>
   <!-- slider module -->
-  <script src="./dist/js/splide/dist/js/splide.min.js"></script>
+  <script src="./dist/resources/splide/dist/js/splide.min.js"></script>
   <script src="./dist/js/portfolio_scripts.min.js"></script>
 </body>
 
