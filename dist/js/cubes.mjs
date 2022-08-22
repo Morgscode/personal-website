@@ -1,4 +1,17 @@
-import { Scene, Raycaster, Vector2, WebGLRenderer, BoxGeometry, SphereGeometry, AmbientLight, Color, Mesh, MeshBasicMaterial, PerspectiveCamera } from './three/three.mjs';
+import {
+  Scene,
+  Raycaster,
+  Vector2,
+  WebGLRenderer,
+  BoxGeometry,
+  SphereGeometry,
+  AmbientLight,
+  Color,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  DirectionalLight,
+} from './three/three.mjs';
 import { OrbitControls } from './three/OrbitControls.mjs';
 
 const cubeModule = (function () {
@@ -9,17 +22,7 @@ const cubeModule = (function () {
   const boxGeometry = new BoxGeometry();
   const frameSphereGeometry = new SphereGeometry(6, 32, 16);
   const sphereGeometry = new SphereGeometry(5.5, 32, 16);
-  const light = new AmbientLight(0xffffff, 0.5);
-  let camera;
-  let controls;
-  let cubeA;
-  let cubeB;
-  let cubeC;
-  let cubeD;
-  let frameSphere;
-  let sphere;
-  let animationFrame;
-  let inputFrame;
+  const light = new DirectionalLight(0xffffff, 0.5);
   let cubePosX = 0;
   let cubePosY = 0;
   let cameraPosX = 0;
@@ -36,10 +39,23 @@ const cubeModule = (function () {
   let mouseIsDown = false;
   let rotateFrameSphere = true;
   let rotateCubes = true;
+  let camera;
+  let controls;
+  let animationFrame;
+  let inputFrame;
+  let cubeA;
+  let cubeB;
+  let cubeC;
+  let cubeD;
+  let frameSphere;
+  let sphere;
 
   function setup() {
     scene.background = new Color(0x000000);
     scene.name = 'lmwd-cube-scene';
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio( window.devicePixelRatio );
 
     camera = new PerspectiveCamera(
       75,
@@ -47,11 +63,14 @@ const cubeModule = (function () {
       1,
       100
     );
- 
-    light.shadowMapVisible = true;
-    scene.add(light);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.querySelector('#cubes-app').appendChild(renderer.domElement);
+
+    controls = new OrbitControls(camera, renderer.domElement);
+
+    light.shadowMapVisible = true;
+    light.position.set(0, 7, -4);
+    scene.add(light);
 
     for (let i = 0; i < boxGeometry.groups.length; i++) {
       switch (i) {
@@ -105,15 +124,10 @@ const cubeModule = (function () {
     cubeC.name = 'cube-c';
     cubeD = cubeA.clone();
     cubeD.name = 'cube-d';
-    cubeA.position.x = 2;
-    cubeA.position.y = 2;
-    cubeB.position.x = -2;
-    cubeB.position.y = 2;
-    cubeC.position.x = 4;
-    cubeC.position.y = 2;
-    cubeD.position.x = -4;
-    cubeD.position.y = 2;
-
+    cubeA.position.set(2, 2);
+    cubeB.position.set(-2, 2);
+    cubeC.position.set(4, 2);
+    cubeD.position.set(-4, 2);
     scene.add(cubeA, cubeB, cubeC, cubeD);
 
     const frameSphereMaterial = new MeshBasicMaterial({
@@ -122,32 +136,21 @@ const cubeModule = (function () {
     });
     frameSphere = new Mesh(frameSphereGeometry, frameSphereMaterial);
     frameSphere.name = 'frame-sphere';
-
-    frameSphere.position.y = -4;
-    frameSphere.position.z = -7;
-
+    frameSphere.position.set(0, -4, -7); 
     scene.add(frameSphere);
 
-    const sphereMaterial = new MeshBasicMaterial({ color: 0x00b2ca });
+    const sphereMaterial = new MeshBasicMaterial({color: 0x00b2ca});
     sphere = new Mesh(sphereGeometry, sphereMaterial);
     sphere.name = 'solid-sphere';
-
-    sphere.position.y = -4;
-    sphere.position.z = -7;
-
+    sphere.position.set(0, -4, -7);  
     scene.add(sphere);
-
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.enablePan = false;
-    controls.enableZoom = false;
-    controls.target.set(0, -4, -7);
-  
-    document.querySelector('#cubes-app').appendChild(renderer.domElement);
+    light.target = sphere;
 
     return true;
   }
 
   function animate() {
+
     if (rotateCubes) {
       cubeA.rotation.x += 0.01;
       cubeA.rotation.y += 0.01;
@@ -163,25 +166,23 @@ const cubeModule = (function () {
       frameSphere.rotation.z += 0.005;
     }
 
-    cubeA.position.x = cubePosX - 3;
-    cubeB.position.x = cubePosX - 1;
-    cubeC.position.x = cubePosX + 1;
-    cubeD.position.x = cubePosX + 3;
-
-    cubeA.position.y = cubePosY;
-    cubeB.position.y = -cubePosY;
-    cubeC.position.y = cubePosY;
-    cubeD.position.y = -cubePosY;
+    cubeA.position.set(cubePosX - 3, cubePosY);
+    cubeB.position.set(cubePosX - 1, -cubePosY);
+    cubeC.position.set(cubePosX + 1, cubePosY);
+    cubeD.position.set(cubePosX + 3, -cubePosY);
 
     if (!mouseIsDown) {
+      controls.enablePan = false;
+      controls.enableZoom = false;
+      controls.target.set(0, 0, 0);
       camera.rotation.x = cameraRotX;
       camera.rotation.y = cameraRotY;
-      camera.position.set( cameraPosX, cameraPosY, cameraPosZ );
+      camera.position.set(cameraPosX, cameraPosY, cameraPosZ);
     }
 
-    animationFrame = window.requestAnimationFrame(animate);
     renderer.render(scene, camera);
     controls.update();
+    animationFrame = window.requestAnimationFrame(animate);
     return true;
   }
 
@@ -283,7 +284,7 @@ const cubeModule = (function () {
           // s - down
           target = cameraRotY + 0.01;
           do {
-             cameraRotY += 0.001;
+            cameraRotY += 0.001;
           } while (cameraRotY < target);
           break;
       }
@@ -297,8 +298,8 @@ const cubeModule = (function () {
     raycaster.setFromCamera(pointer, camera);
     const intersects = raycaster.intersectObjects(scene.children);
     for (let i = 0; i < intersects.length; i++) {
+      if (intersects[i].object.name.startsWith('cube')) {
       function rotateCube() {
-        if (intersects[i].object.name.startsWith('cube')) {
           rotateCubes = false;
           if (mouseMovingUp) {
             const target = intersects[i].object.rotation.y - 0.1;
@@ -326,67 +327,75 @@ const cubeModule = (function () {
           }
           rotateCubes = true;
         }
-      }
-      requestAnimationFrame(rotateCube);
+        requestAnimationFrame(rotateCube);
+      }  
     }
     prevPageX = mousemove.pageX;
     prevPageY = mousemove.pageY;
   }
 
   function handleMouseDown(mousedown) {
-    mouseIsDown = true;
-    calculateMouseMoveDirection(mousedown);
-    pointer.x = (mousedown.clientX / window.innerWidth) * 2 - 1;
-    pointer.y = -(mousedown.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-    const intersects = raycaster.intersectObjects(scene.children);
-    for (let i = 0; i < intersects.length; i++) {
-      switch (intersects[i].object.name) {
-        case 'solid-sphere':
-          intersects[i].object.material.color.set(0xff5d73);
-          function scaleSphere() {
-            if (intersects[i].object.scale.z > 0.1) {
-              intersects[i].object.scale.z -= 0.2;
-              requestAnimationFrame(scaleSphere);
+    if (mousedown.which === 1) {
+      mouseIsDown = true;
+      calculateMouseMoveDirection(mousedown);
+      pointer.x = (mousedown.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(mousedown.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const intersects = raycaster.intersectObjects(scene.children);
+      for (let i = 0; i < intersects.length; i++) {
+        switch (intersects[i].object.name) {
+          case 'solid-sphere':
+            intersects[i].object.material.color.set(0xff5d73);
+            function scaleSphere() {
+              if (intersects[i].object.scale.z > 0.2) {
+                intersects[i].object.scale.x -= 0.02;
+                intersects[i].object.scale.y -= 0.02;
+                intersects[i].object.scale.z -= 0.02;
+                requestAnimationFrame(scaleSphere);
+              }
             }
-          }
-          requestAnimationFrame(scaleSphere);
-          break;
-        case 'frame-sphere':
-          rotateFrameSphere = false;
-          console.log(intersects[i]);
-          intersects[i];
-          break;
+            requestAnimationFrame(scaleSphere);
+            break;
+          case 'frame-sphere':
+            controls.enablePan = false;
+            controls.enableZoom = true;
+            controls.target.set(0, -5, -7);
+            // console.log(intersects[i]);
+            intersects[i];
+            break;
+        }
       }
     }
   }
 
   function handleMouseUp(mouseup) {
-    mouseIsDown = false;
-    calculateMouseMoveDirection(mouseup);
-    pointer.x = (mouseup.clientX / window.innerWidth) * 2 - 1;
-    pointer.y = -(mouseup.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-    const intersects = raycaster.intersectObjects(scene.children);
-    for (let i = 0; i < intersects.length; i++) {
-      switch (intersects[i].object.name) {
-        case 'solid-sphere':
-          function scaleSphere() {
-            intersects[i].object.material.color.set(0x00b2ca);
-            if (intersects[i].object.scale.z < 1) {
-              intersects[i].object.scale.z += 0.2;
-              requestAnimationFrame(scaleSphere);
-            }
-          }
+      mouseIsDown = false;
+      calculateMouseMoveDirection(mouseup);
+      pointer.x = (mouseup.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(mouseup.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const intersects = raycaster.intersectObjects(scene.children);
+      sphere.material.color.set(0x00b2ca);
+      function scaleSphere() {
+        if (sphere.scale.z < 1) {
+          sphere.scale.x += 0.02;
+          sphere.scale.y += 0.02;
+          sphere.scale.z += 0.02;
           requestAnimationFrame(scaleSphere);
-          break;
-        case 'frame-sphere':
-          rotateFrameSphere = true;
-          console.log(intersects[i]);
-          intersects[i];
-          break;
+        }
       }
-    }
+      requestAnimationFrame(scaleSphere);
+      for (let i = 0; i < intersects.length; i++) {
+        switch (intersects[i].object.name) {
+          case 'solid-sphere':
+            
+            break;
+          case 'frame-sphere':
+            // console.log(intersects[i]);
+            intersects[i];
+            break;
+        }
+      }
   }
 
   function handleEventListeners(entries, observer) {
