@@ -1,5 +1,5 @@
 const cvAniamationModule = (function () {
-  window.addEventListener('DOMContentLoaded', () => {
+  function animate() {
     // --------------- banner slider animations
     const firstSceneItems = document.querySelectorAll('.firstSceneItem');
 
@@ -11,58 +11,73 @@ const cvAniamationModule = (function () {
           '.firstSceneItem',
           0.6,
           { x: '-50px', opacity: 0 },
-          { x: '0%', opacity: 1, ease: Power2.easeOut },
-          '0.15'
+          { x: '15px', opacity: 1, ease: Power2.easeInOut },
+          '0.1'
         )
-        .staggerTo('.secondSceneItem', 0.2, { opacity: 1 }, '0.15', '-=0.15');
+        .staggerFromTo(
+          '.firstSceneItem',
+          0.6,
+          { x: '15px' },
+          { x: 0, ease: Power1.easeInOut },
+          '0.1',
+          '-=0.1'
+        );
 
-      bannerTl.delay(2);
+      bannerTl.delay(1);
     }
+
+    // ---------------- aboutTextStagger
 
     const textStaggerItems = document.querySelectorAll('.textStagger1');
 
     if (textStaggerItems) {
-      let textTween = new TimelineMax();
+      let textTl = new TimelineMax();
 
-      textTween.staggerFromTo(
-        '.textStagger1',
-        0.6,
-        { x: '-50px', opacity: 0 },
-        { x: 0, opacity: 1, ease: Power2.easeOut },
-        '0.2'
-      );
+      textTl
+        .staggerFromTo(
+          '.textStagger1',
+          0.6,
+          { x: '-50px', opacity: 0 },
+          { x: '15px', opacity: 1, scale: 1.1, ease: Power2.easeInOut },
+          '0.1'
+        )
+        .staggerFromTo(
+          '.textStagger1',
+          0.6,
+          { x: '15px', scale: 1.1 },
+          { x: 0, scale: 1, ease: Power1.easeInOut },
+          '0.1',
+          '-=0.2'
+        );
 
       let aboutTextScene = new ScrollMagic.Scene({
         triggerElement: '#aboutSceneTrigger',
         triggerHook: 'onCenter',
         reverse: false,
       })
-        .setTween(textTween)
+        .setTween(textTl)
         /*.addIndicators()*/
         .addTo(controller);
     }
 
-    // ---------------- aboutTextStagger
-
     // -------------- skill badge pulse animations
-
-    let pulseTl = new TimelineMax();
+    let pulseTl = new TimelineMax({ repeat: -1, yoyo: true });
     pulseTl
-      .to('#html5', 0.2, { scale: 1.3, ease: Back.easeOut.config(1.7) })
-      .to('#html5', 0.2, { scale: 1, ease: Back.easeOut.config(1.7) })
-      .to(
-        '#css3',
-        0.2,
-        { scale: 1.3, ease: Back.easeOut.config(1.7) },
-        '-=0.15'
+      .staggerFromTo(
+        '.about__skillBadges .skill-badge',
+        3,
+        { scale: 1, y: '+15px' },
+        { scale: 1.3, y: '-15px',  ease: Power2.easeInOut },
+        '.5'
       )
-      .to('#css3', 0.2, { scale: 1, ease: Back.easeOut.config(1.7) })
-      .to('#WP', 0.2, { scale: 1.3, ease: Back.easeOut.config(1.7) }, '-=0.15')
-      .to('#WP', 0.2, { scale: 1, ease: Back.easeOut.config(1.7) });
-
-    setInterval(() => {
-      pulseTl.restart();
-    }, 3000);
+      .staggerFromTo(
+        '.about__skill-badges .skill-badge',
+        3,
+        { scale: 1.3, y: '-15px' },
+        { scale: 1, y: '+15px', ease: Power2.easeInOut },
+        '.5',
+        '-=1.5'
+      );
 
     // ------------------ work history slide animtaions
 
@@ -133,14 +148,16 @@ const cvAniamationModule = (function () {
         // split each word into a char array
         const chars = word.split('');
         // wrap each character into a span
-        const wrappedChars = chars.map((char, chardIndex) => `<span>${char}</span>`);
+        const wrappedChars = chars.map(
+          (char, chardIndex) => `<span>${char}</span>`
+        );
         // rejoin chards into a word and return
         return wrappedChars.join('');
       });
       // rejoin headings
       el.innerHTML = wrappedWords.join(' ');
       return el;
-    } 
+    }
 
     const headings = document.querySelectorAll(
       '.heading__primary:not(.anim-false), .heading__secondary:not(.anim-false)'
@@ -168,5 +185,6 @@ const cvAniamationModule = (function () {
         //.addIndicators({ name: "text-in-trigger" })
         .addTo(controller);
     });
-  });
+  }
+  window.addEventListener('DOMContentLoaded', animate);
 })();
