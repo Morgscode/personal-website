@@ -39,14 +39,14 @@ const meetingModule = (function () {
       const meetingAppIdResposne = await fetch(`${window.location.origin}/.netlify/functions/getMeetingAppId`);
       console.log(meetingAppIdResposne);
       if (request.ok) {
-        const data = await meetingAppIdResposne.json();
-        appId = data.appId;
+        const obj = await meetingAppIdResposne.json();
+        console.log(data);
+        appId = obj.data.appId;
       }
     } catch (error) {
       alert('there was a problem setting up the app');
       return;
     }
-    console.log('runs');
     if ('mediaDevices' in navigator) {
       try {
         localStream = await navigator.mediaDevices.getUserMedia(userDevices);
