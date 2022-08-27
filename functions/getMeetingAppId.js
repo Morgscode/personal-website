@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
         status: 'success',
         statusCode: 200,
         data: {
-          message: process.env.MEETING_APP_ID,
+          id: process.env.MEETING_APP_ID,
         },
       }),
     };
