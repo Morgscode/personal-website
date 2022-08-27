@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Cubes and what now? </title>
+  <title>LMWD - Meeting Room</title>
   <meta name="description" content="Where's the cubes lebowski?">
   <!-- content directive -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,20 +20,67 @@
   <link rel="stylesheet" href="./dist/resources/splide/dist/css/themes/splide-default.min.css">
   <!-- page stylesheets-->
   <link rel="stylesheet" href="./dist/css/portfolio_styles.min.css">
+
   <style>
-    #cubes-app {
-      position: relative;
+    #video-call {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+    }
+    .video-player {
       width: 100%;
-      height: 100%;
-      z-index: 5;
-      margin-top: -5%;
-      background-color: #222222;
+      background-color: #212121;
+      border-radius: 6px;
+      box-shadow: 3px 3px 20px #212121;
+    }
+    .modal {
+      z-index: 100;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 3rem;
+      border: 0px;
+      border-radius: 6px;
+      box-shadow: 3px 3px 20px rgb(33, 33, 33);
+    }
+    .modal::backdrop {
+      background-color: rgba(33,33,33,0.5);
     }
 
-    header {
-      position: relative;
-      z-index: 10;
+    #user-devices header {
+      margin-bottom: 1.5rem;
     }
+
+    #user-devices .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    #user-devices .input-group {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+
+    #user-devices input {
+      margin-right: 1rem;
+    }
+
+    #user-devices button[type="submit"] {
+      padding: 12px 22px;
+      border-radius: 6px;
+      background-color: #212121;
+      border: none;
+      color: #fff;
+      transition: all .5s ease;
+    }
+
+    #user-devices button[type="submit"]:hover {
+      cursor: pointer;
+      background-color: rgba(33,33,33,0.75);
+    }
+
   </style>
 </head>
 
@@ -55,14 +102,35 @@
   </div>
   <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
   <main>
-    <header>
-      <div class="container-fluid page-banner">
-        <div class="sub-page-banner" style="background-image:url('./dist/resources/svg/background-3.svg');"></div>
-        <div class="page-banner__contents-wrapper">
-          <h1 class="heading__primary heading__primary-light page-banner__title">Cubes and what now?</h1>
+    <dialog class="modal" role="dialog" id="user-device-modal">
+      <form id="user-devices">
+        <header>
+          <p>Please select which devices you'd like to enable for this meeting.</p>
+        </header>
+        <div class="form-grid">
+          <div class="input-group">
+            <input type="checkbox" name="audio" id="enable-audio" />
+            <label for="enable-audio">
+              Microphone
+            </label>
+          </div>
+          <div class="input-group">
+            <input type="checkbox" name="video" id="enable-video" />
+            <label for="enable-video">
+              Camera
+            </label>
+          </div>
         </div>
-      </div>
-    </header>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </dialog>
+    <script>
+      (function() {
+        const modal = document.querySelector('dialog.modal').showModal();
+      })()
+    </script>
     <div id="video-call">
       <video class="video-player" id="user-1" autoplay playsinline></video>
       <video class="video-player" id="user-2" autoplay playsinline></video>
@@ -78,6 +146,7 @@
   <!-- slider module -->
   <script src="./dist/resources/splide/dist/js/splide.min.js"></script>
   <script src="./dist/js/portfolio_scripts.min.js"></script>
+  <script src="./dist/js/agora/agora-rtm-sdk-1.5.0.js"></script>
   <script type="module" src="./dist/js/meetings.mjs"></script>
 </body>
 
