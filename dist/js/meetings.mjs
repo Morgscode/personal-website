@@ -40,6 +40,7 @@ const meetingModule = (function () {
       console.log(meetingAppIdResposne);
       if (request.ok) {
         const data = await meetingAppIdResposne.json();
+        console.log(data);
         appId = data.appId;
       }
     } catch (error) {
