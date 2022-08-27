@@ -1,4 +1,24 @@
 const cvAniamationModule = (function () {
+
+  function textWrap(el) {
+    // split heading into words
+    const elArray = el.innerText.split(' ');
+    // map words into characters
+    const wrappedWords = elArray.map((word, wordIndex) => {
+      // split each word into a char array
+      const chars = word.split('');
+      // wrap each character into a span
+      const wrappedChars = chars.map(
+        (char, chardIndex) => `<span>${char}</span>`
+      );
+      // rejoin chards into a word and return
+      return wrappedChars.join('');
+    });
+    // rejoin headings
+    el.innerHTML = wrappedWords.join(' ');
+    return el;
+  }
+
   function animate() {
     // --------------- banner slider animations
     const firstSceneItems = document.querySelectorAll('.firstSceneItem');
@@ -37,15 +57,15 @@ const cvAniamationModule = (function () {
         .staggerFromTo(
           '.textStagger1',
           0.6,
-          { x: '-50px', opacity: 0 },
-          { x: '15px', opacity: 1, scale: 1.1, ease: Power2.easeInOut },
+          { x: '-30px', opacity: 0 },
+          { x: '30px', opacity: 1, scale: 1.1, ease: Power2.easeInOut },
           '0.1'
         )
         .staggerFromTo(
           '.textStagger1',
-          0.6,
-          { x: '15px', scale: 1.1 },
-          { x: 0, scale: 1, ease: Power1.easeInOut },
+          0.6, 
+          { x: '30px', scale: 1.1 },
+          { x: 0, scale: 1, ease: Power2.easeInOut },
           '0.1',
           '-=0.2'
         );
@@ -67,16 +87,16 @@ const cvAniamationModule = (function () {
         '.about__skillBadges .skill-badge',
         3,
         { scale: 1, y: '+15px' },
-        { scale: 1.3, y: '-15px',  ease: Power2.easeInOut },
+        { scale: 1.4, y: '-15px',  ease: Power2.easeInOut },
         '.5'
       )
       .staggerFromTo(
         '.about__skill-badges .skill-badge',
         3,
-        { scale: 1.3, y: '-15px' },
+        { scale: 1.4, y: '-15px' },
         { scale: 1, y: '+15px', ease: Power2.easeInOut },
         '.5',
-        '-=1.5'
+        '-=3'
       );
 
     // ------------------ work history slide animtaions
@@ -140,25 +160,6 @@ const cvAniamationModule = (function () {
       });
     }
 
-    function textWrap(el) {
-      // split heading into words
-      const elArray = el.innerText.split(' ');
-      // map words into characters
-      const wrappedWords = elArray.map((word, wordIndex) => {
-        // split each word into a char array
-        const chars = word.split('');
-        // wrap each character into a span
-        const wrappedChars = chars.map(
-          (char, chardIndex) => `<span>${char}</span>`
-        );
-        // rejoin chards into a word and return
-        return wrappedChars.join('');
-      });
-      // rejoin headings
-      el.innerHTML = wrappedWords.join(' ');
-      return el;
-    }
-
     const headings = document.querySelectorAll(
       '.heading__primary:not(.anim-false), .heading__secondary:not(.anim-false)'
     );
@@ -186,5 +187,14 @@ const cvAniamationModule = (function () {
         .addTo(controller);
     });
   }
-  window.addEventListener('DOMContentLoaded', animate);
+
+  function attach() {
+    window.addEventListener('DOMContentLoaded', animate);
+    return true;
+  }
+
+ 
+  return {
+    textWrap, animate, attached: attach()
+  }
 })();
