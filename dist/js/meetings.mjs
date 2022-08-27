@@ -1,7 +1,7 @@
 'use strict';
 
 const meetingModule = (function () {
-  const APP_ID = '41df17c7b7824c59ac7b2c3490fa172a';
+  let appId = '41df17c7b7824c59ac7b2c3490fa172a';
   let localStream;
   let remoteStream;
   let peerConnection;
@@ -35,9 +35,17 @@ const meetingModule = (function () {
   }
 
   async function initMeeting() {
-
-    const meetingAppIdResposne = await fetch(`${window.location.origin}/.netlify/functions/getMeetingAppId`);
-    console.log(meetingAppIdResposne);
+    try {
+      const meetingAppIdResposne = await fetch(`${window.location.origin}/.netlify/functions/getMeetingAppId`);
+      // const data = await meetingAppIdResposne.json();
+      // if (!request.ok) {
+      //   throw new Error();
+      // }
+    } catch (error) {
+      alert('there was a problem setting up the app');
+      return;
+    }
+    console.log('runs');
     if ('mediaDevices' in navigator) {
       try {
         localStream = await navigator.mediaDevices.getUserMedia(userDevices);
@@ -48,8 +56,6 @@ const meetingModule = (function () {
         await createOffer();
       } catch (error) {
           alert('There was a problem enableing your selected devices');
-      } finally {
-        return true;
       }
     }
   }
