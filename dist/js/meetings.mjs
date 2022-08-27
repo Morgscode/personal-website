@@ -37,10 +37,11 @@ const meetingModule = (function () {
   async function initMeeting() {
     try {
       const meetingAppIdResposne = await fetch(`${window.location.origin}/.netlify/functions/getMeetingAppId`);
-      // const data = await meetingAppIdResposne.json();
-      // if (!request.ok) {
-      //   throw new Error();
-      // }
+      console.log(meetingAppIdResposne);
+      if (request.ok) {
+        const data = await meetingAppIdResposne.json();
+        appId = data.appId;
+      }
     } catch (error) {
       alert('there was a problem setting up the app');
       return;
