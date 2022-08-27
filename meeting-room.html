@@ -86,7 +86,6 @@
 
 <body>
   <div class="nav__container">
-
     <img class="nav__logo logo" src="./dist/resources/svg/myLogo-web.svg"
       alt="Luke Morgan | Web Developer based in Hastings, East Sussex" />
     <nav class="nav">
@@ -128,8 +127,11 @@
     </dialog>
     <script>
       (function() {
-        const modal = document.querySelector('dialog.modal').showModal();
-      })()
+        const modal = document.querySelector('dialog.modal');
+        if (modal) {
+          modal.showModal();
+        }
+      })();
     </script>
     <div id="video-call">
       <video class="video-player" id="user-1" autoplay playsinline></video>

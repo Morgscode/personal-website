@@ -102,7 +102,7 @@ const meetingModule = (function () {
     return attached;
   }
 
-  return { localStream, remoteStream, peerConnection, user1, user2, userDevices, submitUserDevices, attached: attach() };
+  return { localStream, remoteStream, peerConnection, user1, user2, userDevices, attached: attach() };
 })();
 
 export { meetingModule };
