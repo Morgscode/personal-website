@@ -37,6 +37,7 @@ const meetingModule = (function () {
   async function initMeeting() {
     try {
       const meetingAppIdResposne = await fetch(`${window.location.origin}/.netlify/functions/getMeetingAppId`);
+      console.log(meetingAppIdResposne);
       if (meetingAppIdResposne.ok) {
         const obj = await meetingAppIdResposne.json();
         console.log(data);
