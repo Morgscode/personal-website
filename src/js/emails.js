@@ -36,13 +36,19 @@ const emailModule = (function() {
     return json;
   }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const contactFormBtn = document.querySelector("#portfolioContactSubmit");
-    if (contactFormBtn) {
-      contactFormBtn.addEventListener("click", submitPortfolioContactForm);
-    }
-  });
+  function attach() {
+    let attached = false;
+    window.addEventListener("DOMContentLoaded", () => {
+      const contactFormBtn = document.querySelector("#portfolioContactSubmit");
+      if (contactFormBtn) {
+        contactFormBtn.addEventListener("click", submitPortfolioContactForm);
+        attached = true;
+      } 
+    });
+    return attached;
+  }
 
+  return {submitPortfolioContactForm, convertFormDataToJson, attached: attach()}
 })();
 
 

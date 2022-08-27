@@ -58,7 +58,6 @@
 }
 
 .page-banner {
-  min-height: 75vh;
   width: 100%;
   position: relative;
   z-index: 0;
@@ -96,10 +95,11 @@
 }
 
 .sub-page-banner {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
+  padding-bottom: 40%;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .svg-banner-parent {
@@ -108,7 +108,11 @@
 
 .svg-banner {
   width: 100%;
-}
+  padding-bottom: 15%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+} 
 
 @media only screen and (min-width: 992px) and (max-width: 1400px) {
   #portfolio-banner {
@@ -136,7 +140,6 @@
 
 @media only screen and (max-width: 992px) {
   .page-banner {
-    min-height: 50vh;
     &__contents-wrapper {
       min-width: 75%;
       padding: 15px;
@@ -144,7 +147,7 @@
   }
 
   .sub-page-banner {
-    transform: scale(3);
+    padding-bottom: 40%;
   }
 
   #portfolio-banner {
@@ -166,5 +169,8 @@
   .design-page-banner {
     height: 250px;
     min-height: unset;
+  }
+  .svg-banner {
+    padding-bottom: 25%;
   }
 }

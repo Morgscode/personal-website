@@ -12,10 +12,21 @@ const lazyLoadModule = (function () {
     rootMargin: '100px',
     threshold: 0,
   });
-  window.addEventListener('DOMContentLoaded', () => {
-    let documentImages = document.querySelectorAll('img.lazyloaded');
-    documentImages.forEach((img) => {
-      observer.observe(img);
+
+  function attach() {
+    let attached = false;
+    window.addEventListener('DOMContentLoaded', () => {
+      let documentImages = document.querySelectorAll('img.lazyloaded');
+      if (documentImages.length > 0) {
+        attached = true;
+        documentImages.forEach((img) => {
+          observer.observe(img);
+        });
+      }
     });
-  });
+    return attached;
+  }
+
+  return {attached: attach(), observer, lazyLoadImages}
+  
 })();

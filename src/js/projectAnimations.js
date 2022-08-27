@@ -1,8 +1,6 @@
 const projectAnimationModule = (function() {
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const controller = new ScrollMagic.Controller();
-  
+  window.addEventListener("DOMContentLoaded", () => {  
     const projectArticle = document.querySelectorAll(".personal-project");
     const projectSlides = document.querySelectorAll(".project-slide");
     const projectSlideShadows = document.querySelectorAll(

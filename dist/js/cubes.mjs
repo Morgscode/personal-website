@@ -10,11 +10,8 @@ import {
   Mesh,
   MeshBasicMaterial,
   PerspectiveCamera,
-  DirectionalLight,
-  AmbientLight,
 } from './three/three.mjs';
 import { OrbitControls } from './three/OrbitControls.mjs';
-import { FirstPersonControls } from './three/FirstPersonControls.mjs';
 
 const cubeModule = (function () {
   const scene = new Scene();
@@ -24,7 +21,6 @@ const cubeModule = (function () {
   const boxGeometry = new BoxGeometry();
   const frameSphereGeometry = new SphereGeometry(6, 32, 16);
   const sphereGeometry = new SphereGeometry(5.5, 32, 16);
-  const light = new DirectionalLight(0xffffff, 0.5);
   const clock = new Clock();
   let cubePosX = 0;
   let cubePosY = 0;
@@ -44,7 +40,6 @@ const cubeModule = (function () {
   let rotateCubes = true;
   let camera;
   let orbitControls;
-  let fpControls;
   let animationFrame;
   let inputFrame;
   let cubeA;
@@ -53,8 +48,6 @@ const cubeModule = (function () {
   let cubeD;
   let frameSphere;
   let sphere;
-
-  
 
   function setup() {
     clock.start();
@@ -72,15 +65,11 @@ const cubeModule = (function () {
     );
     camera.position.set(cameraPosX, cameraPosY, cameraPosZ);
 
+    orbitControls = new OrbitControls(camera, renderer.domElement);
+    orbitControls.enablePan = true;
+    orbitControls.enableZoom = true;
+
     document.querySelector('#cubes-app').appendChild(renderer.domElement);
-
-    fpControls = new FirstPersonControls(camera, renderer.domElement);
-    fpControls.movementSpeed = 10;
-    fpControls.lookSpeed = 0.11;
-
-    light.shadowMapVisible = true;
-    light.position.set(0, 7, -4);
-    scene.add(light);
 
     for (let i = 0; i < boxGeometry.groups.length; i++) {
       switch (i) { 
@@ -154,14 +143,11 @@ const cubeModule = (function () {
     sphere.name = 'solid-sphere';
     sphere.position.set(0, -4, -7);  
     scene.add(sphere);
-    light.target = sphere;
 
     return true;
   }
 
   function animate() {
-
-    console.log(clock.getDelta());
 
     if (rotateCubes) {
       cubeA.rotation.x += 0.01;
@@ -183,17 +169,16 @@ const cubeModule = (function () {
     cubeC.position.set(cubePosX + 1, cubePosY);
     cubeD.position.set(cubePosX + 3, -cubePosY);
 
-    // if (!mouseIsDown) {
-    //   camera.rotation.x = cameraRotX;
-    //   camera.rotation.y = cameraRotY;
-    //   camera.position.set(cameraPosX, cameraPosY, cameraPosZ);
-    // }
-    // if (orbitControls) {
-    //   orbitControls.update();
-    // }
-    if (fpControls) {
-      fpControls.update(clock.getDelta());
+    if (!mouseIsDown) {
+      camera.rotation.x = cameraRotX;
+      camera.rotation.y = cameraRotY;
+      camera.position.set(cameraPosX, cameraPosY, cameraPosZ);
     }
+
+    if (orbitControls) {
+      orbitControls.update();
+    }
+  
     renderer.render(scene, camera);
 
     animationFrame = window.requestAnimationFrame(animate);
@@ -328,11 +313,7 @@ const cubeModule = (function () {
             requestAnimationFrame(scaleSphere);
             break;
           case 'frame-sphere':
-            // orbitControls = new OrbitControls(camera, renderer.domElement);
-            // orbitControls.enablePan = false;
-            // orbitControls.enableZoom = true;
-            // orbitControls.target.set(0, -5, -7);
-            // console.log(intersects[i]);
+            orbitControls.target.set(0, -5, -7);
             intersects[i];
             break;
         }
@@ -408,9 +389,9 @@ const cubeModule = (function () {
     scene,
     renderer,
     camera,
-    light,
     inputFrame,
     animationFrame,
+    clock,
   };
 })();
 
