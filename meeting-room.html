@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cubes and what now? </title>
+  <meta name="description" content="Where's the cubes lebowski?">
+  <!-- content directive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- canonical tags -->
+  <link rel="canonical" href="/" />
+  <!-- favicons and icons -->
+  <link rel="icon" type="image/png" href="./dist/resources/img/myLogo-web.webp" />
+  <link rel="shortcut icon" type="image/png" href="./dist/resources/img/myLogo-web.webp" />
+  <!-- preloaded resources-->
+  <link rel="preload" href="./dist/css/portfolio_styles.min.css" as="style">
+  <link rel="preload" href="./dist/resources/splide/dist/css/themes/splide-default.min.css" as="style">
+  <link rel="preload" href="./dist/resources/splide/dist/js/splide.min.js" as="script">
+  <link rel="preload" href="./dist/js/portfolio_scripts.min.js" as="script">
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" href="./dist/resources/splide/dist/css/themes/splide-default.min.css">
+  <!-- page stylesheets-->
+  <link rel="stylesheet" href="./dist/css/portfolio_styles.min.css">
+  <style>
+    #cubes-app {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      margin-top: -5%;
+      background-color: #222222;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav__container">
+
+    <img class="nav__logo logo" src="./dist/resources/svg/myLogo-web.svg"
+      alt="Luke Morgan | Web Developer based in Hastings, East Sussex" />
+    <nav class="nav">
+      <div class="nav__close"><i class="fas fa-times"></i></div>
+      <ul class="nav__items">
+        <li class="nav__item"><a href="/" class="nav__link">Portfolio</a></li>
+        <li class="nav__item"><a href="/personal-projects.html" class="nav__link">Side
+            Projects</a></li>
+        <li class="nav__item"><a href="/design.html" class="nav__link">Design</a></li>
+        <li class="nav__item"><a href="/contact.html"" class=" nav__link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
+  <main>
+    <header>
+      <div class="container-fluid page-banner">
+        <div class="sub-page-banner" style="background-image:url('./dist/resources/svg/background-3.svg');"></div>
+        <div class="page-banner__contents-wrapper">
+          <h1 class="heading__primary heading__primary-light page-banner__title">Cubes and what now?</h1>
+        </div>
+      </div>
+    </header>
+    <div id="video-call">
+      <video class="video-player" id="user-1" autoplay playsinline></video>
+      <video class="video-player" id="user-2" autoplay playsinline></video>
+    </div>
+  </main>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/f2ad0cb5b1.js" crossorigin="anonymous"></script>
+  <script src="./dist/js/scrollMagic-min/ScrollMagic.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/plugins/animation.gsap.min.js"></script>
+  <script src="./dist/js/scrollMagic-min/plugins/debug.addIndicators.min.js"></script>
+  <script src="./dist/js/gsap-min/TweenMax.min.js"></script>
+  <script src="./dist/js/gsap-min/TimelineMax.min.js"></script>
+  <!-- slider module -->
+  <script src="./dist/resources/splide/dist/js/splide.min.js"></script>
+  <script src="./dist/js/portfolio_scripts.min.js"></script>
+  <script type="module" src="./dist/js/meetings.mjs"></script>
+</body>
+
+</html>
