@@ -1,5 +1,3 @@
-const nodemailer = require('nodemailer');
-
 exports.handler = async (event, context) => {
   try {
     if (!process.env.MEETING_APP_ID) {
