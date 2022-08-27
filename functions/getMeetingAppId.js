@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
         status: 'success',
         statusCode: 500,
         data: {
-          appId: 'There is no app id set right now',
+          message: 'There is no app id set right now',
         },
       }),
     };
