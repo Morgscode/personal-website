@@ -17,9 +17,18 @@ const matchHeightModule = (function () {
       return (el.style.height = `${tallestElement}px`);
     });
   }
-  window.addEventListener('load', () => {
-    if (window.innerWidth >= 768) {
-      matchHeight('.panel');
-    }
-  });
+ 
+
+  function attach() {
+    let attached = false;
+    window.addEventListener('load', () => {
+      attached = true;
+      if (window.innerWidth >= 768) {
+        matchHeight('.panel');
+      }
+    });
+    return attached;
+  }
+
+  return {matchHeight, attached: attach()}
 })();

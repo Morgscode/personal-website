@@ -9,13 +9,17 @@ const sliderModule = (function () {
     pauseOnHover: false,
     gap: 0,
   };
-  window.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.portfolio-splide')) {
-      const portfolioSlider = new Splide(
-        '.portfolio-splide',
-        portfolioSliderOptions
-      );
-      portfolioSlider.mount();
-    }
-  });
+
+  function attach() {
+    window.addEventListener('DOMContentLoaded', () => {
+      if (document.querySelector('.portfolio-splide')) {
+        const portfolioSlider = new Splide(
+          '.portfolio-splide',
+          portfolioSliderOptions
+        );
+        portfolioSlider.mount();
+      }
+    });
+  }
+  return {attached: attach()}
 })();
