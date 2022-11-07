@@ -18,14 +18,13 @@ const gameLoaderModule = (function () {
           return new Promise((resolve, reject) => {
             const appendedScript = target.appendChild(script);
             window.setTimeout(() => {
-              const phaser = document.querySelector(id);
               if (appendedScript) {
                 resolve(script);
               } else {
                 reject(script);
               }
             }, 3000);
-          });
+          }); 
         }
         const phaserLoaded = loadScriptAsync(phaser, '#phaser-script');
         phaserLoaded

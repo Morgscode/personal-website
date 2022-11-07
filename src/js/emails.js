@@ -1,6 +1,7 @@
 const emailModule = (function() {
 
   function submitPortfolioContactForm() {
+    const contactFormBtn = document.querySelector("#portfolioContactSubmit");
     contactFormBtn.disabled = true;
     const form = document.querySelector("#portfolioContactForm");
   
@@ -17,14 +18,15 @@ const emailModule = (function() {
             "X-Requested-With": "XMLHttpRequest"
           },
           body: formDataJSON,
-        }
+        } 
       );
       formRequest.then((res) => {
           form.reset();
           return res.json();
         })
         .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() =>  contactFormBtn.disabled = false);
     }
   }
   
