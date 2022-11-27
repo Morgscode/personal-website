@@ -103,13 +103,19 @@
     width: 100%;
   }
   .wex {
+    &__text-block {
+      margin-bottom: 1.5rem;
+    }
     &__image-block {
-      padding: 1%;
+      padding: 20px;
     }
   }
   .panel {
     margin: 45px auto 0px auto;
     max-width: 95%;
-    padding: 4% 2%;
+    padding: 20px;
+    .heading__secondary {
+      margin-bottom: 1rem;
+    }
   }
 }
