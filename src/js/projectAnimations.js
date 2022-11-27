@@ -41,11 +41,19 @@ const projectAnimationModule = (function () {
         let portfolioScene = new ScrollMagic.Scene({
           triggerElement: triggerElement,
           triggerHook: triggerHook,
-          reverse: false,
+          reverse: true,
         })
           .setTween(timeline)
           //.addIndicators({ name: "portolio-trigger" })
           .addTo(controller);
+
+          portfolioScene.on('start', function(type, target, progress, state, scrollDirection) {
+            this.reverse = false;
+          });
+    
+          portfolioScene.on('end', function(type, target, progress, state, scrollDirection) {
+            this.reverse = true;
+          });
 
         return portfolioScene;
       });
