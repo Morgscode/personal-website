@@ -6,6 +6,7 @@
   border-radius: 10px;
   background: #ffffff;
   box-shadow:  $bxShadowNeoMorph;
+  border: 1px solid #dcdde1;
   &-container {
     min-height: 50vh;
     padding: 45px 0px;
@@ -28,6 +29,7 @@
     border: none;
     background-color: #fff;
     box-shadow: $bxShadowNeoMorph;
+    border: 1px solid #dcdde1;
     overflow: hidden;
     &:focus { 
       outline: none;
@@ -51,10 +53,12 @@
   .form {
     width: 100%;
     padding: 45px 10px;
+
     &-input {
-      background-color: #f4f4f4;
+      background-color: #f5f6fa;
       transition: background-color .3s ease;
       padding: 4% 8%;
+   
       &:focus {
         background-color: #fff;
       }

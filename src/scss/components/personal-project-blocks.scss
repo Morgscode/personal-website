@@ -90,12 +90,19 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .project-slide-link-btn {
-    transform: translate(-50%, -50%) !important;
-  }
-  .project-slide {
-    &__shadow {
-      max-width: 80%;
+  .personal-projects-section {
+    .project-slide-link-btn {
+      transform: translate(-50%, -50%) !important;
+    }
+    .project-slide {
+      &__shadow {
+        max-width: 80%;
+      }
+    }
+    .personal-project {
+      &__heading {
+        font-size: 18px;
+      }
     }
   }
 }
