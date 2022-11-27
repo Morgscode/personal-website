@@ -32,12 +32,12 @@
     &:focus { 
       outline: none;
       box-shadow: 0 0 4px $color-primary-light;
-    }
-    &:invalid {
-      border-bottom: 3px solid orangered;
-    }
-    &:valid {
-      border-bottom: 3px solid limegreen;
+      &:invalid {
+        border-bottom: 3px solid orangered;
+      }
+      &:valid {
+        border-bottom: 3px solid limegreen;
+      }
     }
   }
   &-submit {

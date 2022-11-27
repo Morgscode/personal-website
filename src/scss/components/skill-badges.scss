@@ -121,3 +121,11 @@
     }
   }
 }
+
+@media only screen and (max-width: 576px) {
+  .about__skillBadges {
+    .skill-badge {
+      font-size: 75px;
+    }
+  }
+}

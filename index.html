@@ -30,7 +30,7 @@
     <div class="nav__container">
         <img class="nav__logo logo" src="./dist/resources/svg/myLogo-web.svg"
             alt="Luke Morgan | Web Developer based in Hastings, East Sussex">
-        <nav class="nav">
+        <nav class="nav" tabindex="-1">
             <div class="nav__close"><i class="fas fa-times"></i></div>
             <ul class="nav__items">
                 <li class="nav__item"><a href="/" class="nav__link">Portfolio</a></li>
@@ -75,7 +75,7 @@
                 <strong class="heading__secondary about__heading text-center">
                     A little bit about me
                 </strong>
-                <article class="row p-t-s">
+                <article class="row p-t-s" tabindex="1">
                     <div id="aboutSceneTrigger"></div>
                     <div class="col-8 col-sm-12 p-2 about__skills">
                         <h1 class="textStagger1 p-b-s">Freelance web developer</h1>
@@ -99,7 +99,7 @@
                 </article>
             </div>
         </section>
-        <section class="work-experience bgBlue p-t-l p-b-l">
+        <section class="work-experience bgBlue p-t-l p-b-l" >
             <div class="m-b-m">
                 <h1 class="heading__primary work-experience__heading text-center">
                     projects
@@ -107,7 +107,7 @@
             </div>
             <div id="pinContainer">
                 <div class="clearfix p-t-l p-b-l" id="slideContainer">
-                    <article class="panel">
+                    <article class="panel"  tabindex="2">
                         <div class="wex__contents">
                             <p class="heading__secondary p-1 anim-false">
                                 Kumi Solutions
@@ -127,8 +127,8 @@
                                         (parallax scrolling, image sliders etc.)
                                     </p>
                                 </div>
-                                <div class="col-6 col-sm-12 wex__image-block">
-                                    <a href="https://kumi-solutions.com" rel="nofollow" target="_blank">
+                                <div class="col-6 col-sm-12 wex__image-block" >
+                                    <a href="https://kumi-solutions.com" rel="nofollow" target="_blank" tabindex="3">
                                         <img class="lazyloaded wex__project-img"
                                             data-src="./dist/resources/img/kumi-solutions.webp"
                                             alt="Kumi solutions website development" />
@@ -137,7 +137,7 @@
                             </div><!-- </row -->
                         </div> <!-- </wex-contents -->
                     </article> <!-- </wex 1 -->
-                    <article class="panel">
+                    <article class="panel"  tabindex="4">
                         <div class="wex__contents">
                             <p class="heading__secondary p-1 anim-false">
                                 AB Electrical
@@ -157,7 +157,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-sm-12 wex__image-block">
-                                    <a href="https://abelec.co.uk" rel="nofollow" target="_blank">
+                                    <a href="https://abelec.co.uk" rel="nofollow" target="_blank" tabindex="5">
                                         <img class="lazyloaded wex__project-img"
                                             data-src="./dist/resources/img/abelec.webp"
                                             alt="Kumi solutions website development" />
@@ -166,7 +166,7 @@
                             </div><!-- </row -->
                         </div> <!-- </wex-contents -->
                     </article> <!-- </wex 2 -->
-                    <article class="panel">
+                    <article class="panel"  tabindex="6">
                         <div class="wex__contents">
                             <p class="heading__secondary p-1 anim-false">
                                 English Electric
@@ -186,7 +186,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-sm-12 wex__image-block">
-                                    <a href="https://englishelectric.uk" rel="nofollow" target="_blank">
+                                    <a href="https://englishelectric.uk" rel="nofollow" target="_blank" tabindex="7">
                                         <img class="lazyloaded wex__project-img"
                                             data-src="./dist/resources/img/englishelectric.webp"
                                             alt="Kumi solutions website development" />
@@ -195,7 +195,7 @@
                             </div><!-- </row -->
                         </div> <!-- </wex-contents -->
                     </article> <!-- </wex 3 -->
-                    <article class="panel">
+                    <article class="panel"  tabindex="8">
                         <div class="wex__contents">
                             <p class="heading__secondary p-1 anim-false">
                                 Fuzion4
@@ -215,7 +215,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-sm-12 wex__image-block">
-                                    <a href="https://fuzion4.co.uk" rel="nofollow" target="_blank">
+                                    <a href="https://fuzion4.co.uk" rel="nofollow" target="_blank" tabindex="9">
                                         <img class="lazyloaded wex__project-img"
                                             data-src="./dist/resources/img/fuzion4.webp"
                                             alt="Kumi solutions website development" />
@@ -227,13 +227,13 @@
                 </div> <!-- </slide container -->
             </div> <!-- </pin container -->
         </section>
-        <section class="core-skills">
+        <section class="core-skills"  tabindex="9">
             <div class="container bgGrey p-t-l p-b-l">
                 <article class="skills">
                     <h2 class="skills__header heading__primary text-center pt-5 pb-5">tekkers</h2>
                     <div class="col-12 text-center m-t-l m-b-l"><i class="fa fa-arrow-circle-down bounce"></i></div>
-                    <div class="row skill-row m-b-m">
-                        <aside class="col-6 col-md-12 col-sm-12 skill-col">
+                    <div class="row skill-row m-b-m" tabindex="10">
+                        <aside class="col-6 col-md-12 col-sm-12 skill-col" >
                             <div class="skill-col-trigger"></div>
                             <div class="col-12 text-center m-b-s m-t-s">
                                 <i class="skill-badge htmlBadge fab fa-html5"></i>
@@ -252,7 +252,7 @@
                             </div>
                         </aside> <!-- </Sass -->
                     </div> <!-- </row -->
-                    <div class="row skill-row m-b-m">
+                    <div class="row skill-row m-b-m" tabindex="11">
                         <aside class="col-6 col-md-12 col-sm-12 skill-col">
                             <div class="skill-col-trigger"></div>
                             <div class="col-12 text-center m-b-s m-t-s">
@@ -272,7 +272,7 @@
                             </div>
                         </aside> <!-- </php -->
                     </div> <!-- </row -->
-                    <div class="row skill-row m-b-m">
+                    <div class="row skill-row m-b-m" tabindex="12">
                         <aside class="col-6 col-md-12 col-sm-12 skill-col">
                             <div class="skill-col-trigger"></div>
                             <div class="col-12 text-center m-b-s m-t-s">
@@ -288,18 +288,18 @@
                                 <i class="skill-badge phpBadge fab fa-php"></i>
                             </div>
                             <div class="col-12 m-b-s">
-                                <h3 class="heading__secondary text-center">PHP: Hypertext Processor</h3>
+                                <h3 class="heading__secondary text-center">PHP</h3>
                             </div>
                         </aside> <!-- </php -->
                     </div> <!-- </row -->
-                    <div class="row skill-row m-b-m">
+                    <div class="row skill-row m-b-m" tabindex="13">
                         <aside class="col-6 col-md-12 col-sm-12 skill-col">
                             <div class="skill-col-trigger"></div>
                             <div class="col-12 text-center m-b-s m-t-s">
                                 <i class="skill-badge databaseBadge fas fa-database"></i>
                             </div>
                             <div class="col-12 m-b-s">
-                                <h3 class="heading__secondary text-center">MySQL/SQL</h3>
+                                <h3 class="heading__secondary text-center">SQL</h3>
                             </div>
                         </aside> <!-- </SQL -->
                         <aside class="col-6 col-md-12 col-sm-12 skill-col">
@@ -312,7 +312,7 @@
                             </div>
                         </aside> <!-- </wordpress-->
                     </div> <!-- </row -->
-                    <div class="row skill-row m-b-m">
+                    <div class="row skill-row m-b-m" tabindex="14">
                         <aside class="col-6 col-md-12 col-sm-12 skill-col">
                             <div class="skill-col-trigger"></div>
                             <div class="col-12 text-center m-b-s m-t-s">
@@ -335,7 +335,7 @@
                 </article>
             </div>
         </section>
-        <section id="phaser-game">
+        <section id="phaser-game" tabindex="15">
             <h1 class="text-center m-b-l m-t-l">Thanks for taking a look at my site... Here's a little game I hacked
                 together!</h1>
             <div class="game-wrapper">
