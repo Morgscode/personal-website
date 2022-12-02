@@ -10,7 +10,7 @@
   max-width: 1300px;
   height: auto !important;
   border-radius: $portfolio-border-radius;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9); 
   color: rgb(58, 58, 58);
 }
 
@@ -19,6 +19,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    p.paragraph {
+      font-size: 1.25rem;
+    }
   }
 
   &__project-img {

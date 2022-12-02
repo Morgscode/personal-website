@@ -3,7 +3,9 @@ const lazyLoadModule = (function () {
     elements.forEach((image) => {
       if (image.intersectionRatio > 0) {
         image.target.src = image.target.dataset.src;
-        image.target.classList.add('visible');
+        setTimeout(function() {
+          image.target.classList.add('visible');
+        }, 300);
         observer.unobserve(image.target);
       }
     });
