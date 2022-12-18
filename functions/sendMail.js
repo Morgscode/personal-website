@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 
 exports.handler = async (event, context) => {
   // init our smtp handler
@@ -101,7 +101,7 @@ Your serverless email function
   const messageEnvelope = {
     from: process.env.MAIL_FROM,
     to: process.env.EMAIL_TARGET,
-    subject: "contact form submission from luke-morgan.com",
+    subject: 'contact form submission from luke-morgan.com',
     html: emailTemplate,
     text: textEmail,
   };
@@ -114,12 +114,12 @@ Your serverless email function
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ 
-        status: "success",
+      body: JSON.stringify({
+        status: 'success',
         statusCode: 200,
         data: {
-          message: "contact form submitted",
-        }
+          message: 'contact form submitted',
+        },
       }),
     };
   } catch (error) {
@@ -127,7 +127,7 @@ Your serverless email function
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: "There was a problem sending the contact form submission",
+        message: 'There was a problem sending the contact form submission',
       }),
     };
   }
