@@ -1,67 +1,111 @@
 .p {
   &-1 {
-    padding: 15px;
+    padding: 1rem;
   }
   &-2 {
-    padding: 25px;
+    padding: 2rem;
   }
   &-3 {
-    padding: 35px;
+    padding: 3rem;
   }
   &-t {
     &-s {
-      padding-top: 35px;
+      padding-top: 1rem;
     }
     &-m {
-      padding-top: 45px;
+      padding-top: 2rem;
     }
     &-l {
-      padding-top: 55px;
+      padding-top: 3rem;
     }
   }
   &-b {
     &-s {
-      padding-bottom: 35px;
+      padding-bottom: 1rem;
     }
     &-m {
-      padding-bottom: 45px;
+      padding-bottom: 2rem;
     }
     &-l {
-      padding-bottom: 55px;
+      padding-bottom: 3rem;
+    }
+  }
+  &-l {
+    &-s {
+      padding-left: 1rem;
+    }
+    &-m {
+      padding-left: 2rem;
+    }
+    &-l {
+      padding-left: 3rem;
+    }
+  }
+  &-r {
+    &-s {
+      padding-right: 1rem;
+    }
+    &-m {
+      padding-right: 2rem;
+    }
+    &-l {
+      padding-right: 3rem;
     }
   }
 }
 
 .m {
   &-1 {
-    margin: 1% 2%;
+    margin: 1rem;
   }
   &-2 {
-    margin: 1.5% 3%;
+    margin: 2rem;
   }
   &-3 {
-    margin: 2% 4%;
+    margin: 3rem;
   }
   &-t {
     &-s {
-      margin-top: 35px;
+      margin-top: 1rem;
     }
     &-m {
-      margin-top: 45px;
+      margin-top: 2rem;
     }
     &-l {
-      margin-top: 55px;
+      margin-top: 3rem;
     }
   }
   &-b {
     &-s {
-      margin-bottom: 35px;
+      margin-bottom: 1rem;
     }
     &-m {
-      margin-bottom: 45px;
+      margin-bottom: 2rem;
     }
     &-l {
-      margin-bottom: 55px;
+      margin-bottom: 3rem;
+    }
+  }
+  &-l {
+    &-s {
+      margin-left: 1rem;
+    }
+    &-m {
+      margin-left: 2rem;
+    }
+    &-l {
+      margin-left: 3rem;
+    }
+  }
+  &-r {
+    &-s {
+      margin-right: 1rem;
+    }
+    &-m {
+      margin-right: 2rem;
+    }
+    &-l {
+      margin-right: 3rem;
     }
   }
 }
