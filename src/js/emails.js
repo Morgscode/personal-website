@@ -27,6 +27,9 @@ const emailModule = (function () {
         .then((data) => console.log(data))
         .catch((err) => console.log(err))
         .finally(() => (contactFormBtn.disabled = false));
+    } else {
+      alert('Incorrect form submission.\nForm requires a name, email address and short message.');
+      contactFormBtn.disabled = false;
     }
   }
 
