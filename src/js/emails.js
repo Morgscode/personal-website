@@ -1,20 +1,20 @@
 const emailModule = (function () {
   function submitPortfolioContactForm() {
-    const contactFormBtn = document.querySelector('#portfolioContactSubmit');
+    const contactFormBtn = document.querySelector("#portfolioContactSubmit");
     contactFormBtn.disabled = true;
-    const form = document.querySelector('#portfolioContactForm');
+    const form = document.querySelector("#portfolioContactForm");
 
     if (form && form.checkValidity()) {
       // fetch post
       const formDataJSON = convertFormDataToJson(form);
       const formRequest = fetch(
-        `${window.location.origin}/.netlify/functions/sendMail`,
+        `${window.location.origin}/.netlify/functions/mail`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Requested-With": "XMLHttpRequest",
           },
           body: formDataJSON,
         }
@@ -28,7 +28,9 @@ const emailModule = (function () {
         .catch((err) => console.log(err))
         .finally(() => (contactFormBtn.disabled = false));
     } else {
-      alert('Incorrect form submission.\nForm requires a name, email address and short message.');
+      alert(
+        "Incorrect form submission.\nForm requires a name, email address and short message."
+      );
       contactFormBtn.disabled = false;
     }
   }
@@ -43,10 +45,10 @@ const emailModule = (function () {
 
   function attach() {
     let attached = false;
-    window.addEventListener('DOMContentLoaded', () => {
-      const contactFormBtn = document.querySelector('#portfolioContactSubmit');
+    window.addEventListener("DOMContentLoaded", () => {
+      const contactFormBtn = document.querySelector("#portfolioContactSubmit");
       if (contactFormBtn) {
-        contactFormBtn.addEventListener('click', submitPortfolioContactForm);
+        contactFormBtn.addEventListener("click", submitPortfolioContactForm);
         attached = true;
       }
     });
