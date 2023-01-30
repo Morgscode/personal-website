@@ -40,7 +40,8 @@
       opacity: 0;
       width: 60%;
       max-width: 750px;
-      padding-bottom: 45%;
+      aspect-ratio: 16/9;
+      padding-bottom: 35%;
       background-size: cover;
       background-position: 50% 50%;
       background-repeat: no-repeat;
@@ -89,12 +90,6 @@
     z-index: 2;
   }
 }
-
-.design-page-banner {
-  height: 550px;
-  overflow: hidden;
-}
-
 .sub-page-banner {
   width: 100%;
   padding-bottom: 40%;
@@ -116,27 +111,30 @@
 } 
 
 @media only screen and (max-width: 992px) {
+  #portfolio-banner {
+  .profile--wrapper {
+    width: 90%;
+
+    .banner {
+      &__title-box {
+        width: 100%;
+      }
+    }
+ 
+    .mugShot {
+      width: 100%;
+      padding-bottom: 65%;
+    }
+  }
+  }
   .page-banner {
     &__contents-wrapper {
       min-width: 75%;
       padding: 15px;
     }
   }
-
   .sub-page-banner {
     padding-bottom: 40%;
   }
 }
 
-@media only screen and (max-width: 576px) {
-  .design-page-banner {
-    height: 250px;
-    min-height: unset;
-  }
-  .sub-page-banner {
-    padding-bottom: 60%;
-  }
-  .svg-banner {
-    padding-bottom: 25%;
-  }
-}
