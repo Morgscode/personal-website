@@ -5,7 +5,7 @@
   padding: 45px;
   border-radius: 10px;
   background: #ffffff;
-  box-shadow:  $bxShadowNeoMorph;
+  box-shadow:  $boxShadow;
   border: 1px solid #dcdde1;
   &-container {
     min-height: 50vh;
@@ -28,7 +28,7 @@
     border-radius: 10px;
     border: none;
     background-color: #fff;
-    box-shadow: $bxShadowNeoMorph;
+    box-shadow: $boxShadow;
     border: 1px solid #dcdde1;
     overflow: hidden;
     &:focus { 

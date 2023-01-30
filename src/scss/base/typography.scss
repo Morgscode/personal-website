@@ -1,4 +1,14 @@
 /* ------- typography --------- */
+h1, h2, h3, h4, h5, h6 {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 2.25;
+  span {
+    display: inline-block;
+  }
+}
 
 /* headings */
 .heading__primary,
@@ -14,14 +24,9 @@
 }
 
 .heading__primary {
-  color: $headerPrimaryRGB1;
   &-light {
     color: white;
   }
-}
-
-.heading__secondary {
-  color: $headerPrimaryRGB2;
 }
 
 /* parapragh */
@@ -51,9 +56,6 @@
     margin-bottom: 30px;
   }
 
-  .heading__primary-light {
-    color: $text-color !important;
-  }
 }
 
 @media only screen and (max-width: 576px) {
