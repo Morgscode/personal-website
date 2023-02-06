@@ -1,111 +1,111 @@
 .p {
   &-1 {
-    padding: 1rem;
+    padding: $spacing-s;
   }
   &-2 {
-    padding: 2rem;
+    padding: $spacing-m;
   }
   &-3 {
-    padding: 3rem;
+    padding: $spacing-l;
   }
   &-t {
     &-s {
-      padding-top: 1rem;
+      padding-top: $spacing-s;
     }
     &-m {
-      padding-top: 2rem;
+      padding-top: $spacing-m;
     }
     &-l {
-      padding-top: 3rem;
+      padding-top: $spacing-l;
     }
   }
   &-b {
     &-s {
-      padding-bottom: 1rem;
+      padding-bottom: $spacing-s;
     }
     &-m {
-      padding-bottom: 2rem;
+      padding-bottom: $spacing-m;
     }
     &-l {
-      padding-bottom: 3rem;
+      padding-bottom: $spacing-l;
     }
   }
   &-l {
     &-s {
-      padding-left: 1rem;
+      padding-left: $spacing-s;
     }
     &-m {
-      padding-left: 2rem;
+      padding-left: $spacing-m;
     }
     &-l {
-      padding-left: 3rem;
+      padding-left: $spacing-l;
     }
   }
   &-r {
     &-s {
-      padding-right: 1rem;
+      padding-right: $spacing-s;
     }
     &-m {
-      padding-right: 2rem;
+      padding-right: $spacing-m;
     }
     &-l {
-      padding-right: 3rem;
+      padding-right: $spacing-l;
     }
   }
 }
 
 .m {
   &-1 {
-    margin: 1rem;
+    margin: $spacing-s;
   }
   &-2 {
-    margin: 2rem;
+    margin: $spacing-m;
   }
   &-3 {
-    margin: 3rem;
+    margin: $spacing-l;
   }
   &-t {
     &-s {
-      margin-top: 1rem;
+      margin-top: $spacing-s;
     }
     &-m {
-      margin-top: 2rem;
+      margin-top: $spacing-m;
     }
     &-l {
-      margin-top: 3rem;
+      margin-top: $spacing-l;
     }
   }
   &-b {
     &-s {
-      margin-bottom: 1rem;
+      margin-bottom: $spacing-s;
     }
     &-m {
-      margin-bottom: 2rem;
+      margin-bottom: $spacing-m;
     }
     &-l {
-      margin-bottom: 3rem;
+      margin-bottom: $spacing-l;
     }
   }
   &-l {
     &-s {
-      margin-left: 1rem;
+      margin-left: $spacing-s;
     }
     &-m {
-      margin-left: 2rem;
+      margin-left: $spacing-m;
     }
     &-l {
-      margin-left: 3rem;
+      margin-left: $spacing-l;
     }
   }
   &-r {
     &-s {
-      margin-right: 1rem;
+      margin-right: $spacing-s;
     }
     &-m {
-      margin-right: 2rem;
+      margin-right: $spacing-m;
     }
     &-l {
-      margin-right: 3rem;
+      margin-right: $spacing-l;
     }
   }
 }
@@ -136,4 +136,120 @@
 
 .items-end {
   align-items: flex-end;
+}
+
+@media only screen and (max-width: 992px) {
+
+  .p {
+    &-1 {
+      padding: calc($spacing-s / 2);
+    }
+    &-2 {
+      padding: calc($spacing-m / 2);
+    }
+    &-3 {
+      padding: calc($spacing-l / 2); 
+    }
+    &-t {
+      &-s {
+        padding-top: calc($spacing-s / 2);
+      }
+      &-m {
+        padding-top: calc($spacing-m / 2);
+      }
+      &-l {
+        padding-top: calc($spacing-l / 2);
+      }
+    }
+    &-b {
+      &-s {
+        padding-bottom: calc($spacing-s / 2);
+      }
+      &-m {
+        padding-bottom: calc($spacing-m / 2);
+      }
+      &-l {
+        padding-bottom: calc($spacing-l / 2);
+      }
+    }
+    &-l {
+      &-s {
+        padding-left: calc($spacing-s / 2);
+      }
+      &-m {
+        padding-left: calc($spacing-m / 2);
+      }
+      &-l {
+        padding-left: calc($spacing-l / 2);
+      }
+    }
+    &-r {
+      &-s {
+        padding-right: calc($spacing-s / 2);
+      }
+      &-m {
+        padding-right: calc($spacing-m / 2);
+      }
+      &-l {
+        padding-right: calc($spacing-l / 2);
+      }
+    }
+  }
+  
+  .m {
+    &-1 {
+      margin: calc($spacing-s / 2);
+    }
+    &-2 {
+      margin: calc($spacing-m / 2);
+    }
+    &-3 {
+      margin: calc($spacing-l / 2);
+    }
+    &-t {
+      &-s {
+        margin-top: calc($spacing-s / 2);
+      }
+      &-m {
+        margin-top: calc($spacing-m / 2);
+      }
+      &-l {
+        margin-top: calc($spacing-l / 2);
+      }
+    }
+    &-b {
+      &-s {
+        margin-bottom: calc($spacing-s / 2);
+      }
+      &-m {
+        margin-bottom: calc($spacing-m / 2);
+      }
+      &-l {
+        margin-bottom: calc($spacing-l / 2);
+      }
+    }
+    &-l {
+      &-s {
+        margin-left: calc($spacing-s / 2);
+      }
+      &-m {
+        margin-left: calc($spacing-m / 2);
+      }
+      &-l {
+        margin-left: calc($spacing-l / 2);
+      }
+    }
+    &-r {
+      &-s {
+        margin-right: calc($spacing-s / 2);
+      }
+      &-m {
+        margin-right: calc($spacing-m / 2);
+      }
+      &-l {
+        margin-right: calc($spacing-l / 2);
+      }
+    }
+  }
+  
 }

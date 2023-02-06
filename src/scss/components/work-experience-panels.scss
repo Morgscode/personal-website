@@ -9,7 +9,7 @@
 .panel {
   max-width: 1300px;
   height: auto !important;
-  border-radius: $portfolio-border-radius;
+  border-radius: $borderRadius;
   background-color: rgba(255, 255, 255, 0.9); 
   color: rgb(58, 58, 58);
 }
@@ -68,7 +68,7 @@
     width: 22.5%;
     max-width: 1300px;
     float: left;
-    box-shadow: 1px 2px 30px $color-black;
+    box-shadow: 1px 2px 30px $colorBlack;
     flex: 1 !important;
     padding: 1% !important;
     &:first-child {
