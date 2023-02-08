@@ -2,23 +2,23 @@ const nodemailer = require('nodemailer');
 
 exports.handler = async (event, context) => {
   // init our smtp handler
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     name: process.env.SMTP_NAME,
     host: process.env.SMTP_HOST,
-    port: 587,
+    port: process.env.SMTP_PORT,
     secure: false,
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_MASTER_PASS,
+      pass: process.env.SMTP_PASS,
     },
     logger: true,
     debug: true,
   });
 
-  let emailMeta = JSON.parse(event.body);
+  const emailMeta = JSON.parse(event.body);
 
   // let's build the html email template with the values passed from client
-  let emailTemplate = `
+  const emailTemplate = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +81,13 @@ body {
       </td>
     </table>
   </td>
+</table>
+<table style="height: 50px;">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
 </table>
 </table>
 </body>
