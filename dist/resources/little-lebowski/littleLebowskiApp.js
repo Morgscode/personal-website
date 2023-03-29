@@ -55,7 +55,10 @@ const dataController = (() => {
 const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
-      gameObject.load.image('sky', './dist/resources/little-lebowski/assets/sky.png');
+      gameObject.load.image(
+        'sky',
+        './dist/resources/little-lebowski/assets/sky.png'
+      );
       gameObject.load.image(
         'ground',
         './dist/resources/little-lebowski/assets/platform.png'
@@ -106,7 +109,10 @@ const uiController = (() => {
       platforms.create(500, 125, 'ground');
       return platforms;
     },
-
+    renderSceneBombs(gameObject) {
+      const bombs = gameObject.physics.add.group();
+      return bombs;
+    },
     displayGameTitle(gameObject) {
       const titleCss = {
         font: '16px Courier',
@@ -273,6 +279,10 @@ const uiController = (() => {
       gameObject.physics.add.collider(player, platforms);
       return gameObject;
     },
+    setupPlayerBombCollision(gameObject, player, bombs, hitBomb) {
+      gameObject.physics.add.collider(player, bombs, hitBomb, null, gameObject);
+      return gameObject;
+    },
     setupPlayerStarCollection(player, stars, collectStarFn, gameObject) {
       gameObject.physics.add.overlap(
         player,
@@ -283,12 +293,40 @@ const uiController = (() => {
       );
       return gameObject;
     },
+    bombHitsPlayer(player, bomb) {
+      player.setTint(0xff0000);
+      player.anims.play('turn');
+      player.angle = 180;
+      this.physics.pause();
+    },
+  };
+
+  const bombSetupFunctions = {
+    renderBomb(gameObject) {
+      const bomb = gameObject.physics.add.sprite(400, 300, 'bomb');
+      return bomb;
+    },
+    spawnBomb(bombs, xCord) {
+      const bomb = bombs.create(xCord, 16, 'bomb');
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    },
+    setupBombPlatformCollision(gameObject, bomb, platforms) {
+      gameObject.physics.add.collider(bomb, platforms);
+      return gameObject;
+    },
+    setupBombPlayerCollision(gameObject, player, bombs, hitBomb) {
+      gameObject.physics.add.collider(player, bombs, hitBomb, null, gameObject);
+      return gameObject;
+    },
   };
 
   return {
     loadAssets: initialSceneSetupFunctions.loadGameAssets,
     renderSky: initialSceneSetupFunctions.renderBlueSkyBackground,
-    renderPlatform: initialSceneSetupFunctions.renderScenePlatforms,
+    renderPlatforms: initialSceneSetupFunctions.renderScenePlatforms,
+    renderBombs: initialSceneSetupFunctions.renderSceneBombs,
     renderStars: starSetupFunctions.renderStarGroup,
     collectStar: starSetupFunctions.starCollected,
     setStarPlatformCollisions: starSetupFunctions.setupPlatformStarsCollision,
@@ -299,11 +337,15 @@ const uiController = (() => {
     setPlayerOneAnimations: playerOneSetupFunctions.setPlayerOneAnimations,
     setPlayerPlatformCollisions:
       playerOneSetupFunctions.setupPlayerPlatformCollision,
+    setPlayerBombCollisions: playerOneSetupFunctions.setupPlayerBombCollision,
+    bombHitsPlayer: playerOneSetupFunctions.bombHitsPlayer,
     setPlayerStarCollisions: playerOneSetupFunctions.setupPlayerStarCollection,
+    setPlatformBombCollisions: bombSetupFunctions.setupBombPlatformCollision,
     evaluatePlayerOneMovement: playerOneSetupFunctions.setupPlayerOneMovement,
     renderScoreText: initialSceneSetupFunctions.renderScoreBoardText,
     renderLevelText: initialSceneSetupFunctions.renderGameLevelText,
     renderRandomStars: starSetupFunctions.renderRandomStarGroup,
+    spawnBomb: bombSetupFunctions.spawnBomb,
   };
 })();
 
@@ -313,8 +355,10 @@ const uiController = (() => {
 const gameController = ((uiCtrl, dataCtrl) => {
   //------- GAME CONFIG
   let game;
+  let gameOver = false;
   let cursors;
   let player;
+  let bombs;
   let platforms;
   let stars = [];
   let scoreText;
@@ -364,7 +408,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
       }
     });
   }
-  
+
+  function triggerGameOver() {
+    gameOver = true;
+  }
+
   //----- GAME SCENE FUNCTIONS DEFINITIONS
 
   function preload() {
@@ -375,7 +423,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
     dataCtrl.setupPlayerOneScore();
     dataCtrl.setupLevel();
     uiCtrl.renderSky(this);
-    platforms = uiCtrl.renderPlatform(this);
+    platforms = uiCtrl.renderPlatforms(this);
     stars.push(uiCtrl.renderStars(this, 5, 450, 70));
     stars.push(uiCtrl.renderStars(this, 15, 350, 60));
     stars.push(uiCtrl.renderStars(this, 15, 200, 60));
@@ -385,6 +433,9 @@ const gameController = ((uiCtrl, dataCtrl) => {
     uiCtrl.setPlayerOnePhysics(player);
     uiCtrl.setPlayerPlatformCollisions(this, player, platforms);
     uiCtrl.setPlayerOneAnimations(this);
+    bombs = uiCtrl.renderBombs(this);
+    uiCtrl.setPlatformBombCollisions(this, bombs, platforms);
+    uiCtrl.setPlayerBombCollisions(this, player, bombs, uiCtrl.bombHitsPlayer, triggerGameOver);
     cursors = uiCtrl.setupCursorKeys(this);
     uiCtrl.displayTitle(this);
     scoreText = uiCtrl.renderScoreText(this, dataCtrl.getPlayerOneGameScore());
@@ -407,6 +458,14 @@ const gameController = ((uiCtrl, dataCtrl) => {
       stars.forEach((starGroup) => {
         uiCtrl.renderRandomStars(starGroup);
       });
+    }
+    const level = parseInt(dataCtrl.getLevel(), 10);
+    if (bombs.children.size < level) {
+      for (let i = bombs.children.size; i < level; i++)
+      {
+        let cordBase = level % 2 == 0 ? i * 16 : 300 - i;
+        uiCtrl.spawnBomb(bombs, cordBase);
+      }
     }
   }
   return { game, config };
