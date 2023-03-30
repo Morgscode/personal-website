@@ -16,24 +16,24 @@ const dataController = (() => {
 
   const scoreState = {
     setGameScore() {
-      return window.localStorage.setItem('playerOneScore', 0);
+      return window.localStorage.setItem('playerScore', 0);
     },
     getGameScore() {
-      return parseInt(window.localStorage.getItem('playerOneScore'));
+      return parseInt(window.localStorage.getItem('playerScore'));
     },
   };
 
   const levelState = {
     setupGameLevel() {
-      return window.localStorage.setItem('playerOneLevel', 1);
+      return window.localStorage.setItem('playerLevel', 1);
     },
     incrementGameLevel() {
-      let level = parseInt(window.localStorage.getItem('playerOneLevel'), 10);
+      let level = parseInt(window.localStorage.getItem('playerLevel'), 10);
       level++;
-      return window.localStorage.setItem('playerOneLevel', level);
+      return window.localStorage.setItem('playerLevel', level);
     },
     getGameLevel() {
-      return window.localStorage.getItem('playerOneLevel');
+      return window.localStorage.getItem('playerLevel');
     },
   };
 
@@ -41,8 +41,8 @@ const dataController = (() => {
     setJumpCount: playerJumpState.setJumpCount,
     resetJumpCount: playerJumpState.resetJumpCount,
     getJumpCount: playerJumpState.getJumpCount,
-    setupPlayerOneScore: scoreState.setGameScore,
-    getPlayerOneGameScore: scoreState.getGameScore,
+    setScore: scoreState.setGameScore,
+    getScore: scoreState.getGameScore,
     setupLevel: levelState.setupGameLevel,
     getLevel: levelState.getGameLevel,
     levelUp: levelState.incrementGameLevel,
@@ -131,7 +131,7 @@ const uiController = (() => {
       return cursors;
     },
     renderScoreBoardText(gameObject, score) {
-      const scoreText = gameObject.add.text(16, 16, `score: ${score}`, {
+      const scoreText = gameObject.add.text(16, 16, `Score: ${score}`, {
         fontSize: `32px`,
         fontFamily: 'Courier',
         fill: `#303030`,
@@ -166,9 +166,9 @@ const uiController = (() => {
     },
     starCollected(player, star) {
       star.disableBody(true, true);
-      let score = parseInt(window.localStorage.getItem('playerOneScore'));
+      let score = parseInt(window.localStorage.getItem('playerScore'));
       score += 10;
-      return window.localStorage.setItem('playerOneScore', score);
+      return window.localStorage.setItem('playerScore', score);
     },
     renderRandomStarGroup(stars) {
       stars.children.iterate((child) => {
@@ -179,18 +179,36 @@ const uiController = (() => {
     },
   };
 
-  const playerOneSetupFunctions = {
-    renderPlayerOne(gameObject) {
-      const playerOne = gameObject.physics.add.sprite(50, 545, 'dude');
-      return playerOne;
+  const bombSetupFunctions = {
+    renderBomb(gameObject) {
+      const bomb = gameObject.physics.add.sprite(400, 300, 'bomb');
+      return bomb;
     },
-    setPlayerOneInitialPhysics(player) {
+    spawnBomb(bombs, xCord) {
+      const bomb = bombs.create(xCord, 16, 'bomb');
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+      return bomb;
+    },
+    setupBombPlatformCollision(gameObject, bomb, platforms) {
+      gameObject.physics.add.collider(bomb, platforms);
+      return gameObject;
+    },
+  };
+
+  const playerSetupFunctions = {
+    renderplayer(gameObject) {
+      const player = gameObject.physics.add.sprite(50, 545, 'dude');
+      return player;
+    },
+    setplayerInitialPhysics(player) {
       player.setBounce(0.2);
       player.body.setGravity(0, 300);
       player.setCollideWorldBounds(true);
       return player;
     },
-    setPlayerOneAnimations(gameObject) {
+    setplayerAnimations(gameObject) {
       gameObject.anims.create({
         key: 'left',
         frames: gameObject.anims.generateFrameNumbers('dude', {
@@ -218,7 +236,7 @@ const uiController = (() => {
       });
       return gameObject;
     },
-    setupPlayerOneMovement(player, cursors, dataCtrl) {
+    setupplayerMovement(player, cursors, dataCtrl) {
       /**
        *
        * Let's asses which cursor is being pressed,
@@ -279,8 +297,8 @@ const uiController = (() => {
       gameObject.physics.add.collider(player, platforms);
       return gameObject;
     },
-    setupPlayerBombCollision(gameObject, player, bombs, hitBomb) {
-      gameObject.physics.add.collider(player, bombs, hitBomb, null, gameObject);
+    setupPlayerBombCollision(gameObject, player, bombs, hitBomb, gameOver) {
+      gameObject.physics.add.collider(player, bombs, hitBomb, gameOver, gameObject);
       return gameObject;
     },
     setupPlayerStarCollection(player, stars, collectStarFn, gameObject) {
@@ -301,27 +319,6 @@ const uiController = (() => {
     },
   };
 
-  const bombSetupFunctions = {
-    renderBomb(gameObject) {
-      const bomb = gameObject.physics.add.sprite(400, 300, 'bomb');
-      return bomb;
-    },
-    spawnBomb(bombs, xCord) {
-      const bomb = bombs.create(xCord, 16, 'bomb');
-      bomb.setBounce(1);
-      bomb.setCollideWorldBounds(true);
-      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    },
-    setupBombPlatformCollision(gameObject, bomb, platforms) {
-      gameObject.physics.add.collider(bomb, platforms);
-      return gameObject;
-    },
-    setupBombPlayerCollision(gameObject, player, bombs, hitBomb) {
-      gameObject.physics.add.collider(player, bombs, hitBomb, null, gameObject);
-      return gameObject;
-    },
-  };
-
   return {
     loadAssets: initialSceneSetupFunctions.loadGameAssets,
     renderSky: initialSceneSetupFunctions.renderBlueSkyBackground,
@@ -332,16 +329,16 @@ const uiController = (() => {
     setStarPlatformCollisions: starSetupFunctions.setupPlatformStarsCollision,
     displayTitle: initialSceneSetupFunctions.displayGameTitle,
     setupCursorKeys: initialSceneSetupFunctions.bindCursorKeys,
-    renderPlayerOne: playerOneSetupFunctions.renderPlayerOne,
-    setPlayerOnePhysics: playerOneSetupFunctions.setPlayerOneInitialPhysics,
-    setPlayerOneAnimations: playerOneSetupFunctions.setPlayerOneAnimations,
+    renderplayer: playerSetupFunctions.renderplayer,
+    setplayerPhysics: playerSetupFunctions.setplayerInitialPhysics,
+    setplayerAnimations: playerSetupFunctions.setplayerAnimations,
     setPlayerPlatformCollisions:
-      playerOneSetupFunctions.setupPlayerPlatformCollision,
-    setPlayerBombCollisions: playerOneSetupFunctions.setupPlayerBombCollision,
-    bombHitsPlayer: playerOneSetupFunctions.bombHitsPlayer,
-    setPlayerStarCollisions: playerOneSetupFunctions.setupPlayerStarCollection,
+      playerSetupFunctions.setupPlayerPlatformCollision,
+    setPlayerBombCollisions: playerSetupFunctions.setupPlayerBombCollision,
+    bombHitsPlayer: playerSetupFunctions.bombHitsPlayer,
+    setPlayerStarCollisions: playerSetupFunctions.setupPlayerStarCollection,
     setPlatformBombCollisions: bombSetupFunctions.setupBombPlatformCollision,
-    evaluatePlayerOneMovement: playerOneSetupFunctions.setupPlayerOneMovement,
+    evaluateplayerMovement: playerSetupFunctions.setupplayerMovement,
     renderScoreText: initialSceneSetupFunctions.renderScoreBoardText,
     renderLevelText: initialSceneSetupFunctions.renderGameLevelText,
     renderRandomStars: starSetupFunctions.renderRandomStarGroup,
@@ -409,8 +406,10 @@ const gameController = ((uiCtrl, dataCtrl) => {
     });
   }
 
-  function triggerGameOver() {
+  function triggerGameOver(player, bombs) {
     gameOver = true;
+    game.scene.stop();
+    return gameOver;
   }
 
   //----- GAME SCENE FUNCTIONS DEFINITIONS
@@ -420,7 +419,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
   }
 
   function create() {
-    dataCtrl.setupPlayerOneScore();
+    dataCtrl.setScore();
     dataCtrl.setupLevel();
     uiCtrl.renderSky(this);
     platforms = uiCtrl.renderPlatforms(this);
@@ -429,23 +428,25 @@ const gameController = ((uiCtrl, dataCtrl) => {
     stars.push(uiCtrl.renderStars(this, 15, 200, 60));
     stars.push(uiCtrl.renderStars(this, 25, 50, 50));
     uiCtrl.setStarPlatformCollisions(this, stars, platforms);
-    player = uiCtrl.renderPlayerOne(this);
-    uiCtrl.setPlayerOnePhysics(player);
+    player = uiCtrl.renderplayer(this);
+    uiCtrl.setplayerPhysics(player);
     uiCtrl.setPlayerPlatformCollisions(this, player, platforms);
-    uiCtrl.setPlayerOneAnimations(this);
+    uiCtrl.setplayerAnimations(this);
     bombs = uiCtrl.renderBombs(this);
     uiCtrl.setPlatformBombCollisions(this, bombs, platforms);
     uiCtrl.setPlayerBombCollisions(this, player, bombs, uiCtrl.bombHitsPlayer, triggerGameOver);
     cursors = uiCtrl.setupCursorKeys(this);
     uiCtrl.displayTitle(this);
-    scoreText = uiCtrl.renderScoreText(this, dataCtrl.getPlayerOneGameScore());
+    scoreText = uiCtrl.renderScoreText(this, dataCtrl.getScore());
     levelText = uiCtrl.renderLevelText(this, dataCtrl.getLevel());
   }
 
   function update() {
-    uiCtrl.evaluatePlayerOneMovement(player, cursors, dataCtrl);
+    if (gameOver) return;
+
+    uiCtrl.evaluateplayerMovement(player, cursors, dataCtrl);
     uiCtrl.setPlayerStarCollisions(player, stars, uiCtrl.collectStar, this);
-    scoreText.setText(`Score: ${dataCtrl.getPlayerOneGameScore()}`);
+    scoreText.setText(`Score: ${dataCtrl.getScore()}`);
     levelText.setText(`Level: ${dataCtrl.getLevel()}`);
     activeStarGroups = stars.length || 0;
     stars.forEach((starGroup) => {
@@ -461,9 +462,8 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
     const level = parseInt(dataCtrl.getLevel(), 10);
     if (bombs.children.size < level) {
-      for (let i = bombs.children.size; i < level; i++)
-      {
-        let cordBase = level % 2 == 0 ? i * 16 : 300 - i;
+      for (let i = bombs.children.size; i < level; i++) {
+        let cordBase = level % 2 == 0 ? i * 16 : 575 - i;
         uiCtrl.spawnBomb(bombs, cordBase);
       }
     }
