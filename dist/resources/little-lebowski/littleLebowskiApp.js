@@ -4,36 +4,36 @@
 const dataController = (() => {
   const playerJumpState = {
     setJumpCount() {
-      return window.localStorage.setItem("jumpCount", 1);
+      return window.localStorage.setItem('jumpCount', 1);
     },
     resetJumpCount() {
-      return window.localStorage.setItem("jumpCount", 0);
+      return window.localStorage.setItem('jumpCount', 0);
     },
     getJumpCount() {
-      return window.localStorage.getItem("jumpCount");
+      return window.localStorage.getItem('jumpCount');
     },
   };
 
   const scoreState = {
     setGameScore() {
-      return window.localStorage.setItem("playerScore", 0);
+      return window.localStorage.setItem('playerScore', 0);
     },
     getGameScore() {
-      return parseInt(window.localStorage.getItem("playerScore"));
+      return parseInt(window.localStorage.getItem('playerScore'));
     },
   };
 
   const levelState = {
     setupGameLevel() {
-      return window.localStorage.setItem("playerLevel", 1);
+      return window.localStorage.setItem('playerLevel', 1);
     },
     incrementGameLevel() {
-      let level = parseInt(window.localStorage.getItem("playerLevel"), 10);
+      let level = parseInt(window.localStorage.getItem('playerLevel'), 10);
       level++;
-      return window.localStorage.setItem("playerLevel", level);
+      return window.localStorage.setItem('playerLevel', level);
     },
     getGameLevel() {
-      return window.localStorage.getItem("playerLevel");
+      return window.localStorage.getItem('playerLevel');
     },
   };
 
@@ -56,24 +56,24 @@ const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
       gameObject.load.image(
-        "sky",
-        "./dist/resources/little-lebowski/assets/sky.png"
+        'sky',
+        './dist/resources/little-lebowski/assets/sky.png'
       );
       gameObject.load.image(
-        "ground",
-        "./dist/resources/little-lebowski/assets/platform.png"
+        'ground',
+        './dist/resources/little-lebowski/assets/platform.png'
       );
       gameObject.load.image(
-        "star",
-        "./dist/resources/little-lebowski/assets/star.png"
+        'star',
+        './dist/resources/little-lebowski/assets/star.png'
       );
       gameObject.load.image(
-        "bomb",
-        "./dist/resources/little-lebowski/assets/bomb.png"
+        'bomb',
+        './dist/resources/little-lebowski/assets/bomb.png'
       );
       gameObject.load.spritesheet(
-        "dude",
-        "./dist/resources/little-lebowski/assets/dude.png",
+        'dude',
+        './dist/resources/little-lebowski/assets/dude.png',
         {
           frameWidth: 32,
           frameHeight: 48,
@@ -82,49 +82,36 @@ const uiController = (() => {
       return gameObject;
     },
     renderBlueSkyBackground(gameObject) {
-      gameObject.add.image(0, 0, "sky").setOrigin(0, 0);
+      gameObject.add.image(0, 0, 'sky').setOrigin(0, 0);
       return gameObject;
     },
     renderScenePlatforms(gameObject) {
       const platforms = gameObject.physics.add.staticGroup();
       // ground layer
-      platforms.create(400, 600, "ground").setScale(2).refreshBody();
+      platforms.create(400, 600, 'ground').setScale(2).refreshBody();
       // 2nd left
-      platforms.create(250, 500, "ground");
+      platforms.create(250, 500, 'ground');
       // 2nd right
-      platforms.create(750, 500, "ground");
+      platforms.create(750, 500, 'ground');
       // 3rd left
-      platforms.create(-100, 400, "ground");
+      platforms.create(-100, 400, 'ground');
       // 3rd middle
-      platforms.create(400, 400, "ground");
+      platforms.create(400, 400, 'ground');
       // 3rd right
-      platforms.create(900, 400, "ground");
+      platforms.create(900, 400, 'ground');
       // 4th left
-      platforms.create(145, 275, "ground");
+      platforms.create(145, 275, 'ground');
       // 4th right
-      platforms.create(650, 275, "ground");
+      platforms.create(650, 275, 'ground');
       // 5th left
-      platforms.create(0, 125, "ground");
+      platforms.create(0, 125, 'ground');
       // 5th right
-      platforms.create(500, 125, "ground");
+      platforms.create(500, 125, 'ground');
       return platforms;
     },
     renderSceneBombs(gameObject) {
       const bombs = gameObject.physics.add.group();
       return bombs;
-    },
-    displayGameTitle(gameObject) {
-      const titleCss = {
-        font: "16px Courier",
-        fill: "#fff",
-      };
-      gameObject.add.text(
-        300,
-        15,
-        `${gameObject.game.config.gameTitle}`,
-        titleCss
-      );
-      return gameObject;
     },
     bindCursorKeys(gameObject) {
       const cursors = gameObject.input.keyboard.createCursorKeys();
@@ -133,7 +120,7 @@ const uiController = (() => {
     renderScoreBoardText(gameObject, score) {
       const scoreText = gameObject.add.text(16, 16, `Score: ${score}`, {
         fontSize: `32px`,
-        fontFamily: "Courier",
+        fontFamily: 'Courier',
         fill: `#303030`,
       });
       return scoreText;
@@ -141,7 +128,7 @@ const uiController = (() => {
     renderGameLevelText(gameObject, level) {
       const levelText = gameObject.add.text(600, 16, `Level: ${level}`, {
         fontSize: `32px`,
-        fontFamily: "Courier",
+        fontFamily: 'Courier',
         fill: `#303030`,
       });
       return levelText;
@@ -151,7 +138,7 @@ const uiController = (() => {
   const starSetupFunctions = {
     renderStarGroup(gameObject, xVal, yVal, stepXVal) {
       const stars = gameObject.physics.add.group({
-        key: "star",
+        key: 'star',
         repeat: 10,
         setXY: { x: xVal, y: yVal, stepX: stepXVal },
       });
@@ -166,9 +153,9 @@ const uiController = (() => {
     },
     starCollected(player, star) {
       star.disableBody(true, true);
-      let score = parseInt(window.localStorage.getItem("playerScore"));
+      let score = parseInt(window.localStorage.getItem('playerScore'));
       score += 10;
-      return window.localStorage.setItem("playerScore", score);
+      return window.localStorage.setItem('playerScore', score);
     },
     renderRandomStarGroup(stars) {
       stars.children.iterate((child) => {
@@ -181,11 +168,11 @@ const uiController = (() => {
 
   const bombSetupFunctions = {
     renderBomb(gameObject) {
-      const bomb = gameObject.physics.add.sprite(400, 300, "bomb");
+      const bomb = gameObject.physics.add.sprite(400, 300, 'bomb');
       return bomb;
     },
     spawnBomb(bombs, xCord) {
-      const bomb = bombs.create(xCord, 16, "bomb");
+      const bomb = bombs.create(xCord, 16, 'bomb');
       bomb.setBounce(1);
       bomb.setCollideWorldBounds(true);
       bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -199,7 +186,7 @@ const uiController = (() => {
 
   const playerSetupFunctions = {
     renderplayer(gameObject) {
-      const player = gameObject.physics.add.sprite(50, 545, "dude");
+      const player = gameObject.physics.add.sprite(50, 545, 'dude');
       return player;
     },
     setplayerInitialPhysics(player) {
@@ -210,8 +197,8 @@ const uiController = (() => {
     },
     setplayerAnimations(gameObject) {
       gameObject.anims.create({
-        key: "left",
-        frames: gameObject.anims.generateFrameNumbers("dude", {
+        key: 'left',
+        frames: gameObject.anims.generateFrameNumbers('dude', {
           start: 0,
           end: 3,
         }),
@@ -220,14 +207,14 @@ const uiController = (() => {
       });
 
       gameObject.anims.create({
-        key: "turn",
-        frames: [{ key: "dude", frame: 4 }],
+        key: 'turn',
+        frames: [{ key: 'dude', frame: 4 }],
         frameRate: 10,
       });
 
       gameObject.anims.create({
-        key: "right",
-        frames: gameObject.anims.generateFrameNumbers("dude", {
+        key: 'right',
+        frames: gameObject.anims.generateFrameNumbers('dude', {
           start: 5,
           end: 8,
         }),
@@ -247,13 +234,13 @@ const uiController = (() => {
        */
       if (cursors.left.isDown) {
         player.setVelocityX(-120);
-        player.anims.play("left", true);
+        player.anims.play('left', true);
       } else if (cursors.right.isDown) {
         player.setVelocityX(120);
-        player.anims.play("right", true);
+        player.anims.play('right', true);
       } else {
         player.setVelocityX(0);
-        player.anims.play("turn");
+        player.anims.play('turn');
       }
 
       /**
@@ -319,7 +306,7 @@ const uiController = (() => {
     },
     bombHitsPlayer(player, bomb) {
       player.setTint(0xff0000);
-      player.anims.play("turn");
+      player.anims.play('turn');
       player.angle = 180;
       this.physics.pause();
     },
@@ -356,7 +343,6 @@ const uiController = (() => {
  * GameController (Controller)
  */
 const gameController = ((uiCtrl, dataCtrl) => {
-  //------- GAME CONFIG
   let game;
   let gameOver = false;
   let cursors;
@@ -364,19 +350,15 @@ const gameController = ((uiCtrl, dataCtrl) => {
   let bombs;
   let platforms;
   let stars = [];
-  let overlay;
-  let startText;
-  let titleText;
   let levelText;
   let scoreText;
   let activeStarGroups;
-  let gameOverText;
 
-  //----- GAME SCENE FUNCTIONS DEFINITIONS
+  //----- GAME SCENE CLASS DEFINITIONS
 
   class StartScene extends Phaser.Scene {
     constructor() {
-      super({ key: "StartScene" });
+      super({ key: 'StartScene' });
     }
 
     preload() {
@@ -387,7 +369,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
       uiCtrl.renderSky(this);
       platforms = uiCtrl.renderPlatforms(this);
 
-      overlay = this.add
+      const overlay = this.add
         .rectangle(
           0,
           0,
@@ -398,21 +380,43 @@ const gameController = ((uiCtrl, dataCtrl) => {
         .setOrigin(0, 0);
       overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
 
-      titleText = this.add
-        .text(400, 200, "The Adventure(s) of Little Lebowski", {
-          font: "48px Courier",
-          fill: "#fff",
+      const titleTextLine1 = this.add
+        .text(400, 180, 'The Adventure(s) of', {
+          font: '32px Courier',
+          fill: '#fff',
+        })
+        .setOrigin(0.5);
+      const titleTextLine2 = this.add
+        .text(400, 240, 'Little Lebowski', {
+          font: '32px Courier',
+          fill: '#fff',
         })
         .setOrigin(0.5);
 
-      startText = this.add
-        .text(400, 300, "Start Game", { font: "32px Courier", fill: "#fff" })
+      const startText = this.add
+        .text(400, 340, 'Start Game', { font: '32px Courier', fill: '#222222' })
         .setOrigin(0.5)
         .setInteractive();
 
-      startText.on("pointerdown", () => {
-        this.scene.stop("StartScene");
-        this.scene.start("GameScene");
+      // Move the startText to the top
+      startText.setDepth(1);
+
+      const borderWidth = 4;
+      const borderPadding = 10;
+      const border = this.add
+        .rectangle(
+          startText.x,
+          startText.y,
+          startText.width + borderPadding * 2,
+          startText.height + borderPadding * 2,
+          0xffffff
+        )
+        .setOrigin(0.5);
+      border.setStrokeStyle(borderWidth, 0xffffff);
+
+      startText.on('pointerdown', () => {
+        this.scene.stop('StartScene');
+        this.scene.start('GameScene');
       });
     }
 
@@ -421,11 +425,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
   class GameScene extends Phaser.Scene {
     constructor() {
-      super({ key: "GameScene" });
+      super({ key: 'GameScene' });
     }
 
     preload() {
-      this.scene.destroy("StartScene");
+      this.scene.destroy('StartScene');
       uiCtrl.loadGameSceneAssets(this);
     }
 
@@ -453,7 +457,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
         triggerGameOver
       );
       cursors = uiCtrl.setupCursorKeys(this);
-      uiCtrl.displayTitle(this);
       scoreText = uiCtrl.renderScoreText(this, dataCtrl.getScore());
       levelText = uiCtrl.renderLevelText(this, dataCtrl.getLevel());
     }
@@ -489,13 +492,13 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
   class GameOverScene extends Phaser.Scene {
     constructor() {
-      super({ key: "GameOverScene" });
+      super({ key: 'GameOverScene' });
     }
 
     preload() {}
 
     create() {
-      overlay = this.add
+      const overlay = this.add
         .rectangle(
           0,
           0,
@@ -506,8 +509,8 @@ const gameController = ((uiCtrl, dataCtrl) => {
         .setOrigin(0, 0);
       overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
 
-      gameOverText = this.add
-        .text(400, 300, "Start Game", { font: "58px Courier", fill: "#fff" })
+      const gameOverText = this.add
+        .text(400, 300, 'Game Over :(', { font: '58px Courier', fill: '#fff' })
         .setOrigin(0.5);
     }
 
@@ -516,12 +519,12 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
   const config = {
     type: Phaser.AUTO,
-    parent: "little-lebowski-game",
-    title: "The Little Lebowski",
+    parent: 'little-lebowski-game',
+    title: 'The Little Lebowski',
     width: 800,
     height: 600,
     physics: {
-      default: "arcade",
+      default: 'arcade',
       arcade: {
         gravity: { y: 300 },
         debug: false,
@@ -532,11 +535,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
   let observerOptions = {
     root: null,
-    rootMargin: "0px",
+    rootMargin: '0px',
     threshold: 0,
   };
   let observer = new IntersectionObserver(triggerGame, observerOptions);
-  let observerTarget = document.querySelector("#little-lebowski-game");
+  let observerTarget = document.querySelector('#little-lebowski-game');
   observer.observe(observerTarget);
 
   function triggerGame(entries, observer) {
@@ -557,7 +560,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
   function triggerGameOver(player, bombs) {
     gameOver = true;
-    game.scene.start("GameOverScene");
+    game.scene.start('GameOverScene');
     return gameOver;
   }
 
