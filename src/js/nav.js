@@ -7,7 +7,6 @@ const navModule = (function() {
     nav.classList.remove("nav__active");
   };
  
-
   function attach() {
     window.addEventListener("DOMContentLoaded", () => {
       nav = document.querySelector(".nav__container");

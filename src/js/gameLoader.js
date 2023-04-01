@@ -8,6 +8,7 @@ const gameLoaderModule = (function () {
         'https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js';
       phaser.defer = true;
       phaser.async = true;
+      phaser.type = 'module';
       phaser.id = 'phaser-script';
       lebowski.src = './dist/resources/little-lebowski/littleLebowskiApp.js';
       lebowski.defer = true;

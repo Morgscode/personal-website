@@ -15,37 +15,62 @@ const dataController = (() => {
   };
 
   const scoreState = {
-    setGameScore() {
-      return window.localStorage.setItem('playerScore', 0);
+    setupGameScore() {
+      return window.localStorage.setItem('gameScore', 0);
+    },
+    increaseGameScore() {
+      let score = parseInt(window.localStorage.getItem('gameScore'), 10);
+      score += 10;
+      return window.localStorage.setItem('gameScore', score);
     },
     getGameScore() {
-      return parseInt(window.localStorage.getItem('playerScore'));
+      return parseInt(window.localStorage.getItem('gameScore'));
     },
   };
 
   const levelState = {
     setupGameLevel() {
-      return window.localStorage.setItem('playerLevel', 1);
+      return window.localStorage.setItem('gameLevel', 1);
     },
     incrementGameLevel() {
-      let level = parseInt(window.localStorage.getItem('playerLevel'), 10);
+      let level = parseInt(window.localStorage.getItem('gameLevel'), 10);
       level++;
-      return window.localStorage.setItem('playerLevel', level);
+      return window.localStorage.setItem('gameLevel', level);
     },
     getGameLevel() {
-      return window.localStorage.getItem('playerLevel');
+      return window.localStorage.getItem('gameLevel');
     },
   };
+
+  async function submitStatistics(name, level, score) {
+    const data = new FormData();
+    data.append('name', name);
+    data.append('level', level);
+    data.append('score', score);
+    try {
+      await fetch(`${window.location.origin}/functions/leaderboard.js`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return {
     setJumpCount: playerJumpState.setJumpCount,
     resetJumpCount: playerJumpState.resetJumpCount,
     getJumpCount: playerJumpState.getJumpCount,
-    setScore: scoreState.setGameScore,
+    setupScore: scoreState.setupGameScore,
     getScore: scoreState.getGameScore,
+    increaseScore: scoreState.increaseGameScore,
     setupLevel: levelState.setupGameLevel,
     getLevel: levelState.getGameLevel,
     levelUp: levelState.incrementGameLevel,
+    submitStats: submitStatistics,
   };
 })();
 
@@ -143,7 +168,7 @@ const uiController = (() => {
         setXY: { x: xVal, y: yVal, stepX: stepXVal },
       });
       stars.children.iterate(function (child) {
-        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        child.setBounceY(Phaser.Math.FloatBetween(0.6, 1));
       });
       return stars;
     },
@@ -153,9 +178,6 @@ const uiController = (() => {
     },
     starCollected(player, star) {
       star.disableBody(true, true);
-      let score = parseInt(window.localStorage.getItem('playerScore'));
-      score += 10;
-      return window.localStorage.setItem('playerScore', score);
     },
     renderRandomStarGroup(stars) {
       stars.children.iterate((child) => {
@@ -185,7 +207,7 @@ const uiController = (() => {
   };
 
   const playerSetupFunctions = {
-    renderplayer(gameObject) {
+    renderPlayer(gameObject) {
       const player = gameObject.physics.add.sprite(50, 545, 'dude');
       return player;
     },
@@ -223,7 +245,7 @@ const uiController = (() => {
       });
       return gameObject;
     },
-    setupPlayerMovement(player, cursors, dataCtrl) {
+    handlePlayerMovement(player, cursors, dataCtrl) {
       /**
        *
        * Let's asses which cursor is being pressed,
@@ -294,12 +316,18 @@ const uiController = (() => {
       );
       return gameObject;
     },
-    setupPlayerStarCollection(player, stars, collectStarFn, gameObject) {
+    setupPlayerStarCollection(
+      player,
+      stars,
+      collectStarFn,
+      increaseScoreFn,
+      gameObject
+    ) {
       gameObject.physics.add.overlap(
         player,
         stars,
         collectStarFn,
-        null,
+        increaseScoreFn,
         gameObject
       );
       return gameObject;
@@ -322,16 +350,16 @@ const uiController = (() => {
     setStarPlatformCollisions: starSetupFunctions.setupPlatformStarsCollision,
     displayTitle: initialSceneSetupFunctions.displayGameTitle,
     setupCursorKeys: initialSceneSetupFunctions.bindCursorKeys,
-    renderplayer: playerSetupFunctions.renderplayer,
+    renderPlayer: playerSetupFunctions.renderPlayer,
     setplayerPhysics: playerSetupFunctions.setplayerInitialPhysics,
     setplayerAnimations: playerSetupFunctions.setplayerAnimations,
+    movePlayer: playerSetupFunctions.handlePlayerMovement,
     setPlayerPlatformCollisions:
       playerSetupFunctions.setupPlayerPlatformCollision,
     setPlayerBombCollisions: playerSetupFunctions.setupPlayerBombCollision,
     bombHitsPlayer: playerSetupFunctions.bombHitsPlayer,
     setPlayerStarCollisions: playerSetupFunctions.setupPlayerStarCollection,
     setPlatformBombCollisions: bombSetupFunctions.setupBombPlatformCollision,
-    evaluateplayerMovement: playerSetupFunctions.setupPlayerMovement,
     renderScoreText: initialSceneSetupFunctions.renderScoreBoardText,
     renderLevelText: initialSceneSetupFunctions.renderGameLevelText,
     renderRandomStars: starSetupFunctions.renderRandomStarGroup,
@@ -363,6 +391,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
     preload() {
       uiCtrl.loadGameSceneAssets(this);
+      cursors = uiCtrl.setupCursorKeys(this);
     }
 
     create() {
@@ -393,28 +422,28 @@ const gameController = ((uiCtrl, dataCtrl) => {
         })
         .setOrigin(0.5);
 
-      const startText = this.add
+      const startButton = this.add
         .text(400, 340, 'Start Game', { font: '32px Courier', fill: '#222222' })
         .setOrigin(0.5)
         .setInteractive();
 
-      // Move the startText to the top
-      startText.setDepth(1);
+      // Move the startButton to the top
+      startButton.setDepth(1);
 
       const borderWidth = 4;
       const borderPadding = 10;
       const border = this.add
         .rectangle(
-          startText.x,
-          startText.y,
-          startText.width + borderPadding * 2,
-          startText.height + borderPadding * 2,
+          startButton.x,
+          startButton.y,
+          startButton.width + borderPadding * 2,
+          startButton.height + borderPadding * 2,
           0xffffff
         )
         .setOrigin(0.5);
       border.setStrokeStyle(borderWidth, 0xffffff);
 
-      startText.on('pointerdown', () => {
+      startButton.on('pointerdown', () => {
         this.scene.stop('StartScene');
         this.scene.start('GameScene');
       });
@@ -430,23 +459,26 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
     preload() {
       this.scene.destroy('StartScene');
+      cursors = uiCtrl.setupCursorKeys(this);
       uiCtrl.loadGameSceneAssets(this);
+      dataCtrl.setupScore();
+      dataCtrl.setupLevel();
     }
 
     create() {
-      dataCtrl.setScore();
-      dataCtrl.setupLevel();
       uiCtrl.renderSky(this);
       platforms = uiCtrl.renderPlatforms(this);
+      scoreText = uiCtrl.renderScoreText(this, dataCtrl.getScore());
+      levelText = uiCtrl.renderLevelText(this, dataCtrl.getLevel());
       stars.push(uiCtrl.renderStars(this, 5, 450, 70));
       stars.push(uiCtrl.renderStars(this, 15, 350, 60));
       stars.push(uiCtrl.renderStars(this, 15, 200, 60));
       stars.push(uiCtrl.renderStars(this, 25, 50, 50));
       uiCtrl.setStarPlatformCollisions(this, stars, platforms);
-      player = uiCtrl.renderplayer(this);
+      player = uiCtrl.renderPlayer(this);
       uiCtrl.setplayerPhysics(player);
-      uiCtrl.setPlayerPlatformCollisions(this, player, platforms);
       uiCtrl.setplayerAnimations(this);
+      uiCtrl.setPlayerPlatformCollisions(this, player, platforms);
       bombs = uiCtrl.renderBombs(this);
       uiCtrl.setPlatformBombCollisions(this, bombs, platforms);
       uiCtrl.setPlayerBombCollisions(
@@ -456,16 +488,19 @@ const gameController = ((uiCtrl, dataCtrl) => {
         uiCtrl.bombHitsPlayer,
         triggerGameOver
       );
-      cursors = uiCtrl.setupCursorKeys(this);
-      scoreText = uiCtrl.renderScoreText(this, dataCtrl.getScore());
-      levelText = uiCtrl.renderLevelText(this, dataCtrl.getLevel());
     }
 
     update() {
       if (gameOver) return;
 
-      uiCtrl.evaluateplayerMovement(player, cursors, dataCtrl);
-      uiCtrl.setPlayerStarCollisions(player, stars, uiCtrl.collectStar, this);
+      uiCtrl.movePlayer(player, cursors, dataCtrl);
+      uiCtrl.setPlayerStarCollisions(
+        player,
+        stars,
+        uiCtrl.collectStar,
+        dataCtrl.increaseScore,
+        this
+      );
       scoreText.setText(`Score: ${dataCtrl.getScore()}`);
       levelText.setText(`Level: ${dataCtrl.getLevel()}`);
       activeStarGroups = stars.length || 0;
@@ -495,7 +530,15 @@ const gameController = ((uiCtrl, dataCtrl) => {
       super({ key: 'GameOverScene' });
     }
 
-    preload() {}
+    preload() {
+      this.scene.destroy('GameScene');
+      cursors = uiCtrl.setupCursorKeys(this);
+      this.load.plugin(
+        'rexinputtextplugin',
+        'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js',
+        true
+      );
+    }
 
     create() {
       const overlay = this.add
@@ -510,8 +553,73 @@ const gameController = ((uiCtrl, dataCtrl) => {
       overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
 
       const gameOverText = this.add
-        .text(400, 300, 'Game Over :(', { font: '58px Courier', fill: '#fff' })
+        .text(400, 100, 'Game Over :(', { font: '58px Courier', fill: '#fff' })
         .setOrigin(0.5);
+
+      this.add
+        .text(300, 175, `Score: ${dataCtrl.getScore()}`, {
+          fontSize: '24px',
+          color: '#fff',
+        })
+        .setOrigin(0.5);
+        
+      this.add
+        .text(500, 175, `Level: ${dataCtrl.getLevel()}`, {
+          fontSize: '24px',
+          color: '#fff',
+        })
+        .setOrigin(0.5);
+
+      this.add
+        .text(400, 250, `Add your name to the scoreboard`, {
+          fontSize: '18px',
+          color: '#fff',
+        })
+        .setOrigin(0.5);
+
+      const nameInput = this.add.rexInputText(400, 300, 400, 60, {
+        type: 'text',
+        placeholder: 'enter your name',
+        border: 1,
+        color: '#333333',
+        backgroundColor: '#f9f9f9',
+        paddingLeft: '11px',
+        paddingRight: '11px',
+        paddingTop: '6px',
+        paddingBottom: '6px',
+        fontFamily: 'Courier',
+        fontSize: '18px',
+        borderColor: '#ecf0f1',
+        maxLength: 12,
+      });
+
+      const submitButton = this.add
+        .text(400, 375, 'Add to score board', { font: '16px Courier', fill: '#222222' })
+        .setOrigin(0.5)
+        .setInteractive();
+
+      // Move the submitButton to the top
+      submitButton.setDepth(1);
+
+      const borderWidth = 4;
+      const borderPadding = 10;
+      const border = this.add
+        .rectangle(
+          submitButton.x,
+          submitButton.y,
+          submitButton.width + borderPadding * 2,
+          submitButton.height + borderPadding * 2,
+          0xffffff
+        )
+        .setOrigin(0.5);
+      border.setStrokeStyle(borderWidth, 0xffffff);
+
+      submitButton.on('pointerdown', async () => {
+        const name = nameInput.text;
+        const level = dataCtrl.getLevel();
+        const score = dataCtrl.getScore();
+        await dataCtrl.submitStats(name, level, score);
+      }); 
     }
 
     update() {}
@@ -523,6 +631,9 @@ const gameController = ((uiCtrl, dataCtrl) => {
     title: 'The Little Lebowski',
     width: 800,
     height: 600,
+    dom: {
+      createContainer: true,
+    },
     physics: {
       default: 'arcade',
       arcade: {
