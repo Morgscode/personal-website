@@ -39,22 +39,21 @@ const dataController = (() => {
     },
     getGameLevel() {
       return window.localStorage.getItem('gameLevel');
-    },
+    }, 
   };
 
   async function submitStatistics(name, level, score) {
-    const data = new FormData();
-    data.append('name', name);
-    data.append('level', level);
-    data.append('score', score);
+    const stats = {name, level, score};
     try {
-      await fetch(`${window.location.origin}/functions/leaderboard.js`, {
+      const res = await fetch(`${window.location.origin}/.netlify/functions/leaderboard`, {
         method: 'POST',
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: data,
+        body: JSON.stringify(stats),
       });
+      const data = await res.json();
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
