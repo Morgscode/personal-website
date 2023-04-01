@@ -103,9 +103,10 @@ gulp.task(`${projectName}_serve`, () => {
   gulp.watch(`${srcPath}scss/**/**`, gulp.series(`${projectName}_styles`));
   // Watch JS
   gulp.watch(`${srcPath}js/**/*.js`, gulp.series(`${projectName}_scripts`));
+  gulp.watch(`./dist/resources/little-lebowski/littleLebowskiApp.js`, gulp.series(`${projectName}_scripts`));
 });
 
-gulp.task(
+gulp.task( 
   `${projectName}_build`,
   gulp.series(`${projectName}_styles`, `${projectName}_scripts`)
 );
