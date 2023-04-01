@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
 
   const dbUser = process.env.MOGODB_DB_USER;
   const dbPass = process.env.MONGODB_DB_PASS;
-  let dbConn = process.env.MONGODB_DB_CONNECTION_STRING;
+  let dbConn = process.env.MONGODB_CONNECTION_STRING;
 
   dbConn = dbConn.replace('<username>', dbUser);
   dbConn = dbConn.replace('<password>', dbPass);
@@ -57,7 +57,7 @@ exports.handler = async (event, context) => {
 
       if (event.httpMethod === 'GET') {
         
-        const leaderborad = await stats.find();
+        const leaderboard = await stats.find();
       
         return {
           statusCode: 200,
@@ -65,13 +65,12 @@ exports.handler = async (event, context) => {
               status: 'success',
               statusCode: 200,
               data: {
-                data: leaderborad,
-                records: leaderborad.length,
+                data: leaderboard,
+                records: leaderboard.length,
               },
             }),
           };
       }
-
 
       return {
         statusCode: 404,
@@ -80,7 +79,6 @@ exports.handler = async (event, context) => {
         }),
       };
 
-    
     } catch (error) {
       console.log(error);
       return {
