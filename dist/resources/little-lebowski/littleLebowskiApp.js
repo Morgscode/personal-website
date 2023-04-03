@@ -472,7 +472,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
 
     preload() {
-      this.scene.destroy('StartScene');
       cursors = uiCtrl.setupCursorKeys(this);
       uiCtrl.loadGameSceneAssets(this);
       dataCtrl.setupScore();
@@ -545,7 +544,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
 
     preload() {
-      // this.scene.destroy('GameScene');
       cursors = uiCtrl.setupCursorKeys(this);
       this.load.plugin(
         'rexinputtextplugin',
@@ -650,11 +648,10 @@ const gameController = ((uiCtrl, dataCtrl) => {
     constructor() {
       super({ key: 'LeaderBoardScene' });
       this.leaderboard = {};
-      this.rowsYStart = 150;
+      this.rowsYStart = 75;
     }
 
     preload() {
-      // this.scene.destroy('GameOverScene');
       cursors = uiCtrl.setupCursorKeys(this);
     }
 
@@ -680,7 +677,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
     
       // Display the leaderboard
       const leaderboardTitle = this.add
-        .text(400, 100, 'Leaderboard', { font: '32px Courier', fill: '#fff' })
+        .text(400, 50, 'Leader Board', { font: '32px Courier', fill: '#fff' })
         .setOrigin(0.5);
 
         this.add.text(260, this.rowsYStart, `Name:`, {
@@ -719,10 +716,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
       border.setStrokeStyle(borderWidth, 0xffffff);
 
       restart.on('pointerdown', () => {
-        this.scene.destroy('StartScene');
-        this.scene.destroy('GameScene');
-        this.scene.destroy('GameOverScene');
-        this.scene.destroy('LeaderBoardScene');
         this.scene.start('StartScene');
       });
 

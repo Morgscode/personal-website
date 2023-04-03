@@ -45,7 +45,7 @@ exports.handler = async (event, context) => {
     await mongoose.connect(dbConn);
     
     if (event.httpMethod === 'GET') {
-      const leaderboard = await LeaderBoard.find().sort([['score', 'desc']]);
+      const leaderboard = await LeaderBoard.find().sort([['score', 'desc']]).limit(15);
 
       return {
         statusCode: 200,
