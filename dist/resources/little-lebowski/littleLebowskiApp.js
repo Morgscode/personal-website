@@ -458,7 +458,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
       border.setStrokeStyle(borderWidth, 0xffffff);
 
       startButton.on('pointerdown', () => {
-        this.scene.stop('StartScene');
         this.scene.start('GameScene');
       });
     }
@@ -694,7 +693,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         });
 
         const restart = this.add
-        .text(400, 550, 'Start Game', { font: '32px Courier', fill: '#222222' })
+        .text(400, 550, 'Restart Game', { font: '32px Courier', fill: '#222222' })
         .setOrigin(0.5)
         .setInteractive();
 
