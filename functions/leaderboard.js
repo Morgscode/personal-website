@@ -6,6 +6,13 @@ const GameStatisticSchema = new mongoose.Schema({
     required: true,
     minLength: 1,
     maxLength: 12,
+    validate: {
+      validator: function(v) {
+        letters = /^[A-Za-z\s]+$/;
+        return v.match(letters);
+      },
+      message: props => `${props.value} can only container letters and space characters`
+    },
   },
   level: {
     type: Number,

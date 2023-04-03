@@ -63,7 +63,11 @@ const dataController = (() => {
           body: JSON.stringify(stats),
         }
       );
+      if (res.status !== 201) {
+       throw new Error(res.statusText);
+      }
       const data = await res.json();
+      return data;
     } catch (error) {
       console.error(error);
     }
@@ -417,7 +421,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
+      overlay.alpha = 0.7; 
 
       const titleTextLine1 = this.add
         .text(400, 180, 'The Adventure(s) of', {
@@ -540,12 +544,8 @@ const gameController = ((uiCtrl, dataCtrl) => {
       super({ key: 'GameOverScene' });
     }
 
-    endScene() {
-      this.scene.start('LeaderBoardScene');
-    }
-
     preload() {
-      this.scene.destroy('GameScene');
+      // this.scene.destroy('GameScene');
       cursors = uiCtrl.setupCursorKeys(this);
       this.load.plugin(
         'rexinputtextplugin',
@@ -564,7 +564,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
+      overlay.alpha = 0.7; 
 
       const gameOverText = this.add
         .text(400, 100, 'Game Over :(', { font: '58px Courier', fill: '#fff' })
@@ -640,7 +640,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         } catch (error) {
           console.error(error);
         } finally {
-          this.endScene();
+          this.scene.start('LeaderBoardScene');
         }
       });
     }
@@ -654,12 +654,30 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
 
     preload() {
-      this.scene.destroy('GameOverScene');
+      // this.scene.destroy('GameOverScene');
       cursors = uiCtrl.setupCursorKeys(this);
     }
 
     async create() {
-      this.leaderboard = await dataCtrl.getLeaderboard();
+
+      console.log(this);
+
+      const overlay = this.add
+        .rectangle(
+          0,
+          0,
+          this.cameras.main.width,
+          this.cameras.main.height,
+          0x000000
+        )
+        .setOrigin(0, 0);
+      overlay.alpha = 0.7; 
+      try {
+        this.leaderboard = await dataCtrl.getLeaderboard();
+      } catch (error) {
+        console.error(error);
+      }
+    
       // Display the leaderboard
       const leaderboardTitle = this.add
         .text(400, 100, 'Leaderboard', { font: '32px Courier', fill: '#fff' })
@@ -684,6 +702,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         .setInteractive();
 
       // Move the restart to the top
+
       restart.setDepth(1);
 
       const borderWidth = 4;
@@ -700,6 +719,9 @@ const gameController = ((uiCtrl, dataCtrl) => {
       border.setStrokeStyle(borderWidth, 0xffffff);
 
       restart.on('pointerdown', () => {
+        this.scene.destroy('StartScene');
+        this.scene.destroy('GameScene');
+        this.scene.destroy('GameOverScene');
         this.scene.destroy('LeaderBoardScene');
         this.scene.start('StartScene');
       });
@@ -745,7 +767,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
         debug: false,
       },
     },
-    //scene: [LeaderBoardScene],
     scene: [StartScene, GameScene, GameOverScene, LeaderBoardScene],
   };
 
