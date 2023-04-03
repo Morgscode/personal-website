@@ -39,21 +39,35 @@ const dataController = (() => {
     },
     getGameLevel() {
       return window.localStorage.getItem('gameLevel');
-    }, 
+    },
   };
 
+  async function getLeaderboard() {
+    const res = await fetch(
+      `${window.location.origin}/.netlify/functions/leaderboard`
+    );
+    const { data, count } = await res.json();
+    return { data: data.data, count };
+  }
+
   async function submitStatistics(name, level, score) {
-    const stats = {name, level, score};
+    const stats = { name, level, score };
     try {
-      const res = await fetch(`${window.location.origin}/.netlify/functions/leaderboard`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(stats),
-      });
+      const res = await fetch(
+        `${window.location.origin}/.netlify/functions/leaderboard`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(stats),
+        }
+      );
+      if (res.status !== 201) {
+       throw new Error(res.statusText);
+      }
       const data = await res.json();
-      console.log(data);
+      return data;
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +83,8 @@ const dataController = (() => {
     setupLevel: levelState.setupGameLevel,
     getLevel: levelState.getGameLevel,
     levelUp: levelState.incrementGameLevel,
-    submitStats: submitStatistics,
+    submitStatistics,
+    getLeaderboard,
   };
 })();
 
@@ -406,7 +421,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
+      overlay.alpha = 0.7; 
 
       const titleTextLine1 = this.add
         .text(400, 180, 'The Adventure(s) of', {
@@ -530,7 +545,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
 
     preload() {
-      this.scene.destroy('GameScene');
+      // this.scene.destroy('GameScene');
       cursors = uiCtrl.setupCursorKeys(this);
       this.load.plugin(
         'rexinputtextplugin',
@@ -549,7 +564,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; // Adjust the alpha value to control the transparency (0 = fully transparent, 1 = fully opaque)
+      overlay.alpha = 0.7; 
 
       const gameOverText = this.add
         .text(400, 100, 'Game Over :(', { font: '58px Courier', fill: '#fff' })
@@ -561,7 +576,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           color: '#fff',
         })
         .setOrigin(0.5);
-        
+
       this.add
         .text(500, 175, `Level: ${dataCtrl.getLevel()}`, {
           fontSize: '24px',
@@ -593,7 +608,10 @@ const gameController = ((uiCtrl, dataCtrl) => {
       });
 
       const submitButton = this.add
-        .text(400, 375, 'Add to score board', { font: '16px Courier', fill: '#222222' })
+        .text(400, 375, 'Add to score board', {
+          font: '16px Courier',
+          fill: '#222222',
+        })
         .setOrigin(0.5)
         .setInteractive();
 
@@ -617,11 +635,120 @@ const gameController = ((uiCtrl, dataCtrl) => {
         const name = nameInput.text;
         const level = dataCtrl.getLevel();
         const score = dataCtrl.getScore();
-        await dataCtrl.submitStats(name, level, score);
-      }); 
+        try {
+          await dataCtrl.submitStatistics(name, level, score);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          this.scene.start('LeaderBoardScene');
+        }
+      });
+    }
+  }
+
+  class LeaderBoardScene extends Phaser.Scene {
+    constructor() {
+      super({ key: 'LeaderBoardScene' });
+      this.leaderboard = {};
+      this.rowsYStart = 150;
     }
 
-    update() {}
+    preload() {
+      // this.scene.destroy('GameOverScene');
+      cursors = uiCtrl.setupCursorKeys(this);
+    }
+
+    async create() {
+
+      console.log(this);
+
+      const overlay = this.add
+        .rectangle(
+          0,
+          0,
+          this.cameras.main.width,
+          this.cameras.main.height,
+          0x000000
+        )
+        .setOrigin(0, 0);
+      overlay.alpha = 0.7; 
+      try {
+        this.leaderboard = await dataCtrl.getLeaderboard();
+      } catch (error) {
+        console.error(error);
+      }
+    
+      // Display the leaderboard
+      const leaderboardTitle = this.add
+        .text(400, 100, 'Leaderboard', { font: '32px Courier', fill: '#fff' })
+        .setOrigin(0.5);
+
+        this.add.text(260, this.rowsYStart, `Name:`, {
+          font: '20px Courier',
+          fill: '#fff',
+        });
+        this.add.text(460, this.rowsYStart, `Score:`, {
+          font: '20px Courier',
+          fill: '#fff',
+        });
+        this.add.text(560, this.rowsYStart, `Level:`, {
+          font: '20px Courier',
+          fill: '#fff',
+        });
+
+        const restart = this.add
+        .text(400, 550, 'Start Game', { font: '32px Courier', fill: '#222222' })
+        .setOrigin(0.5)
+        .setInteractive();
+
+      // Move the restart to the top
+
+      restart.setDepth(1);
+
+      const borderWidth = 4;
+      const borderPadding = 10;
+      const border = this.add
+        .rectangle(
+          restart.x,
+          restart.y,
+          restart.width + borderPadding * 2,
+          restart.height + borderPadding * 2,
+          0xffffff
+        )
+        .setOrigin(0.5);
+      border.setStrokeStyle(borderWidth, 0xffffff);
+
+      restart.on('pointerdown', () => {
+        this.scene.destroy('StartScene');
+        this.scene.destroy('GameScene');
+        this.scene.destroy('GameOverScene');
+        this.scene.destroy('LeaderBoardScene');
+        this.scene.start('StartScene');
+      });
+
+      if (this.leaderboard?.data?.length) {
+        for (let i = 0; i < this.leaderboard?.data?.length; i++) {
+          const entry = this.leaderboard.data[i];
+          this.rowsYStart = this.rowsYStart + 25;
+          this.add.text(220, this.rowsYStart, `${i + 1}.`, {
+            font: '20px Courier',
+            fill: '#fff',
+          });
+          this.add.text(260, this.rowsYStart, `${entry.name}`, {
+            font: '20px Courier',
+            fill: '#fff',
+          });
+          this.add.text(460, this.rowsYStart, `${entry.score}`, {
+            font: '20px Courier',
+            fill: '#fff',
+          });
+          this.add.text(560, this.rowsYStart, `${entry.level}`, {
+            font: '20px Courier',
+            fill: '#fff',
+          });
+        }
+      }
+    }
   }
 
   const config = {
@@ -640,7 +767,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         debug: false,
       },
     },
-    scene: [StartScene, GameScene, GameOverScene],
+    scene: [StartScene, GameScene, GameOverScene, LeaderBoardScene],
   };
 
   let observerOptions = {
