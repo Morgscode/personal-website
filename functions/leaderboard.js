@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const GameStatisticSchema = new mongoose.Schema({
+const LeaderBoardSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -35,9 +35,9 @@ exports.handler = async (event, context) => {
   dbConn = dbConn.replace('<username>', dbUser);
   dbConn = dbConn.replace('<password>', dbPass);
   
-  const GameStatistic = mongoose.model(
-    'GameStatistic',
-    GameStatisticSchema
+  const LeaderBoard = mongoose.model(
+    'LeaderBoard',
+    LeaderBoardSchema
   );
 
   try {
@@ -45,7 +45,7 @@ exports.handler = async (event, context) => {
     await mongoose.connect(dbConn);
     
     if (event.httpMethod === 'GET') {
-      const leaderboard = await GameStatistic.find().sort([['score', 'desc']]);
+      const leaderboard = await LeaderBoard.find().sort([['score', 'desc']]).limit(15);
 
       return {
         statusCode: 200,
@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
 
     if (event.httpMethod === 'POST') {
       const submission = JSON.parse(event.body);
-      const stats = new GameStatistic(submission);
+      const stats = new LeaderBoard(submission);
       await stats.save();
 
       return {
