@@ -679,15 +679,15 @@ const gameController = ((uiCtrl, dataCtrl) => {
         .text(400, 50, 'Leader Board', { font: '32px Courier', fill: '#fff' })
         .setOrigin(0.5);
 
-        this.add.text(220, this.rowsYStart, `Name:`, {
+        this.add.text(260, this.rowsYStart, `Name:`, {
           font: '20px Courier',
           fill: '#fff',
         });
-        this.add.text(420, this.rowsYStart, `Level:`, {
+        this.add.text(460, this.rowsYStart, `Level:`, {
           font: '20px Courier',
           fill: '#fff',
         });
-        this.add.text(460, this.rowsYStart, `Score:`, {
+        this.add.text(560, this.rowsYStart, `Score:`, {
           font: '20px Courier',
           fill: '#fff',
         });
@@ -715,7 +715,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
       border.setStrokeStyle(borderWidth, 0xffffff);
 
       restart.on('pointerdown', () => {
-        this.scene.restart('StartScene');
+        this.scene.start('StartScene');
       });
 
       if (this.leaderboard?.data?.length) {
