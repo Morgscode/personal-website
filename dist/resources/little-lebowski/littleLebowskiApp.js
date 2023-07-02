@@ -64,7 +64,7 @@ const dataController = (() => {
         }
       );
       if (res.status !== 201) {
-       throw new Error(res.statusText);
+        throw new Error(res.statusText);
       }
       const data = await res.json();
       return data;
@@ -421,7 +421,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; 
+      overlay.alpha = 0.7;
 
       const titleTextLine1 = this.add
         .text(400, 180, 'The Adventure(s) of', {
@@ -437,7 +437,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         .setOrigin(0.5);
 
       const startButton = this.add
-        .text(400, 340, 'Start Game', { font: '32px Courier', fill: '#222222' })
+        .text(250, 340, 'Start Game', { font: '32px Courier', fill: '#222222' })
         .setOrigin(0.5)
         .setInteractive();
 
@@ -446,7 +446,8 @@ const gameController = ((uiCtrl, dataCtrl) => {
 
       const borderWidth = 4;
       const borderPadding = 10;
-      const border = this.add
+
+      const startBorder = this.add
         .rectangle(
           startButton.x,
           startButton.y,
@@ -455,10 +456,36 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0xffffff
         )
         .setOrigin(0.5);
-      border.setStrokeStyle(borderWidth, 0xffffff);
+      startBorder.setStrokeStyle(borderWidth, 0xffffff);
+
+      const scoreButton = this.add
+        .text(550, 340, 'Score Board', {
+          font: '32px Courier',
+          fill: '#222222',
+        })
+        .setOrigin(0.5)
+        .setInteractive();
+
+      // Move the startButton to the top
+      scoreButton.setDepth(1);
+
+      const scoreBorder = this.add
+        .rectangle(
+          scoreButton.x,
+          scoreButton.y,
+          scoreButton.width + borderPadding * 2,
+          scoreButton.height + borderPadding * 2,
+          0xffffff
+        )
+        .setOrigin(0.5);
+      scoreBorder.setStrokeStyle(borderWidth, 0xffffff);
 
       startButton.on('pointerdown', () => {
         this.scene.start('GameScene');
+      });
+
+      scoreButton.on('pointerdown', () => {
+        this.scene.start('LeaderBoardScene');
       });
     }
 
@@ -561,7 +588,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; 
+      overlay.alpha = 0.7;
 
       const gameOverText = this.add
         .text(400, 100, 'Game Over :(', { font: '58px Courier', fill: '#fff' })
@@ -655,7 +682,6 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
 
     async create() {
-
       console.log(this);
 
       const overlay = this.add
@@ -667,33 +693,36 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0x000000
         )
         .setOrigin(0, 0);
-      overlay.alpha = 0.7; 
+      overlay.alpha = 0.7;
       try {
         this.leaderboard = await dataCtrl.getLeaderboard();
       } catch (error) {
         console.error(error);
       }
-    
+
       // Display the leaderboard
       const leaderboardTitle = this.add
         .text(400, 50, 'Leader Board', { font: '32px Courier', fill: '#fff' })
         .setOrigin(0.5);
 
-        this.add.text(260, this.rowsYStart, `Name:`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
-        this.add.text(460, this.rowsYStart, `Level:`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
-        this.add.text(560, this.rowsYStart, `Score:`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
+      this.add.text(260, this.rowsYStart, `Name:`, {
+        font: '20px Courier',
+        fill: '#fff',
+      });
+      this.add.text(460, this.rowsYStart, `Level:`, {
+        font: '20px Courier',
+        fill: '#fff',
+      });
+      this.add.text(560, this.rowsYStart, `Score:`, {
+        font: '20px Courier',
+        fill: '#fff',
+      });
 
-        const restart = this.add
-        .text(400, 550, 'Restart Game', { font: '32px Courier', fill: '#222222' })
+      const restart = this.add
+        .text(400, 550, 'Restart Game', {
+          font: '32px Courier',
+          fill: '#222222',
+        })
         .setOrigin(0.5)
         .setInteractive();
 
@@ -730,11 +759,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
             font: '20px Courier',
             fill: '#fff',
           });
-          this.add.text(460, this.rowsYStart, `${entry.score}`, {
+          this.add.text(560, this.rowsYStart, `${entry.level}`, {
             font: '20px Courier',
             fill: '#fff',
           });
-          this.add.text(560, this.rowsYStart, `${entry.level}`, {
+          this.add.text(460, this.rowsYStart, `${entry.score}`, {
             font: '20px Courier',
             fill: '#fff',
           });
