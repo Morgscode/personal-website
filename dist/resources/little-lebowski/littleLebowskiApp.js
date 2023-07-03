@@ -759,11 +759,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
             font: '20px Courier',
             fill: '#fff',
           });
-          this.add.text(560, this.rowsYStart, `${entry.level}`, {
+          this.add.text(460, this.rowsYStart, `${entry.level}`, {
             font: '20px Courier',
             fill: '#fff',
           });
-          this.add.text(460, this.rowsYStart, `${entry.score}`, {
+          this.add.text(560, this.rowsYStart, `${entry.score}`, {
             font: '20px Courier',
             fill: '#fff',
           });
