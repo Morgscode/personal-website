@@ -44,7 +44,7 @@ const dataController = (() => {
 
   async function getLeaderboard() {
     const res = await fetch(
-      `${window.location.origin}/.netlify/functions/leaderboard`
+      `${window.location.origin}/.netlify/functions/leaderboard`,
     );
     const { data, count } = await res.json();
     return { data: data.data, count };
@@ -61,7 +61,7 @@ const dataController = (() => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(stats),
-        }
+        },
       );
       if (res.status !== 201) {
         throw new Error(res.statusText);
@@ -96,19 +96,19 @@ const uiController = (() => {
     loadGameAssets(gameObject) {
       gameObject.load.image(
         'sky',
-        './dist/resources/little-lebowski/assets/sky.png'
+        './dist/resources/little-lebowski/assets/sky.png',
       );
       gameObject.load.image(
         'ground',
-        './dist/resources/little-lebowski/assets/platform.png'
+        './dist/resources/little-lebowski/assets/platform.png',
       );
       gameObject.load.image(
         'star',
-        './dist/resources/little-lebowski/assets/star.png'
+        './dist/resources/little-lebowski/assets/star.png',
       );
       gameObject.load.image(
         'bomb',
-        './dist/resources/little-lebowski/assets/bomb.png'
+        './dist/resources/little-lebowski/assets/bomb.png',
       );
       gameObject.load.spritesheet(
         'dude',
@@ -116,7 +116,7 @@ const uiController = (() => {
         {
           frameWidth: 32,
           frameHeight: 48,
-        }
+        },
       );
       return gameObject;
     },
@@ -326,7 +326,7 @@ const uiController = (() => {
         bombs,
         hitBomb,
         gameOver,
-        gameObject
+        gameObject,
       );
       return gameObject;
     },
@@ -335,14 +335,14 @@ const uiController = (() => {
       stars,
       collectStarFn,
       increaseScoreFn,
-      gameObject
+      gameObject,
     ) {
       gameObject.physics.add.overlap(
         player,
         stars,
         collectStarFn,
         increaseScoreFn,
-        gameObject
+        gameObject,
       );
       return gameObject;
     },
@@ -418,7 +418,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0,
           this.cameras.main.width,
           this.cameras.main.height,
-          0x000000
+          0x000000,
         )
         .setOrigin(0, 0);
       overlay.alpha = 0.7;
@@ -453,7 +453,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           startButton.y,
           startButton.width + borderPadding * 2,
           startButton.height + borderPadding * 2,
-          0xffffff
+          0xffffff,
         )
         .setOrigin(0.5);
       startBorder.setStrokeStyle(borderWidth, 0xffffff);
@@ -475,7 +475,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           scoreButton.y,
           scoreButton.width + borderPadding * 2,
           scoreButton.height + borderPadding * 2,
-          0xffffff
+          0xffffff,
         )
         .setOrigin(0.5);
       scoreBorder.setStrokeStyle(borderWidth, 0xffffff);
@@ -525,7 +525,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         player,
         bombs,
         uiCtrl.bombHitsPlayer,
-        triggerGameOver
+        triggerGameOver,
       );
     }
 
@@ -538,7 +538,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
         stars,
         uiCtrl.collectStar,
         dataCtrl.increaseScore,
-        this
+        this,
       );
       scoreText.setText(`Score: ${dataCtrl.getScore()}`);
       levelText.setText(`Level: ${dataCtrl.getLevel()}`);
@@ -574,7 +574,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
       this.load.plugin(
         'rexinputtextplugin',
         'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js',
-        true
+        true,
       );
     }
 
@@ -585,7 +585,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0,
           this.cameras.main.width,
           this.cameras.main.height,
-          0x000000
+          0x000000,
         )
         .setOrigin(0, 0);
       overlay.alpha = 0.7;
@@ -650,7 +650,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           submitButton.y,
           submitButton.width + borderPadding * 2,
           submitButton.height + borderPadding * 2,
-          0xffffff
+          0xffffff,
         )
         .setOrigin(0.5);
       border.setStrokeStyle(borderWidth, 0xffffff);
@@ -690,7 +690,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0,
           this.cameras.main.width,
           this.cameras.main.height,
-          0x000000
+          0x000000,
         )
         .setOrigin(0, 0);
       overlay.alpha = 0.7;
@@ -738,7 +738,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
           restart.y,
           restart.width + borderPadding * 2,
           restart.height + borderPadding * 2,
-          0xffffff
+          0xffffff,
         )
         .setOrigin(0.5);
       border.setStrokeStyle(borderWidth, 0xffffff);

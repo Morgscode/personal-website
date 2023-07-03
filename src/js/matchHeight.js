@@ -17,7 +17,6 @@ const matchHeightModule = (function () {
       return (el.style.height = `${tallestElement}px`);
     });
   }
- 
 
   function attach() {
     let attached = false;
@@ -30,5 +29,5 @@ const matchHeightModule = (function () {
     return attached;
   }
 
-  return {matchHeight, attached: attach()}
+  return { matchHeight, attached: attach() };
 })();
