@@ -25,7 +25,7 @@ const gameLoaderModule = (function () {
                 reject(script);
               }
             }, 3000);
-          }); 
+          });
         }
         const phaserLoaded = loadScriptAsync(phaser, '#phaser-script');
         phaserLoaded

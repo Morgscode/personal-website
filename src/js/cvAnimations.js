@@ -1,5 +1,4 @@
 const cvAniamationModule = (function () {
-
   function textWrap(el) {
     // split heading into words
     const elArray = el.innerText.split(' ');
@@ -9,7 +8,7 @@ const cvAniamationModule = (function () {
       const chars = word.split('');
       // wrap each character into a span
       const wrappedChars = chars.map(
-        (char, chardIndex) => `<span>${char}</span>`
+        (char, chardIndex) => `<span>${char}</span>`,
       );
       // rejoin chards into a word and return
       return wrappedChars.join('');
@@ -32,7 +31,7 @@ const cvAniamationModule = (function () {
           0.6,
           { x: '-50px', opacity: 0 },
           { x: '15px', opacity: 1, ease: Power2.easeInOut },
-          '0.1'
+          '0.1',
         )
         .staggerFromTo(
           '.firstSceneItem',
@@ -40,7 +39,7 @@ const cvAniamationModule = (function () {
           { x: '15px' },
           { x: 0, ease: Power1.easeInOut },
           '0.1',
-          '-=0.1'
+          '-=0.1',
         );
 
       bannerTl.delay(1);
@@ -59,15 +58,15 @@ const cvAniamationModule = (function () {
           0.6,
           { x: '-30px', opacity: 0 },
           { x: '30px', opacity: 1, scale: 1.1, ease: Power2.easeInOut },
-          '0.1'
+          '0.1',
         )
         .staggerFromTo(
           '.textStagger1',
-          0.6, 
+          0.6,
           { x: '30px', scale: 1.1 },
           { x: 0, scale: 1, ease: Power2.easeInOut },
           '0.1',
-          '-=0.2'
+          '-=0.2',
         );
 
       let aboutTextScene = new ScrollMagic.Scene({
@@ -87,8 +86,8 @@ const cvAniamationModule = (function () {
         '.about__skillBadges .skill-badge',
         3,
         { scale: 1, y: '+15px' },
-        { scale: 1.4, y: '-15px',  ease: Power2.easeInOut },
-        '.5'
+        { scale: 1.4, y: '-15px', ease: Power2.easeInOut },
+        '.5',
       )
       .staggerFromTo(
         '.about__skill-badges .skill-badge',
@@ -96,7 +95,7 @@ const cvAniamationModule = (function () {
         { scale: 1.4, y: '-15px' },
         { scale: 1, y: '+15px', ease: Power2.easeInOut },
         '.5',
-        '-=3'
+        '-=3',
       );
 
     // ------------------ work history slide animtaions
@@ -146,7 +145,7 @@ const cvAniamationModule = (function () {
             boxShadow: '20px 20px 60px #d4d4d4, -20px -20px 60px #ffffff;',
             ease: Power2.easeOut,
           },
-          '0.15'
+          '0.15',
         );
 
         new ScrollMagic.Scene({
@@ -161,31 +160,33 @@ const cvAniamationModule = (function () {
     }
 
     const headings = document.querySelectorAll(
-      '.heading__primary:not(.anim-false), .heading__secondary:not(.anim-false)'
+      '.heading__primary:not(.anim-false), .heading__secondary:not(.anim-false)',
     );
 
-    headings.forEach((heading, headingIndex) => {
-      heading = textWrap(heading);
-      const spans = heading.querySelectorAll('span');
-      const tl = new TimelineMax();
-      tl.staggerFromTo(
-        spans,
-        0.35,
-        { y: 20, x: 20, opacity: 0 },
-        { y: 0, x: 0, opacity: 1, ease: Power2.easeOut },
-        '0.05',
-        '-=0.025'
-      );
+    if (window.innerWidth >= 576) {
+      headings.forEach((heading, headingIndex) => {
+        heading = textWrap(heading);
+        const spans = heading.querySelectorAll('span');
+        const tl = new TimelineMax();
+        tl.staggerFromTo(
+          spans,
+          0.35,
+          { y: 20, x: 20, opacity: 0 },
+          { y: 0, x: 0, opacity: 1, ease: Power2.easeOut },
+          '0.05',
+          '-=0.025',
+        );
 
-      new ScrollMagic.Scene({
-        triggerElement: heading,
-        triggerHook: 0.7,
-        reverse: false,
-      })
-        .setTween(tl)
-        //.addIndicators({ name: "text-in-trigger" })
-        .addTo(controller);
-    });
+        new ScrollMagic.Scene({
+          triggerElement: heading,
+          triggerHook: 0.7,
+          reverse: false,
+        })
+          .setTween(tl)
+          //.addIndicators({ name: "text-in-trigger" })
+          .addTo(controller);
+      });
+    }
   }
 
   function attach() {
@@ -193,8 +194,9 @@ const cvAniamationModule = (function () {
     return true;
   }
 
- 
   return {
-    textWrap, animate, attached: attach()
-  }
+    textWrap,
+    animate,
+    attached: attach(),
+  };
 })();

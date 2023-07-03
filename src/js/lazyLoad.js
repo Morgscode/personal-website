@@ -3,7 +3,7 @@ const lazyLoadModule = (function () {
     elements.forEach((image) => {
       if (image.intersectionRatio > 0) {
         image.target.src = image.target.dataset.src;
-        setTimeout(function() {
+        setTimeout(function () {
           image.target.classList.add('visible');
         }, 300);
         observer.unobserve(image.target);
@@ -29,6 +29,5 @@ const lazyLoadModule = (function () {
     return attached;
   }
 
-  return {attached: attach(), observer, lazyLoadImages}
-  
+  return { attached: attach(), observer, lazyLoadImages };
 })();

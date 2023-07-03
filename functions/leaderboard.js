@@ -7,11 +7,12 @@ const LeaderBoardSchema = new mongoose.Schema({
     minLength: 1,
     maxLength: 12,
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         letters = /^[A-Za-z\s]+$/;
         return v.match(letters);
       },
-      message: props => `${props.value} can only container letters and space characters`
+      message: (props) =>
+        `${props.value} can only container letters and space characters`,
     },
   },
   level: {
@@ -27,25 +28,22 @@ const LeaderBoardSchema = new mongoose.Schema({
 });
 
 exports.handler = async (event, context) => {
-
   const dbUser = process.env.MONGODB_DB_USER;
   const dbPass = process.env.MONGODB_DB_PASS;
   let dbConn = process.env.MONGODB_CONNECTION_STRING;
-   
+
   dbConn = dbConn.replace('<username>', dbUser);
   dbConn = dbConn.replace('<password>', dbPass);
-  
-  const LeaderBoard = mongoose.model(
-    'LeaderBoard',
-    LeaderBoardSchema
-  );
+
+  const LeaderBoard = mongoose.model('LeaderBoard', LeaderBoardSchema);
 
   try {
-
     await mongoose.connect(dbConn);
-    
+
     if (event.httpMethod === 'GET') {
-      const leaderboard = await LeaderBoard.find().sort([['score', 'desc']]).limit(15);
+      const leaderboard = await LeaderBoard.find()
+        .sort([['score', 'desc']])
+        .limit(15);
 
       return {
         statusCode: 200,
@@ -82,7 +80,6 @@ exports.handler = async (event, context) => {
         message: 'Not Found',
       }),
     };
-
   } catch (error) {
     console.log(error);
     return {

@@ -1,6 +1,6 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const particleDiv = document.querySelector("#particles-js");
+window.addEventListener('DOMContentLoaded', () => {
+  const particleDiv = document.querySelector('#particles-js');
   if (particleDiv) {
-    particlesJS.load("particles-js", "./dist/resources/particles.json");
+    particlesJS.load('particles-js', './dist/resources/particles.json');
   }
 });

@@ -3,7 +3,7 @@ const projectAnimationModule = (function () {
     const projectArticle = document.querySelectorAll('.personal-project');
     const projectSlides = document.querySelectorAll('.project-slide');
     const projectSlideShadows = document.querySelectorAll(
-      '.project-slide__shadow'
+      '.project-slide__shadow',
     );
 
     if (projectSlides && projectSlideShadows) {
@@ -18,7 +18,7 @@ const projectAnimationModule = (function () {
           2,
           { boxShadow: '0 10px 6px -6px #212121' },
           { boxShadow: '0 20px 12px -3px #000000' },
-          '-=2'
+          '-=2',
         );
 
         if (window.width > 1200) {
@@ -47,13 +47,19 @@ const projectAnimationModule = (function () {
           //.addIndicators({ name: "portolio-trigger" })
           .addTo(controller);
 
-          portfolioScene.on('start', function(type, target, progress, state, scrollDirection) {
+        portfolioScene.on(
+          'start',
+          function (type, target, progress, state, scrollDirection) {
             this.reverse = false;
-          });
-    
-          portfolioScene.on('end', function(type, target, progress, state, scrollDirection) {
+          },
+        );
+
+        portfolioScene.on(
+          'end',
+          function (type, target, progress, state, scrollDirection) {
             this.reverse = true;
-          });
+          },
+        );
 
         return portfolioScene;
       });
@@ -62,5 +68,5 @@ const projectAnimationModule = (function () {
   function attach() {
     window.addEventListener('DOMContentLoaded', animate);
   }
-  return {attached: attach()}
+  return { attached: attach() };
 })();

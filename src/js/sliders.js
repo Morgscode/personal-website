@@ -15,11 +15,11 @@ const sliderModule = (function () {
       if (document.querySelector('.portfolio-splide')) {
         const portfolioSlider = new Splide(
           '.portfolio-splide',
-          portfolioSliderOptions
+          portfolioSliderOptions,
         );
         portfolioSlider.mount();
       }
     });
   }
-  return {attached: attach()}
+  return { attached: attach() };
 })();
