@@ -1,5 +1,7 @@
 {
   "name": "portfolio",
+  "author": "Luke Morgan",
+  "license": "ISC",
   "version": "1.0.0",
   "description": "my web development portfolio",
   "main": "index.js",
@@ -8,8 +10,14 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
-  "author": "Luke Morgan",
-  "license": "ISC",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "mongoose": "^7.0.3",
     "nodemailer": "^6.4.17",

@@ -671,10 +671,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
   }
 
   class LeaderBoardScene extends Phaser.Scene {
+    leaderboard = {};
+    rowsYStart = 75;
+
     constructor() {
       super({ key: 'LeaderBoardScene' });
-      this.leaderboard = {};
-      this.rowsYStart = 75;
     }
 
     preload() {
