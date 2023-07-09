@@ -8,7 +8,7 @@ const LeaderBoardSchema = new mongoose.Schema({
     maxLength: 12,
     validate: {
       validator: function (v) {
-        letters = /^[A-Za-z\s]+$/;
+        const letters = /^[A-Za-z\s]+$/;
         return v.match(letters);
       },
       message: (props) =>

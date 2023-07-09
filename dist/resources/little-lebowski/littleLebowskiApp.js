@@ -195,7 +195,7 @@ const uiController = (() => {
     },
     renderRandomStarGroup(stars) {
       stars.children.iterate((child) => {
-        yVal = Phaser.Math.Between(0, 500);
+        const yVal = Phaser.Math.Between(0, 500);
         child.enableBody(true, child.x, yVal, true, true);
       });
       return stars;
@@ -671,10 +671,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
   }
 
   class LeaderBoardScene extends Phaser.Scene {
+    leaderboard = {};
+    rowsYStart = 75;
+
     constructor() {
       super({ key: 'LeaderBoardScene' });
-      this.leaderboard = {};
-      this.rowsYStart = 75;
     }
 
     preload() {
