@@ -1,38 +1,37 @@
 .clients {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: center;
 
-    .client {
+  .client {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-
-        &-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-
-        }
-
-        .logo-wrapper {
-            padding: 1rem;
-        }
+    &-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
+
+    .logo-wrapper {
+      padding: 1rem;
+    }
+  }
 }
 
 @media only screen and (max-width: 992px) {
-    .clients {
-        grid-template-columns: repeat(2, 1fr);
+  .clients {
+    grid-template-columns: repeat(2, 1fr);
 
-        .client {
-            padding: 0.5rem;
+    .client {
+      padding: 0.5rem;
 
-            .logo-wrapper {
-                padding: 0.5rem;
-            }
-        }
+      .logo-wrapper {
+        padding: 0.5rem;
+      }
     }
+  }
 }
