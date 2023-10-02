@@ -56,7 +56,7 @@ const cvAniamationModule = (function () {
         .staggerFromTo(
           '.textStagger1',
           0.6,
-          { x: '-30px', opacity: 0 },
+          { x: '10px', opacity: 0 },
           { x: '30px', opacity: 1, scale: 1.1, ease: Power2.easeInOut },
           '0.1',
         )
@@ -78,51 +78,6 @@ const cvAniamationModule = (function () {
         /*.addIndicators()*/
         .addTo(controller);
     }
-
-    // -------------- skill badge pulse animations
-    let pulseTl = new TimelineMax({ repeat: -1, yoyo: true });
-    pulseTl
-      .staggerFromTo(
-        '.about__skillBadges .skill-badge',
-        3,
-        { scale: 1, y: '+15px' },
-        { scale: 1.4, y: '-15px', ease: Power2.easeInOut },
-        '.5',
-      )
-      .staggerFromTo(
-        '.about__skill-badges .skill-badge',
-        3,
-        { scale: 1.4, y: '-15px' },
-        { scale: 1, y: '+15px', ease: Power2.easeInOut },
-        '.5',
-        '-=3',
-      );
-
-    // ------------------ work history slide animtaions
-
-    const pinContainer = document.querySelector('#pinContainer');
-
-    if (pinContainer && window.innerWidth >= 768) {
-      // init
-      // define movement of panels
-      var wexWipes = new TimelineMax();
-
-      wexWipes
-        .to('#slideContainer', 1, { x: '-25%' }) // animate to second panel
-        .to('#slideContainer', 1, { x: '-50%' }) // animate to third panel
-        .to('#slideContainer', 1, { x: '-75%' }); // animate to fourth panel
-
-      // create pin and link animation
-      new ScrollMagic.Scene({
-        triggerElement: '#pinContainer',
-        triggerHook: 'onLeave',
-        duration: '400%',
-      })
-        .setPin('#pinContainer')
-        .setTween(wexWipes)
-        .addTo(controller);
-    }
-
     //---------- skill col animations
 
     const skillCols = document.querySelectorAll('.skill-col');
