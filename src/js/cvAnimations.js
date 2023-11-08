@@ -57,14 +57,14 @@ const cvAniamationModule = (function () {
           '.textStagger1',
           0.6,
           { x: '10px', opacity: 0 },
-          { x: '30px', opacity: 1, scale: 1.1, ease: Power2.easeInOut },
+          { x: '30px', opacity: 1, ease: Power2.easeInOut },
           '0.1',
         )
         .staggerFromTo(
           '.textStagger1',
           0.6,
-          { x: '30px', scale: 1.1 },
-          { x: 0, scale: 1, ease: Power2.easeInOut },
+          { x: '30px' },
+          { x: 0, ease: Power2.easeInOut },
           '0.1',
           '-=0.2',
         );
