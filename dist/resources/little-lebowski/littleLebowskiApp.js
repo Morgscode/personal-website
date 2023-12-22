@@ -642,9 +642,20 @@ const gameController = ((uiCtrl, dataCtrl) => {
       // Move the submitButton to the top
       submitButton.setDepth(1);
 
+      const restartButton = this.add
+        .text(400, 475, 'Restart Game', {
+          font: '16px Courier',
+          fill: '#222222',
+        })
+        .setOrigin(0.5)
+        .setInteractive();
+
+      // Move the submitButton to the top
+      restartButton.setDepth(1);
+
       const borderWidth = 4;
       const borderPadding = 10;
-      const border = this.add
+      const submitBorder = this.add
         .rectangle(
           submitButton.x,
           submitButton.y,
@@ -653,7 +664,18 @@ const gameController = ((uiCtrl, dataCtrl) => {
           0xffffff,
         )
         .setOrigin(0.5);
-      border.setStrokeStyle(borderWidth, 0xffffff);
+      submitBorder.setStrokeStyle(borderWidth, 0xffffff);
+
+      const resetBorder = this.add
+        .rectangle(
+          restartButton.x,
+          restartButton.y,
+          restartButton.width + borderPadding * 2,
+          restartButton.height + borderPadding * 2,
+          0xffffff,
+        )
+        .setOrigin(0.5);
+      resetBorder.setStrokeStyle(borderWidth, 0xffffff);
 
       submitButton.on('pointerdown', async () => {
         const name = nameInput.text;
@@ -666,6 +688,11 @@ const gameController = ((uiCtrl, dataCtrl) => {
         } finally {
           this.scene.start('LeaderBoardScene');
         }
+      });
+
+      restartButton.on('pointerdown', async () => {
+        triggerGameOver();
+        this.scene.restart('GameScene');
       });
     }
   }
