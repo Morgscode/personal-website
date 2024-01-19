@@ -8,6 +8,7 @@ export default defineConfig({
         'personal-projects.html',
         'design.html',
         'contact.html',
+        'little-lebowski.html',
         '404.html',
       ],
     },
