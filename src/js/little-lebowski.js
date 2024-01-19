@@ -1,3 +1,8 @@
+'use strict';
+
+import '../scss/main.scss';
+import * as Phaser from 'phaser';
+
 /**
  * Data Controller (MODEL)
  */
@@ -94,30 +99,14 @@ const dataController = (() => {
 const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
-      gameObject.load.image(
-        'sky',
-        './dist/resources/little-lebowski/assets/sky.png',
-      );
-      gameObject.load.image(
-        'ground',
-        './dist/resources/little-lebowski/assets/platform.png',
-      );
-      gameObject.load.image(
-        'star',
-        './dist/resources/little-lebowski/assets/star.png',
-      );
-      gameObject.load.image(
-        'bomb',
-        './dist/resources/little-lebowski/assets/bomb.png',
-      );
-      gameObject.load.spritesheet(
-        'dude',
-        './dist/resources/little-lebowski/assets/dude.png',
-        {
-          frameWidth: 32,
-          frameHeight: 48,
-        },
-      );
+      gameObject.load.image('sky', './src/assets/img/sky.png');
+      gameObject.load.image('ground', './src/assets/img/platform.png');
+      gameObject.load.image('star', './src/assets/img/star.png');
+      gameObject.load.image('bomb', './src/assets/img/bomb.png');
+      gameObject.load.spritesheet('dude', './src/assets/img/dude.png', {
+        frameWidth: 32,
+        frameHeight: 48,
+      });
       return gameObject;
     },
     renderBlueSkyBackground(gameObject) {
@@ -706,6 +695,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
     }
 
     preload() {
+      this.load.setBaseURL(window.location.origin);
       cursors = uiCtrl.setupCursorKeys(this);
     }
 
@@ -819,30 +809,7 @@ const gameController = ((uiCtrl, dataCtrl) => {
     scene: [StartScene, GameScene, GameOverScene, LeaderBoardScene],
   };
 
-  let observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0,
-  };
-  let observer = new IntersectionObserver(triggerGame, observerOptions);
-  let observerTarget = document.querySelector('#little-lebowski-game');
-  observer.observe(observerTarget);
-
-  function triggerGame(entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0) {
-        if (!game) {
-          game = new Phaser.Game(config);
-        } else {
-          game.scene.resume();
-        }
-      } else {
-        if (game) {
-          game.scene.pause();
-        }
-      }
-    });
-  }
+  const littleLebowski = new Phaser.Game(config);
 
   function triggerGameOver(player, bombs) {
     gameOver = true;

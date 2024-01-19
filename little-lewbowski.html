@@ -26,55 +26,32 @@
             Projects</a></li>
         <li class="nav__item"><a href="/design" class="nav__link">Design</a></li>
         <li class="nav__item"><a href="https://blog.luke-morgan.com" class="nav__link">Blog</a></li>
+        <li class="nav__item"><a href="/little-lewbowski" class="nav__link">HTML5 Game</a></li>
         <li class="nav__item"><a href="/contact" class=" nav__link">Contact</a></li>
       </ul>
     </nav>
   </div>
   <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
-  <header>
-    <div class="container-fluid page-banner">
-      <div class="sub-page-banner" style="background-image: url('./src/assets/svg/background-3.svg');"></div>
-      <div class="page-banner__contents-wrapper">
-        <h1 class="heading__primary heading__primary-light page-banner__title">Projects</h1>
-      </div>
-    </div>
-  </header>
   <main>
-    <section class="container-fluid personal-projects-section p-t-l p-b-l">
-      <div class="personal-projects-wrapper container row">
-        <article class="personal-project p-3 col-12">
-          <div class="row">
-            <div class="col-8 col-lg-6 col-sm-12 p-1">
-              <strong>
-                <p class="m-b-s heading__secondary personal-project__heading">Find my next favourite song</p>
-              </strong>
-              <p class="paragraph m-b-s">
-                I was pretty intrigued by digging through the documentation for the spotify api.
-              </p>
-              <p class="paragraph m-b-s">
-                This is a fun little side-project that you can use to find new music on Spotify
-                based on your favourite top songs, personal taste and mood.
-                You can add songs you find to your 'liked songs' playlist on Spotify.
-              </p>
-              <p class="paragraph m-b-s">
-                Technologies used: Spotify api, Vue.js, VueX, CSS Grid, Netlify
-              </p>
-            </div>
-            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"><a
-                href="https://findmynextfavoritesong.luke-morgan.com/" target="_blank" class="project-slide-link"><img
-                  class="slide lazyloaded project-slide" data-src="./src/assets/img/findmynextfavouritesong.webp"
-                  alt="Find my next favourite song - web development hastings"></a>
-              <a class="project-slide-link-btn p-1" target="_blank" rel="nofollow noopener"
-                href="https://findmynextfavoritesong.luke-morgan.com/">
-                View project
-              </a>
-              <div class="project-slide__shadow">&nbsp;</div>
-            </div>
-          </div>
-        </article>
+    <section id="phaser-game" class="p-b-l">
+      <div class="container">
+        <p class="text-center m-b-l m-t-l">Thanks for taking a look at my site... Here's a little game I hacked
+          together</p>
+        <div class="game-wrapper p-b-l">
+          <div class="m-b-l" id="little-lebowski-game"></div>
+          <p>Assets and info can be found <a target="_blank"
+              href="https://phaser.io/tutorials/making-your-first-phaser-3-game/part1">here</a></p>
+        </div>
+        <div class="info"
+          style="display: flex; flex-direction: column; margin: 0 auto; width: 800px; font-family: 'Arial New', Arial, monospace; font-size: 18px;">
+          <h4 class="m-b-s">Controls</h4>
+          <p class="m-b-s">Arrow keys to move</p>
+          <p><span style="font-size: 22px; display: inline-block; transform: scale(1.5);">&#8593;</span> x2 =
+            double jump</p>
+        </div>
       </div>
     </section>
-    <section class="github-cta container-fluid p-b-l">
+    <section class="github-cta container-fluid p-t-l p-b-l">
       <div class="container github-cta__container p-t-s p-b-s">
         <div class="row">
           <div class="col-8 col-xs-12">
@@ -97,6 +74,7 @@
   <script src="https://kit.fontawesome.com/f2ad0cb5b1.js" crossorigin="anonymous"></script>
   <!-- page script -->
   <script type="module" src="./src/js/index.js"></script>
+  <script type="module" src="./src/js/little-lebowski.js"></script>
 </body>
 
 </html>
