@@ -1,6 +1,11 @@
 'use strict';
 
 import '../scss/main.scss';
+import skyImgUrl from '../assets/img/sky.png';
+import platformImgUrl from '../assets/img/platform.png';
+import starImgUrl from '../assets/img/star.png';
+import bombImgUrl from '../assets/img/bomb.png';
+import dudeImgUrl from '../assets/img/dude.png';
 import * as Phaser from 'phaser';
 
 /**
@@ -99,11 +104,11 @@ const dataController = (() => {
 const uiController = (() => {
   const initialSceneSetupFunctions = {
     loadGameAssets(gameObject) {
-      gameObject.load.image('sky', './src/assets/img/sky.png');
-      gameObject.load.image('ground', './src/assets/img/platform.png');
-      gameObject.load.image('star', './src/assets/img/star.png');
-      gameObject.load.image('bomb', './src/assets/img/bomb.png');
-      gameObject.load.spritesheet('dude', './src/assets/img/dude.png', {
+      gameObject.load.image('sky', skyImgUrl);
+      gameObject.load.image('ground', platformImgUrl);
+      gameObject.load.image('star', starImgUrl);
+      gameObject.load.image('bomb', bombImgUrl);
+      gameObject.load.spritesheet('dude', dudeImgUrl, {
         frameWidth: 32,
         frameHeight: 48,
       });
