@@ -1,6 +1,5 @@
 'use strict';
 
-import '@/scss/main.scss';
 import * as Phaser from 'phaser';
 import {
   GameStartScene,
@@ -9,6 +8,7 @@ import {
   LeaderBoardScene,
 } from './Scenes';
 import { gameState } from './model';
+import '@/scss/main.scss';
 
 const config = {
   type: Phaser.AUTO,
