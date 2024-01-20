@@ -1,6 +1,6 @@
 /* ----- utility classes ------ */
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
 
 .bgGrey {
   background-color: $colorGrey;
@@ -8,4 +8,8 @@
 
 .bgBlue {
   background-color: $color-primary;
+}
+
+.box-shadow-1 {
+  box-shadow: 8px 12px 30px -8px #222222;
 }
