@@ -1,6 +1,6 @@
 'use strict';
 
-import '../scss/main.scss';
+import '@/scss/main.scss';
 import { animate as cvAnimations } from './cvAnimations';
 import { animate as projectAnimations } from './projectAnimations';
 import { navigation } from './nav';
