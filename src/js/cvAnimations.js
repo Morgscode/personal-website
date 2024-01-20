@@ -23,7 +23,7 @@ export function animate() {
   // --------------- banner slider animations
   const firstSceneItems = document.querySelectorAll('.firstSceneItem');
 
-  if (firstSceneItems) {
+  if (firstSceneItems.length) {
     let bannerTl = new TimelineMax();
 
     bannerTl
@@ -50,7 +50,7 @@ export function animate() {
 
   const textStaggerItems = document.querySelectorAll('.textStagger1');
 
-  if (textStaggerItems) {
+  if (textStaggerItems.length) {
     let textTl = new TimelineMax();
 
     textTl
@@ -83,7 +83,7 @@ export function animate() {
 
   const skillCols = document.querySelectorAll('.skill-col');
 
-  if (skillCols) {
+  if (skillCols.length) {
     skillCols.forEach((element) => {
       const skillColTween = TweenMax.fromTo(
         element,
