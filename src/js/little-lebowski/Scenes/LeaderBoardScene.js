@@ -35,7 +35,7 @@ export class LeaderBoardScene extends Scene {
 
     // Display the leaderboard
     this.add
-      .text(400, 50, 'Leader Board', { font: '32px Courier', fill: '#fff' })
+      .text(400, 50, 'Leaderboard', { font: '32px Courier', fill: '#fff' })
       .setOrigin(0.5);
 
     this.add.text(260, this.rowsYStart, `Name:`, {
@@ -52,8 +52,8 @@ export class LeaderBoardScene extends Scene {
     });
 
     const restart = this.add
-      .text(400, 550, 'Restart Game', {
-        font: '32px Courier',
+      .text(400, 550, 'Back to Main Menu', {
+        font: '24px Courier',
         fill: '#222222',
       })
       .setOrigin(0.5)

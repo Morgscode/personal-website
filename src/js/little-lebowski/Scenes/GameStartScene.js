@@ -44,7 +44,7 @@ export class GameStartScene extends Scene {
       .setOrigin(0.5);
 
     const startButton = this.add
-      .text(250, 340, 'Start Game', { font: '32px Courier', fill: '#222222' })
+      .text(300, 340, 'Start Game', { font: '24px Courier', fill: '#222222' })
       .setOrigin(0.5)
       .setInteractive();
 
@@ -66,8 +66,8 @@ export class GameStartScene extends Scene {
     startBorder.setStrokeStyle(borderWidth, 0xffffff);
 
     const scoreButton = this.add
-      .text(550, 340, 'Score Board', {
-        font: '32px Courier',
+      .text(500, 340, 'Leaderboard', {
+        font: '24px Courier',
         fill: '#222222',
       })
       .setOrigin(0.5)
