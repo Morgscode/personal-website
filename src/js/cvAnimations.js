@@ -42,8 +42,6 @@ export function animate() {
         '0.1',
         '-=0.1',
       );
-
-    bannerTl.delay(1);
   }
 
   // ---------------- aboutTextStagger
