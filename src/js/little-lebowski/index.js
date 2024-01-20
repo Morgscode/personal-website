@@ -1,7 +1,6 @@
 'use strict';
 
-import '@/scss/main.scss';
-import * as Phaser from 'phaser';
+import { Game, AUTO } from 'phaser';
 import {
   GameStartScene,
   GameScene,
@@ -9,9 +8,10 @@ import {
   LeaderBoardScene,
 } from './Scenes';
 import { gameState } from './model';
+import '@/scss/main.scss';
 
 const config = {
-  type: Phaser.AUTO,
+  type: AUTO,
   parent: 'little-lebowski-game',
   title: 'The Little Lebowski',
   width: 800,
@@ -29,7 +29,7 @@ const config = {
   scene: [GameStartScene, GameScene, GameOverScene, LeaderBoardScene],
 };
 
-export const game = new Phaser.Game(config);
+export const game = new Game(config);
 
 export function triggerGameOver() {
   game.scene.start('GameOverScene');

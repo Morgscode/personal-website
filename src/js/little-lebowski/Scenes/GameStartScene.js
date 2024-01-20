@@ -1,10 +1,10 @@
 'use strict';
 
-import * as Phaser from 'phaser';
-import { gameSetup } from '../view';
+import { Scene } from 'phaser';
 import { gameState } from '../model';
+import { gameSetup } from '../view';
 
-export class GameStartScene extends Phaser.Scene {
+export class GameStartScene extends Scene {
   constructor() {
     super({ key: 'StartScene' });
   }

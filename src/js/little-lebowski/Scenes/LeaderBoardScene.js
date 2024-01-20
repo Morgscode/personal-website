@@ -1,11 +1,10 @@
 'use strict';
 
-import * as Phaser from 'phaser';
-
+import { Scene } from 'phaser';
 import { getLeaderboard } from '../model';
 import { gameSetup } from '../view';
 
-export class LeaderBoardScene extends Phaser.Scene {
+export class LeaderBoardScene extends Scene {
   leaderboard = {};
   rowsYStart = 75;
 
