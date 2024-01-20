@@ -9,10 +9,8 @@ function observerCallback(elements) {
     }
   });
 }
-const observer = new IntersectionObserver(observerCallback, {
-  rootMargin: '100px',
-  threshold: 0,
-});
+
+const observer = new IntersectionObserver(observerCallback);
 
 export function lazyLoadImages() {
   let documentImages = document.querySelectorAll('img.lazyloaded');
