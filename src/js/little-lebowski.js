@@ -3,11 +3,6 @@
 import '../scss/main.scss';
 import * as Phaser from 'phaser';
 
-function getAssetUrl(name) {
-  return new URL(`./src/assets/html5-game-asset/${name}.png`, import.meta.url)
-    .href;
-}
-
 /**
  * Data Controller (MODEL)
  */
