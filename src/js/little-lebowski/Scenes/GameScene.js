@@ -1,8 +1,8 @@
 'use strict';
 
 import { Scene } from 'phaser';
-import { gameSetup, playerSetup, bombSetup, starSetup } from '../view';
 import { gameState, scoreState, levelState } from '../model';
+import { gameSetup, playerSetup, bombSetup, starSetup } from '../view';
 import { triggerGameOver } from '../';
 
 export class GameScene extends Scene {
