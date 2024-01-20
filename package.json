@@ -2,6 +2,7 @@
   "name": "personal-website",
   "author": "Luke Morgan",
   "private": true,
+  "type": "module",
   "scripts": {
     "prepare": "husky install",
     "lint-staged": "lint-staged",

@@ -1,6 +1,6 @@
 'use strict';
 
-import * as Phaser from 'phaser';
+import { Math as PhaserMath } from 'phaser';
 import { playerJumpState } from './model';
 
 export const gameSetup = {
@@ -77,7 +77,7 @@ export const starSetup = {
       setXY: { x: xVal, y: yVal, stepX: stepXVal },
     });
     stars.children.iterate(function (child) {
-      child.setBounceY(Phaser.Math.FloatBetween(0.6, 1));
+      child.setBounceY(PhaserMath.FloatBetween(0.6, 1));
     });
     return stars;
   },
@@ -90,7 +90,7 @@ export const starSetup = {
   },
   renderRandomStarGroup(stars) {
     stars.children.iterate((child) => {
-      const yVal = Phaser.Math.Between(0, 500);
+      const yVal = PhaserMath.Between(0, 500);
       child.enableBody(true, child.x, yVal, true, true);
     });
     return stars;
@@ -106,7 +106,7 @@ export const bombSetup = {
     const bomb = bombs.create(xCord, 16, 'bomb');
     bomb.setBounce(1);
     bomb.setCollideWorldBounds(true);
-    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb.setVelocity(PhaserMath.Between(-200, 200), 20);
     return bomb;
   },
   setupBombPlatformCollision(gameObject, bomb, platforms) {
