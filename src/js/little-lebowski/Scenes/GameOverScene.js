@@ -12,11 +12,6 @@ export class GameOverScene extends Scene {
 
   preload() {
     gameState.cursors = gameSetup.bindCursorKeys(this);
-    this.load.plugin(
-      'rexinputtextplugin',
-      'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js',
-      true,
-    );
   }
 
   create() {
@@ -50,7 +45,7 @@ export class GameOverScene extends Scene {
       .setOrigin(0.5);
 
     this.add
-      .text(400, 250, `Add your name to the scoreboard`, {
+      .text(400, 250, `Add your name to the leaderboard`, {
         fontSize: '18px',
         color: '#fff',
       })
@@ -73,30 +68,27 @@ export class GameOverScene extends Scene {
     });
 
     const submit = this.add
-      .text(400, 375, 'Add to score board', {
+      .text(320, 375, 'Add to score board', {
         font: '16px Courier',
         fill: '#222222',
       })
       .setOrigin(0.5)
-      .setInteractive();
-
-    // Move the submit to the top
-    submit.setDepth(1);
+      .setInteractive()
+      .setDepth(1);
 
     const restart = this.add
-      .text(400, 475, 'Restart Game', {
+      .text(520, 375, 'Restart Game', {
         font: '16px Courier',
         fill: '#222222',
       })
       .setOrigin(0.5)
-      .setInteractive();
-
-    // Move the submit to the top
-    restart.setDepth(1);
+      .setInteractive()
+      .setDepth(1);
 
     const borderWidth = 4;
     const borderPadding = 10;
-    const submitBorder = this.add
+
+    this.add
       .rectangle(
         submit.x,
         submit.y,
@@ -104,10 +96,10 @@ export class GameOverScene extends Scene {
         submit.height + borderPadding * 2,
         0xffffff,
       )
+      .setStrokeStyle(borderWidth, 0xffffff)
       .setOrigin(0.5);
-    submitBorder.setStrokeStyle(borderWidth, 0xffffff);
 
-    const resetBorder = this.add
+    this.add
       .rectangle(
         restart.x,
         restart.y,
@@ -115,8 +107,8 @@ export class GameOverScene extends Scene {
         restart.height + borderPadding * 2,
         0xffffff,
       )
+      .setStrokeStyle(borderWidth, 0xffffff)
       .setOrigin(0.5);
-    resetBorder.setStrokeStyle(borderWidth, 0xffffff);
 
     submit.on('pointerdown', async function () {
       const name = nameInput.text;

@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import ViteRestart from 'vite-plugin-restart';
-import liveReload from 'vite-plugin-live-reload';
 
 export default defineConfig({
   resolve: {
@@ -28,6 +27,5 @@ export default defineConfig({
     ViteRestart({
       restart: ['./src/**'],
     }),
-    liveReload('./src'),
   ],
 });
