@@ -110,7 +110,7 @@ export class GameOverScene extends Scene {
       .setStrokeStyle(borderWidth, 0xffffff)
       .setOrigin(0.5);
 
-    submit.on('pointerdown', async function () {
+    submit.on('pointerdown', async () => {
       const name = nameInput.text;
       const level = levelState.getLevel();
       const score = scoreState.getScore();
@@ -119,11 +119,11 @@ export class GameOverScene extends Scene {
       } catch (error) {
         console.error(error);
       } finally {
-        this.scene.launch('LeaderboardScene');
+        this.scene.start('LeaderboardScene');
       }
     });
 
-    restart.on('pointerdown', function () {
+    restart.on('pointerdown', () => {
       triggerGameRestart(this.scene.game);
     });
   }
