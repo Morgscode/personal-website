@@ -1,6 +1,6 @@
-import { controller } from './animationController';
-import * as ScrollMagic from 'scrollmagic';
+import { Scene } from 'scrollmagic';
 import { TimelineMax } from 'gsap';
+import { controller } from './animationController';
 
 export function animate() {
   const projectArticle = document.querySelectorAll('.personal-project');
@@ -41,7 +41,7 @@ export function animate() {
         triggerHook = 0.15;
       }
 
-      let portfolioScene = new ScrollMagic.Scene({
+      let portfolioScene = new Scene({
         triggerElement: triggerElement,
         triggerHook: triggerHook,
         reverse: true,

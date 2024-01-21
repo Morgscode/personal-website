@@ -1,4 +1,4 @@
-export const gameState = {
+export let gameState = {
   gameOver: false,
   cursors: null,
   player: null,
@@ -9,6 +9,12 @@ export const gameState = {
   scoreText: '0',
   activeStarGroups: 0,
 };
+
+const initalGameState = JSON.parse(JSON.stringify(gameState));
+
+export function resetGameState() {
+  gameState = JSON.parse(JSON.stringify(initalGameState));
+}
 
 export const playerJumpState = {
   setJumpCount() {
@@ -51,11 +57,15 @@ export const levelState = {
 };
 
 export async function getLeaderboard() {
-  const res = await fetch(
-    `${window.location.origin}/.netlify/functions/leaderboard`,
-  );
-  const { data, count } = await res.json();
-  return { data: data.data, count };
+  try {
+    const res = await fetch(
+      `${window.location.origin}/.netlify/functions/leaderboard`,
+    );
+    const { data, count } = await res.json();
+    return { data: data.data, count };
+  } catch {
+    return false;
+  }
 }
 
 export async function submitStatistics(name, level, score) {

@@ -3,7 +3,7 @@
 import { Scene } from 'phaser';
 import { gameState, levelState, scoreState, submitStatistics } from '../model';
 import { gameSetup } from '../view';
-import { triggerGameOver } from '../';
+import { triggerGameRestart } from '..';
 
 export class GameOverScene extends Scene {
   constructor() {
@@ -72,7 +72,7 @@ export class GameOverScene extends Scene {
       maxLength: 12,
     });
 
-    const submitButton = this.add
+    const submit = this.add
       .text(400, 375, 'Add to score board', {
         font: '16px Courier',
         fill: '#222222',
@@ -80,10 +80,10 @@ export class GameOverScene extends Scene {
       .setOrigin(0.5)
       .setInteractive();
 
-    // Move the submitButton to the top
-    submitButton.setDepth(1);
+    // Move the submit to the top
+    submit.setDepth(1);
 
-    const restartButton = this.add
+    const restart = this.add
       .text(400, 475, 'Restart Game', {
         font: '16px Courier',
         fill: '#222222',
@@ -91,17 +91,17 @@ export class GameOverScene extends Scene {
       .setOrigin(0.5)
       .setInteractive();
 
-    // Move the submitButton to the top
-    restartButton.setDepth(1);
+    // Move the submit to the top
+    restart.setDepth(1);
 
     const borderWidth = 4;
     const borderPadding = 10;
     const submitBorder = this.add
       .rectangle(
-        submitButton.x,
-        submitButton.y,
-        submitButton.width + borderPadding * 2,
-        submitButton.height + borderPadding * 2,
+        submit.x,
+        submit.y,
+        submit.width + borderPadding * 2,
+        submit.height + borderPadding * 2,
         0xffffff,
       )
       .setOrigin(0.5);
@@ -109,16 +109,16 @@ export class GameOverScene extends Scene {
 
     const resetBorder = this.add
       .rectangle(
-        restartButton.x,
-        restartButton.y,
-        restartButton.width + borderPadding * 2,
-        restartButton.height + borderPadding * 2,
+        restart.x,
+        restart.y,
+        restart.width + borderPadding * 2,
+        restart.height + borderPadding * 2,
         0xffffff,
       )
       .setOrigin(0.5);
     resetBorder.setStrokeStyle(borderWidth, 0xffffff);
 
-    submitButton.on('pointerdown', async () => {
+    submit.on('pointerdown', async function () {
       const name = nameInput.text;
       const level = levelState.getLevel();
       const score = scoreState.getScore();
@@ -127,13 +127,12 @@ export class GameOverScene extends Scene {
       } catch (error) {
         console.error(error);
       } finally {
-        this.scene.start('LeaderBoardScene');
+        this.scene.launch('LeaderboardScene');
       }
     });
 
-    restartButton.on('pointerdown', async () => {
-      triggerGameOver();
-      this.scene.restart('GameScene');
+    restart.on('pointerdown', function () {
+      triggerGameRestart(this.scene.game);
     });
   }
 }
