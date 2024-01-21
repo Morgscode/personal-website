@@ -7,7 +7,7 @@ import { triggerGameRestart } from '..';
 
 export class LeaderboardScene extends Scene {
   leaderboard = {};
-  rowsYStart = 75;
+  rowsYStart = 100;
 
   constructor() {
     super({ key: 'LeaderboardScene' });
