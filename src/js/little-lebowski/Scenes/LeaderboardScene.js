@@ -13,17 +13,17 @@ export class LeaderboardScene extends Scene {
     super({ key: 'LeaderboardScene' });
   }
 
-  async preload() {
+  preload() {
+    gameSetup.bindCursorKeys(this);
+  }
+
+  async create() {
     try {
       this.leaderboard = await getLeaderboard();
     } catch (error) {
       console.error(error);
     }
 
-    gameSetup.bindCursorKeys(this);
-  }
-
-  async create() {
     this.add
       .rectangle(
         0,
