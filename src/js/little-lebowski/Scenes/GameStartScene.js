@@ -15,11 +15,12 @@ export class GameStartScene extends Scene {
   }
 
   create() {
+    this.sound.stopAll();
     this.sound.play('intro', { volume: 0.25 });
     gameSetup.renderSky(this);
     gameState.platforms = gameSetup.renderPlatforms(this);
 
-    const overlay = this.add
+    this.add
       .rectangle(
         0,
         0,
@@ -27,8 +28,8 @@ export class GameStartScene extends Scene {
         this.cameras.main.height,
         0x000000,
       )
-      .setOrigin(0, 0);
-    overlay.alpha = 0.7;
+      .setOrigin(0, 0)
+      .setAlpha(0.7);
 
     this.add
       .text(400, 180, 'The Adventure(s) of', {
@@ -47,15 +48,13 @@ export class GameStartScene extends Scene {
     const startButton = this.add
       .text(300, 340, 'Start Game', { font: '24px Courier', fill: '#222222' })
       .setOrigin(0.5)
-      .setInteractive();
-
-    // Move the startButton to the top
-    startButton.setDepth(1);
+      .setInteractive()
+      .setDepth(1);
 
     const borderWidth = 4;
     const borderPadding = 10;
 
-    const startBorder = this.add
+    this.add
       .rectangle(
         startButton.x,
         startButton.y,
@@ -63,8 +62,8 @@ export class GameStartScene extends Scene {
         startButton.height + borderPadding * 2,
         0xffffff,
       )
-      .setOrigin(0.5);
-    startBorder.setStrokeStyle(borderWidth, 0xffffff);
+      .setOrigin(0.5)
+      .setStrokeStyle(borderWidth, 0xffffff);
 
     const scoreButton = this.add
       .text(500, 340, 'Leaderboard', {
@@ -72,12 +71,10 @@ export class GameStartScene extends Scene {
         fill: '#222222',
       })
       .setOrigin(0.5)
-      .setInteractive();
+      .setInteractive()
+      .setDepth(1);
 
-    // Move the startButton to the top
-    scoreButton.setDepth(1);
-
-    const scoreBorder = this.add
+    this.add
       .rectangle(
         scoreButton.x,
         scoreButton.y,
@@ -85,8 +82,8 @@ export class GameStartScene extends Scene {
         scoreButton.height + borderPadding * 2,
         0xffffff,
       )
-      .setOrigin(0.5);
-    scoreBorder.setStrokeStyle(borderWidth, 0xffffff);
+      .setOrigin(0.5)
+      .setStrokeStyle(borderWidth, 0xffffff);
 
     startButton.on('pointerdown', () => {
       this.scene.stop();
