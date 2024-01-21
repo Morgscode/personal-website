@@ -1,13 +1,8 @@
 'use strict';
 
 import { Game, AUTO } from 'phaser';
-import {
-  GameStartScene,
-  GameScene,
-  GameOverScene,
-  LeaderBoardScene,
-} from './Scenes';
-import { gameState } from './model';
+import { BootScene } from './Scenes';
+import { gameState, resetGameState } from './model';
 import '@/scss/main.scss';
 
 const config = {
@@ -26,7 +21,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [GameStartScene, GameScene, GameOverScene, LeaderBoardScene],
+  scene: [BootScene],
 };
 
 export const game = new Game(config);
@@ -34,4 +29,18 @@ export const game = new Game(config);
 export function triggerGameOver() {
   game.scene.start('GameOverScene');
   gameState.gameOver = true;
+}
+
+export function triggerGameRestart(game) {
+  const start = game.scene.getScene('StartScene');
+  start.scene.remove();
+  const main = game.scene.getScene('GameScene');
+  main.scene.remove();
+  const gameOver = game.scene.getScene('GameOverScene');
+  gameOver.scene.remove();
+  const leaderboard = game.scene.getScene('LeaderboardScene');
+  leaderboard.scene.remove();
+  resetGameState();
+  const boot = game.scene.getScene('BootScene');
+  boot.scene.restart();
 }

@@ -1,5 +1,5 @@
 import { controller } from './animationController';
-import * as ScrollMagic from 'scrollmagic';
+import { Scene } from 'scrollmagic';
 import { TimelineMax, TweenMax, Power1, Power2 } from 'gsap';
 
 function textWrap(el) {
@@ -68,7 +68,7 @@ export function animate() {
         '-=0.2',
       );
 
-    new ScrollMagic.Scene({
+    new Scene({
       triggerElement: '#aboutSceneTrigger',
       triggerHook: 'onCenter',
       reverse: false,
@@ -102,7 +102,7 @@ export function animate() {
         '0.15',
       );
 
-      new ScrollMagic.Scene({
+      new Scene({
         triggerElement: element,
         triggerHook: 0.7,
         reverse: true,
@@ -131,7 +131,7 @@ export function animate() {
         '-=0.025',
       );
 
-      new ScrollMagic.Scene({
+      new Scene({
         triggerElement: heading,
         triggerHook: 0.7,
         reverse: false,

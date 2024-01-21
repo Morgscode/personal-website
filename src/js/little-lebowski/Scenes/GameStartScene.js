@@ -88,11 +88,13 @@ export class GameStartScene extends Scene {
     scoreBorder.setStrokeStyle(borderWidth, 0xffffff);
 
     startButton.on('pointerdown', () => {
-      this.scene.start('GameScene');
+      this.scene.stop();
+      this.scene.launch('GameScene');
     });
 
     scoreButton.on('pointerdown', () => {
-      this.scene.start('LeaderBoardScene');
+      this.scene.stop();
+      this.scene.launch('LeaderboardScene');
     });
   }
 

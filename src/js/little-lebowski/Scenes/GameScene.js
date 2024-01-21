@@ -58,6 +58,7 @@ export class GameScene extends Scene {
       playerSetup.bombHitsPlayer,
       triggerGameOver,
     );
+    console.log(gameState);
   }
 
   update() {

@@ -3,13 +3,14 @@
 import { Scene } from 'phaser';
 import { getLeaderboard } from '../model';
 import { gameSetup } from '../view';
+import { triggerGameRestart } from '..';
 
-export class LeaderBoardScene extends Scene {
+export class LeaderboardScene extends Scene {
   leaderboard = {};
   rowsYStart = 75;
 
   constructor() {
-    super({ key: 'LeaderBoardScene' });
+    super({ key: 'LeaderboardScene' });
   }
 
   preload() {
@@ -76,8 +77,8 @@ export class LeaderBoardScene extends Scene {
       .setOrigin(0.5);
     border.setStrokeStyle(borderWidth, 0xffffff);
 
-    restart.on('pointerdown', () => {
-      this.scene.start('StartScene');
+    restart.on('pointerdown', function () {
+      triggerGameRestart(this.scene.game);
     });
 
     if (this.leaderboard?.data?.length) {
