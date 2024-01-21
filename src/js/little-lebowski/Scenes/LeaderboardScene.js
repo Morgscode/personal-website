@@ -6,19 +6,25 @@ import { gameSetup } from '../view';
 import { triggerGameRestart } from '..';
 
 export class LeaderboardScene extends Scene {
-  leaderboard = {};
-  rowsYStart = 75;
+  #leaderboard = {};
+  #rowsYStart = 75;
 
   constructor() {
     super({ key: 'LeaderboardScene' });
   }
 
-  preload() {
+  async preload() {
+    try {
+      this.leaderboard = await getLeaderboard();
+    } catch (error) {
+      console.error(error);
+    }
+
     gameSetup.bindCursorKeys(this);
   }
 
   async create() {
-    const overlay = this.add
+    this.add
       .rectangle(
         0,
         0,
@@ -26,13 +32,8 @@ export class LeaderboardScene extends Scene {
         this.cameras.main.height,
         0x000000,
       )
-      .setOrigin(0, 0);
-    overlay.alpha = 0.7;
-    try {
-      this.leaderboard = await getLeaderboard();
-    } catch (error) {
-      console.error(error);
-    }
+      .setOrigin(0, 0)
+      .setAlpha(0.7);
 
     // Display the leaderboard
     this.add
@@ -65,7 +66,8 @@ export class LeaderboardScene extends Scene {
 
     const borderWidth = 4;
     const borderPadding = 10;
-    const border = this.add
+
+    this.add
       .rectangle(
         restart.x,
         restart.y,
@@ -73,8 +75,8 @@ export class LeaderboardScene extends Scene {
         restart.height + borderPadding * 2,
         0xffffff,
       )
-      .setOrigin(0.5);
-    border.setStrokeStyle(borderWidth, 0xffffff);
+      .setOrigin(0.5)
+      .setStrokeStyle(borderWidth, 0xffffff);
 
     restart.on('pointerdown', function () {
       triggerGameRestart(this.scene.game);
