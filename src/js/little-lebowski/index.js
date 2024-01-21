@@ -1,6 +1,7 @@
 'use strict';
 
 import { Game, AUTO } from 'phaser';
+import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
 import { gameState, resetGameState } from './model';
 import '@/scss/main.scss';
@@ -22,6 +23,16 @@ const config = {
     },
   },
   scene: [BootScene],
+  plugins: {
+    global: [
+      {
+        key: 'rexInputTextPlugin',
+        plugin: InputTextPlugin,
+        start: true,
+      },
+      // ...
+    ],
+  },
 };
 
 export const game = new Game(config);

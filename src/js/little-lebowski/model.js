@@ -34,7 +34,7 @@ export const scoreState = {
   },
   increaseScore() {
     let score = parseInt(window.localStorage.getItem('gameScore'), 10);
-    score += 10;
+    score += 20;
     return window.localStorage.setItem('gameScore', score);
   },
   getScore() {

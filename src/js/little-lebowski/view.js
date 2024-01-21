@@ -1,26 +1,32 @@
 'use strict';
 
-import { Math as PhaserMath } from 'phaser';
+import { Input, Math as PhaserMath } from 'phaser';
 import { playerJumpState } from './model';
 
 export const gameSetup = {
-  loadAssets(gameObject) {
-    gameObject.load.image('sky', './assets/img/sky.png');
-    gameObject.load.image('ground', './assets/img/platform.png');
-    gameObject.load.image('star', './assets/img/star.png');
-    gameObject.load.image('bomb', './assets/img/bomb.png');
-    gameObject.load.spritesheet('dude', './assets/img/dude.png', {
+  loadAssets(scene) {
+    scene.load.image('sky', './assets/img/sky.png');
+    scene.load.image('ground', './assets/img/platform.png');
+    scene.load.image('star', './assets/img/star.png');
+    scene.load.image('bomb', './assets/img/bomb.png');
+    scene.load.image('kaboom', './assets/img/explosion.png');
+    scene.load.spritesheet('dude', './assets/img/dude.png', {
       frameWidth: 32,
       frameHeight: 48,
     });
-    return gameObject;
+    scene.load.audio('kaboom', './assets/sounds/explosion.wav.mp3');
+    scene.load.audio('coin-pickup', './assets/sounds/coin-pickup.mp3');
+    scene.load.audio('jump-1', './assets/sounds/jump-1.ogg');
+    scene.load.audio('jump-2', './assets/sounds/jump-2.ogg');
+    scene.load.audio('intro', './assets/sounds/intro.ogg');
+    return scene;
   },
-  renderSky(gameObject) {
-    gameObject.add.image(0, 0, 'sky').setOrigin(0, 0);
-    return gameObject;
+  renderSky(scene) {
+    scene.add.image(0, 0, 'sky').setOrigin(0, 0);
+    return scene;
   },
-  renderPlatforms(gameObject) {
-    const platforms = gameObject.physics.add.staticGroup();
+  renderPlatforms(scene) {
+    const platforms = scene.physics.add.staticGroup();
     // ground layer
     platforms.create(400, 600, 'ground').setScale(2).refreshBody();
     // 2nd left
@@ -43,24 +49,24 @@ export const gameSetup = {
     platforms.create(500, 125, 'ground');
     return platforms;
   },
-  renderBombs(gameObject) {
-    const bombs = gameObject.physics.add.group();
+  renderBombs(scene) {
+    const bombs = scene.physics.add.group();
     return bombs;
   },
-  bindCursorKeys(gameObject) {
-    const cursors = gameObject.input.keyboard.createCursorKeys();
+  bindCursorKeys(scene) {
+    const cursors = scene.input.keyboard.createCursorKeys();
     return cursors;
   },
-  renderScoreBoardText(gameObject, score) {
-    const scoreText = gameObject.add.text(16, 16, `Score: ${score}`, {
+  renderScoreBoardText(scene, score) {
+    const scoreText = scene.add.text(16, 16, `Score: ${score}`, {
       fontSize: `32px`,
       fontFamily: 'Courier',
       fill: `#303030`,
     });
     return scoreText;
   },
-  renderLevelText(gameObject, level) {
-    const levelText = gameObject.add.text(600, 16, `Level: ${level}`, {
+  renderLevelText(scene, level) {
+    const levelText = scene.add.text(600, 16, `Level: ${level}`, {
       fontSize: `32px`,
       fontFamily: 'Courier',
       fill: `#303030`,
@@ -70,10 +76,10 @@ export const gameSetup = {
 };
 
 export const starSetup = {
-  renderStarGroup(gameObject, xVal, yVal, stepXVal) {
-    const stars = gameObject.physics.add.group({
+  renderStarGroup(scene, xVal, yVal, stepXVal) {
+    const stars = scene.physics.add.group({
       key: 'star',
-      repeat: 10,
+      repeat: 5,
       setXY: { x: xVal, y: yVal, stepX: stepXVal },
     });
     stars.children.iterate(function (child) {
@@ -81,11 +87,12 @@ export const starSetup = {
     });
     return stars;
   },
-  setupStarPlatformCollision(gameObject, stars, platforms) {
-    gameObject.physics.add.collider(stars, platforms);
-    return gameObject;
+  setupStarPlatformCollision(scene, stars, platforms) {
+    scene.physics.add.collider(stars, platforms);
+    return scene;
   },
   starCollected(player, star) {
+    this.sound.play('coin-pickup');
     star.disableBody(true, true);
   },
   renderRandomStarGroup(stars) {
@@ -98,8 +105,8 @@ export const starSetup = {
 };
 
 export const bombSetup = {
-  renderBomb(gameObject) {
-    const bomb = gameObject.physics.add.sprite(400, 300, 'bomb');
+  renderBomb(scene) {
+    const bomb = scene.physics.add.sprite(400, 300, 'bomb');
     return bomb;
   },
   spawnBomb(bombs, xCord) {
@@ -109,15 +116,15 @@ export const bombSetup = {
     bomb.setVelocity(PhaserMath.Between(-200, 200), 20);
     return bomb;
   },
-  setupBombPlatformCollision(gameObject, bomb, platforms) {
-    gameObject.physics.add.collider(bomb, platforms);
-    return gameObject;
+  setupBombPlatformCollision(scene, bomb, platforms) {
+    scene.physics.add.collider(bomb, platforms);
+    return scene;
   },
 };
 
 export const playerSetup = {
-  renderPlayer(gameObject) {
-    const player = gameObject.physics.add.sprite(50, 545, 'dude');
+  renderPlayer(scene) {
+    const player = scene.physics.add.sprite(50, 545, 'dude');
     return player;
   },
   setupPlayerPhysics(player) {
@@ -126,10 +133,10 @@ export const playerSetup = {
     player.setCollideWorldBounds(true);
     return player;
   },
-  setupPlayerAnimations(gameObject) {
-    gameObject.anims.create({
+  setupPlayerAnimations(scene) {
+    scene.anims.create({
       key: 'left',
-      frames: gameObject.anims.generateFrameNumbers('dude', {
+      frames: scene.anims.generateFrameNumbers('dude', {
         start: 0,
         end: 3,
       }),
@@ -137,24 +144,24 @@ export const playerSetup = {
       repeat: -1,
     });
 
-    gameObject.anims.create({
+    scene.anims.create({
       key: 'turn',
       frames: [{ key: 'dude', frame: 4 }],
       frameRate: 10,
     });
 
-    gameObject.anims.create({
+    scene.anims.create({
       key: 'right',
-      frames: gameObject.anims.generateFrameNumbers('dude', {
+      frames: scene.anims.generateFrameNumbers('dude', {
         start: 5,
         end: 8,
       }),
       frameRate: 10,
       repeat: -1,
     });
-    return gameObject;
+    return scene;
   },
-  handlePlayerMovement(player, cursors) {
+  handlePlayerMovement(player, cursors, scene) {
     /**
      *
      * Let's asses which cursor is being pressed,
@@ -184,6 +191,7 @@ export const playerSetup = {
      */
     // --- jump
     if (cursors.up.isDown && player.body.touching.down) {
+      scene.sound.play('jump-1');
       player.setVelocityY(-325);
       playerJumpState.setJumpCount();
     }
@@ -198,50 +206,49 @@ export const playerSetup = {
      * further jumps.
      *
      */
+
     if (
       cursors.up.isDown &&
+      Input.Keyboard.DownDuration(cursors.up, 500) &&
       !player.body.touching.down &&
       jumpCount == 1 &&
       player.body.velocity.y < 30 &&
       player.body.velocity.y > -100
     ) {
+      scene.sound.play('jump-2');
       player.setVelocityY(-325);
       playerJumpState.resetJumpCount();
     }
 
     return player;
   },
-  setupPlayerPlatformCollision(gameObject, player, platforms) {
-    gameObject.physics.add.collider(player, platforms);
-    return gameObject;
+  setupPlayerPlatformCollision(scene, player, platforms) {
+    scene.physics.add.collider(player, platforms);
+    return scene;
   },
-  setupPlayerBombCollision(gameObject, player, bombs, hitBomb, gameOver) {
-    gameObject.physics.add.collider(
-      player,
-      bombs,
-      hitBomb,
-      gameOver,
-      gameObject,
-    );
-    return gameObject;
+  setupPlayerBombCollision(scene, player, bombs, hitBomb, gameOver) {
+    scene.physics.add.collider(player, bombs, hitBomb, gameOver, scene);
+    return scene;
   },
   setupPlayerStarCollection(
     player,
     stars,
     collectStarFn,
     increaseScoreFn,
-    gameObject,
+    scene,
   ) {
-    gameObject.physics.add.overlap(
+    scene.physics.add.overlap(
       player,
       stars,
       collectStarFn,
       increaseScoreFn,
-      gameObject,
+      scene,
     );
-    return gameObject;
+    return scene;
   },
   bombHitsPlayer(player, bomb) {
+    this.sound.play('kaboom');
+    bomb.setTexture('kaboom');
     player.setTint(0xff0000);
     player.anims.play('turn');
     player.angle = 180;

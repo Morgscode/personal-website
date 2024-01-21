@@ -58,11 +58,10 @@ export class LeaderboardScene extends Scene {
         fill: '#222222',
       })
       .setOrigin(0.5)
-      .setInteractive();
+      .setInteractive()
+      .setDepth(1);
 
     // Move the restart to the top
-
-    restart.setDepth(1);
 
     const borderWidth = 4;
     const borderPadding = 10;

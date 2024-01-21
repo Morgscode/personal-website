@@ -28,10 +28,10 @@ export class GameScene extends Scene {
       this,
       levelState.setupLevel(),
     );
-    gameState.stars.push(starSetup.renderStarGroup(this, 5, 450, 70));
-    gameState.stars.push(starSetup.renderStarGroup(this, 15, 350, 60));
-    gameState.stars.push(starSetup.renderStarGroup(this, 15, 200, 60));
-    gameState.stars.push(starSetup.renderStarGroup(this, 25, 50, 50));
+    gameState.stars.push(starSetup.renderStarGroup(this, 5, 450, 130));
+    gameState.stars.push(starSetup.renderStarGroup(this, 15, 350, 110));
+    gameState.stars.push(starSetup.renderStarGroup(this, 15, 200, 110));
+    gameState.stars.push(starSetup.renderStarGroup(this, 25, 50, 100));
     starSetup.setupStarPlatformCollision(
       this,
       gameState.stars,
@@ -58,13 +58,12 @@ export class GameScene extends Scene {
       playerSetup.bombHitsPlayer,
       triggerGameOver,
     );
-    console.log(gameState);
   }
 
   update() {
     if (gameState.gameOver) return;
 
-    playerSetup.handlePlayerMovement(gameState.player, gameState.cursors);
+    playerSetup.handlePlayerMovement(gameState.player, gameState.cursors, this);
 
     playerSetup.setupPlayerStarCollection(
       gameState.player,
