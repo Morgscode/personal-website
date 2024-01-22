@@ -17,6 +17,9 @@ export function resetGameState() {
 }
 
 export const playerJumpState = {
+  setupJumpCount() {
+    return window.localStorage.setItem('jumpCount', 0);
+  },
   setJumpCount() {
     return window.localStorage.setItem('jumpCount', 1);
   },
