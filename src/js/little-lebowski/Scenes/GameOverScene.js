@@ -115,8 +115,10 @@ export class GameOverScene extends Scene {
       const level = levelState.getLevel();
       const score = scoreState.getScore();
       try {
+        submit.disableInteractive();
         await submitStatistics(name, level, score);
       } catch (error) {
+        submit.setInteractive();
         console.error(error);
       } finally {
         this.scene.start('LeaderboardScene');
@@ -124,7 +126,8 @@ export class GameOverScene extends Scene {
     });
 
     restart.on('pointerdown', () => {
-      triggerGameRestart(this.scene.game);
+      console.log(this);
+      triggerGameRestart(this.game);
     });
   }
 }

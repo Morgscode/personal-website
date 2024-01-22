@@ -1,7 +1,7 @@
 'use strict';
 
 import { Scene } from 'phaser';
-import { gameState, scoreState, levelState } from '../model';
+import { gameState, scoreState, levelState, playerJumpState } from '../model';
 import { gameSetup, playerSetup, bombSetup, starSetup } from '../view';
 import { triggerGameOver } from '../';
 
@@ -15,6 +15,7 @@ export class GameScene extends Scene {
     gameSetup.loadAssets(this);
     scoreState.setupScore();
     levelState.setupLevel();
+    playerJumpState.setupJumpCount();
   }
 
   create() {
@@ -75,7 +76,7 @@ export class GameScene extends Scene {
 
     gameState.scoreText.setText(`Score: ${scoreState.getScore()}`);
     gameState.levelText.setText(`Level: ${levelState.getLevel()}`);
-    gameState.activeStarGroups = gameState.stars.length || 0;
+    gameState.activeStarGroups = gameState?.stars?.length || 0;
 
     gameState.stars.forEach((starGroup) => {
       if (starGroup?.countActive() === 0) {
