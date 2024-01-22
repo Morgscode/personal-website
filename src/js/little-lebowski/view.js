@@ -19,6 +19,7 @@ export const gameSetup = {
     scene.load.audio('jump-1', './assets/sounds/jump-1.ogg');
     scene.load.audio('jump-2', './assets/sounds/jump-2.ogg');
     scene.load.audio('intro', './assets/sounds/intro.ogg');
+    scene.load.audio('level-up', './assets/sounds/level-up.wav');
     return scene;
   },
   renderSky(scene) {

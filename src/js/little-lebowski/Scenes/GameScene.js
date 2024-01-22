@@ -86,6 +86,7 @@ export class GameScene extends Scene {
 
     if (gameState.activeStarGroups === 0) {
       levelState.incrementLevel();
+      this.sound.play('level-up');
       gameState.stars.forEach((starGroup) => {
         starSetup.renderRandomStarGroup(starGroup);
       });

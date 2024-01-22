@@ -83,7 +83,7 @@ export class LeaderboardScene extends Scene {
     });
 
     if (this.leaderboard?.data?.length) {
-      for (let i = 0; i < this.leaderboard?.data?.length; i++) {
+      for (let i = 0; i < this.leaderboard.data.length; i++) {
         const entry = this.leaderboard.data[i];
         this.rowsYStart = this.rowsYStart + 25;
         this.add.text(220, this.rowsYStart, `${i + 1}.`, {
