@@ -14,12 +14,12 @@ export const gameSetup = {
       frameWidth: 32,
       frameHeight: 48,
     });
-    scene.load.audio('kaboom', './assets/sounds/explosion.wav.mp3');
+    scene.load.audio('kaboom', './assets/sounds/explosion.mp3');
     scene.load.audio('coin-pickup', './assets/sounds/coin-pickup.mp3');
-    scene.load.audio('jump-1', './assets/sounds/jump-1.ogg');
-    scene.load.audio('jump-2', './assets/sounds/jump-2.ogg');
-    scene.load.audio('intro', './assets/sounds/intro.ogg');
-    scene.load.audio('level-up', './assets/sounds/level-up.wav');
+    scene.load.audio('jump-1', './assets/sounds/jump-1.mp3');
+    scene.load.audio('jump-2', './assets/sounds/jump-2.mp3');
+    scene.load.audio('intro', './assets/sounds/intro.mp3');
+    scene.load.audio('level-up', './assets/sounds/level-up.mp3');
     return scene;
   },
   renderSky(scene) {
