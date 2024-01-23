@@ -1,6 +1,6 @@
 'use strict';
 
-import { Game, AUTO } from 'phaser';
+import { Game, AUTO, Scale } from 'phaser';
 import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
 import { gameState, resetGameState } from './model';
@@ -12,6 +12,10 @@ const config = {
   title: 'The Little Lebowski',
   width: 800,
   height: 600,
+  scale: {
+    mode: Scale.FIT,
+    autoCenter: Scale.CENTER_BOTH,
+  },
   dom: {
     createContainer: true,
   },
