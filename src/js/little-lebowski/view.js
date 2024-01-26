@@ -1,7 +1,7 @@
 'use strict';
 
 import { Input, Math as PhaserMath } from 'phaser';
-import { playerJumpState } from './model';
+import { gameState, playerJumpState } from './model';
 
 export const gameSetup = {
   loadAssets(scene) {
@@ -57,6 +57,34 @@ export const gameSetup = {
   bindCursorKeys(scene) {
     const cursors = scene.input.keyboard.createCursorKeys();
     return cursors;
+  },
+  bindMobileControls(scene) {
+    playerJumpState.clearMobileJumpState();
+    const up = document.querySelector('button#arrow-up');
+    const left = document.querySelector('button#arrow-left');
+    const right = document.querySelector('button#arrow-right');
+
+    up.addEventListener('touchstart', (event) => {
+      playerJumpState.handleMobileDoubleJumpState(event.timeStamp);
+      gameState.cursors.up.isDown = true;
+    });
+    up.addEventListener('touchend', () => {
+      gameState.cursors.up.isDown = false;
+    });
+
+    left.addEventListener('touchstart', () => {
+      gameState.cursors.left.isDown = true;
+    });
+    left.addEventListener('touchend', () => {
+      gameState.cursors.left.isDown = false;
+    });
+
+    right.addEventListener('touchstart', () => {
+      gameState.cursors.right.isDown = true;
+    });
+    right.addEventListener('touchend', () => {
+      gameState.cursors.right.isDown = false;
+    });
   },
   renderScoreBoardText(scene, score) {
     const scoreText = scene.add.text(16, 16, `Score: ${score}`, {
@@ -210,7 +238,8 @@ export const playerSetup = {
 
     if (
       cursors.up.isDown &&
-      Input.Keyboard.DownDuration(cursors.up, 500) &&
+      (Input.Keyboard.DownDuration(cursors.up, 500) ||
+        playerJumpState.getMobileDoubleJump()) &&
       !player.body.touching.down &&
       jumpCount == 1 &&
       player.body.velocity.y < 30 &&
@@ -219,6 +248,7 @@ export const playerSetup = {
       scene.sound.play('jump-2');
       player.setVelocityY(-325);
       playerJumpState.resetJumpCount();
+      playerJumpState.clearMobileJumpState();
     }
 
     return player;

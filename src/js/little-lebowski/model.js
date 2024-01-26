@@ -1,6 +1,7 @@
 export let gameState = {
   gameOver: false,
   cursors: null,
+  joyStick: null,
   player: null,
   bombs: [],
   platforms: [],
@@ -18,44 +19,73 @@ export function resetGameState() {
 
 export const playerJumpState = {
   setupJumpCount() {
-    return window.localStorage.setItem('jumpCount', 0);
+    return window.sessionStorage.setItem('jumpCount', 0);
   },
   setJumpCount() {
-    return window.localStorage.setItem('jumpCount', 1);
+    return window.sessionStorage.setItem('jumpCount', 1);
   },
   resetJumpCount() {
-    return window.localStorage.setItem('jumpCount', 0);
+    return window.sessionStorage.setItem('jumpCount', 0);
   },
   getJumpCount() {
-    return window.localStorage.getItem('jumpCount');
+    return window.sessionStorage.getItem('jumpCount');
+  },
+  handleMobileDoubleJumpState(timestamp) {
+    console.log('new timestamp', timestamp);
+    const prevTimestamp = window.sessionStorage.getItem('jumpTimeStamp');
+    console.log('prev timestamp', prevTimestamp);
+    if (prevTimestamp) {
+      const downDuration = timestamp - prevTimestamp;
+      console.log('downDuration', downDuration);
+
+      const isValidDoubleJump =
+        window.sessionStorage.getItem('jumpCount') == 1 && downDuration <= 500;
+
+      console.log('valid double jump', isValidDoubleJump);
+
+      if (isValidDoubleJump) {
+        return window.sessionStorage.setItem('mobileDoubleJump', true);
+      }
+
+      return window.sessionStorage.setItem('jumpTimeStamp', timestamp ?? false);
+    } else {
+      return window.sessionStorage.setItem('jumpTimeStamp', timestamp ?? false);
+    }
+  },
+  getMobileDoubleJump() {
+    return window.sessionStorage.getItem('mobileDoubleJump');
+  },
+  clearMobileJumpState() {
+    window.sessionStorage.removeItem('jumpTimeStamp');
+    window.sessionStorage.removeItem('mobileDoubleJump');
   },
 };
 
 export const scoreState = {
   setupScore() {
-    return window.localStorage.setItem('gameScore', 0);
+    return window.sessionStorage.setItem('gameScore', 0);
   },
   increaseScore() {
-    let score = parseInt(window.localStorage.getItem('gameScore'), 10);
+    let score = parseInt(window.sessionStorage.getItem('gameScore'), 10);
     score += 20;
-    return window.localStorage.setItem('gameScore', score);
+    return window.sessionStorage.setItem('gameScore', score);
   },
   getScore() {
-    return parseInt(window.localStorage.getItem('gameScore'));
+    return parseInt(window.sessionStorage.getItem('gameScore'));
   },
 };
 
 export const levelState = {
   setupLevel() {
-    return window.localStorage.setItem('gameLevel', 1);
+    return window.sessionStorage.setItem('gameLevel', 1);
   },
   incrementLevel() {
-    let level = parseInt(window.localStorage.getItem('gameLevel'), 10);
+    let level = parseInt(window.sessionStorage.getItem('gameLevel'), 10);
     level++;
-    return window.localStorage.setItem('gameLevel', level);
+    return window.sessionStorage.setItem('gameLevel', level);
   },
   getLevel() {
-    return window.localStorage.getItem('gameLevel');
+    return window.sessionStorage.getItem('gameLevel');
   },
 };
 

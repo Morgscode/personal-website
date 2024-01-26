@@ -35,17 +35,30 @@
   <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
   <main>
     <section id="phaser-game" class="p-t-l p-b-l">
-      <div class="container">
-        <div class="game-wrapper p-b-l">
+      <div class="container-fluid">
+        <div class="game-wrapper">
           <div class="m-b-m" id="little-lebowski-game"></div>
-          <div class="info m-b-m">
-            <p>Controls:</p>
-            <p>Arrow keys to move | <span
-                style="font-size: 22px; display: inline-block; transform: scale(1.25);">&#8593;</span> x2 =
-              double jump</p>
+          <div class="game-controls">
+            <button id="arrow-left" class="game-controls-arrow">
+              <img src="./assets/img/arrow-left.png" alt="Left arrow" />
+            </button>
+            <button id="arrow-up" class="game-controls-arrow">
+              <img src="./assets/img/arrow-up.png" alt="Upwards arrow" />
+            </button>
+            <button id="arrow-right" class="game-controls-arrow">
+              <img src="./assets/img/arrow-right.png" alt="Right arrow" />
+            </button>
           </div>
-          <p>Assets and info can be found <a target="_blank"
-              href="https://phaser.io/tutorials/making-your-first-phaser-3-game/part1">here</a></p>
+          <div class="info m-t-m m-b-m">
+            <div class="info-controls">
+              <p>Controls:</p>
+              <p>Arrow keys to move | <span
+                  style="font-size: 22px; display: inline-block; transform: scale(1.25);">&#8593;</span> x2 =
+                double jump</p>
+            </div>
+            <p>Assets and info can be found <a target="_blank"
+                href="https://phaser.io/tutorials/making-your-first-phaser-3-game/part1">here</a></p>
+          </div>
         </div>
       </div>
     </section>

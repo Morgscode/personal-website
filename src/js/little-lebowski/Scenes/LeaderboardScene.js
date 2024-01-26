@@ -1,7 +1,7 @@
 'use strict';
 
 import { Scene } from 'phaser';
-import { getLeaderboard } from '../model';
+import { getLeaderboard, gameState } from '../model';
 import { gameSetup } from '../view';
 import { triggerGameRestart } from '..';
 
@@ -14,7 +14,8 @@ export class LeaderboardScene extends Scene {
   }
 
   preload() {
-    gameSetup.bindCursorKeys(this);
+    gameState.cursors = gameSetup.bindCursorKeys(this);
+    gameSetup.bindMobileControls(this);
   }
 
   async create() {
