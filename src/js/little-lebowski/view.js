@@ -60,29 +60,29 @@ export const gameSetup = {
   },
   bindMobileControls(scene) {
     playerJumpState.clearMobileJumpState();
-    const up = document.querySelector('button#arrow-up');
-    const left = document.querySelector('button#arrow-left');
-    const right = document.querySelector('button#arrow-right');
+    const up = document.querySelector('div.button#arrow-up');
+    const left = document.querySelector('div.button#arrow-left');
+    const right = document.querySelector('div.button#arrow-right');
 
-    up.addEventListener('touchstart', (event) => {
+    up?.addEventListener('touchstart', (event) => {
       playerJumpState.handleMobileDoubleJumpState(event.timeStamp);
       gameState.cursors.up.isDown = true;
     });
-    up.addEventListener('touchend', () => {
+    up?.addEventListener('touchend', () => {
       gameState.cursors.up.isDown = false;
     });
 
-    left.addEventListener('touchstart', () => {
+    left?.addEventListener('touchstart', () => {
       gameState.cursors.left.isDown = true;
     });
-    left.addEventListener('touchend', () => {
+    left?.addEventListener('touchend', () => {
       gameState.cursors.left.isDown = false;
     });
 
-    right.addEventListener('touchstart', () => {
+    right?.addEventListener('touchstart', () => {
       gameState.cursors.right.isDown = true;
     });
-    right.addEventListener('touchend', () => {
+    right?.addEventListener('touchend', () => {
       gameState.cursors.right.isDown = false;
     });
   },
