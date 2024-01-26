@@ -144,8 +144,8 @@ export const bombSetup = {
     const bomb = scene.physics.add.sprite(400, 300, 'bomb');
     return bomb;
   },
-  spawnBomb(bombs, xCord) {
-    const bomb = bombs.create(xCord, 16, 'bomb');
+  spawnBomb(bombs = [], xCord = 15, yCord = 16) {
+    const bomb = bombs.create(xCord, yCord, 'bomb');
     bomb.setBounce(1);
     bomb.setCollideWorldBounds(true);
     bomb.setVelocity(PhaserMath.Between(-200, 200), 20);
