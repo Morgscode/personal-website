@@ -11,7 +11,8 @@ export class GameStartScene extends Scene {
 
   preload() {
     gameSetup.loadAssets(this);
-    gameSetup.bindCursorKeys(this);
+    gameState.cursors = gameSetup.bindCursorKeys(this);
+    gameSetup.bindMobileControls(this);
   }
 
   create() {

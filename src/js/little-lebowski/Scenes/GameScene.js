@@ -12,6 +12,7 @@ export class GameScene extends Scene {
 
   preload() {
     gameState.cursors = gameSetup.bindCursorKeys(this);
+    gameSetup.bindMobileControls(this);
     gameSetup.loadAssets(this);
     scoreState.setupScore();
     levelState.setupLevel();

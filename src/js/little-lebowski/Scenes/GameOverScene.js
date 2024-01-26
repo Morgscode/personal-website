@@ -12,6 +12,7 @@ export class GameOverScene extends Scene {
 
   preload() {
     gameState.cursors = gameSetup.bindCursorKeys(this);
+    gameSetup.bindMobileControls(this);
   }
 
   create() {
