@@ -60,9 +60,9 @@ export const gameSetup = {
   },
   bindMobileControls(scene) {
     playerJumpState.clearMobileJumpState();
-    const up = document.querySelector('div.button#arrow-up');
-    const left = document.querySelector('div.button#arrow-left');
-    const right = document.querySelector('div.button#arrow-right');
+    const up = document.querySelector('button#arrow-up');
+    const left = document.querySelector('button#arrow-left');
+    const right = document.querySelector('button#arrow-right');
 
     up?.addEventListener('touchstart', (event) => {
       playerJumpState.handleMobileDoubleJumpState(event.timeStamp);

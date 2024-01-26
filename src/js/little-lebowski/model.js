@@ -31,17 +31,11 @@ export const playerJumpState = {
     return window.sessionStorage.getItem('jumpCount');
   },
   handleMobileDoubleJumpState(timestamp) {
-    console.log('new timestamp', timestamp);
     const prevTimestamp = window.sessionStorage.getItem('jumpTimeStamp');
-    console.log('prev timestamp', prevTimestamp);
     if (prevTimestamp) {
       const downDuration = timestamp - prevTimestamp;
-      console.log('downDuration', downDuration);
-
       const isValidDoubleJump =
         window.sessionStorage.getItem('jumpCount') == 1 && downDuration <= 500;
-
-      console.log('valid double jump', isValidDoubleJump);
 
       if (isValidDoubleJump) {
         return window.sessionStorage.setItem('mobileDoubleJump', true);

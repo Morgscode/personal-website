@@ -13,21 +13,14 @@
       gap: 1.5rem;
       justify-content: center;
 
-      div.button {
+      button {
         width: 50px;
         height: 50px;
-        background-size: contain;
 
-        &#arrow-up {
-          background-image: url('./assets/img/arrow-up.png');
-        }
-
-        &#arrow-left {
-          background-image: url('./assets/img/arrow-left.png');
-        }
-
-        &#arrow-right {
-          background-image: url('./assets/img/arrow-right.png');
+        img {
+          height: 100%;
+          width: 100%;
+          pointer-events: none;
         }
       }
     }
