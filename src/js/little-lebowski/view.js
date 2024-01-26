@@ -65,24 +65,30 @@ export const gameSetup = {
     const right = document.querySelector('button#arrow-right');
 
     up?.addEventListener('touchstart', (event) => {
+      event.preventDefault();
       playerJumpState.handleMobileDoubleJumpState(event.timeStamp);
       gameState.cursors.up.isDown = true;
     });
-    up?.addEventListener('touchend', () => {
+    up?.addEventListener('touchend', (event) => {
+      event.preventDefault();
       gameState.cursors.up.isDown = false;
     });
 
-    left?.addEventListener('touchstart', () => {
+    left?.addEventListener('touchstart', (event) => {
+      event.preventDefault();
       gameState.cursors.left.isDown = true;
     });
-    left?.addEventListener('touchend', () => {
+    left?.addEventListener('touchend', (event) => {
+      event.preventDefault();
       gameState.cursors.left.isDown = false;
     });
 
-    right?.addEventListener('touchstart', () => {
+    right?.addEventListener('touchstart', (event) => {
+      event.preventDefault();
       gameState.cursors.right.isDown = true;
     });
-    right?.addEventListener('touchend', () => {
+    right?.addEventListener('touchend', (event) => {
+      event.preventDefault();
       gameState.cursors.right.isDown = false;
     });
   },
