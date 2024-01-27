@@ -16,12 +16,14 @@
       button {
         width: 50px;
         height: 50px;
-        touch-action: manipulation;
+        user-select: none !important;
+        touch-action: manipulation !important;
 
         img {
           width: 100%;
           max-width: 100%;
-          pointer-events: none;
+          user-select: none !important;
+          touch-action: manipulation !important;
         }
       }
     }
