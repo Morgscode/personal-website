@@ -35,11 +35,11 @@ export const playerJumpState = {
     return gameState.jumpCount;
   },
   handleMobileDoubleJumpState(timestamp) {
-    const prevTimestamp = gameState.jumpCount;
+    const prevTimestamp = gameState.jumpTimeStamp;
     if (prevTimestamp) {
       const downDuration = timestamp - prevTimestamp;
-      const isValidDoubleJump = gameState.jumpCount == 1 && downDuration <= 500;
-
+      const isValidDoubleJump =
+        gameState.jumpCount === 1 && downDuration <= 500;
       if (isValidDoubleJump) {
         return (gameState.canDoubleJumpMobile = true);
       }
@@ -51,7 +51,7 @@ export const playerJumpState = {
   getMobileDoubleJump() {
     return gameState.canDoubleJumpMobile;
   },
-  clearMobileJumpState() {
+  resetMobileJumpState() {
     gameState.jumpTimeStamp = null;
     gameState.canDoubleJumpMobile = false;
   },
