@@ -253,7 +253,7 @@ export const playerSetup = {
       scene.sound.play('jump-2');
       player.setVelocityY(-325);
       playerJumpState.resetJumpCount();
-      playerJumpState.clearMobileJumpState();
+      playerJumpState.resetMobileJumpState();
     }
 
     return player;

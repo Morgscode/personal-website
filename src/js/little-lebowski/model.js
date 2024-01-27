@@ -51,7 +51,7 @@ export const playerJumpState = {
   getMobileDoubleJump() {
     return gameState.canDoubleJumpMobile;
   },
-  clearMobileJumpState() {
+  resetMobileJumpState() {
     gameState.jumpTimeStamp = null;
     gameState.canDoubleJumpMobile = false;
   },
