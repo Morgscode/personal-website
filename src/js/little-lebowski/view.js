@@ -59,7 +59,6 @@ export const gameSetup = {
     return cursors;
   },
   bindMobileControls(scene) {
-    playerJumpState.clearMobileJumpState();
     const up = document.querySelector('button#arrow-up');
     const left = document.querySelector('button#arrow-left');
     const right = document.querySelector('button#arrow-right');
