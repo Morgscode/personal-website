@@ -97,8 +97,20 @@ export class GameScene extends Scene {
 
     if (gameState.bombs.children.size < level) {
       for (let i = gameState.bombs.children.size; i < level; i++) {
-        let cordBase = level % 2 == 0 ? i * 16 : 575 - i;
-        bombSetup.spawnBomb(gameState.bombs, cordBase);
+        let cordXBase;
+        let cordYBase;
+        if (gameState.player.x <= this.scale.gameSize.width / 2) {
+          cordXBase = 575;
+        } else if (gameState.player.x >= this.scale.gameSize.width / 2) {
+          cordXBase = 16;
+        }
+
+        if (gameState.player.y <= this.scale.gameSize.height / 2) {
+          cordYBase = 475;
+        } else if (gameState.player.y >= this.scale.gameSize.height / 2) {
+          cordYBase = 16;
+        }
+        bombSetup.spawnBomb(gameState.bombs, cordXBase, cordYBase);
       }
     }
   }
