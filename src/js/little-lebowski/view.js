@@ -148,7 +148,7 @@ export const bombSetup = {
     const bomb = bombs.create(xCord, yCord, 'bomb');
     bomb.setBounce(1);
     bomb.setCollideWorldBounds(true);
-    bomb.setVelocity(PhaserMath.Between(-200, 200), 20);
+    bomb.setVelocity(PhaserMath.Between(-150, 150), 20);
     return bomb;
   },
   setupBombPlatformCollision(scene, bomb, platforms) {

@@ -1,14 +1,18 @@
 export let gameState = {
   gameOver: false,
   cursors: null,
-  joyStick: null,
   player: null,
   bombs: [],
   platforms: [],
   stars: [],
+  score: 0,
+  level: 0,
   levelText: '1',
   scoreText: '0',
   activeStarGroups: 0,
+  jumpCount: 0,
+  jumpTimeStamp: null,
+  canDoubleJumpMobile: false,
 };
 
 const initalGameState = JSON.parse(JSON.stringify(gameState));
@@ -19,67 +23,65 @@ export function resetGameState() {
 
 export const playerJumpState = {
   setupJumpCount() {
-    return window.sessionStorage.setItem('jumpCount', 0);
+    return (gameState.jumpCount = 0);
   },
   setJumpCount() {
-    return window.sessionStorage.setItem('jumpCount', 1);
+    return (gameState.jumpCount = 1);
   },
   resetJumpCount() {
-    return window.sessionStorage.setItem('jumpCount', 0);
+    return (gameState.jumpCount = 0);
   },
   getJumpCount() {
-    return window.sessionStorage.getItem('jumpCount');
+    return gameState.jumpCount;
   },
   handleMobileDoubleJumpState(timestamp) {
-    const prevTimestamp = window.sessionStorage.getItem('jumpTimeStamp');
+    const prevTimestamp = gameState.jumpCount;
     if (prevTimestamp) {
       const downDuration = timestamp - prevTimestamp;
-      const isValidDoubleJump =
-        window.sessionStorage.getItem('jumpCount') == 1 && downDuration <= 500;
+      const isValidDoubleJump = gameState.jumpCount == 1 && downDuration <= 500;
 
       if (isValidDoubleJump) {
-        return window.sessionStorage.setItem('mobileDoubleJump', true);
+        return (gameState.canDoubleJumpMobile = true);
       }
-
-      return window.sessionStorage.setItem('jumpTimeStamp', timestamp ?? false);
+      return (gameState.jumpTimeStamp = timestamp);
     } else {
-      return window.sessionStorage.setItem('jumpTimeStamp', timestamp ?? false);
+      return (gameState.jumpTimeStamp = timestamp);
     }
   },
   getMobileDoubleJump() {
-    return window.sessionStorage.getItem('mobileDoubleJump');
+    return gameState.canDoubleJumpMobile;
   },
   clearMobileJumpState() {
-    window.sessionStorage.removeItem('jumpTimeStamp');
-    window.sessionStorage.removeItem('mobileDoubleJump');
+    gameState.jumpTimeStamp = null;
+    gameState.canDoubleJumpMobile = false;
   },
 };
 
 export const scoreState = {
   setupScore() {
-    return window.sessionStorage.setItem('gameScore', 0);
+    return (gameState.score = 0);
   },
   increaseScore() {
-    let score = parseInt(window.sessionStorage.getItem('gameScore'), 10);
+    let score = gameState.score;
     score += 20;
-    return window.sessionStorage.setItem('gameScore', score);
+    return (gameState.score = score);
   },
   getScore() {
-    return parseInt(window.sessionStorage.getItem('gameScore'));
+    return gameState.score;
   },
 };
 
 export const levelState = {
   setupLevel() {
-    return window.sessionStorage.setItem('gameLevel', 1);
+    return (gameState.level = 1);
   },
   incrementLevel() {
-    let level = parseInt(window.sessionStorage.getItem('gameLevel'), 10);
+    let level = gameState.level;
     level++;
-    return window.sessionStorage.setItem('gameLevel', level);
+    return (gameState.level = level);
   },
   getLevel() {
-    return window.sessionStorage.getItem('gameLevel');
+    return gameState.level;
   },
 };
 
