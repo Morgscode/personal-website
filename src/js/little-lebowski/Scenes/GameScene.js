@@ -93,7 +93,7 @@ export class GameScene extends Scene {
       });
     }
 
-    const level = parseInt(levelState.getLevel(), 10);
+    const level = levelState.getLevel();
 
     if (gameState.bombs.children.size < level) {
       for (let i = gameState.bombs.children.size; i < level; i++) {
