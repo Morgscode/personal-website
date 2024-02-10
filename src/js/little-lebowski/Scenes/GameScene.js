@@ -95,7 +95,7 @@ export class GameScene extends Scene {
 
     const level = levelState.getLevel();
 
-    if (gameState.bombs.children.size < level) {
+    if (gameState.bombs.children.size < level && level <= 3) {
       for (let i = gameState.bombs.children.size; i < level; i++) {
         let cordXBase;
         let cordYBase;
@@ -106,7 +106,7 @@ export class GameScene extends Scene {
         }
 
         if (gameState.player.y <= this.scale.gameSize.height / 2) {
-          cordYBase = 475;
+          cordYBase = 350;
         } else if (gameState.player.y >= this.scale.gameSize.height / 2) {
           cordYBase = 16;
         }

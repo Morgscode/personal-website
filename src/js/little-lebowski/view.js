@@ -148,6 +148,7 @@ export const bombSetup = {
     bomb.setBounce(1);
     bomb.setCollideWorldBounds(true);
     bomb.setVelocity(PhaserMath.Between(-150, 150), 20);
+    bomb.setMaxVelocity(1000, 1000);
     return bomb;
   },
   setupBombPlatformCollision(scene, bomb, platforms) {
