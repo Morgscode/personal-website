@@ -19,6 +19,7 @@ export default defineConfig({
         'design.html',
         'contact.html',
         'little-lebowski.html',
+        'crappy-bird.html',
         '404.html',
       ],
     },
