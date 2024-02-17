@@ -10,7 +10,7 @@
     "build": "vite build"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{js,ts}": [
       "prettier --write"
     ],
     "*.{css,scss}": [
