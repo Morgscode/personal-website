@@ -61,12 +61,15 @@ export class CrappyBird extends Scene {
           600,
           'ground',
         );
+
         this.stoneTop[
           this.stoneTop.length ? this.stoneTop.length - 1 : 0
         ].create(x, 0, 'stone');
       }
       this.physics.add.collider(this.bird, this.ground);
       this.physics.add.collider(this.bird, this.stoneTop);
+      console.log(this.ground);
+      console.log(this.stoneTop);
     }
     // if more than one ground group
     if (this.ground.length > 2) {
@@ -74,6 +77,16 @@ export class CrappyBird extends Scene {
       this.ground[0].clear(true, true);
       // filter the array
       this.ground = this.ground.filter((_, index) => index !== 0);
+      console.log(this.ground);
+    }
+
+    // if more than one ground group
+    if (this.stoneTop.length > 2) {
+      // destroy first group
+      this.stoneTop[0].clear(true, true);
+      // filter the array
+      this.stoneTop = this.stoneTop.filter((_, index) => index !== 0);
+      console.log(this.stoneTop);
     }
   }
 }
