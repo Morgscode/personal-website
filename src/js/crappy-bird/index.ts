@@ -1,10 +1,11 @@
-import { Game, AUTO, Scale } from 'phaser';
+import { Game, AUTO, Scale, Types } from 'phaser';
 import { CrappyBird } from './Scenes';
 
-const config = {
+const config: Types.Core.GameConfig = {
   type: AUTO,
   width: 450,
   height: 800,
+  max: { width: window.innerWidth, height: window.innerHeight },
   parent: 'crappy-bird-game',
   title: 'Crappy Bird',
   scene: [CrappyBird],
@@ -15,7 +16,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 200 },
+      gravity: { y: 300 },
     },
   },
 };

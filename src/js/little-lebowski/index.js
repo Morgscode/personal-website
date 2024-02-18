@@ -1,3 +1,5 @@
+'use strict';
+
 import { Game, AUTO, Scale } from 'phaser';
 import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';

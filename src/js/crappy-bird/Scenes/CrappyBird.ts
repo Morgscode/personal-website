@@ -40,7 +40,7 @@ export class CrappyBird extends Scene {
       .startFollow(this.bird, false, 1, 1, -100, 0);
 
     this.input.on('pointerdown', (event: Event) => {
-      this.bird!.setVelocityY(-400);
+      this.bird!.setVelocityY(-500);
       this.sound.play('flap');
     });
   }
@@ -60,7 +60,7 @@ export class CrappyBird extends Scene {
         const x = final.x + i * 70;
         this.ground[this.ground.length ? this.ground.length - 1 : 0].create(
           x,
-          800,
+          770,
           'ground',
         );
 

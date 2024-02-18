@@ -7,7 +7,7 @@ export function setupGround(scene: CrappyBirdScene) {
     const x = i * 70;
     scene.ground[scene.ground.length ? scene.ground.length - 1 : 0].create(
       x,
-      800,
+      770,
       'ground',
     );
   }
