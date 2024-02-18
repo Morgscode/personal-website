@@ -3,8 +3,8 @@ import { CrappyBird } from './Scenes';
 
 const config = {
   type: AUTO,
-  width: 800,
-  height: 600,
+  width: 450,
+  height: 800,
   parent: 'crappy-bird-game',
   title: 'Crappy Bird',
   scene: [CrappyBird],
