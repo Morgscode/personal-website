@@ -35,7 +35,9 @@ export class CrappyBird extends Scene {
     this.bird = setupCrappyBird(this);
     setupBirdTileCollisions(this);
 
-    this.cameras.main.setBounds(0, 0, Infinity, 600).startFollow(this.bird);
+    this.cameras.main
+      .setBounds(0, 0, Infinity, 600)
+      .startFollow(this.bird, false, 1, 1, -100, 0);
 
     this.input.on('pointerdown', (event: Event) => {
       this.bird!.setVelocityY(-400);
@@ -58,7 +60,7 @@ export class CrappyBird extends Scene {
         const x = final.x + i * 70;
         this.ground[this.ground.length ? this.ground.length - 1 : 0].create(
           x,
-          600,
+          800,
           'ground',
         );
 
