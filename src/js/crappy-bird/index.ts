@@ -1,5 +1,6 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
 import { CrappyBird } from './Scenes';
+import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
   type: AUTO,
@@ -19,6 +20,7 @@ const config: Types.Core.GameConfig = {
       gravity: { y: 300 },
     },
   },
+  backgroundColor: '0x0f0f0f',
 };
 
 const game: Game = new Game(config);

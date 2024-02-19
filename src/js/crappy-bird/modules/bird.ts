@@ -1,3 +1,4 @@
+import { Types } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
 export function setupCrappyBird(scene: CrappyBirdScene) {
@@ -31,4 +32,9 @@ export function handleBirdRotation(scene: CrappyBirdScene) {
     scene.bird.rotation -= 0.05;
   }
   return scene;
+}
+
+export function flap(scene: CrappyBirdScene): void {
+  scene.bird.setVelocityY(-500);
+  scene.sound.play('flap');
 }
