@@ -36,6 +36,7 @@ const config = {
       },
     ],
   },
+  backgroundColor: '0x0f0f0f',
 };
 
 export const game = new Game(config);

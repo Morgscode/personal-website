@@ -1,33 +1,47 @@
 import { type CrappyBirdScene } from '../Scenes';
 
-export function setupGround(scene: CrappyBirdScene) {
-  scene.ground = [scene.physics.add.staticGroup()];
+export function setupTiles(
+  scene: CrappyBirdScene,
+  tileY: number,
+  tileKey: string,
+) {
+  const tiles = [scene.physics.add.staticGroup()];
 
   for (let i = 0; i < 120; i++) {
     const x = i * 70;
-    scene.ground[scene.ground.length ? scene.ground.length - 1 : 0].create(
-      x,
-      770,
-      'ground',
-    );
+    tiles[0].create(x, tileY, tileKey);
   }
 
-  return scene.ground;
+  return tiles;
 }
 
-export function setupStoneTop(scene: CrappyBirdScene) {
-  scene.stoneTop = [scene.physics.add.staticGroup()];
+export function handleTileGeneration(
+  scene: CrappyBirdScene,
+  finalTile: Phaser.Physics.Arcade.Sprite,
+  tiles: Phaser.Physics.Arcade.StaticGroup[],
+  tileY: number,
+  tileKey: string,
+) {
+  if (scene.bird.x > finalTile.x - 700) {
+    tiles.push(scene.physics.add.staticGroup());
+    // create new tiles
+    for (let i = 0; i < 120; i++) {
+      const x = finalTile.x + i * 70;
 
-  for (let i = 0; i < 120; i++) {
-    const x = i * 70;
-    scene.stoneTop[
-      scene.stoneTop.length ? scene.stoneTop.length - 1 : 0
-    ].create(x, 0, 'stone');
+      tiles[tiles.length ? tiles.length - 1 : 0].create(x, tileY, tileKey);
+    }
+    // add a colider
+    scene.physics.add.collider(scene.bird, tiles);
   }
-
-  return scene.stoneTop;
+  return tiles;
 }
 
-export function handleGroundGeneration(scene: CrappyBirdScene) {}
-
-export function handleStoneTopGeneration(scene: CrappyBirdScene) {}
+export function handleTileCleanup(tiles: Phaser.Physics.Arcade.StaticGroup[]) {
+  if (tiles.length > 2) {
+    // destroy first group
+    tiles[0].clear(true, true);
+    // filter the array
+    tiles = tiles.filter((_, index) => index !== 0);
+  }
+  return tiles;
+}

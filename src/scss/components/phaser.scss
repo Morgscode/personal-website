@@ -1,4 +1,7 @@
 #phaser-game {
+  background-color: #0f0f0f;
+  height: 100vh;
+
   .game-wrapper {
     width: 100%;
     display: flex;
@@ -6,12 +9,13 @@
     justify-content: center;
     align-items: center;
     max-width: 800px;
-    margin: 2rem auto 0px auto;
+    margin: 0 auto;
 
     .game-controls {
       display: none;
       gap: 1.5rem;
       justify-content: center;
+      margin-top: 2rem;
 
       button {
         width: 75px;
@@ -31,12 +35,11 @@
 
   #little-lebowski-game {
     max-width: 100%;
-
-    background-color: #000000;
   }
 
   .info {
     text-align: center;
+    color: #fff;
   }
 
   .info-controls {
@@ -51,15 +54,9 @@
 @media only screen and (max-width: 992px) {
   #phaser-game {
     .game-wrapper {
-      margin: 3rem auto 0px auto;
-
       .game-controls {
         display: flex;
       }
-    }
-
-    #little-lebowski-game {
-      background-color: transparent;
     }
 
     .info {
