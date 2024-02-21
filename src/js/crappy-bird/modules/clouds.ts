@@ -10,16 +10,17 @@ export function setupClouds(scene: CrappyBirdScene) {
 
   // create a randomly spread cluster of 12 clouds
   for (let i = 0; i < 12; i++) {
+    console.log(PhaserMath.Between(700, 2100));
     // calculate the coords for the next cloud relative to the bird x
-    const x = scene.bird.x + stepX + Math.floor(PhaserMath.Between(200, 700));
-    stepX = Math.floor(PhaserMath.Between(700, 2100));
-    const y = Math.floor(PhaserMath.Between(150, 300));
+    const x = scene.bird.x + stepX + PhaserMath.Between(200, 700);
+    stepX = PhaserMath.Between(700, 2100);
+    const y = PhaserMath.Between(150, 300);
     // create the cloud and set some dynamic properties
     clouds[0]
       .create(x, y, `cloud-${PhaserMath.Between(1, 3)}`)
       .setVelocityX(PhaserMath.Between(-20, -70))
       .setDepth(0)
-      .setScale(Math.floor(PhaserMath.Between(1, 2)))
+      .setScale(PhaserMath.Between(1, 2))
       .refreshBody();
   }
 
@@ -48,16 +49,15 @@ export function generateClouds(
 
     for (let i = 0; i < 12; i++) {
       // calculate the coords for the next cloud relative to the final cloud
-      const x =
-        finalCloud.x + stepX + Math.floor(PhaserMath.Between(1200, 4200));
-      stepX = Math.floor(PhaserMath.Between(700, 2100));
-      const y = Math.floor(PhaserMath.Between(150, 300));
+      const x = finalCloud.x + stepX + PhaserMath.Between(1200, 4200);
+      stepX = PhaserMath.Between(700, 2100);
+      const y = PhaserMath.Between(150, 300);
 
       clouds[clouds.length - 1]
-        .create(x, y, `cloud-${Math.floor(PhaserMath.Between(1, 3))}`)
-        .setVelocityX(Math.floor(PhaserMath.Between(-20, -70)))
+        .create(x, y, `cloud-${PhaserMath.Between(1, 3)}`)
+        .setVelocityX(PhaserMath.Between(-20, -70))
         .setDepth(0)
-        .setScale(Math.floor(PhaserMath.Between(1, 2)))
+        .setScale(PhaserMath.Between(1, 2))
         .refreshBody();
     }
 
@@ -75,7 +75,7 @@ export function generateClouds(
 
 /**
  * Removes the first cloud physics group when there is more than two
- * and they're all off screen
+ * and all clouds in the first group are all off screen
  */
 export function handleCloudCleanup(
   scene: CrappyBirdScene,
