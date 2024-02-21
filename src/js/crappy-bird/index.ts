@@ -1,5 +1,6 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
 import { CrappyBird } from './Scenes';
+import { cyrb128 } from './modules/seed';
 import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
@@ -21,6 +22,7 @@ const config: Types.Core.GameConfig = {
     },
   },
   backgroundColor: '0x0f0f0f',
+  seed: [...cyrb128('theSecondMouseAlwaysGetsTheCheese')],
 };
 
 const game: Game = new Game(config);

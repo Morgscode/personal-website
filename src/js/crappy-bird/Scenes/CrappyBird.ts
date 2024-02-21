@@ -3,11 +3,14 @@ import { SKY_COLOR } from '../modules/constants';
 import { loadCrappyAssets } from '../modules/assets';
 import {
   setupTiles,
-  setupGround,
-  setupStoneTop,
   handleTileGeneration,
   handleTileCleanup,
 } from '../modules/tiles';
+import {
+  generateClouds,
+  handleCloudCleanup,
+  setupClouds,
+} from '../modules/clouds';
 import {
   setupCrappyBird,
   setupBirdTileCollisions,
@@ -19,12 +22,14 @@ export type CrappyBirdScene = {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
   ground: Phaser.Physics.Arcade.StaticGroup[];
   stoneTop: Phaser.Physics.Arcade.StaticGroup[];
+  clouds: Phaser.Physics.Arcade.Group[];
 } & Scene;
 
 export class CrappyBird extends Scene {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
   ground: Phaser.Physics.Arcade.StaticGroup[];
   stoneTop: Phaser.Physics.Arcade.StaticGroup[];
+  clouds: Phaser.Physics.Arcade.Group[];
 
   constructor() {
     super({ key: 'CrappyBirdScene' });
@@ -41,6 +46,8 @@ export class CrappyBird extends Scene {
     this.stoneTop = setupTiles(this, 0, 'stone');
     this.bird = setupCrappyBird(this);
     setupBirdTileCollisions(this);
+
+    this.clouds = setupClouds(this);
 
     this.cameras.main
       .setBounds(0, 0, Infinity, 600)
@@ -60,16 +67,29 @@ export class CrappyBird extends Scene {
 
     // get last ground tile
     const ground = this.ground[this.ground.length - 1].children.entries;
-    const final = ground[ground.length - 1] as Phaser.Physics.Arcade.Sprite;
-    this.ground = handleTileGeneration(this, final, this.ground, 770, 'ground');
+    const finalGround = ground[
+      ground.length - 1
+    ] as Phaser.Physics.Arcade.Sprite;
+    this.ground = handleTileGeneration(
+      this,
+      finalGround,
+      this.ground,
+      770,
+      'ground',
+    );
     this.stoneTop = handleTileGeneration(
       this,
-      final,
+      finalGround,
       this.stoneTop,
       0,
       'stone',
     );
     this.ground = handleTileCleanup(this.ground);
     this.stoneTop = handleTileCleanup(this.stoneTop);
+
+    const cloud = this.clouds[this.clouds.length - 1].children.entries;
+    const finalCloud = cloud[cloud.length - 1] as Phaser.Physics.Arcade.Sprite;
+    this.clouds = generateClouds(this, finalCloud, this.clouds);
+    this.clouds = handleCloudCleanup(this.clouds);
   }
 }
