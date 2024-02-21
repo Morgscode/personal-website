@@ -7,9 +7,9 @@ import {
   handleTileCleanup,
 } from '../modules/tiles';
 import {
+  setupClouds,
   generateClouds,
   handleCloudCleanup,
-  setupClouds,
 } from '../modules/clouds';
 import {
   setupCrappyBird,

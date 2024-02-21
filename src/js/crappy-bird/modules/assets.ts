@@ -1,5 +1,8 @@
 import { CrappyBirdScene } from '../Scenes';
 
+/**
+ * Loads the assets needed for the Crappy bird game
+ */
 export function loadCrappyAssets(scene: CrappyBirdScene) {
   scene.load.spritesheet('bird', './assets/img/bird.png', {
     frameWidth: 50,
