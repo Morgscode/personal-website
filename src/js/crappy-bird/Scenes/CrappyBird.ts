@@ -90,6 +90,6 @@ export class CrappyBird extends Scene {
     const cloud = this.clouds[this.clouds.length - 1].children.entries;
     const finalCloud = cloud[cloud.length - 1] as Phaser.Physics.Arcade.Sprite;
     this.clouds = generateClouds(this, finalCloud, this.clouds);
-    this.clouds = handleCloudCleanup(this.clouds);
+    this.clouds = handleCloudCleanup(this, this.clouds, finalCloud);
   }
 }
