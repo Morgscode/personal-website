@@ -2,7 +2,7 @@ import { Types } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
 export function setupCrappyBird(scene: CrappyBirdScene) {
-  scene.bird = scene.physics.add.sprite(0, 450, 'bird');
+  scene.bird = scene.physics.add.sprite(0, 450, 'bird').setDepth(1);
   scene.bird.setBounce(0.2);
   scene.bird.setCollideWorldBounds(false);
   scene.bird.body.setGravityY(300);
