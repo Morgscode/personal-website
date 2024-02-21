@@ -34,7 +34,7 @@ export function handleTileGeneration(
     for (let i = 0; i < 120; i++) {
       const x = finalTile.x + i * 70;
 
-      tiles[tiles.length ? tiles.length - 1 : 0].create(x, tileY, tileKey);
+      tiles[tiles.length - 1].create(x, tileY, tileKey);
     }
     // add a colider
     scene.physics.add.collider(scene.bird, tiles);
