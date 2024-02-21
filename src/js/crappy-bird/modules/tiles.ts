@@ -1,5 +1,8 @@
 import { type CrappyBirdScene } from '../Scenes';
 
+/**
+ * Gnerates some inital tiles. Used from the start of the game
+ */
 export function setupTiles(
   scene: CrappyBirdScene,
   tileY: number,
@@ -15,6 +18,9 @@ export function setupTiles(
   return tiles;
 }
 
+/**
+ * Handles progressive tile generation
+ */
 export function handleTileGeneration(
   scene: CrappyBirdScene,
   finalTile: Phaser.Physics.Arcade.Sprite,
@@ -36,6 +42,9 @@ export function handleTileGeneration(
   return tiles;
 }
 
+/**
+ * Removes the first tile physics group when there is more than two
+ */
 export function handleTileCleanup(tiles: Phaser.Physics.Arcade.StaticGroup[]) {
   if (tiles.length > 2) {
     // destroy first group

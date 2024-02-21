@@ -1,6 +1,9 @@
 import { Types } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
+/**
+ * Setups the Crappy Bird with animations
+ */
 export function setupCrappyBird(scene: CrappyBirdScene) {
   scene.bird = scene.physics.add.sprite(0, 450, 'bird').setDepth(1);
   scene.bird.setBounce(0.2);
@@ -19,12 +22,18 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
   return scene.bird;
 }
 
+/**
+ * Setups the Crappy Bird tile collisions
+ */
 export function setupBirdTileCollisions(scene: CrappyBirdScene) {
   scene.physics.add.collider(scene.bird, scene.ground);
   scene.physics.add.collider(scene.bird, scene.stoneTop);
   return scene;
 }
 
+/**
+ * Managers bird rotation based on its velocity
+ */
 export function handleBirdRotation(scene: CrappyBirdScene) {
   if (scene.bird.body.velocity.y > 0 && scene.bird.rotation <= 0.25) {
     scene.bird.rotation += 0.05;
@@ -34,6 +43,9 @@ export function handleBirdRotation(scene: CrappyBirdScene) {
   return scene;
 }
 
+/**
+ * Handles the flap action (plays sound and increases the birds velocity)
+ */
 export function flap(scene: CrappyBirdScene): void {
   scene.bird.setVelocityY(-500);
   scene.sound.play('flap');
