@@ -1,23 +1,23 @@
 import { Math as PhaserMath } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
+function createPipes(scene: CrappyBirdScene, x: integer) {
+  const pipeColor = PhaserMath.Between(1, 2);
+  const pipe1 = scene.physics.add.staticSprite(x, 0, `pipe-${pipeColor}`);
+  pipe1.setFlipY(true);
+  pipe1.setDepth(1);
+
+  const pipe2 = scene.physics.add.staticSprite(x, 600, `pipe-${pipeColor}`);
+  pipe2.setDepth(1);
+  return [pipe1, pipe2];
+}
+
 export function setupPipes(scene: CrappyBirdScene) {
   const pipes = scene.physics.add.staticGroup();
 
   const x = scene.bird.x + PhaserMath.Between(700, 1200);
 
-  const pipeColor = PhaserMath.Between(1, 2);
-
-  const topPipe = scene.physics.add.staticSprite(x, 0, `pipe-${pipeColor}`);
-  topPipe.setFlipY(true);
-  topPipe.setDepth(1);
-
-  const bottomPipe = scene.physics.add.staticSprite(
-    x,
-    600,
-    `pipe-${pipeColor}`,
-  );
-  bottomPipe.setDepth(1);
+  const [topPipe, bottomPipe] = createPipes(scene, x);
 
   pipes.addMultiple([topPipe, bottomPipe], true);
 
@@ -36,18 +36,7 @@ export function generatePipes(
 
   const x = finalPipe.x + PhaserMath.Between(200, 800);
 
-  const pipeColor = PhaserMath.Between(1, 2);
-
-  const topPipe = scene.physics.add.staticSprite(x, 0, `pipe-${pipeColor}`);
-  topPipe.setDepth(1);
-  topPipe.setFlipY(true);
-
-  const bottomPipe = scene.physics.add.staticSprite(
-    x,
-    600,
-    `pipe-${pipeColor}`,
-  );
-  bottomPipe.setDepth(1);
+  const [topPipe, bottomPipe] = createPipes(scene, x);
 
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
 
