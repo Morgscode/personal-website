@@ -1,7 +1,7 @@
 import { Math as PhaserMath } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
-function createPipes(scene: CrappyBirdScene, x: integer) {
+function createPipeSprites(scene: CrappyBirdScene, x: integer) {
   const pipeColor = PhaserMath.Between(1, 2);
   const pipe1 = scene.physics.add.staticSprite(x, 0, `pipe-${pipeColor}`);
   pipe1.setFlipY(true);
@@ -17,7 +17,7 @@ export function setupPipes(scene: CrappyBirdScene) {
 
   const x = scene.bird.x + PhaserMath.Between(700, 1200);
 
-  const [topPipe, bottomPipe] = createPipes(scene, x);
+  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
 
   pipes.addMultiple([topPipe, bottomPipe], true);
 
@@ -36,7 +36,7 @@ export function generatePipes(
 
   const x = finalPipe.x + PhaserMath.Between(200, 800);
 
-  const [topPipe, bottomPipe] = createPipes(scene, x);
+  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
 
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
 
