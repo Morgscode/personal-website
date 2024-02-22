@@ -24,7 +24,7 @@ export function setupClouds(scene: CrappyBirdScene) {
   }
 
   // iterate over the clouds and disable gravity
-  clouds[0].children.iterate((child: Phaser.GameObjects.GameObject) => {
+  clouds[0].children.each((child: Phaser.GameObjects.GameObject) => {
     const body = child.body as Phaser.Physics.Arcade.Body;
     body.allowGravity = false;
     return null;
@@ -38,8 +38,8 @@ export function setupClouds(scene: CrappyBirdScene) {
  */
 export function generateClouds(
   scene: CrappyBirdScene,
-  finalCloud: Phaser.Physics.Arcade.Sprite,
   clouds: Phaser.Physics.Arcade.Group[],
+  finalCloud: Phaser.Physics.Arcade.Sprite,
 ) {
   if (scene.bird.x > finalCloud.x - 450) {
     clouds.push(scene.physics.add.group());
