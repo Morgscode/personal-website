@@ -5,11 +5,14 @@ import { CrappyBirdScene } from '../Scenes';
  * Setups the Crappy Bird with animations
  */
 export function setupCrappyBird(scene: CrappyBirdScene) {
-  scene.bird = scene.physics.add.sprite(0, 450, 'bird').setDepth(1);
-  scene.bird.setBounce(0.2);
-  scene.bird.setCollideWorldBounds(false);
-  scene.bird.body.setGravityY(300);
-  scene.bird.setVelocityX(300);
+  const bird = scene.physics.add
+    .sprite(0, 450, 'bird')
+    .setDepth(1)
+    .setBounce(0.2)
+    .setCollideWorldBounds(false)
+    .setGravityY(300)
+    .setVelocityX(300)
+    .setDepth(1);
 
   scene.anims.create({
     key: 'fly',
@@ -17,9 +20,10 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
     frameRate: 10,
     repeat: -1,
   });
-  scene.bird.anims.play('fly');
 
-  return scene.bird;
+  bird.anims.play('fly');
+
+  return bird;
 }
 
 /**

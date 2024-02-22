@@ -1,6 +1,6 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
 import { CrappyBird } from './Scenes';
-import { cyrb128 } from './modules/seed';
+import { cyrb128 } from './modules/hash';
 import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {

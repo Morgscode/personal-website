@@ -17,12 +17,14 @@ import {
   handleBirdRotation,
   flap,
 } from '../modules/bird';
+import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
 
 export type CrappyBirdScene = {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
   ground: Phaser.Physics.Arcade.StaticGroup[];
   stoneTop: Phaser.Physics.Arcade.StaticGroup[];
   clouds: Phaser.Physics.Arcade.Group[];
+  pipes: Phaser.Physics.Arcade.StaticGroup[];
 } & Scene;
 
 export class CrappyBird extends Scene {
@@ -30,6 +32,7 @@ export class CrappyBird extends Scene {
   ground: Phaser.Physics.Arcade.StaticGroup[];
   stoneTop: Phaser.Physics.Arcade.StaticGroup[];
   clouds: Phaser.Physics.Arcade.Group[];
+  pipes: Phaser.Physics.Arcade.StaticGroup[];
 
   constructor() {
     super({ key: 'CrappyBirdScene' });
@@ -48,6 +51,7 @@ export class CrappyBird extends Scene {
     setupBirdTileCollisions(this);
 
     this.clouds = setupClouds(this);
+    this.pipes = setupPipes(this);
 
     this.cameras.main
       .setBounds(0, 0, Infinity, 600)
@@ -89,7 +93,13 @@ export class CrappyBird extends Scene {
 
     const cloud = this.clouds[this.clouds.length - 1].children.entries;
     const finalCloud = cloud[cloud.length - 1] as Phaser.Physics.Arcade.Sprite;
-    this.clouds = generateClouds(this, finalCloud, this.clouds);
+    this.clouds = generateClouds(this, this.clouds, finalCloud);
     this.clouds = handleCloudCleanup(this, this.clouds, finalCloud);
+
+    const pipe = this.pipes[this.pipes.length - 1].children.entries;
+    const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
+
+    this.pipes = generatePipes(this, this.pipes, finalPipe);
+    this.pipes = handlePipeCleanup(this, this.pipes, finalPipe);
   }
 }
