@@ -35,6 +35,9 @@ export function setupPipes(scene: CrappyBirdScene) {
   return [pipes];
 }
 
+/**
+ * Handles progressive pipe generation
+ */
 export function generatePipes(
   scene: CrappyBirdScene,
   pipes: Phaser.Physics.Arcade.StaticGroup[],
@@ -57,7 +60,13 @@ export function generatePipes(
   return pipes;
 }
 
-export function handlePipeCleanup(scene: CrappyBirdScene, pipes: Phaser.Physics.Arcade.StaticGroup[]) {
+/**
+ * Handles pipe cleanup
+ */
+export function handlePipeCleanup(
+  scene: CrappyBirdScene,
+  pipes: Phaser.Physics.Arcade.StaticGroup[],
+) {
   // if we have more than 10 pipe groups
   if (pipes.length > 15) {
     // get the final pipe in the 15th set
