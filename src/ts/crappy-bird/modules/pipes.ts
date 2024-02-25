@@ -85,14 +85,12 @@ export function handlePipeCleanup(
     const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
     // if its off screen relative to the bird position
     if (scene.bird.x > finalPipe.x + 450) {
-      console.log(pipes);
       // clear the pipe first 15 pipe groups
       pipes.forEach((pipes, index) => {
         if (index < 15) pipes.clear(true, true);
       });
       // filter any empty arrays
       pipes = pipes.filter((pipes) => pipes.children.entries.length);
-      console.log(pipes);
     }
   }
   return pipes;
