@@ -3,5 +3,4 @@ User-agent: *
 Crawl-delay: 120
 Disallow: /src/
 Disallow: /.netlify/
-Disallow: /functions/
 Disallow: /node_modules/

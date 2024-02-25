@@ -22,7 +22,9 @@ const config: Types.Core.GameConfig = {
     },
   },
   backgroundColor: '0x0f0f0f',
-  seed: [...cyrb128('theSecondMouseAlwaysGetsTheCheese')],
+  seed: [
+    ...cyrb128('theSecondMouseAlwaysGetsTheCheese').map((int) => String(int)),
+  ],
 };
 
 const game: Game = new Game(config);
