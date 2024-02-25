@@ -1,16 +1,27 @@
 import { Math as PhaserMath } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
+const pipeYOptions: Record<integer, Array<integer>> = {
+  0: [0, 600],
+  1: [100, 700],
+  2: [150, 750],
+  3: [25, 575],
+  4: [100, 600],
+  5: [150, 650],
+  6: [100, 575],
+};
+
 /**
  * Creates two pipe sprites
  */
 function createPipeSprites(scene: CrappyBirdScene, x: integer) {
   const pipeColor = PhaserMath.Between(1, 2);
-  const pipe1 = scene.physics.add.staticSprite(x, 0, `pipe-${pipeColor}`);
+  const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 6)];
+  const pipe1 = scene.physics.add.staticSprite(x, topY, `pipe-${pipeColor}`);
   pipe1.setFlipY(true);
   pipe1.setDepth(1);
 
-  const pipe2 = scene.physics.add.staticSprite(x, 600, `pipe-${pipeColor}`);
+  const pipe2 = scene.physics.add.staticSprite(x, bottomY, `pipe-${pipeColor}`);
   pipe2.setDepth(1);
   return [pipe1, pipe2];
 }
@@ -48,7 +59,7 @@ export function generatePipes(
   pipes.push(scene.physics.add.staticGroup());
 
   // calculate the new pipe position reltive to the final pipe in the game
-  const x = finalPipe.x + PhaserMath.Between(200, 800);
+  const x = finalPipe.x + PhaserMath.Between(150, 550);
 
   const [topPipe, bottomPipe] = createPipeSprites(scene, x);
 

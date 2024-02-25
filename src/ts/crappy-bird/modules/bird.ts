@@ -51,6 +51,6 @@ export function handleBirdRotation(scene: CrappyBirdScene) {
  * Handles the flap action (plays sound and increases the birds velocity)
  */
 export function flap(scene: CrappyBirdScene): void {
-  scene.bird.setVelocityY(-500);
+  scene.bird.setVelocityY(-300);
   scene.sound.play('flap');
 }
