@@ -85,7 +85,7 @@ export function handleCloudCleanup(
     // destroy first group
     clouds[0].clear(true, true);
     // filter the array
-    clouds = clouds.filter((_, index) => index !== 0);
+    clouds = clouds.filter((clouds) => clouds.children.entries.length);
   }
   return clouds;
 }
