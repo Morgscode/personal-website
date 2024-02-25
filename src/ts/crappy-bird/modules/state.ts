@@ -1,3 +1,7 @@
-type GameState = {};
+type GameState = {
+  score: integer;
+};
 
-export const gameState: GameState = {};
+export const gameState: GameState = {
+  score: 0,
+};

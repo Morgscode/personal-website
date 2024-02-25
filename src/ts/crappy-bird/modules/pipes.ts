@@ -33,7 +33,7 @@ export function setupPipes(scene: CrappyBirdScene) {
   const pipes = scene.physics.add.staticGroup();
 
   // calculate the position relative to the bird x
-  const x = scene.bird.x + PhaserMath.Between(400, 800);
+  const x = scene.bird.x + 450;
 
   const [topPipe, bottomPipe] = createPipeSprites(scene, x);
 

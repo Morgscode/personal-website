@@ -50,7 +50,7 @@ export function handleTileCleanup(tiles: Phaser.Physics.Arcade.StaticGroup[]) {
     // destroy first group
     tiles[0].clear(true, true);
     // filter the array
-    tiles = tiles.filter((_, index) => index !== 0);
+    tiles = tiles.filter((tiles) => tiles.children.entries.length);
   }
   return tiles;
 }
