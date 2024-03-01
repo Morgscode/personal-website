@@ -1,19 +1,14 @@
-'use strict';
-
 import { Scene } from 'phaser';
-import { gameState, levelState, scoreState, submitStatistics } from '../model';
-import { gameSetup } from '../view';
-import { triggerGameRestart } from '..';
+import { levelState, scoreState } from '../modules/state';
+import { submitStatistics } from '../modules/leaderboard';
+import { triggerGameRestart } from '../';
 
 export class GameOverScene extends Scene {
   constructor() {
     super({ key: 'GameOverScene' });
   }
 
-  preload() {
-    gameState.cursors = gameSetup.bindCursorKeys(this);
-    gameSetup.bindMobileControls(this);
-  }
+  preload() {}
 
   create() {
     const overlay = this.add
