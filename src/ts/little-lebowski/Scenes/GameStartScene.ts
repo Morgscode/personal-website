@@ -1,25 +1,24 @@
 'use strict';
 
 import { Scene } from 'phaser';
-import { gameState } from '../model';
-import { gameSetup } from '../view';
+import { loadAssets, renderSky, renderPlatforms } from '../modules/assets';
 
 export class GameStartScene extends Scene {
+  platforms: Phaser.Physics.Arcade.StaticGroup;
+
   constructor() {
     super({ key: 'StartScene' });
   }
 
   preload() {
-    gameSetup.loadAssets(this);
-    gameState.cursors = gameSetup.bindCursorKeys(this);
-    gameSetup.bindMobileControls(this);
+    loadAssets(this);
   }
 
   create() {
     this.sound.stopAll();
     this.sound.play('intro', { volume: 0.25 });
-    gameSetup.renderSky(this);
-    gameState.platforms = gameSetup.renderPlatforms(this);
+    renderSky(this);
+    this.platforms = renderPlatforms(this);
 
     this.add
       .rectangle(

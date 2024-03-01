@@ -1,12 +1,10 @@
-'use strict';
-
-import { Game, AUTO, Scale } from 'phaser';
+import { Game, AUTO, Scale, Types } from 'phaser';
 import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
-import { gameState, resetGameState } from './model';
+import { type GameState, gameState, resetGameState } from './modules/state';
 import '@/scss/main.scss';
 
-const config = {
+const config: Types.Core.GameConfig = {
   type: AUTO,
   parent: 'little-lebowski-game',
   title: 'The Little Lebowski',
@@ -39,14 +37,14 @@ const config = {
   backgroundColor: '0x0f0f0f',
 };
 
-export const game = new Game(config);
+export const game: Game = new Game(config);
 
 export function triggerGameOver() {
   game.scene.start('GameOverScene');
   gameState.gameOver = true;
 }
 
-export function triggerGameRestart(game) {
+export function triggerGameRestart(game: Game) {
   const start = game.scene.getScene('StartScene');
   start.scene.remove();
   const main = game.scene.getScene('GameScene');

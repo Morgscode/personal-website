@@ -1,22 +1,27 @@
-'use strict';
-
 import { Scene } from 'phaser';
-import { getLeaderboard, gameState } from '../model';
-import { gameSetup } from '../view';
-import { triggerGameRestart } from '..';
+import { getLeaderboard } from '../modules/leaderboard';
+import { triggerGameRestart } from '../';
+
+type Leaderboard = {
+  data: LeaderboardEntry[];
+  count: integer;
+};
+
+type LeaderboardEntry = {
+  name: string;
+  level: string;
+  score: string;
+};
 
 export class LeaderboardScene extends Scene {
-  leaderboard = {};
+  leaderboard: Leaderboard | false;
   rowsYStart = 100;
 
   constructor() {
     super({ key: 'LeaderboardScene' });
   }
 
-  preload() {
-    gameState.cursors = gameSetup.bindCursorKeys(this);
-    gameSetup.bindMobileControls(this);
-  }
+  preload() {}
 
   async create() {
     try {
@@ -83,7 +88,9 @@ export class LeaderboardScene extends Scene {
       triggerGameRestart(this.scene.game);
     });
 
-    if (this.leaderboard?.data?.length) {
+    if (!this.leaderboard) return;
+
+    if (this.leaderboard.data.length) {
       for (let i = 0; i < this.leaderboard.data.length; i++) {
         const entry = this.leaderboard.data[i];
         this.rowsYStart = this.rowsYStart + 25;
