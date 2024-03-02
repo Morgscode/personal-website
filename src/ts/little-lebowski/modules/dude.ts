@@ -1,5 +1,5 @@
-import { Scene, Input, GameObjects, Game } from 'phaser';
-import { type GameState, playerJumpState } from './state';
+import { Scene, Input } from 'phaser';
+import { playerJumpState } from './state';
 
 export function renderPlayer(scene: Scene) {
   const player = scene.physics.add.sprite(50, 545, 'dude');

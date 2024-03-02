@@ -1,7 +1,7 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
 import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
-import { type GameState, gameState, resetGameState } from './modules/state';
+import { gameState, resetGameState } from './modules/state';
 import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
@@ -20,7 +20,7 @@ const config: Types.Core.GameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 300 },
+      gravity: { x: 0, y: 300 },
       debug: false,
     },
   },
@@ -34,7 +34,7 @@ const config: Types.Core.GameConfig = {
       },
     ],
   },
-  backgroundColor: '0x0f0f0f',
+  backgroundColor: 0x00a8ff,
 };
 
 export const game: Game = new Game(config);
