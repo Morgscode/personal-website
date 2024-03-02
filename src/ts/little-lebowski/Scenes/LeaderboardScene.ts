@@ -36,7 +36,7 @@ export class LeaderboardScene extends Scene {
         0,
         this.cameras.main.width,
         this.cameras.main.height,
-        0x000000,
+        0x00a8ff,
       )
       .setOrigin(0, 0)
       .setAlpha(0.7);
@@ -48,22 +48,24 @@ export class LeaderboardScene extends Scene {
 
     this.add.text(260, this.rowsYStart, `Name:`, {
       font: '20px Courier',
-      fill: '#fff',
     });
-    this.add.text(460, this.rowsYStart, `Level:`, {
-      font: '20px Courier',
-      fill: '#fff',
-    });
-    this.add.text(560, this.rowsYStart, `Score:`, {
-      font: '20px Courier',
-      fill: '#fff',
-    });
+
+    this.add
+      .text(460, this.rowsYStart, `Level:`, {
+        font: '20px Courier',
+      })
+      .setFill('#ffffff');
+    this.add
+      .text(560, this.rowsYStart, `Score:`, {
+        font: '20px Courier',
+      })
+      .setFill('#ffffff');
 
     const restart = this.add
       .text(400, 550, 'Back to Main Menu', {
         font: '24px Courier',
-        fill: '#222222',
       })
+      .setFill('#222222')
       .setOrigin(0.5)
       .setInteractive()
       .setDepth(1);
@@ -94,22 +96,30 @@ export class LeaderboardScene extends Scene {
       for (let i = 0; i < this.leaderboard.data.length; i++) {
         const entry = this.leaderboard.data[i];
         this.rowsYStart = this.rowsYStart + 25;
-        this.add.text(220, this.rowsYStart, `${i + 1}.`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
-        this.add.text(260, this.rowsYStart, `${entry.name}`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
-        this.add.text(460, this.rowsYStart, `${entry.level}`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
-        this.add.text(560, this.rowsYStart, `${entry.score}`, {
-          font: '20px Courier',
-          fill: '#fff',
-        });
+
+        this.add
+          .text(220, this.rowsYStart, `${i + 1}.`, {
+            font: '20px Courier',
+          })
+          .setFill('#ffffff');
+
+        this.add
+          .text(260, this.rowsYStart, `${entry.name}`, {
+            font: '20px Courier',
+          })
+          .setFill('#ffffff');
+
+        this.add
+          .text(460, this.rowsYStart, `${entry.level}`, {
+            font: '20px Courier',
+          })
+          .setFill('#ffffff');
+
+        this.add
+          .text(560, this.rowsYStart, `${entry.score}`, {
+            font: '20px Courier',
+          })
+          .setFill('#ffffff');
       }
     }
   }
