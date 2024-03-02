@@ -125,8 +125,8 @@ export function setupPlayerBombCollision(
   scene: Scene,
   player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
   bombs: Phaser.Physics.Arcade.Group,
-  hitBomb: Function,
-  gameOver: (game: Game, state: GameState) => void,
+  hitBomb: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+  gameOver: () => boolean,
 ) {
   scene.physics.add.collider(player, bombs, hitBomb, gameOver, scene);
   return scene;
@@ -135,8 +135,8 @@ export function setupPlayerBombCollision(
 export function setupPlayerStarCollection(
   player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
   stars: Phaser.Physics.Arcade.Group[],
-  collectStarFn: Function,
-  increaseScoreFn: () => void,
+  collectStarFn: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+  increaseScoreFn: () => boolean,
   scene: Scene,
 ) {
   scene.physics.add.overlap(
@@ -149,7 +149,10 @@ export function setupPlayerStarCollection(
   return scene;
 }
 
-export function bombHitsPlayer(player, bomb) {
+export function bombHitsPlayer(
+  player: Phaser.Physics.Arcade.Sprite,
+  bomb: Phaser.Physics.Arcade.Sprite,
+) {
   this.sound.play('kaboom');
   bomb.setTexture('kaboom');
   player.setTint(0xff0000);

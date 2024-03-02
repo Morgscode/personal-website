@@ -1,3 +1,5 @@
+import { triggerGameOver } from '../';
+
 export type GameState = {
   gameOver: boolean;
   score: integer;
@@ -18,10 +20,10 @@ export let gameState: GameState = {
   canDoubleJumpMobile: false,
 };
 
-const initalGameState = JSON.parse(JSON.stringify(gameState));
+const INITIAL_GAME_STATE = JSON.parse(JSON.stringify(gameState));
 
 export function resetGameState() {
-  gameState = JSON.parse(JSON.stringify(initalGameState));
+  gameState = JSON.parse(JSON.stringify(INITIAL_GAME_STATE));
 }
 
 export const playerJumpState = {
@@ -87,3 +89,17 @@ export const levelState = {
     return gameState.level;
   },
 };
+
+export function increaseScore(
+  _player: Phaser.Physics.Arcade.Sprite,
+  _star: Phaser.Physics.Arcade.Sprite,
+) {
+  return Boolean(scoreState.increaseScore());
+}
+
+export function gameOver(
+  _player: Phaser.Physics.Arcade.Sprite,
+  _bomb: Phaser.Physics.Arcade.Sprite,
+) {
+  return triggerGameOver();
+}

@@ -41,7 +41,7 @@ export const game: Game = new Game(config);
 
 export function triggerGameOver() {
   game.scene.start('GameOverScene');
-  gameState.gameOver = true;
+  return (gameState.gameOver = true);
 }
 
 export function triggerGameRestart(game: Game) {

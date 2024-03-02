@@ -1,9 +1,14 @@
 import { Scene, Types } from 'phaser';
 import { gameState } from '../modules/state';
-import { triggerGameOver } from '../';
+import { gameOver } from '../modules/state';
 import { loadAssets, renderSky, renderPlatforms } from '../modules/assets';
 import { bindCursorKeys, bindMobileControls } from '../modules/controls';
-import { scoreState, levelState, playerJumpState } from '../modules/state';
+import {
+  scoreState,
+  levelState,
+  playerJumpState,
+  increaseScore,
+} from '../modules/state';
 import { renderLevelText, renderScoreBoardText } from '../modules/metricText';
 import {
   renderStarGroup,
@@ -24,7 +29,7 @@ import {
 import {
   setupBombs,
   setupBombPlatformCollision,
-  spawnBomb,
+  handleSpawnBomb,
 } from '../modules/bombs';
 
 export type LebowskiGameScene = {
@@ -32,7 +37,7 @@ export type LebowskiGameScene = {
   cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   player: Types.Physics.Arcade.SpriteWithDynamicBody;
   bombs: Phaser.Physics.Arcade.Group;
-  stars: Phaser.Physics.Arcade.Group;
+  stars: Phaser.Physics.Arcade.Group[];
   scoreText: Phaser.GameObjects.Text;
   levelText: Phaser.GameObjects.Text;
 } & Scene;
@@ -80,7 +85,7 @@ export class GameScene extends Scene {
       this.player,
       this.bombs,
       bombHitsPlayer,
-      triggerGameOver,
+      gameOver,
     );
   }
 
@@ -93,7 +98,7 @@ export class GameScene extends Scene {
       this.player,
       this.stars,
       starCollected,
-      scoreState.increaseScore,
+      increaseScore,
       this,
     );
 
@@ -115,16 +120,6 @@ export class GameScene extends Scene {
       });
     }
 
-    const level = levelState.getLevel();
-
-    if (this.bombs.children.size < level && level <= 3) {
-      for (let i = this.bombs.children.size; i < level; i++) {
-        const cordXBase =
-          this.player.x <= this.scale.gameSize.width / 2 ? 575 : 16;
-        const cordYBase =
-          this.player.y <= this.scale.gameSize.height / 2 ? 350 : 16;
-        spawnBomb(this.bombs, cordXBase, cordYBase);
-      }
-    }
+    handleSpawnBomb(this);
   }
 }

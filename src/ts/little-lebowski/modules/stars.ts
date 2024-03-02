@@ -30,19 +30,21 @@ export function setupStarPlatformCollision(
 }
 
 export function starCollected(
-  _player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
+  _player: Phaser.Physics.Arcade.Sprite,
   star: Phaser.Physics.Arcade.Sprite,
 ) {
   this.sound.play('coin-pickup');
   star.disableBody(true, true);
+  return true;
 }
 
 export function renderRandomStarGroup(stars: Phaser.Physics.Arcade.Group) {
   stars.children.iterate((child) => {
     const yVal = PhaserMath.Between(0, 500);
+    const x = (child as Phaser.Physics.Arcade.Sprite).x;
     (child as Phaser.Physics.Arcade.Sprite).enableBody(
       true,
-      child.x,
+      x,
       yVal,
       true,
       true,
