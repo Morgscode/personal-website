@@ -21,7 +21,7 @@ const config: Types.Core.GameConfig = {
       gravity: { x: 0, y: 300 },
     },
   },
-  backgroundColor: '0x0f0f0f',
+  backgroundColor: 0x0f0f0f,
   seed: [
     ...cyrb128('theSecondMouseAlwaysGetsTheCheese').map((int) => String(int)),
   ],
