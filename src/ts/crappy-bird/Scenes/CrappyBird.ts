@@ -1,10 +1,24 @@
 import { Scene, Types } from 'phaser';
 import { SKY_COLOR } from '../modules/constants';
 import { loadCrappyAssets } from '../modules/assets';
-import { setupTiles, handleTileGeneration, handleTileCleanup } from '../modules/tiles';
-import { setupClouds, generateClouds, handleCloudCleanup } from '../modules/clouds';
-import { setupCrappyBird, setupBirdTileCollisions, handleBirdRotation, flap } from '../modules/bird';
+import {
+  setupTiles,
+  handleTileGeneration,
+  handleTileCleanup,
+} from '../modules/tiles';
+import {
+  setupClouds,
+  generateClouds,
+  handleCloudCleanup,
+} from '../modules/clouds';
+import {
+  setupCrappyBird,
+  setupBirdTileCollisions,
+  handleBirdRotation,
+  flap,
+} from '../modules/bird';
 import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
+import { gameState } from '../modules/state';
 
 export type CrappyBirdScene = {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -22,7 +36,7 @@ export class CrappyBird extends Scene {
   pipes: Phaser.Physics.Arcade.StaticGroup[];
 
   constructor() {
-    super({ key: 'CrappyBirdScene' });
+    super({ key: 'CrappyBird' });
   }
 
   preload(): void {
@@ -30,6 +44,8 @@ export class CrappyBird extends Scene {
   }
 
   create(): void {
+    gameState.gameOver = false;
+    gameState.score = 0;
     this.cameras.main.setBackgroundColor(SKY_COLOR);
 
     this.ground = setupTiles(this, 770, 'ground');
@@ -40,7 +56,9 @@ export class CrappyBird extends Scene {
     this.clouds = setupClouds(this);
     this.pipes = setupPipes(this);
 
-    this.cameras.main.setBounds(0, 0, Infinity, 600).startFollow(this.bird, false, 1, 1, -100, 0);
+    this.cameras.main
+      .setBounds(0, 0, Infinity, 600)
+      .startFollow(this.bird, false, 1, 1, -100, 0);
 
     this.input.on('pointerdown', (event: Event) => {
       flap(this);
@@ -56,9 +74,23 @@ export class CrappyBird extends Scene {
 
     // get last ground tile
     const ground = this.ground[this.ground.length - 1].children.entries;
-    const finalGround = ground[ground.length - 1] as Phaser.Physics.Arcade.Sprite;
-    this.ground = handleTileGeneration(this, finalGround, this.ground, 770, 'ground');
-    this.stoneTop = handleTileGeneration(this, finalGround, this.stoneTop, 0, 'stone');
+    const finalGround = ground[
+      ground.length - 1
+    ] as Phaser.Physics.Arcade.Sprite;
+    this.ground = handleTileGeneration(
+      this,
+      finalGround,
+      this.ground,
+      770,
+      'ground',
+    );
+    this.stoneTop = handleTileGeneration(
+      this,
+      finalGround,
+      this.stoneTop,
+      0,
+      'stone',
+    );
     this.ground = handleTileCleanup(this.ground);
     this.stoneTop = handleTileCleanup(this.stoneTop);
 

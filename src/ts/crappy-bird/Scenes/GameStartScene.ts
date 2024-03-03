@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { loadAssets, renderSky, renderPlatforms } from '../modules/assets';
+import { loadCrappyAssets } from '../modules/assets';
 
 export class GameStartScene extends Scene {
   platforms: Phaser.Physics.Arcade.StaticGroup;
@@ -9,14 +9,11 @@ export class GameStartScene extends Scene {
   }
 
   preload() {
-    loadAssets(this);
+    loadCrappyAssets(this);
   }
 
   create() {
     this.sound.stopAll();
-    this.sound.play('intro', { volume: 0.25 });
-    renderSky(this);
-    this.platforms = renderPlatforms(this);
 
     this.add
       .rectangle(
@@ -24,28 +21,20 @@ export class GameStartScene extends Scene {
         0,
         this.cameras.main.width,
         this.cameras.main.height,
-        0x000000,
+        0x00a8ff,
       )
       .setOrigin(0, 0)
       .setAlpha(0.7);
 
     this.add
-      .text(400, 180, 'The Adventure(s) of', {
+      .text(225, 350, 'Crappy Bird', {
         font: '32px Courier',
       })
-      .setFill('#ffffff')
-      .setOrigin(0.5);
-
-    this.add
-      .text(400, 240, 'Little Lebowski', {
-        font: '32px Courier',
-        fill: '#fff',
-      })
-      .setFill('#ffffff')
+      .setFill('#FFFFFF')
       .setOrigin(0.5);
 
     const startButton = this.add
-      .text(300, 340, 'Start Game', { font: '24px Courier' })
+      .text(225, 425, 'Start Game', { font: '24px Courier' })
       .setFill('#222222')
       .setOrigin(0.5)
       .setInteractive()
@@ -66,7 +55,7 @@ export class GameStartScene extends Scene {
       .setStrokeStyle(borderWidth, 0xffffff);
 
     const scoreButton = this.add
-      .text(500, 340, 'Leaderboard', {
+      .text(225, 500, 'Leaderboard', {
         font: '24px Courier',
       })
       .setFill('#222222')
@@ -87,7 +76,7 @@ export class GameStartScene extends Scene {
 
     startButton.on('pointerdown', () => {
       this.scene.stop();
-      this.scene.launch('GameScene');
+      this.scene.launch('CrappyBird');
     });
 
     scoreButton.on('pointerdown', () => {
