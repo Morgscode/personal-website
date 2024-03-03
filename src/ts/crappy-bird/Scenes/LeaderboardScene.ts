@@ -9,7 +9,6 @@ type Leaderboard = {
 
 type LeaderboardEntry = {
   name: string;
-  level: string;
   score: string;
 };
 
@@ -106,12 +105,6 @@ export class LeaderboardScene extends Scene {
 
         this.add
           .text(260, this.rowsYStart, `${entry.name}`, {
-            font: '20px Courier',
-          })
-          .setFill('#ffffff');
-
-        this.add
-          .text(460, this.rowsYStart, `${entry.level}`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');

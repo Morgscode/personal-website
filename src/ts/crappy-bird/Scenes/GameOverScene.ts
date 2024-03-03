@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { levelState, scoreState } from '../modules/state';
+import { gameState } from '../modules/state';
 import { submitStatistics } from '../modules/leaderboard';
 import { triggerGameRestart } from '../';
 
@@ -28,17 +28,10 @@ export class GameOverScene extends Scene {
       .setOrigin(0.5);
 
     this.add
-      .text(300, 175, `Score: ${scoreState.getScore()}`, {
+      .text(300, 175, `Score: ${gameState.score}`, {
         fontSize: '24px',
+        color: '#fff',
       })
-      .setFill('#ffffff')
-      .setOrigin(0.5);
-
-    this.add
-      .text(500, 175, `Level: ${levelState.getLevel()}`, {
-        fontSize: '24px',
-      })
-      .setFill('#ffffff')
       .setOrigin(0.5);
 
     this.add
@@ -76,8 +69,8 @@ export class GameOverScene extends Scene {
     const restart = this.add
       .text(520, 375, 'Restart Game', {
         font: '16px Courier',
-        fill: '#222222',
       })
+      .setFill('#222222')
       .setOrigin(0.5)
       .setInteractive()
       .setDepth(1);
@@ -109,11 +102,10 @@ export class GameOverScene extends Scene {
 
     submit.on('pointerdown', async () => {
       const name = nameInput.text;
-      const level = levelState.getLevel();
-      const score = scoreState.getScore();
+      const score = gameState.score;
       try {
         submit.disableInteractive();
-        await submitStatistics(name, level, score);
+        await submitStatistics(name, score);
       } catch (error) {
         submit.setInteractive();
         console.error(error);

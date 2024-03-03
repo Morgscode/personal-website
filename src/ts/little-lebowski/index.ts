@@ -34,7 +34,7 @@ const config: Types.Core.GameConfig = {
       },
     ],
   },
-  backgroundColor: 0x00a8ff,
+  backgroundColor: 0x0f0f0f,
 };
 
 export const game: Game = new Game(config);

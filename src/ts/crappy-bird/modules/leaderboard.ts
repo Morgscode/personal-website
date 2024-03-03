@@ -1,7 +1,7 @@
 export async function getLeaderboard() {
   try {
     const res = await fetch(
-      `${window.location.origin}/.netlify/functions/little-lebowski-leaderboard`,
+      `${window.location.origin}/.netlify/functions/crappy-bird-leaderboard`,
     );
     const { data, count } = await res.json();
     return { data: data.data, count };
@@ -10,15 +10,11 @@ export async function getLeaderboard() {
   }
 }
 
-export async function submitStatistics(
-  name: string,
-  level: integer,
-  score: integer,
-) {
-  const stats = { name, level, score };
+export async function submitStatistics(name: string, score: integer) {
+  const stats = { name, score };
   try {
     const res = await fetch(
-      `${window.location.origin}/.netlify/functions/little-lebowski-leaderboard`,
+      `${window.location.origin}/.netlify/functions/crappy-bird-leaderboard`,
       {
         method: 'POST',
         headers: {

@@ -1,9 +1,9 @@
-import { CrappyBirdScene } from '../Scenes';
+import { Scene } from 'phaser';
 
 /**
  * Loads the assets needed for the Crappy bird game
  */
-export function loadCrappyAssets(scene: CrappyBirdScene) {
+export function loadCrappyAssets(scene: Scene) {
   scene.load.spritesheet('bird', './assets/img/bird.png', {
     frameWidth: 50,
     frameHeight: 34,
