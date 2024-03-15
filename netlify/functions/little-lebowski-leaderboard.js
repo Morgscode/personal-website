@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const LeaderBoardSchema = new mongoose.Schema({
+const LeaderboardSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
   dbConn = dbConn.replace('<username>', dbUser);
   dbConn = dbConn.replace('<password>', dbPass);
 
-  const LeaderBoard = mongoose.model('LebowskiScore', LeaderBoardSchema);
+  const LeaderBoard = mongoose.model('LebowskiScore', LeaderboardSchema);
 
   try {
     await mongoose.connect(dbConn);
