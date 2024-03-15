@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
   dbConn = dbConn.replace('<username>', dbUser);
   dbConn = dbConn.replace('<password>', dbPass);
 
-  const LeaderBoard = mongoose.model('LeaderBoard', LeaderBoardSchema);
+  const LeaderBoard = mongoose.model('LebowskiScore', LeaderBoardSchema);
 
   try {
     await mongoose.connect(dbConn);
