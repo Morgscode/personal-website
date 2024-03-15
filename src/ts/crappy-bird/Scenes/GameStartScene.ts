@@ -2,8 +2,6 @@ import { Scene } from 'phaser';
 import { loadCrappyAssets } from '../modules/assets';
 
 export class GameStartScene extends Scene {
-  platforms: Phaser.Physics.Arcade.StaticGroup;
-
   constructor() {
     super({ key: 'StartScene' });
   }
