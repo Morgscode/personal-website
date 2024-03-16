@@ -12,15 +12,15 @@ import {
   generateClouds,
   handleCloudCleanup,
 } from '../modules/clouds';
+import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
 import {
   setupCrappyBird,
-  setupBirdTileCollision,
-  handleBirdRotation,
   flap,
+  handleBirdRotation,
+  setupBirdTileCollision,
   setupBirdPipeCollision,
   birdHitsPipe,
 } from '../modules/bird';
-import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
 import { gameState, scoreState } from '../modules/state';
 import { triggerGameOver } from '../';
 
