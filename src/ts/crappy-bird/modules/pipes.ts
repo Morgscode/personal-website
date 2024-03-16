@@ -22,8 +22,7 @@ const pipeYOptions: Record<integer, Array<integer>> = {
  */
 function createPipeSprites(scene: CrappyBirdScene, x: integer) {
   const pipeColor = PhaserMath.Between(1, 2);
-  const [topY, bottomY] = pipeYOptions[0];
-  //const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 7)];
+  const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 10)];
   const pipe1 = scene.physics.add.staticSprite(x, topY, `pipe-${pipeColor}`);
   pipe1.setFlipY(true);
   pipe1.setDepth(1);
