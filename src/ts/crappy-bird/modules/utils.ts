@@ -1,4 +1,7 @@
-// https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
+/**
+ * A hash function we'll use to seed the Phaser random number generator
+ * https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
+ */
 export function cyrb128(str: string) {
   let h1 = 1779033703,
     h2 = 3144134277,
@@ -18,3 +21,9 @@ export function cyrb128(str: string) {
   (h1 ^= h2 ^ h3 ^ h4), (h2 ^= h1), (h3 ^= h1), (h4 ^= h1);
   return [h1 >>> 0, h2 >>> 0, h3 >>> 0, h4 >>> 0];
 }
+
+/**
+ * An awaitable timeout
+ */
+export const delay = (ms: integer) =>
+  new Promise((resolve) => setTimeout(resolve, ms));

@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import { levelState, scoreState } from '../modules/state';
-import { submitStatistics } from '../modules/leaderboard';
+import { submitLeaderboardEntry } from '../modules/leaderboard';
 import { triggerGameRestart } from '../';
 
 export class GameOverScene extends Scene {
@@ -115,7 +115,7 @@ export class GameOverScene extends Scene {
       const score = scoreState.getScore();
       try {
         submit.disableInteractive();
-        await submitStatistics(name, level, score);
+        await submitLeaderboardEntry(name, level, score);
       } catch (error) {
         submit.setInteractive();
         console.error(error);
