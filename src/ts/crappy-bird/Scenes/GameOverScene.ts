@@ -60,8 +60,6 @@ export class GameOverScene extends Scene {
       maxLength: 12,
     });
 
-    console.log(nameInput);
-
     const submit = this.add
       .text(225, 450, 'Add to score board', {
         font: '16px Courier',
@@ -72,7 +70,7 @@ export class GameOverScene extends Scene {
       .setDepth(1);
 
     const restart = this.add
-      .text(225, 525, 'Restart Game', {
+      .text(225, 515, 'Restart Game', {
         font: '16px Courier',
       })
       .setFill('#222222')

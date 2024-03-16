@@ -1,4 +1,5 @@
 import { CrappyBirdScene } from '../Scenes';
+import { gameState } from './state';
 
 /**
  * Setups the Crappy Bird with animations
@@ -64,6 +65,7 @@ export function handleBirdRotation(scene: CrappyBirdScene) {
  * Handles the flap action (plays sound and increases the birds velocity)
  */
 export function flap(scene: CrappyBirdScene): void {
+  if (gameState.gameOver) return;
   scene.bird.setVelocityY(-300);
   scene.sound.play('flap');
 }
@@ -73,5 +75,8 @@ export function birdHitsPipe(
   pipe: Phaser.Physics.Arcade.Sprite,
 ) {
   bird.setTint(0xff0000);
-  bird.angle = 180;
+  bird.setFlipY(true);
+  bird.setAccelerationX(0);
+  bird.setVelocityX(0);
+  bird.anims.stop();
 }

@@ -113,6 +113,15 @@ export class CrappyBird extends Scene {
     const pipe = this.pipes[this.pipes.length - 1].children.entries;
     const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
     this.pipes = generatePipes(this, this.pipes, finalPipe);
+
+    setupBirdPipeCollision(
+      this,
+      this.bird,
+      this.pipes,
+      birdHitsPipe,
+      triggerGameOver,
+    );
+
     this.pipes = handlePipeCleanup(this, this.pipes);
   }
 }

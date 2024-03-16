@@ -1,17 +1,20 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
+import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
 import { cyrb128 } from './modules/hash';
-import { gameState } from './modules/state';
-import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
+import { gameState, resetGameState } from './modules/state';
 import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
   type: AUTO,
+  title: 'Crappy Bird',
   width: 450,
   height: 800,
   max: { width: window.innerWidth, height: window.innerHeight },
   parent: 'crappy-bird-game',
-  title: 'Crappy Bird',
+  dom: {
+    createContainer: true,
+  },
   scale: {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,
@@ -52,6 +55,7 @@ export function triggerGameRestart(game: Game) {
   main.scene.remove();
   const gameOver = game.scene.getScene('GameOverScene');
   gameOver.scene.remove();
+  resetGameState();
   const leaderboard = game.scene.getScene('LeaderboardScene');
   leaderboard.scene.remove();
   const boot = game.scene.getScene('BootScene');
