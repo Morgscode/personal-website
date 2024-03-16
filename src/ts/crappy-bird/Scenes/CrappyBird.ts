@@ -19,7 +19,7 @@ import {
   handleBirdRotation,
   setupBirdTileCollision,
   setupBirdPipeCollision,
-  birdHitsPipe,
+  birdCollides,
 } from '../modules/bird';
 import { gameState, scoreState } from '../modules/state';
 import { triggerGameOver } from '../';
@@ -60,16 +60,31 @@ export class CrappyBird extends Scene {
     this.ground = setupTiles(this, 770, 'ground');
     this.stoneTop = setupTiles(this, 0, 'stone');
     this.bird = setupCrappyBird(this);
-    setupBirdTileCollision(this);
 
     this.clouds = setupClouds(this.bird.x, this.clouds, this);
     this.pipes = setupPipes(this, this.pipeXRecords);
+
+    setupBirdTileCollision(
+      this,
+      this.bird,
+      this.ground,
+      birdCollides,
+      triggerGameOver,
+    );
+
+    setupBirdTileCollision(
+      this,
+      this.bird,
+      this.stoneTop,
+      birdCollides,
+      triggerGameOver,
+    );
 
     setupBirdPipeCollision(
       this,
       this.bird,
       this.pipes,
-      birdHitsPipe,
+      birdCollides,
       triggerGameOver,
     );
 
@@ -120,11 +135,27 @@ export class CrappyBird extends Scene {
     const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
     this.pipes = generatePipes(this, this.pipes, finalPipe, this.pipeXRecords);
 
+    setupBirdTileCollision(
+      this,
+      this.bird,
+      this.ground,
+      birdCollides,
+      triggerGameOver,
+    );
+
+    setupBirdTileCollision(
+      this,
+      this.bird,
+      this.stoneTop,
+      birdCollides,
+      triggerGameOver,
+    );
+
     setupBirdPipeCollision(
       this,
       this.bird,
       this.pipes,
-      birdHitsPipe,
+      birdCollides,
       triggerGameOver,
     );
 
