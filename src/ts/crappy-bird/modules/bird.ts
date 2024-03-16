@@ -81,7 +81,7 @@ export function setupBirdPipeCollision(
  */
 export async function birdCollides(
   bird: Phaser.Physics.Arcade.Sprite,
-  pipe: Phaser.Physics.Arcade.Sprite,
+  _: Phaser.Physics.Arcade.Sprite,
 ) {
   if (!gameState.birdHasCollided) {
     this.sound.play('splat');
