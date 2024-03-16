@@ -118,7 +118,6 @@ export class GameOverScene extends Scene {
     });
 
     restart.on('pointerdown', () => {
-      console.log(this);
       triggerGameRestart(this.game);
     });
   }
