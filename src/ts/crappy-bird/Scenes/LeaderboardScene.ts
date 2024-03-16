@@ -37,32 +37,26 @@ export class LeaderboardScene extends Scene {
         this.cameras.main.height,
         0x00a8ff,
       )
-      .setOrigin(0, 0)
-      .setAlpha(0.7);
+      .setOrigin(0, 0);
 
     // Display the leaderboard
     this.add
-      .text(400, 50, 'Leaderboard', { font: '32px Courier' })
+      .text(225, 50, 'Leaderboard', { font: '32px Courier' })
       .setFill('#ffffff')
       .setOrigin(0.5);
 
-    this.add.text(260, this.rowsYStart, `Name:`, {
+    this.add.text(50, this.rowsYStart, `Name:`, {
       font: '20px Courier',
     });
 
     this.add
-      .text(460, this.rowsYStart, `Level:`, {
-        font: '20px Courier',
-      })
-      .setFill('#ffffff');
-    this.add
-      .text(560, this.rowsYStart, `Score:`, {
+      .text(325, this.rowsYStart, `Score:`, {
         font: '20px Courier',
       })
       .setFill('#ffffff');
 
     const restart = this.add
-      .text(400, 550, 'Back to Main Menu', {
+      .text(225, 550, 'Back to Main Menu', {
         font: '24px Courier',
       })
       .setFill('#222222')
@@ -98,19 +92,19 @@ export class LeaderboardScene extends Scene {
         this.rowsYStart = this.rowsYStart + 25;
 
         this.add
-          .text(220, this.rowsYStart, `${i + 1}.`, {
+          .text(50, this.rowsYStart, `${i + 1}.`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
 
         this.add
-          .text(260, this.rowsYStart, `${entry.name}`, {
+          .text(75, this.rowsYStart, `${entry.name}`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
 
         this.add
-          .text(560, this.rowsYStart, `${entry.score}`, {
+          .text(325, this.rowsYStart, `${entry.score}`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
