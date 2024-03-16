@@ -1,6 +1,5 @@
 import { Math as PhaserMath, Events } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
-import { EVENT } from './constants';
 
 const pipeYOptions: Record<number, Array<number>> = {
   // even seperated - hardest to easiest
@@ -37,12 +36,16 @@ function createPipeSprites(scene: CrappyBirdScene, x: number) {
 /**
  * Sets up the pipe physics group and creates the first two
  */
-export function setupPipes(scene: CrappyBirdScene) {
+export function setupPipes(
+  scene: CrappyBirdScene,
+  pipeXRecords: Array<number>,
+) {
   const pipes = scene.physics.add.staticGroup();
   // calculate the position relative to the bird x
   const x = scene.bird.x + 450;
-  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
+  pipeXRecords.push(x);
 
+  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
   pipes.addMultiple([topPipe, bottomPipe], true);
 
   return [pipes];
@@ -55,6 +58,7 @@ export function generatePipes(
   scene: CrappyBirdScene,
   pipes: Phaser.Physics.Arcade.StaticGroup[],
   finalPipe: Phaser.Physics.Arcade.Sprite,
+  pipeXRecords: Array<number>,
 ) {
   // if we have 20 pipe groups, return
   if (pipes.length >= 20) return pipes;
@@ -62,8 +66,9 @@ export function generatePipes(
 
   // calculate the new pipe position reltive to the final pipe in the game
   const x = finalPipe.x + PhaserMath.Between(150, 550);
-  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
+  pipeXRecords.push(x);
 
+  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
 
   return pipes;

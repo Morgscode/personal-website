@@ -1,7 +1,7 @@
 import { Scene, Types } from 'phaser';
 import { SKY_COLOR } from '../modules/constants';
 import { loadCrappyAssets } from '../modules/assets';
-import { renderScoreBoardText } from '../modules/metricText';
+import { renderScoreBoardText, manageScore } from '../modules/score';
 import {
   setupTiles,
   handleTileGeneration,
@@ -31,6 +31,7 @@ export type CrappyBirdScene = {
   clouds: Phaser.Physics.Arcade.Group[];
   pipes: Phaser.Physics.Arcade.StaticGroup[];
   scoreText: Phaser.GameObjects.Text;
+  pipeXRecords: Array<number>;
 } & Scene;
 export class CrappyBird extends Scene {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -39,6 +40,7 @@ export class CrappyBird extends Scene {
   clouds: Phaser.Physics.Arcade.Group[] = [];
   pipes: Phaser.Physics.Arcade.StaticGroup[] = [];
   scoreText: Phaser.GameObjects.Text;
+  pipeXRecords: Array<number> = [];
 
   constructor() {
     super({ key: 'CrappyBird' });
@@ -61,7 +63,7 @@ export class CrappyBird extends Scene {
     setupBirdTileCollision(this);
 
     this.clouds = setupClouds(this.bird.x, this.clouds, this);
-    this.pipes = setupPipes(this);
+    this.pipes = setupPipes(this, this.pipeXRecords);
 
     setupBirdPipeCollision(
       this,
@@ -116,7 +118,7 @@ export class CrappyBird extends Scene {
 
     const pipe = this.pipes[this.pipes.length - 1].children.entries;
     const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
-    this.pipes = generatePipes(this, this.pipes, finalPipe);
+    this.pipes = generatePipes(this, this.pipes, finalPipe, this.pipeXRecords);
 
     setupBirdPipeCollision(
       this,
@@ -127,7 +129,7 @@ export class CrappyBird extends Scene {
     );
 
     this.pipes = handlePipeCleanup(this, this.pipes);
-
+    this.pipeXRecords = manageScore(this.bird.x, this.pipeXRecords, this);
     this.scoreText.setText(`Score: ${scoreState.getScore()}`);
   }
 }
