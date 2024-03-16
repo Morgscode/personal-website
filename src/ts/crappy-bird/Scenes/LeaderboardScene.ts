@@ -89,16 +89,16 @@ export class LeaderboardScene extends Scene {
     if (this.leaderboard.data.length) {
       for (let i = 0; i < this.leaderboard.data.length; i++) {
         const entry = this.leaderboard.data[i];
-        this.rowsYStart = this.rowsYStart + 25;
+        this.rowsYStart = this.rowsYStart + 35;
 
         this.add
-          .text(50, this.rowsYStart, `${i + 1}.`, {
+          .text(20, this.rowsYStart, `${i + 1}.`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
 
         this.add
-          .text(75, this.rowsYStart, `${entry.name}`, {
+          .text(50, this.rowsYStart, `${entry.name}`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
