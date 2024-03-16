@@ -1,7 +1,7 @@
 import { type CrappyBirdScene } from '../Scenes';
 
 /**
- * Gnerates some inital tiles. Used from the start of the game
+ * Generates some inital tiles. Used from the start of the game
  */
 export function setupTiles(
   scene: CrappyBirdScene,

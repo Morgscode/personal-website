@@ -70,6 +70,9 @@ export function flap(scene: CrappyBirdScene): void {
   scene.sound.play('flap');
 }
 
+/**
+ * The stuff we want to happen when the bird collides with a pipe
+ */
 export function birdHitsPipe(
   bird: Phaser.Physics.Arcade.Sprite,
   pipe: Phaser.Physics.Arcade.Sprite,

@@ -5,7 +5,7 @@ type SceneWithClouds = {
 } & Scene;
 
 /**
- * Gnerates some inital clouds from the start of the game
+ * Generates some inital clouds from the start of the game
  */
 export function setupClouds(
   start: integer,
