@@ -30,13 +30,13 @@ exports.handler = async (event, context) => {
   dbConn = dbConn.replace('<username>', dbUser);
   dbConn = dbConn.replace('<password>', dbPass);
 
-  const LeaderBoard = mongoose.model('CrappyBirdScore', LeaderboardSchema);
+  const Leaderboard = mongoose.model('CrappyBirdScore', LeaderboardSchema);
 
   try {
     await mongoose.connect(dbConn);
 
     if (event.httpMethod === 'GET') {
-      const leaderboard = await LeaderBoard.find()
+      const leaderboard = await Leaderboard.find()
         .sort([['score', 'desc']])
         .limit(15);
 
@@ -54,7 +54,7 @@ exports.handler = async (event, context) => {
 
     if (event.httpMethod === 'POST') {
       const submission = JSON.parse(event.body);
-      const stats = new LeaderBoard(submission);
+      const stats = new Leaderboard(submission);
       await stats.save();
 
       return {
