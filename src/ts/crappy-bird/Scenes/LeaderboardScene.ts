@@ -84,8 +84,6 @@ export class LeaderboardScene extends Scene {
       triggerGameRestart(this.scene.game);
     });
 
-    this.leaderboard = { data: [{ name: 'luke', score: '20' }], count: 1 };
-
     if (!this.leaderboard) return;
 
     if (this.leaderboard.data.length) {
