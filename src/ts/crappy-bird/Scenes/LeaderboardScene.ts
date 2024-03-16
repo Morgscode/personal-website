@@ -92,13 +92,13 @@ export class LeaderboardScene extends Scene {
         this.rowsYStart = this.rowsYStart + 25;
 
         this.add
-          .text(50, this.rowsYStart, `${i + 1}.`, {
+          .text(25, this.rowsYStart, `${i + 1}.`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
 
         this.add
-          .text(75, this.rowsYStart, `${entry.name}`, {
+          .text(50, this.rowsYStart, `${entry.name}`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
