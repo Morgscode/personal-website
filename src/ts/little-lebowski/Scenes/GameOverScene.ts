@@ -48,6 +48,8 @@ export class GameOverScene extends Scene {
       })
       .setOrigin(0.5);
 
+    this.input.keyboard!.disableGlobalCapture();
+
     const nameInput = this.add.rexInputText(400, 300, 400, 60, {
       type: 'text',
       placeholder: 'enter your name',
