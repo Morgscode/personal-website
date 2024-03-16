@@ -46,6 +46,8 @@ const game: Game = new Game(config);
 export async function triggerGameOver() {
   await delay(2000);
   game.scene.start('GameOverScene');
+  const main = game.scene.getScene('CrappyBird');
+  main.physics.pause();
   return (gameState.gameOver = true);
 }
 
