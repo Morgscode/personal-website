@@ -84,15 +84,17 @@ export class LeaderboardScene extends Scene {
       triggerGameRestart(this.scene.game);
     });
 
+    this.leaderboard = { data: [{ name: 'luke', score: '20' }], count: 1 };
+
     if (!this.leaderboard) return;
 
     if (this.leaderboard.data.length) {
       for (let i = 0; i < this.leaderboard.data.length; i++) {
         const entry = this.leaderboard.data[i];
-        this.rowsYStart = this.rowsYStart + 25;
+        this.rowsYStart = this.rowsYStart + 35;
 
         this.add
-          .text(25, this.rowsYStart, `${i + 1}.`, {
+          .text(20, this.rowsYStart, `${i + 1}.`, {
             font: '20px Courier',
           })
           .setFill('#ffffff');
