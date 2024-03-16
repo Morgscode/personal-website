@@ -1,17 +1,25 @@
-import { Math as PhaserMath } from 'phaser';
-import { CrappyBirdScene } from '../Scenes';
+import { Math as PhaserMath, Scene } from 'phaser';
+
+type SceneWithClouds = {
+  clouds: Phaser.Physics.Arcade.Group[];
+} & Scene;
 
 /**
  * Gnerates some inital clouds from the start of the game
  */
-export function setupClouds(scene: CrappyBirdScene) {
-  const clouds = [scene.physics.add.group()];
+export function setupClouds(
+  start: integer,
+  clouds: Phaser.Physics.Arcade.Group[],
+  scene: SceneWithClouds,
+) {
   let stepX: integer = 0;
+
+  clouds.push(scene.physics.add.group());
 
   // create a randomly spread cluster of 12 clouds
   for (let i = 0; i < 12; i++) {
     // calculate the coords for the next cloud relative to the bird x
-    const x = scene.bird.x + stepX + PhaserMath.Between(400, 2100);
+    const x = start + stepX + PhaserMath.Between(400, 2100);
     stepX = x / 2 + PhaserMath.Between(200, 700);
     const y = PhaserMath.Between(150, 300);
     // create the cloud and set some dynamic properties
@@ -37,11 +45,12 @@ export function setupClouds(scene: CrappyBirdScene) {
  * Handles progressive cloud generation
  */
 export function generateClouds(
-  scene: CrappyBirdScene,
+  start: integer,
   clouds: Phaser.Physics.Arcade.Group[],
+  scene: SceneWithClouds,
   finalCloud: Phaser.Physics.Arcade.Sprite,
 ) {
-  if (scene.bird.x > finalCloud.x - 450) {
+  if (start > finalCloud.x - 450) {
     clouds.push(scene.physics.add.group());
     // start at 450 so the next cloud always generates off screem
     let stepX: integer = 450;
@@ -77,11 +86,11 @@ export function generateClouds(
  * and all clouds in the first group are all off screen
  */
 export function handleCloudCleanup(
-  scene: CrappyBirdScene,
+  start: integer,
   clouds: Phaser.Physics.Arcade.Group[],
   finalCloud: Phaser.Physics.Arcade.Sprite,
 ) {
-  if (clouds.length > 2 && scene.bird.x > finalCloud.x + 450) {
+  if (clouds.length > 2 && start > finalCloud.x + 450) {
     // destroy first group
     clouds[0].clear(true, true);
     // filter the array

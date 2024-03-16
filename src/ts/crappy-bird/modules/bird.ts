@@ -1,4 +1,3 @@
-import { Types } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
 /**
@@ -53,4 +52,12 @@ export function handleBirdRotation(scene: CrappyBirdScene) {
 export function flap(scene: CrappyBirdScene): void {
   scene.bird.setVelocityY(-300);
   scene.sound.play('flap');
+}
+
+export function birdHitsPipe(
+  bird: Phaser.Physics.Arcade.Sprite,
+  pipe: Phaser.Physics.Arcade.Sprite,
+) {
+  bird.setTint(0xff0000);
+  bird.angle = 180;
 }
