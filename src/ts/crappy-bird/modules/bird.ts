@@ -91,6 +91,7 @@ export async function birdCollides(
   bird.setFlipY(true);
   bird.setAccelerationX(0);
   bird.setVelocityX(0);
+  gameState.gameOver = true;
   await delay(2000);
   bird.disableBody(true, false);
 }
