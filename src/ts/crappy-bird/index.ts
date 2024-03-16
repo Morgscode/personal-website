@@ -2,6 +2,7 @@ import { Game, AUTO, Scale, Types } from 'phaser';
 import { BootScene } from './Scenes';
 import { cyrb128 } from './modules/hash';
 import { gameState } from './modules/state';
+import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
@@ -11,7 +12,6 @@ const config: Types.Core.GameConfig = {
   max: { width: window.innerWidth, height: window.innerHeight },
   parent: 'crappy-bird-game',
   title: 'Crappy Bird',
-  scene: [BootScene],
   scale: {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,
@@ -22,10 +22,20 @@ const config: Types.Core.GameConfig = {
       gravity: { x: 0, y: 300 },
     },
   },
+  plugins: {
+    global: [
+      {
+        key: 'rexInputTextPlugin',
+        plugin: InputTextPlugin,
+        start: true,
+      },
+    ],
+  },
   backgroundColor: 0x0f0f0f,
   seed: [
     ...cyrb128('theSecondMouseAlwaysGetsTheCheese').map((int) => String(int)),
   ],
+  scene: [BootScene],
 };
 
 const game: Game = new Game(config);

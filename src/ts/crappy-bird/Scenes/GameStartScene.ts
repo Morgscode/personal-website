@@ -82,8 +82,6 @@ export class GameStartScene extends Scene {
 
     startButton.on('pointerdown', () => {
       this.scene.stop();
-      this.sound.get('tweet-1').stop();
-      this.sound.get('tweet-2').stop();
       this.scene.launch('CrappyBird');
     });
 
@@ -96,16 +94,16 @@ export class GameStartScene extends Scene {
 
     this.sound.play('tweet-1', {
       name: 'tweet-1',
-      duration: 5,
+      duration: 7,
       config: {
         loop: true,
       },
     });
     this.sound.play('tweet-2', {
       name: 'tweet-2',
-      duration: 5,
+      duration: 7,
       config: {
-        delay: 5,
+        delay: 3,
         loop: true,
       },
     });

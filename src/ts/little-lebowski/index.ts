@@ -24,7 +24,6 @@ const config: Types.Core.GameConfig = {
       debug: false,
     },
   },
-  scene: [BootScene],
   plugins: {
     global: [
       {
@@ -35,6 +34,7 @@ const config: Types.Core.GameConfig = {
     ],
   },
   backgroundColor: 0x0f0f0f,
+  scene: [BootScene],
 };
 
 export const game: Game = new Game(config);

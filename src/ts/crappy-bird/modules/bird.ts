@@ -28,9 +28,23 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
 /**
  * Setups the Crappy Bird tile collisions
  */
-export function setupBirdTileCollisions(scene: CrappyBirdScene) {
+export function setupBirdTileCollision(scene: CrappyBirdScene) {
   scene.physics.add.collider(scene.bird, scene.ground);
   scene.physics.add.collider(scene.bird, scene.stoneTop);
+  return scene;
+}
+
+/**
+ * Setups the Crappy Bird pipe collisions
+ */
+export function setupBirdPipeCollision(
+  scene: CrappyBirdScene,
+  bird: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
+  pipes: Phaser.Physics.Arcade.StaticGroup[],
+  hitPipe: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+  gameOver: () => boolean,
+) {
+  scene.physics.add.collider(bird, pipes, hitPipe, gameOver, scene);
   return scene;
 }
 

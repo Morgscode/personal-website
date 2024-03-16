@@ -13,12 +13,15 @@ import {
 } from '../modules/clouds';
 import {
   setupCrappyBird,
-  setupBirdTileCollisions,
+  setupBirdTileCollision,
   handleBirdRotation,
   flap,
+  setupBirdPipeCollision,
+  birdHitsPipe,
 } from '../modules/bird';
 import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
 import { gameState } from '../modules/state';
+import { triggerGameOver } from '../';
 
 export type CrappyBirdScene = {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -43,6 +46,7 @@ export class CrappyBird extends Scene {
   }
 
   create(): void {
+    this.sound.stopAll();
     gameState.gameOver = false;
     gameState.score = 0;
     this.cameras.main.setBackgroundColor(SKY_COLOR);
@@ -50,10 +54,18 @@ export class CrappyBird extends Scene {
     this.ground = setupTiles(this, 770, 'ground');
     this.stoneTop = setupTiles(this, 0, 'stone');
     this.bird = setupCrappyBird(this);
-    setupBirdTileCollisions(this);
+    setupBirdTileCollision(this);
 
     this.clouds = setupClouds(this.bird.x, this.clouds, this);
     this.pipes = setupPipes(this);
+
+    setupBirdPipeCollision(
+      this,
+      this.bird,
+      this.pipes,
+      birdHitsPipe,
+      triggerGameOver,
+    );
 
     this.cameras.main
       .setBounds(0, 0, Infinity, 600)
