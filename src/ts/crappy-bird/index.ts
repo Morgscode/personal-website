@@ -1,7 +1,7 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
 import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
-import { cyrb128 } from './modules/hash';
+import { cyrb128, delay } from './modules/utils';
 import { gameState, resetGameState } from './modules/state';
 import '@/scss/main.scss';
 
@@ -43,7 +43,8 @@ const config: Types.Core.GameConfig = {
 
 const game: Game = new Game(config);
 
-export function triggerGameOver() {
+export async function triggerGameOver() {
+  await delay(2000);
   game.scene.start('GameOverScene');
   return (gameState.gameOver = true);
 }
@@ -55,9 +56,9 @@ export function triggerGameRestart(game: Game) {
   main.scene.remove();
   const gameOver = game.scene.getScene('GameOverScene');
   gameOver.scene.remove();
-  resetGameState();
   const leaderboard = game.scene.getScene('LeaderboardScene');
   leaderboard.scene.remove();
+  resetGameState();
   const boot = game.scene.getScene('BootScene');
   boot.scene.restart();
 }

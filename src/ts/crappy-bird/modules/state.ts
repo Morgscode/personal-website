@@ -1,11 +1,15 @@
 type GameState = {
-  score: integer;
+  score: number;
   gameOver: boolean;
+  pipeCollision: boolean;
+  groundCollision: boolean;
 };
 
 export let gameState: GameState = {
   score: 0,
   gameOver: false,
+  pipeCollision: false,
+  groundCollision: false,
 };
 
 const INITIAL_GAME_STATE = JSON.parse(JSON.stringify(gameState));

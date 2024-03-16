@@ -10,10 +10,10 @@ export async function getLeaderboard() {
   }
 }
 
-export async function submitStatistics(
+export async function submitLeaderboardEntry(
   name: string,
-  level: integer,
-  score: integer,
+  level: number,
+  score: number,
 ) {
   const stats = { name, level, score };
   try {

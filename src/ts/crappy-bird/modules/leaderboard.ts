@@ -10,7 +10,7 @@ export async function getLeaderboard() {
   }
 }
 
-export async function submitStatistics(name: string, score: integer) {
+export async function submitLeaderboardEntry(name: string, score: number) {
   const stats = { name, score };
   try {
     const res = await fetch(

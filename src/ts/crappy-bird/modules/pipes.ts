@@ -1,7 +1,7 @@
-import { Math as PhaserMath } from 'phaser';
+import { Math as PhaserMath, Events } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
-const pipeYOptions: Record<integer, Array<integer>> = {
+const pipeYOptions: Record<number, Array<number>> = {
   // even seperated - hardest to easiest
   0: [125, 600],
   1: [100, 625],
@@ -20,7 +20,7 @@ const pipeYOptions: Record<integer, Array<integer>> = {
 /**
  * Creates two pipe sprites
  */
-function createPipeSprites(scene: CrappyBirdScene, x: integer) {
+function createPipeSprites(scene: CrappyBirdScene, x: number) {
   const pipeColor = PhaserMath.Between(1, 2);
   const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 10)];
   const pipe1 = scene.physics.add.staticSprite(x, topY, `pipe-${pipeColor}`);
@@ -29,18 +29,23 @@ function createPipeSprites(scene: CrappyBirdScene, x: integer) {
 
   const pipe2 = scene.physics.add.staticSprite(x, bottomY, `pipe-${pipeColor}`);
   pipe2.setDepth(1);
+
   return [pipe1, pipe2];
 }
 
 /**
  * Sets up the pipe physics group and creates the first two
  */
-export function setupPipes(scene: CrappyBirdScene) {
+export function setupPipes(
+  scene: CrappyBirdScene,
+  pipeXRecords: Array<number>,
+) {
   const pipes = scene.physics.add.staticGroup();
   // calculate the position relative to the bird x
   const x = scene.bird.x + 450;
-  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
+  pipeXRecords.push(x);
 
+  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
   pipes.addMultiple([topPipe, bottomPipe], true);
 
   return [pipes];
@@ -53,6 +58,7 @@ export function generatePipes(
   scene: CrappyBirdScene,
   pipes: Phaser.Physics.Arcade.StaticGroup[],
   finalPipe: Phaser.Physics.Arcade.Sprite,
+  pipeXRecords: Array<number>,
 ) {
   // if we have 20 pipe groups, return
   if (pipes.length >= 20) return pipes;
@@ -60,8 +66,9 @@ export function generatePipes(
 
   // calculate the new pipe position reltive to the final pipe in the game
   const x = finalPipe.x + PhaserMath.Between(150, 550);
-  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
+  pipeXRecords.push(x);
 
+  const [topPipe, bottomPipe] = createPipeSprites(scene, x);
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
 
   return pipes;

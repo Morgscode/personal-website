@@ -8,11 +8,11 @@ type SceneWithClouds = {
  * Generates some inital clouds from the start of the game
  */
 export function setupClouds(
-  start: integer,
+  start: number,
   clouds: Phaser.Physics.Arcade.Group[],
   scene: SceneWithClouds,
 ) {
-  let stepX: integer = 0;
+  let stepX: number = 0;
 
   clouds.push(scene.physics.add.group());
 
@@ -45,7 +45,7 @@ export function setupClouds(
  * Handles progressive cloud generation
  */
 export function generateClouds(
-  start: integer,
+  start: number,
   clouds: Phaser.Physics.Arcade.Group[],
   scene: SceneWithClouds,
   finalCloud: Phaser.Physics.Arcade.Sprite,
@@ -53,7 +53,7 @@ export function generateClouds(
   if (start > finalCloud.x - 450) {
     clouds.push(scene.physics.add.group());
     // start at 450 so the next cloud always generates off screem
-    let stepX: integer = 450;
+    let stepX: number = 450;
 
     for (let i = 0; i < 12; i++) {
       // calculate the coords for the next cloud relative to the final cloud
@@ -86,7 +86,7 @@ export function generateClouds(
  * and all clouds in the first group are all off screen
  */
 export function handleCloudCleanup(
-  start: integer,
+  start: number,
   clouds: Phaser.Physics.Arcade.Group[],
   finalCloud: Phaser.Physics.Arcade.Sprite,
 ) {

@@ -20,5 +20,6 @@ export function loadCrappyAssets(scene: Scene) {
   scene.load.audio('tweet-2', './assets/sounds/bird-tweet-2.mp3');
   scene.load.audio('flap', './assets/sounds/bird-flap.mp3');
   scene.load.audio('point', './assets/sounds/point.mp3');
+  scene.load.audio('splat', './assets/sounds/bird-splat.mp3');
   return scene;
 }
