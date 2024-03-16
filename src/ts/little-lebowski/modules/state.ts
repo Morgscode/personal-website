@@ -2,11 +2,11 @@ import { triggerGameOver } from '../';
 
 export type GameState = {
   gameOver: boolean;
-  score: integer;
-  level: integer;
-  activeStarGroups: integer;
-  jumpCount: integer;
-  jumpTimeStamp: null | integer;
+  score: number;
+  level: number;
+  activeStarGroups: number;
+  jumpCount: number;
+  jumpTimeStamp: null | number;
   canDoubleJumpMobile: boolean;
 };
 
@@ -39,7 +39,7 @@ export const playerJumpState = {
   getJumpCount() {
     return gameState.jumpCount;
   },
-  handleMobileDoubleJumpState(timestamp: integer) {
+  handleMobileDoubleJumpState(timestamp: number) {
     const prevTimestamp = gameState.jumpTimeStamp;
     if (prevTimestamp) {
       const downDuration = timestamp - prevTimestamp;

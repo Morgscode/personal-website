@@ -25,5 +25,5 @@ export function cyrb128(str: string) {
 /**
  * An awaitable timeout
  */
-export const delay = (ms: integer) =>
+export const delay = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));

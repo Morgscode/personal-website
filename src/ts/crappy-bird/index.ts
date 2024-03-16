@@ -44,7 +44,7 @@ const config: Types.Core.GameConfig = {
 const game: Game = new Game(config);
 
 export async function triggerGameOver() {
-  await delay(3000);
+  await delay(2000);
   game.scene.start('GameOverScene');
   return (gameState.gameOver = true);
 }
@@ -56,9 +56,9 @@ export function triggerGameRestart(game: Game) {
   main.scene.remove();
   const gameOver = game.scene.getScene('GameOverScene');
   gameOver.scene.remove();
-  resetGameState();
   const leaderboard = game.scene.getScene('LeaderboardScene');
   leaderboard.scene.remove();
+  resetGameState();
   const boot = game.scene.getScene('BootScene');
   boot.scene.restart();
 }

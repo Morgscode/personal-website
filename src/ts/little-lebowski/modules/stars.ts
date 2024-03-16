@@ -2,9 +2,9 @@ import { Scene, Math as PhaserMath } from 'phaser';
 
 export function renderStarGroup(
   scene: Scene,
-  xVal: integer,
-  yVal: integer,
-  stepXVal: integer,
+  xVal: number,
+  yVal: number,
+  stepXVal: number,
 ) {
   const stars = scene.physics.add.group({
     key: 'star',

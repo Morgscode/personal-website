@@ -1,6 +1,7 @@
 import { Scene, Types } from 'phaser';
 import { SKY_COLOR } from '../modules/constants';
 import { loadCrappyAssets } from '../modules/assets';
+import { renderScoreBoardText } from '../modules/metricText';
 import {
   setupTiles,
   handleTileGeneration,
@@ -20,7 +21,7 @@ import {
   birdHitsPipe,
 } from '../modules/bird';
 import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
-import { gameState } from '../modules/state';
+import { gameState, scoreState } from '../modules/state';
 import { triggerGameOver } from '../';
 
 export type CrappyBirdScene = {
@@ -29,6 +30,7 @@ export type CrappyBirdScene = {
   stoneTop: Phaser.Physics.Arcade.StaticGroup[];
   clouds: Phaser.Physics.Arcade.Group[];
   pipes: Phaser.Physics.Arcade.StaticGroup[];
+  scoreText: Phaser.GameObjects.Text;
 } & Scene;
 export class CrappyBird extends Scene {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -36,6 +38,7 @@ export class CrappyBird extends Scene {
   stoneTop: Phaser.Physics.Arcade.StaticGroup[] = [];
   clouds: Phaser.Physics.Arcade.Group[] = [];
   pipes: Phaser.Physics.Arcade.StaticGroup[] = [];
+  scoreText: Phaser.GameObjects.Text;
 
   constructor() {
     super({ key: 'CrappyBird' });
@@ -50,6 +53,7 @@ export class CrappyBird extends Scene {
     gameState.gameOver = false;
     gameState.score = 0;
     this.cameras.main.setBackgroundColor(SKY_COLOR);
+    this.scoreText = renderScoreBoardText(this, scoreState.setupScore());
 
     this.ground = setupTiles(this, 770, 'ground');
     this.stoneTop = setupTiles(this, 0, 'stone');
@@ -123,5 +127,7 @@ export class CrappyBird extends Scene {
     );
 
     this.pipes = handlePipeCleanup(this, this.pipes);
+
+    this.scoreText.setText(`Score: ${scoreState.getScore()}`);
   }
 }

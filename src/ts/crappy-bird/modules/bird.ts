@@ -1,5 +1,5 @@
 import { CrappyBirdScene } from '../Scenes';
-import { gameState } from './state';
+import { gameState, scoreState } from './state';
 
 /**
  * Setups the Crappy Bird with animations
@@ -8,7 +8,7 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
   const bird = scene.physics.add
     .sprite(0, 450, 'bird')
     .setDepth(1)
-    .setBounce(0.2)
+    .setBounce(0.2, 0.2)
     .setCollideWorldBounds(false)
     .setGravityY(300)
     .setVelocityX(300)
@@ -30,7 +30,13 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
  * Setups the Crappy Bird tile collisions
  */
 export function setupBirdTileCollision(scene: CrappyBirdScene) {
-  scene.physics.add.collider(scene.bird, scene.ground);
+  scene.physics.add.collider(
+    scene.bird,
+    scene.ground,
+    birdHitsTile,
+    () => true,
+    scene,
+  );
   scene.physics.add.collider(scene.bird, scene.stoneTop);
   return scene;
 }
@@ -70,6 +76,16 @@ export function flap(scene: CrappyBirdScene): void {
   scene.sound.play('flap');
 }
 
+export function birdHitsTile(
+  bird: Phaser.Physics.Arcade.Sprite,
+  tile: Phaser.Physics.Arcade.Sprite,
+) {
+  if (!gameState.groundCollision) {
+    this.sound.play('splat');
+    gameState.groundCollision = true;
+  }
+}
+
 /**
  * The stuff we want to happen when the bird collides with a pipe
  */
@@ -77,6 +93,10 @@ export function birdHitsPipe(
   bird: Phaser.Physics.Arcade.Sprite,
   pipe: Phaser.Physics.Arcade.Sprite,
 ) {
+  if (!gameState.pipeCollision) {
+    this.sound.play('splat');
+    gameState.pipeCollision = true;
+  }
   bird.setTint(0xff0000);
   bird.setFlipY(true);
   bird.setAccelerationX(0);

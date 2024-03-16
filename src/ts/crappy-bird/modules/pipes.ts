@@ -1,7 +1,8 @@
-import { Math as PhaserMath } from 'phaser';
+import { Math as PhaserMath, Events } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
+import { EVENT } from './constants';
 
-const pipeYOptions: Record<integer, Array<integer>> = {
+const pipeYOptions: Record<number, Array<number>> = {
   // even seperated - hardest to easiest
   0: [125, 600],
   1: [100, 625],
@@ -20,7 +21,7 @@ const pipeYOptions: Record<integer, Array<integer>> = {
 /**
  * Creates two pipe sprites
  */
-function createPipeSprites(scene: CrappyBirdScene, x: integer) {
+function createPipeSprites(scene: CrappyBirdScene, x: number) {
   const pipeColor = PhaserMath.Between(1, 2);
   const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 10)];
   const pipe1 = scene.physics.add.staticSprite(x, topY, `pipe-${pipeColor}`);
@@ -29,6 +30,7 @@ function createPipeSprites(scene: CrappyBirdScene, x: integer) {
 
   const pipe2 = scene.physics.add.staticSprite(x, bottomY, `pipe-${pipeColor}`);
   pipe2.setDepth(1);
+
   return [pipe1, pipe2];
 }
 

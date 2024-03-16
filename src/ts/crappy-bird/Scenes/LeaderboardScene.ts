@@ -4,7 +4,7 @@ import { triggerGameRestart } from '../';
 
 type Leaderboard = {
   data: LeaderboardEntry[];
-  count: integer;
+  count: number;
 };
 
 type LeaderboardEntry = {
