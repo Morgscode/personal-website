@@ -1,5 +1,6 @@
 import { CrappyBirdScene } from '../Scenes';
-import { gameState, scoreState } from './state';
+import { gameState } from './state';
+import { delay } from './utils';
 
 /**
  * Setups the Crappy Bird with animations
@@ -27,17 +28,37 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
 }
 
 /**
+ * Handles the flap action (plays sound and increases the birds velocity)
+ */
+export function flap(scene: CrappyBirdScene): void {
+  if (gameState.gameOver) return;
+  scene.bird.setVelocityY(-300);
+  scene.sound.play('flap');
+}
+
+/**
+ * Managers bird rotation based on its velocity
+ */
+export function handleBirdRotation(scene: CrappyBirdScene) {
+  if (scene.bird.body.velocity.y > 0 && scene.bird.rotation <= 0.25) {
+    scene.bird.rotation += 0.05;
+  } else if (scene.bird.rotation >= -0.25) {
+    scene.bird.rotation -= 0.05;
+  }
+  return scene;
+}
+
+/**
  * Setups the Crappy Bird tile collisions
  */
-export function setupBirdTileCollision(scene: CrappyBirdScene) {
-  scene.physics.add.collider(
-    scene.bird,
-    scene.ground,
-    birdHitsTile,
-    () => true,
-    scene,
-  );
-  scene.physics.add.collider(scene.bird, scene.stoneTop);
+export function setupBirdTileCollision(
+  scene: CrappyBirdScene,
+  bird: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
+  tiles: Phaser.Physics.Arcade.StaticGroup[],
+  hitTile: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+  gameOver: () => boolean,
+) {
+  scene.physics.add.collider(bird, tiles, hitTile, gameOver, scene);
   return scene;
 }
 
@@ -56,50 +77,20 @@ export function setupBirdPipeCollision(
 }
 
 /**
- * Managers bird rotation based on its velocity
- */
-export function handleBirdRotation(scene: CrappyBirdScene) {
-  if (scene.bird.body.velocity.y > 0 && scene.bird.rotation <= 0.25) {
-    scene.bird.rotation += 0.05;
-  } else if (scene.bird.rotation >= -0.25) {
-    scene.bird.rotation -= 0.05;
-  }
-  return scene;
-}
-
-/**
- * Handles the flap action (plays sound and increases the birds velocity)
- */
-export function flap(scene: CrappyBirdScene): void {
-  if (gameState.gameOver) return;
-  scene.bird.setVelocityY(-300);
-  scene.sound.play('flap');
-}
-
-export function birdHitsTile(
-  bird: Phaser.Physics.Arcade.Sprite,
-  tile: Phaser.Physics.Arcade.Sprite,
-) {
-  if (!gameState.groundCollision) {
-    this.sound.play('splat');
-    gameState.groundCollision = true;
-  }
-}
-
-/**
  * The stuff we want to happen when the bird collides with a pipe
  */
-export function birdHitsPipe(
+export async function birdCollides(
   bird: Phaser.Physics.Arcade.Sprite,
   pipe: Phaser.Physics.Arcade.Sprite,
 ) {
-  if (!gameState.pipeCollision) {
+  if (!gameState.birdHasCollided) {
     this.sound.play('splat');
-    gameState.pipeCollision = true;
+    gameState.birdHasCollided = true;
   }
   bird.setTint(0xff0000);
   bird.setFlipY(true);
   bird.setAccelerationX(0);
   bird.setVelocityX(0);
-  bird.anims.stop();
+  await delay(2000);
+  bird.disableBody(true, false);
 }
