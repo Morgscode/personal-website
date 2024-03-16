@@ -1,17 +1,20 @@
 import { Game, AUTO, Scale, Types } from 'phaser';
+import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import { BootScene } from './Scenes';
 import { cyrb128 } from './modules/hash';
-import { gameState } from './modules/state';
+import { gameState, resetGameState } from './modules/state';
 import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
   type: AUTO,
+  title: 'Crappy Bird',
   width: 450,
   height: 800,
   max: { width: window.innerWidth, height: window.innerHeight },
   parent: 'crappy-bird-game',
-  title: 'Crappy Bird',
-  scene: [BootScene],
+  dom: {
+    createContainer: true,
+  },
   scale: {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,
@@ -22,10 +25,20 @@ const config: Types.Core.GameConfig = {
       gravity: { x: 0, y: 300 },
     },
   },
+  plugins: {
+    global: [
+      {
+        key: 'rexInputTextPlugin',
+        plugin: InputTextPlugin,
+        start: true,
+      },
+    ],
+  },
   backgroundColor: 0x0f0f0f,
   seed: [
     ...cyrb128('theSecondMouseAlwaysGetsTheCheese').map((int) => String(int)),
   ],
+  scene: [BootScene],
 };
 
 const game: Game = new Game(config);
@@ -42,6 +55,7 @@ export function triggerGameRestart(game: Game) {
   main.scene.remove();
   const gameOver = game.scene.getScene('GameOverScene');
   gameOver.scene.remove();
+  resetGameState();
   const leaderboard = game.scene.getScene('LeaderboardScene');
   leaderboard.scene.remove();
   const boot = game.scene.getScene('BootScene');

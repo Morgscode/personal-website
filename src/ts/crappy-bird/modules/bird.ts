@@ -1,5 +1,5 @@
-import { Types } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
+import { gameState } from './state';
 
 /**
  * Setups the Crappy Bird with animations
@@ -29,9 +29,23 @@ export function setupCrappyBird(scene: CrappyBirdScene) {
 /**
  * Setups the Crappy Bird tile collisions
  */
-export function setupBirdTileCollisions(scene: CrappyBirdScene) {
+export function setupBirdTileCollision(scene: CrappyBirdScene) {
   scene.physics.add.collider(scene.bird, scene.ground);
   scene.physics.add.collider(scene.bird, scene.stoneTop);
+  return scene;
+}
+
+/**
+ * Setups the Crappy Bird pipe collisions
+ */
+export function setupBirdPipeCollision(
+  scene: CrappyBirdScene,
+  bird: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
+  pipes: Phaser.Physics.Arcade.StaticGroup[],
+  hitPipe: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+  gameOver: () => boolean,
+) {
+  scene.physics.add.collider(bird, pipes, hitPipe, gameOver, scene);
   return scene;
 }
 
@@ -51,6 +65,18 @@ export function handleBirdRotation(scene: CrappyBirdScene) {
  * Handles the flap action (plays sound and increases the birds velocity)
  */
 export function flap(scene: CrappyBirdScene): void {
+  if (gameState.gameOver) return;
   scene.bird.setVelocityY(-300);
   scene.sound.play('flap');
+}
+
+export function birdHitsPipe(
+  bird: Phaser.Physics.Arcade.Sprite,
+  pipe: Phaser.Physics.Arcade.Sprite,
+) {
+  bird.setTint(0xff0000);
+  bird.setFlipY(true);
+  bird.setAccelerationX(0);
+  bird.setVelocityX(0);
+  bird.anims.stop();
 }

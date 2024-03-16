@@ -16,6 +16,8 @@ export function loadCrappyAssets(scene: Scene) {
   scene.load.image('pipe-1', './assets/img/pipe-green.png');
   scene.load.image('pipe-2', './assets/img/pipe-red.png');
 
+  scene.load.audio('tweet-1', './assets/sounds/bird-tweet-1.mp3');
+  scene.load.audio('tweet-2', './assets/sounds/bird-tweet-2.mp3');
   scene.load.audio('flap', './assets/sounds/bird-flap.mp3');
   scene.load.audio('point', './assets/sounds/point.mp3');
   return scene;

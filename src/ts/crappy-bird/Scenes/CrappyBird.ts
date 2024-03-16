@@ -13,12 +13,15 @@ import {
 } from '../modules/clouds';
 import {
   setupCrappyBird,
-  setupBirdTileCollisions,
+  setupBirdTileCollision,
   handleBirdRotation,
   flap,
+  setupBirdPipeCollision,
+  birdHitsPipe,
 } from '../modules/bird';
 import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
 import { gameState } from '../modules/state';
+import { triggerGameOver } from '../';
 
 export type CrappyBirdScene = {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -27,13 +30,12 @@ export type CrappyBirdScene = {
   clouds: Phaser.Physics.Arcade.Group[];
   pipes: Phaser.Physics.Arcade.StaticGroup[];
 } & Scene;
-
 export class CrappyBird extends Scene {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
-  ground: Phaser.Physics.Arcade.StaticGroup[];
-  stoneTop: Phaser.Physics.Arcade.StaticGroup[];
-  clouds: Phaser.Physics.Arcade.Group[];
-  pipes: Phaser.Physics.Arcade.StaticGroup[];
+  ground: Phaser.Physics.Arcade.StaticGroup[] = [];
+  stoneTop: Phaser.Physics.Arcade.StaticGroup[] = [];
+  clouds: Phaser.Physics.Arcade.Group[] = [];
+  pipes: Phaser.Physics.Arcade.StaticGroup[] = [];
 
   constructor() {
     super({ key: 'CrappyBird' });
@@ -44,6 +46,7 @@ export class CrappyBird extends Scene {
   }
 
   create(): void {
+    this.sound.stopAll();
     gameState.gameOver = false;
     gameState.score = 0;
     this.cameras.main.setBackgroundColor(SKY_COLOR);
@@ -51,10 +54,18 @@ export class CrappyBird extends Scene {
     this.ground = setupTiles(this, 770, 'ground');
     this.stoneTop = setupTiles(this, 0, 'stone');
     this.bird = setupCrappyBird(this);
-    setupBirdTileCollisions(this);
+    setupBirdTileCollision(this);
 
-    this.clouds = setupClouds(this);
+    this.clouds = setupClouds(this.bird.x, this.clouds, this);
     this.pipes = setupPipes(this);
+
+    setupBirdPipeCollision(
+      this,
+      this.bird,
+      this.pipes,
+      birdHitsPipe,
+      triggerGameOver,
+    );
 
     this.cameras.main
       .setBounds(0, 0, Infinity, 600)
@@ -96,12 +107,21 @@ export class CrappyBird extends Scene {
 
     const cloud = this.clouds[this.clouds.length - 1].children.entries;
     const finalCloud = cloud[cloud.length - 1] as Phaser.Physics.Arcade.Sprite;
-    this.clouds = generateClouds(this, this.clouds, finalCloud);
-    this.clouds = handleCloudCleanup(this, this.clouds, finalCloud);
+    this.clouds = generateClouds(this.bird.x, this.clouds, this, finalCloud);
+    this.clouds = handleCloudCleanup(this.bird.x, this.clouds, finalCloud);
 
     const pipe = this.pipes[this.pipes.length - 1].children.entries;
     const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
     this.pipes = generatePipes(this, this.pipes, finalPipe);
+
+    setupBirdPipeCollision(
+      this,
+      this.bird,
+      this.pipes,
+      birdHitsPipe,
+      triggerGameOver,
+    );
+
     this.pipes = handlePipeCleanup(this, this.pipes);
   }
 }

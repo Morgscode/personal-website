@@ -23,25 +23,28 @@ export class GameOverScene extends Scene {
     overlay.alpha = 0.7;
 
     this.add
-      .text(400, 100, 'Game Over :(', { font: '58px Courier' })
-      .setFill('#ffffff')
-      .setOrigin(0.5);
+      .text(225, 225, 'Game Over', {
+        font: '38px Courier',
+      })
+      .setFill('#FFFFFF')
+      .setOrigin(0.5)
+      .setDepth(1);
 
     this.add
-      .text(300, 175, `Score: ${gameState.score}`, {
-        fontSize: '24px',
+      .text(225, 275, `Score: ${gameState.score}`, {
+        fontSize: '28px',
         color: '#fff',
       })
       .setOrigin(0.5);
 
     this.add
-      .text(400, 250, `Add your name to the leaderboard`, {
-        fontSize: '18px',
+      .text(225, 325, `Add your name to the leaderboard`, {
+        fontSize: '20px',
         color: '#fff',
       })
       .setOrigin(0.5);
 
-    const nameInput = this.add.rexInputText(400, 300, 400, 60, {
+    const nameInput = this.add.rexInputText(225, 375, 400, 60, {
       type: 'text',
       placeholder: 'enter your name',
       border: 1,
@@ -58,7 +61,7 @@ export class GameOverScene extends Scene {
     });
 
     const submit = this.add
-      .text(320, 375, 'Add to score board', {
+      .text(225, 450, 'Add to score board', {
         font: '16px Courier',
       })
       .setFill('#222222')
@@ -67,7 +70,7 @@ export class GameOverScene extends Scene {
       .setDepth(1);
 
     const restart = this.add
-      .text(520, 375, 'Restart Game', {
+      .text(225, 515, 'Restart Game', {
         font: '16px Courier',
       })
       .setFill('#222222')

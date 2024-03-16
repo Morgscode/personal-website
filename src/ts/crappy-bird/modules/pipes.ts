@@ -2,13 +2,19 @@ import { Math as PhaserMath } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 
 const pipeYOptions: Record<integer, Array<integer>> = {
-  0: [0, 600],
-  1: [100, 700],
-  2: [150, 750],
-  3: [25, 575],
-  4: [100, 600],
-  5: [150, 650],
-  6: [100, 575],
+  // even seperated - hardest to easiest
+  0: [125, 600],
+  1: [100, 625],
+  2: [75, 650],
+  3: [50, 675],
+  4: [25, 700],
+  // uneven spaced - not ordered
+  5: [0, 600],
+  6: [100, 700],
+  7: [150, 750],
+  8: [25, 575],
+  9: [100, 575],
+  10: [150, 650],
 };
 
 /**
@@ -16,7 +22,7 @@ const pipeYOptions: Record<integer, Array<integer>> = {
  */
 function createPipeSprites(scene: CrappyBirdScene, x: integer) {
   const pipeColor = PhaserMath.Between(1, 2);
-  const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 6)];
+  const [topY, bottomY] = pipeYOptions[PhaserMath.Between(0, 10)];
   const pipe1 = scene.physics.add.staticSprite(x, topY, `pipe-${pipeColor}`);
   pipe1.setFlipY(true);
   pipe1.setDepth(1);
@@ -31,17 +37,11 @@ function createPipeSprites(scene: CrappyBirdScene, x: integer) {
  */
 export function setupPipes(scene: CrappyBirdScene) {
   const pipes = scene.physics.add.staticGroup();
-
   // calculate the position relative to the bird x
   const x = scene.bird.x + 450;
-
   const [topPipe, bottomPipe] = createPipeSprites(scene, x);
 
   pipes.addMultiple([topPipe, bottomPipe], true);
-
-  // add colliders for the pipes and the bird
-  scene.physics.add.collider(scene.bird, topPipe);
-  scene.physics.add.collider(scene.bird, bottomPipe);
 
   return [pipes];
 }
@@ -60,13 +60,9 @@ export function generatePipes(
 
   // calculate the new pipe position reltive to the final pipe in the game
   const x = finalPipe.x + PhaserMath.Between(150, 550);
-
   const [topPipe, bottomPipe] = createPipeSprites(scene, x);
 
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
-
-  scene.physics.add.collider(scene.bird, topPipe);
-  scene.physics.add.collider(scene.bird, bottomPipe);
 
   return pipes;
 }

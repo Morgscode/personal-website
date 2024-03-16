@@ -76,8 +76,8 @@ export class GameOverScene extends Scene {
     const restart = this.add
       .text(520, 375, 'Restart Game', {
         font: '16px Courier',
-        fill: '#222222',
       })
+      .setFill('#222222')
       .setOrigin(0.5)
       .setInteractive()
       .setDepth(1);

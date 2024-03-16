@@ -1,7 +1,14 @@
 import { Scene } from 'phaser';
 import { loadCrappyAssets } from '../modules/assets';
+import {
+  setupClouds,
+  generateClouds,
+  handleCloudCleanup,
+} from '../modules/clouds';
 
 export class GameStartScene extends Scene {
+  clouds: Phaser.Physics.Arcade.Group[] = [];
+
   constructor() {
     super({ key: 'StartScene' });
   }
@@ -29,7 +36,8 @@ export class GameStartScene extends Scene {
         font: '32px Courier',
       })
       .setFill('#FFFFFF')
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setDepth(1);
 
     const startButton = this.add
       .text(225, 425, 'Start Game', { font: '24px Courier' })
@@ -78,10 +86,33 @@ export class GameStartScene extends Scene {
     });
 
     scoreButton.on('pointerdown', () => {
-      this.scene.stop();
+      this.scene.pause();
       this.scene.launch('LeaderboardScene');
+    });
+
+    this.clouds = setupClouds(-800, this.clouds, this);
+
+    this.sound.play('tweet-1', {
+      name: 'tweet-1',
+      duration: 7,
+      config: {
+        loop: true,
+      },
+    });
+    this.sound.play('tweet-2', {
+      name: 'tweet-2',
+      duration: 7,
+      config: {
+        delay: 3,
+        loop: true,
+      },
     });
   }
 
-  update() {}
+  update() {
+    const cloud = this.clouds[this.clouds.length - 1].children.entries;
+    const finalCloud = cloud[cloud.length - 1] as Phaser.Physics.Arcade.Sprite;
+    this.clouds = generateClouds(0, this.clouds, this, finalCloud);
+    this.clouds = handleCloudCleanup(0, this.clouds, finalCloud);
+  }
 }

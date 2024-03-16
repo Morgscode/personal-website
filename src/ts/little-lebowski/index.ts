@@ -6,7 +6,6 @@ import '@/scss/main.scss';
 
 const config: Types.Core.GameConfig = {
   type: AUTO,
-  parent: 'little-lebowski-game',
   title: 'The Little Lebowski',
   width: 800,
   height: 600,
@@ -14,6 +13,7 @@ const config: Types.Core.GameConfig = {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,
   },
+  parent: 'little-lebowski-game',
   dom: {
     createContainer: true,
   },
@@ -24,7 +24,6 @@ const config: Types.Core.GameConfig = {
       debug: false,
     },
   },
-  scene: [BootScene],
   plugins: {
     global: [
       {
@@ -35,6 +34,7 @@ const config: Types.Core.GameConfig = {
     ],
   },
   backgroundColor: 0x0f0f0f,
+  scene: [BootScene],
 };
 
 export const game: Game = new Game(config);
