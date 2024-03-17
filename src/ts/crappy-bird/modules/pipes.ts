@@ -1,7 +1,6 @@
-import { Math as PhaserMath, Events } from 'phaser';
+import { Math as PhaserMath } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
 import { birdCollides } from './bird';
-import { triggerGameOver } from '..';
 
 const pipeYOptions: Record<number, Array<number>> = {
   // even seperated - hardest to easiest
