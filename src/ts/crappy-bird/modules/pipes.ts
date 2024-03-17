@@ -1,5 +1,7 @@
 import { Math as PhaserMath, Events } from 'phaser';
 import { CrappyBirdScene } from '../Scenes';
+import { birdCollides } from './bird';
+import { triggerGameOver } from '..';
 
 const pipeYOptions: Record<number, Array<number>> = {
   // even seperated - hardest to easiest
@@ -37,18 +39,27 @@ function createPipeSprites(scene: CrappyBirdScene, x: number) {
  * Sets up the pipe physics group and creates the first two
  */
 export function setupPipes(
-  scene: CrappyBirdScene,
+  pipes: Phaser.Physics.Arcade.StaticGroup[],
   pipeXRecords: Array<number>,
+  scene: CrappyBirdScene,
 ) {
-  const pipes = scene.physics.add.staticGroup();
+  pipes.push(scene.physics.add.staticGroup());
   // calculate the position relative to the bird x
   const x = scene.bird.x + 450;
   pipeXRecords.push(x);
 
   const [topPipe, bottomPipe] = createPipeSprites(scene, x);
-  pipes.addMultiple([topPipe, bottomPipe], true);
+  pipes[0].addMultiple([topPipe, bottomPipe], true);
 
-  return [pipes];
+  scene.physics.add.collider(
+    pipes[0],
+    scene.bird,
+    birdCollides as unknown as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+    () => true,
+    scene,
+  );
+
+  return pipes;
 }
 
 /**
@@ -60,7 +71,7 @@ export function generatePipes(
   finalPipe: Phaser.Physics.Arcade.Sprite,
   pipeXRecords: Array<number>,
 ) {
-  // if we have 20 pipe groups, return
+  // if we have 10 pipe groups, return
   if (pipes.length >= 20) return pipes;
   pipes.push(scene.physics.add.staticGroup());
 
@@ -70,6 +81,14 @@ export function generatePipes(
 
   const [topPipe, bottomPipe] = createPipeSprites(scene, x);
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
+
+  scene.physics.add.collider(
+    pipes[0],
+    scene.bird,
+    birdCollides as unknown as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+    () => true,
+    scene,
+  );
 
   return pipes;
 }

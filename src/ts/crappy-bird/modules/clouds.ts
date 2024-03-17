@@ -16,7 +16,7 @@ export function setupClouds(
 
   clouds.push(scene.physics.add.group());
 
-  // create a randomly spread cluster of 12 clouds
+  // create a randomly spread cluster of 6 clouds
   for (let i = 0; i < 6; i++) {
     // calculate the coords for the next cloud relative to the bird x
     const x = start + stepX + PhaserMath.Between(450, 900);
