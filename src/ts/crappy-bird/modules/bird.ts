@@ -1,6 +1,7 @@
 import { CrappyBirdScene } from '../Scenes';
 import { gameState } from './state';
 import { delay } from './utils';
+import { triggerGameOver } from '..';
 
 /**
  * Setups the Crappy Bird with animations
@@ -63,20 +64,6 @@ export function setupBirdTileCollision(
 }
 
 /**
- * Setups the Crappy Bird pipe collisions
- */
-export function setupBirdPipeCollision(
-  scene: CrappyBirdScene,
-  bird: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
-  pipes: Phaser.Physics.Arcade.StaticGroup[],
-  hitPipe: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
-  gameOver: () => boolean,
-) {
-  scene.physics.add.collider(bird, pipes, hitPipe, gameOver, scene);
-  return scene;
-}
-
-/**
  * The stuff we want to happen when the bird collides with a pipe
  */
 export async function birdCollides(
@@ -91,6 +78,8 @@ export async function birdCollides(
   bird.setFlipY(true);
   bird.setAccelerationX(0);
   bird.setVelocityX(0);
+  gameState.gameOver = true;
   await delay(2000);
   bird.disableBody(true, false);
+  triggerGameOver();
 }

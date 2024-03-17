@@ -13,16 +13,8 @@ import {
   handleCloudCleanup,
 } from '../modules/clouds';
 import { setupPipes, generatePipes, handlePipeCleanup } from '../modules/pipes';
-import {
-  setupCrappyBird,
-  flap,
-  handleBirdRotation,
-  setupBirdTileCollision,
-  setupBirdPipeCollision,
-  birdCollides,
-} from '../modules/bird';
+import { setupCrappyBird, flap, handleBirdRotation } from '../modules/bird';
 import { gameState, scoreState } from '../modules/state';
-import { triggerGameOver } from '../';
 
 export type CrappyBirdScene = {
   bird: Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -57,36 +49,13 @@ export class CrappyBird extends Scene {
     this.cameras.main.setBackgroundColor(SKY_COLOR);
     this.scoreText = renderScoreBoardText(this, scoreState.setupScore());
 
-    this.ground = setupTiles(this, 770, 'ground');
-    this.stoneTop = setupTiles(this, 0, 'stone');
     this.bird = setupCrappyBird(this);
 
+    this.ground = setupTiles(this.ground, this, 770, 'ground');
+    this.stoneTop = setupTiles(this.stoneTop, this, 0, 'stone');
+
     this.clouds = setupClouds(this.bird.x, this.clouds, this);
-    this.pipes = setupPipes(this, this.pipeXRecords);
-
-    setupBirdTileCollision(
-      this,
-      this.bird,
-      this.ground,
-      birdCollides,
-      triggerGameOver,
-    );
-
-    setupBirdTileCollision(
-      this,
-      this.bird,
-      this.stoneTop,
-      birdCollides,
-      triggerGameOver,
-    );
-
-    setupBirdPipeCollision(
-      this,
-      this.bird,
-      this.pipes,
-      birdCollides,
-      triggerGameOver,
-    );
+    this.pipes = setupPipes(this.pipes, this.pipeXRecords, this);
 
     this.cameras.main
       .setBounds(0, 0, Infinity, 600)
@@ -134,30 +103,6 @@ export class CrappyBird extends Scene {
     const pipe = this.pipes[this.pipes.length - 1].children.entries;
     const finalPipe = pipe[pipe.length - 1] as Phaser.Physics.Arcade.Sprite;
     this.pipes = generatePipes(this, this.pipes, finalPipe, this.pipeXRecords);
-
-    setupBirdTileCollision(
-      this,
-      this.bird,
-      this.ground,
-      birdCollides,
-      triggerGameOver,
-    );
-
-    setupBirdTileCollision(
-      this,
-      this.bird,
-      this.stoneTop,
-      birdCollides,
-      triggerGameOver,
-    );
-
-    setupBirdPipeCollision(
-      this,
-      this.bird,
-      this.pipes,
-      birdCollides,
-      triggerGameOver,
-    );
 
     this.pipes = handlePipeCleanup(this, this.pipes);
     this.pipeXRecords = manageScore(this.bird.x, this.pipeXRecords, this);

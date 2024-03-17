@@ -16,10 +16,10 @@ export function setupClouds(
 
   clouds.push(scene.physics.add.group());
 
-  // create a randomly spread cluster of 12 clouds
-  for (let i = 0; i < 12; i++) {
+  // create a randomly spread cluster of 6 clouds
+  for (let i = 0; i < 6; i++) {
     // calculate the coords for the next cloud relative to the bird x
-    const x = start + stepX + PhaserMath.Between(400, 2100);
+    const x = start + stepX + PhaserMath.Between(450, 900);
     stepX = x / 2 + PhaserMath.Between(200, 700);
     const y = PhaserMath.Between(150, 300);
     // create the cloud and set some dynamic properties
@@ -55,10 +55,10 @@ export function generateClouds(
     // start at 450 so the next cloud always generates off screem
     let stepX: number = 450;
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 6; i++) {
       // calculate the coords for the next cloud relative to the final cloud
-      const x = finalCloud.x + stepX + PhaserMath.Between(1200, 4200);
-      stepX = PhaserMath.Between(1200, 3200);
+      const x = finalCloud.x + stepX + PhaserMath.Between(600, 1500);
+      stepX = PhaserMath.Between(1200, 2400);
       const y = PhaserMath.Between(150, 300);
 
       clouds[clouds.length - 1]
