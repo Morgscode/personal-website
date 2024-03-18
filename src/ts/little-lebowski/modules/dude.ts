@@ -126,26 +126,9 @@ export function setupPlayerBombCollision(
   player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
   bombs: Phaser.Physics.Arcade.Group,
   hitBomb: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
-  gameOver: () => boolean,
+  gameOver: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
 ) {
   scene.physics.add.collider(player, bombs, hitBomb, gameOver, scene);
-  return scene;
-}
-
-export function setupPlayerStarCollection(
-  player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
-  stars: Phaser.Physics.Arcade.Group[],
-  collectStarFn: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
-  increaseScoreFn: () => boolean,
-  scene: Scene,
-) {
-  scene.physics.add.overlap(
-    player,
-    stars,
-    collectStarFn,
-    increaseScoreFn,
-    scene,
-  );
   return scene;
 }
 

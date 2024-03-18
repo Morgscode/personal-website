@@ -3,19 +3,9 @@ import { gameState } from '../modules/state';
 import { gameOver } from '../modules/state';
 import { loadAssets, renderSky, renderPlatforms } from '../modules/assets';
 import { bindCursorKeys, bindMobileControls } from '../modules/controls';
-import {
-  scoreState,
-  levelState,
-  playerJumpState,
-  increaseScore,
-} from '../modules/state';
+import { scoreState, levelState, playerJumpState } from '../modules/state';
 import { renderLevelText, renderScoreBoardText } from '../modules/metricText';
-import {
-  renderStarGroup,
-  setupStarPlatformCollision,
-  starCollected,
-  renderRandomStarGroup,
-} from '../modules/stars';
+import { renderStarGroup, renderRandomStarGroup } from '../modules/stars';
 import {
   renderPlayer,
   setupPlayerAnimations,
@@ -23,7 +13,6 @@ import {
   handlePlayerMovement,
   setupPlayerBombCollision,
   setupPlayerPlatformCollision,
-  setupPlayerStarCollection,
   bombHitsPlayer,
 } from '../modules/dude';
 import {
@@ -69,12 +58,11 @@ export class GameScene extends Scene {
     this.platforms = renderPlatforms(this);
     this.scoreText = renderScoreBoardText(this, scoreState.setupScore());
     this.levelText = renderLevelText(this, levelState.setupLevel());
+    this.player = renderPlayer(this);
     this.stars.push(renderStarGroup(this, 5, 450, 130));
     this.stars.push(renderStarGroup(this, 15, 350, 110));
     this.stars.push(renderStarGroup(this, 15, 200, 110));
     this.stars.push(renderStarGroup(this, 25, 50, 100));
-    setupStarPlatformCollision(this, this.stars, this.platforms);
-    this.player = renderPlayer(this);
     setupPlayerPhysics(this.player);
     setupPlayerAnimations(this);
     setupPlayerPlatformCollision(this, this.player, this.platforms);
@@ -84,8 +72,8 @@ export class GameScene extends Scene {
       this,
       this.player,
       this.bombs,
-      bombHitsPlayer,
-      gameOver,
+      bombHitsPlayer as unknown as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+      gameOver as unknown as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
     );
   }
 
@@ -93,14 +81,6 @@ export class GameScene extends Scene {
     if (gameState.gameOver) return;
 
     handlePlayerMovement(this.player, this.cursors, this);
-
-    setupPlayerStarCollection(
-      this.player,
-      this.stars,
-      starCollected,
-      increaseScore,
-      this,
-    );
 
     this.scoreText.setText(`Score: ${scoreState.getScore()}`);
     this.levelText.setText(`Level: ${levelState.getLevel()}`);
