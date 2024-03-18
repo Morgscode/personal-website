@@ -1,7 +1,9 @@
 import { Scene, Math as PhaserMath } from 'phaser';
+import { type LebowskiGameScene } from '../Scenes';
+import { scoreState } from './state';
 
 export function renderStarGroup(
-  scene: Scene,
+  scene: LebowskiGameScene,
   xVal: number,
   yVal: number,
   stepXVal: number,
@@ -17,16 +19,15 @@ export function renderStarGroup(
     );
     return null;
   });
+  scene.physics.add.overlap(
+    scene.player,
+    stars,
+    starCollected as unknown as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
+    scoreState.increaseScore,
+    scene,
+  );
+  scene.physics.add.collider(stars, scene.platforms);
   return stars;
-}
-
-export function setupStarPlatformCollision(
-  scene: Scene,
-  stars: Phaser.Physics.Arcade.Group[],
-  platforms: Phaser.Physics.Arcade.StaticGroup,
-) {
-  scene.physics.add.collider(stars, platforms);
-  return scene;
 }
 
 export function starCollected(
