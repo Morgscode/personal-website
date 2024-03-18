@@ -82,7 +82,7 @@ export function generatePipes(
   pipes[pipes.length - 1].addMultiple([topPipe, bottomPipe], true);
 
   scene.physics.add.collider(
-    pipes[0],
+    pipes[pipes.length - 1],
     scene.bird,
     birdCollides as unknown as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback,
     () => true,
