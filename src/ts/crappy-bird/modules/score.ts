@@ -17,7 +17,9 @@ export function renderScoreBoardText(scene: Scene, score: number) {
 export function manageScore(birdX: number, pipeXRecords: Array<number>, scene) {
   return pipeXRecords.filter((x) => {
     if (birdX > x) {
-      scene.sound.play('point');
+      scene.sound.play('point', {
+        volume: 0.5,
+      });
       scoreState.increaseScore();
       return false;
     } else {

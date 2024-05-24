@@ -42,8 +42,7 @@
 
   &__logo {
     display: inline-block;
-    width: 80%;
-    margin: 35px auto;
+    width: 50%;
   }
 
   &__close {
@@ -53,9 +52,11 @@
     padding: 15px;
     border-radius: 150px;
     position: absolute;
-    top: -20%;
+    top: -40%;
     right: 7%;
-    transition: transform 0.3s, background-color 0.05s;
+    transition:
+      transform 0.3s,
+      background-color 0.05s;
 
     &:hover {
       cursor: pointer;
@@ -107,18 +108,12 @@
   &__link {
     color: #fff !important;
     display: block;
-    padding: 0.5rem 1rem;
     text-decoration: none;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .nav {
-    &__logo {
-      width: 50%;
-      margin: 0 auto;
-    }
-
     &__button {
       top: 5px;
       right: 5px;

@@ -94,6 +94,7 @@ export class GameStartScene extends Scene {
 
     this.sound.play('tweet-1', {
       name: 'tweet-1',
+      volume: 0.25,
       duration: 7,
       config: {
         loop: true,
@@ -101,6 +102,7 @@ export class GameStartScene extends Scene {
     });
     this.sound.play('tweet-2', {
       name: 'tweet-2',
+      volume: 0.25,
       duration: 7,
       config: {
         delay: 3,

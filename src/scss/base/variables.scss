@@ -1,13 +1,15 @@
 $font-size: 1rem;
 $color-primary: #273c75;
-$color-primary-light: #00aed9;
-$color-secondary: #f1c40f;
+$color-primary-light: #0097e6;
+$color-secondary: #7f8fa6;
 $colorBlack: rgb(33, 33, 33);
 $colorGrey: #fafafa;
 
 $borderRadius: 0px 40px 40px 40px;
 
-$boxShadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+$boxShadow:
+  20px 20px 60px #d9d9d9,
+  -20px -20px 60px #ffffff;
 
 $spacing-s: 1rem;
 $spacing-m: 2rem;
