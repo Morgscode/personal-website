@@ -30,7 +30,7 @@ export function animate() {
       .staggerFromTo(
         '.firstSceneItem',
         0.6,
-        { x: '-50px', opacity: 0 },
+        { x: '-15px', opacity: 0 },
         { x: '15px', opacity: 1, ease: Power2.easeInOut },
         '0.1',
       )
@@ -40,7 +40,6 @@ export function animate() {
         { x: '15px' },
         { x: 0, ease: Power1.easeInOut },
         '0.1',
-        '-=0.1',
       );
   }
 
