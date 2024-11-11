@@ -16,7 +16,6 @@ export default defineConfig({
       input: [
         'index.html',
         'personal-projects.html',
-        'design.html',
         'contact.html',
         'little-lebowski.html',
         'crappy-bird.html',
