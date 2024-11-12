@@ -27,13 +27,15 @@
 }
 
 .project-slide {
-  min-height: 100%;
-  width: 360px;
   max-width: 100%;
   display: flex;
   align-items: center;
   position: relative;
   z-index: 2;
+
+  &-wrapper {
+    position: relative;
+  }
 
   &-link {
     width: 100%;
@@ -58,13 +60,12 @@
 
   &__shadow {
     position: absolute;
-    bottom: 15px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%) rotateX(65deg);
     z-index: 1;
     display: block;
-    width: 325px;
-    max-width: 80%;
+    width: 90%;
     height: 15px;
     border-radius: 40px;
     -webkit-box-shadow: 0 20px 12px -3px #000000;
@@ -73,22 +74,8 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
-  .project-slide {
-    &__shadow {
-      bottom: 7.5px;
-    }
-  }
-}
-
 @media only screen and (max-width: 576px) {
   .personal-projects-section {
-    .project-slide {
-      &__shadow {
-        max-width: 80%;
-      }
-    }
-
     .personal-project {
       &__heading {
         font-size: 18px;
