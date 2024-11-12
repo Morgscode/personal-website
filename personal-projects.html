@@ -1,195 +1,283 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Luke | Web developer - side projects</title>
+    <meta name="description" content="Luke | Hobby coding projects" />
+    <!-- content directive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- canonical tag -->
+    <link rel="canonical" href="https://luke-morgan.com/personal-projects" />
+    <!-- favicons and icons -->
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="./favicon.png" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Luke | Web developer - side projects</title>
-  <meta name="description" content="Luke | Hobby coding projects">
-  <!-- content directive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- canonical tag -->
-  <link rel="canonical" href="https://luke-morgan.com/personal-projects" />
-  <!-- favicons and icons -->
-  <link rel="icon" type="image/png" href="./favicon.png" />
-  <link rel="shortcut icon" type="image/png" href="./favicon.png" />
-</head>
+  <body ontouchstart="">
+    <div class="nav__container">
+      <img
+        class="nav__logo logo"
+        src="./assets/svg/logo-no-text-v1.svg"
+        alt="Luke | Web Developer"
+      />
+      <nav class="nav">
+        <div class="nav__close"><i class="fas fa-times"></i></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="/" class="nav__link">About</a></li>
+          <li class="nav__item">
+            <a href="/personal-projects" class="nav__link">Side Projects</a>
+          </li>
 
-<body ontouchstart="">
-  <div class="nav__container">
-    <img class="nav__logo logo" src="./assets/svg/logo-no-text-v1.svg" alt="Luke | Web Developer">
-    <nav class="nav">
-      <div class="nav__close"><i class="fas fa-times"></i></div>
-      <ul class="nav__items">
-        <li class="nav__item"><a href="/" class="nav__link">About</a></li>
-        <li class="nav__item"><a href="/personal-projects" class="nav__link">Side
-            Projects</a></li>
-
-
-        <li class="nav__item"><a href="/contact" class=" nav__link">Contact</a></li>
-        <li class="nav__item"><a href="https://blog.luke-morgan.com" class="nav__link">Blog</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
-  <header>
-    <div class="container-fluid page-banner">
-      <div class="sub-page-banner" style="background-image: url('./assets/svg/background-3.svg');"></div>
-      <div class="page-banner__contents-wrapper">
-        <h1 class="heading__primary heading__primary-light page-banner__title">Side Projects</h1>
-      </div>
+          <li class="nav__item">
+            <a href="/contact" class="nav__link">Contact</a>
+          </li>
+          <li class="nav__item">
+            <a href="https://blog.luke-morgan.com" class="nav__link">Blog</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </header>
-  <main>
-    <section class="container-fluid personal-projects-section p-t-l p-b-l">
-      <div class="personal-projects-wrapper container row">
-        <article class="personal-project p-3 col-12 m-b-l">
-          <p class="heading__secondary p-1">Find my next favourite song</p>
-          <div class="row">
-            <div class="col-8 col-lg-6 col-sm-12 p-1">
-              <header class="m-b-m">
-                <p class="m-b-s">Project Type: Web app</p>
-                <p>Tools used: <a href="https://react.dev/">React</a>, <a href="https://nextjs.org/">Next.js</a>, <a
-                    href="https://www.typescriptlang.org/">TypeScript</a>, <a
-                    href="https://developer.spotify.com/documentation/web-api">Spotify API</a></p>
-              </header>
-              <p class="paragraph m-b-m">
-                A website that lets you interact with the Spotify recommendations API. Discover and sample new music in
-                over 100 genres based on your current most listened tracks, their musical attributes, your own personal
-                taste and mood. Add new tracks you like to your Spotify liked songs playlist.
-              </p>
-              <a class="project-slide-link-btn p-1" target="_blank" rel="nofollow noopener"
-                href="https://findmynextfavoritesong.luke-morgan.com/">
-                Sample music
-              </a>
-            </div>
-            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block">
-              <div class="p-t-l">
-                <a href="https://findmynextfavoritesong.luke-morgan.com/" target="_blank" class="project-slide-link">
-                  <img class="slide lazyloaded project-slide" loading="lazy"
-                    src="./assets/img/findmynextfavouritesong.webp" alt="Find my next favourite song app">
-                </a>
-                <div class="project-slide__shadow">&nbsp;</div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="personal-project p-3 col-12 m-b-l">
-          <p class="heading__secondary p-1">Revitalize Repair</p>
-          <div class="row">
-            <div class="col-8 col-lg-6 col-sm-12 p-1">
-              <header class="m-b-m">
-                <p class="m-b-s">Project Type: Static HTML website</p>
-                <p>Tools used: <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5">HTML5</a>, <a
-                    href="https://tailwindcss.com/">Tailwind</a></p>
-              </header>
-              <p class="paragraph m-b-m">
-                This is a neat little brochure website I designed and built for a bike repair shop in East Sussex.
-                Its modern, sleek, features light/dark mode switching and a sweet serverless contact form.
-              </p>
-              <a class="project-slide-link-btn p-1" target="_blank" rel="nofollow noopener"
-                href="https://revitalizerepair.uk/">
-                View bike repair website
-              </a>
-            </div>
-            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block">
-              <div class="p-t-l">
-                <a href="https://findmynextfavoritesong.luke-morgan.com/" target="_blank" class="project-slide-link">
-                  <img class="slide lazyloaded project-slide" loading="lazy"
-                    src="./assets/img/findmynextfavouritesong.webp" alt="Find my next favourite song app">
-                </a>
-                <div class="project-slide__shadow">&nbsp;</div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="personal-project p-3 col-12 m-b-l">
-          <p class="heading__secondary p-1">Crappy Bird</p>
-          <div class="row">
-            <div class="col-8 col-lg-6 col-sm-12 p-1">
-              <header class="m-b-m">
-                <p class="m-b-s">Project Type: HTML5 game</p>
-                <p>Tools used: <a href="https://phaser.io/">Phaser</a>, <a
-                    href="https://www.typescriptlang.org/">TypeScript</a></p>
-
-              </header>
-              <p class="paragraph m-b-m">
-                A flappy bird clone I put together to experiment with procedural generation. This is very much a work in
-                progress -
-                although the base mechanics of the game are pretty much complete.
-              </p>
-              <a class="project-slide-link-btn p-1" target="_blank" rel="nofollow noopener"
-                href="https://luke-morgan.com/crappy-bird">
-                View project
-              </a>
-            </div>
-            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block">
-              <div class="p-t-l">
-                <a href="https://findmynextfavoritesong.luke-morgan.com/" target="_blank" class="project-slide-link">
-                  <img class="slide lazyloaded project-slide" loading="lazy"
-                    src="./assets/img/findmynextfavouritesong.webp" alt="Find my next favourite song app">
-                </a>
-                <div class="project-slide__shadow">&nbsp;</div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="personal-project p-3 col-12">
-          <p class="heading__secondary p-1">My first game</p>
-          <div class="row">
-            <div class="col-8 col-lg-6 col-sm-12 p-1">
-              <header class="m-b-m">
-                <p class="m-b-s">Project Type: HTML5 game</p>
-                <p>Tools used: <a href="https://phaser.io/">Phaser</a>, <a
-                    href="https://www.typescriptlang.org/">TypeScript</a></p>
-
-              </header>
-              <p class="paragraph m-b-m">
-                Everyones first game sucks. This one does too. A pretty standard platformer. Collect the stars, don't
-                get blown up,
-                add your name to the scoreboard at the end.
-              </p>
-              <a class="project-slide-link-btn p-1" target="_blank" rel="nofollow noopener"
-                href="https://findmynextfavoritesong.luke-morgan.com/">
-                View project
-              </a>
-            </div>
-            <div class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block">
-              <div class="p-t-l">
-                <a href="https://findmynextfavoritesong.luke-morgan.com/" target="_blank" class="project-slide-link">
-                  <img class="slide lazyloaded project-slide" loading="lazy"
-                    src="./assets/img/findmynextfavouritesong.webp" alt="Find my next favourite song app">
-                </a>
-                <div class="project-slide__shadow">&nbsp;</div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-    <section class="github-cta container-fluid p-b-l">
-      <div class="container github-cta__container p-t-s p-b-s">
-        <div class="row">
-          <div class="col-8 col-xs-12">
-            <a class="github-cta__link github-cta__link--text" href="https://github.com/Morgscode" target="_blank">
-              <p class="github-cta__text">View my GitHub&nbsp;<i class="fas fa-code-branch"></i></p>
-            </a>
-          </div>
-          <div class="col-4 col-xs-12"><a class="github-cta__link github-cta__link--icon"
-              href="https://github.com/Morgscode" target="_blank"><i class="fab fa-github-alt"></i></a></div>
+    <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
+    <header>
+      <div class="container-fluid page-banner">
+        <div
+          class="sub-page-banner"
+          style="background-image: url('./assets/svg/background-3.svg')"
+        ></div>
+        <div class="page-banner__contents-wrapper">
+          <h1
+            class="heading__primary heading__primary-light page-banner__title"
+          >
+            Side Projects
+          </h1>
         </div>
       </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="footer__text">
-      <p class="heading__primary-light footer__credits-small">&copy; 2019-present Luke Morgan</p>
-    </div>
-  </footer>
-  <!-- font awesome -->
-  <script src="https://kit.fontawesome.com/f2ad0cb5b1.js" crossorigin="anonymous"></script>
-  <!-- page script -->
-  <script type="module" src="./src/js/index.js"></script>
-</body>
-
+    </header>
+    <main>
+      <section class="container-fluid personal-projects-section p-t-l p-b-l">
+        <div class="personal-projects-wrapper container row">
+          <article class="personal-project p-3 col-12 m-b-l">
+            <p class="heading__secondary p-1">Find my next favourite song</p>
+            <div class="row">
+              <div class="col-8 col-lg-6 col-sm-12 p-1">
+                <header class="m-b-m">
+                  <p class="m-b-s">Project Type: Web app</p>
+                  <p>
+                    Tools used: <a href="https://react.dev/">React</a>,
+                    <a href="https://nextjs.org/">Next.js</a>,
+                    <a href="https://www.typescriptlang.org/">TypeScript</a>,
+                    <a
+                      href="https://developer.spotify.com/documentation/web-api"
+                      >Spotify API</a
+                    >
+                  </p>
+                </header>
+                <p class="paragraph m-b-m">
+                  A website that lets you interact with the Spotify
+                  recommendations API. Discover and sample new music in over 100
+                  genres based on your current most listened tracks, their
+                  musical attributes, your own personal taste and mood. Add new
+                  tracks you like to your Spotify liked songs playlist.
+                </p>
+                <a
+                  class="project-slide-link-btn p-1"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  href="https://findmynextfavoritesong.luke-morgan.com/"
+                >
+                  Sample music
+                </a>
+              </div>
+              <div
+                class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"
+              >
+                <div class="flex justify-center items-center">
+                  <div class="project-slide-wrapper">
+                    <img
+                      class="slide lazyloaded project-slide"
+                      loading="lazy"
+                      src="./assets/img/findmynextfavoritesong.png"
+                      alt="Find my next favourite song app"
+                    />
+                    <div class="project-slide__shadow">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="personal-project p-3 col-12 m-b-l">
+            <p class="heading__secondary p-1">Revitalize Repair</p>
+            <div class="row">
+              <div class="col-8 col-lg-6 col-sm-12 p-1">
+                <header class="m-b-m">
+                  <p class="m-b-s">Project Type: Static HTML website</p>
+                  <p>
+                    Tools used:
+                    <a
+                      href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5"
+                      >HTML5</a
+                    >, <a href="https://tailwindcss.com/">Tailwind</a>
+                  </p>
+                </header>
+                <p class="paragraph m-b-m">
+                  This is a neat little brochure website I designed and built
+                  for a bike repair shop in East Sussex. Its modern, sleek,
+                  features light/dark mode switching and a sweet serverless
+                  contact form.
+                </p>
+                <a
+                  class="project-slide-link-btn p-1"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  href="https://revitalizerepair.uk/"
+                >
+                  View bike repair website
+                </a>
+              </div>
+              <div
+                class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"
+              >
+                <div class="flex justify-center items-center">
+                  <div class="project-slide-wrapper">
+                    <img
+                      class="slide lazyloaded project-slide"
+                      loading="lazy"
+                      src="./assets/img/revitalizerepair.png"
+                      alt="Find my next favourite song app"
+                    />
+                    <div class="project-slide__shadow">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="personal-project p-3 col-12 m-b-l">
+            <p class="heading__secondary p-1">Crappy Bird</p>
+            <div class="row">
+              <div class="col-8 col-lg-6 col-sm-12 p-1">
+                <header class="m-b-m">
+                  <p class="m-b-s">Project Type: HTML5 game</p>
+                  <p>
+                    Tools used: <a href="https://phaser.io/">Phaser</a>,
+                    <a href="https://www.typescriptlang.org/">TypeScript</a>
+                  </p>
+                </header>
+                <p class="paragraph m-b-m">
+                  A flappy bird clone I put together to experiment with
+                  procedural generation. This is very much a work in progress -
+                  although the base mechanics of the game are pretty much
+                  complete.
+                </p>
+                <a
+                  class="project-slide-link-btn p-1"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  href="https://luke-morgan.com/crappy-bird"
+                >
+                  View project
+                </a>
+              </div>
+              <div
+                class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"
+              >
+                <div class="flex justify-center items-center">
+                  <div class="project-slide-wrapper">
+                    <img
+                      class="slide lazyloaded project-slide"
+                      loading="lazy"
+                      src="./assets/img/crappy-bird.png"
+                      alt="Find my next favourite song app"
+                    />
+                    <div class="project-slide__shadow">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="personal-project p-3 col-12">
+            <p class="heading__secondary p-1">My first game</p>
+            <div class="row">
+              <div class="col-8 col-lg-6 col-sm-12 p-1">
+                <header class="m-b-m">
+                  <p class="m-b-s">Project Type: HTML5 game</p>
+                  <p>
+                    Tools used: <a href="https://phaser.io/">Phaser</a>,
+                    <a href="https://www.typescriptlang.org/">TypeScript</a>
+                  </p>
+                </header>
+                <p class="paragraph m-b-m">
+                  Everyones first game sucks. This one does too. A pretty
+                  standard platformer. Collect the stars, don't get blown up,
+                  add your name to the scoreboard at the end.
+                </p>
+                <a
+                  class="project-slide-link-btn p-1"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  href="https://luke-morgan.com/little-lebowski"
+                >
+                  View project
+                </a>
+              </div>
+              <div
+                class="col-4 col-lg-6 col-sm-12 p-1 project-slide-link-block"
+              >
+                <div class="flex justify-center items-center">
+                  <div class="project-slide-wrapper">
+                    <img
+                      class="slide lazyloaded project-slide"
+                      loading="lazy"
+                      src="./assets/img/platformer.png"
+                      alt="Find my next favourite song app"
+                    />
+                    <div class="project-slide__shadow">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="github-cta container-fluid p-b-l">
+        <div class="container github-cta__container p-t-s p-b-s">
+          <div class="row">
+            <div class="col-8 col-xs-12">
+              <a
+                class="github-cta__link github-cta__link--text"
+                href="https://github.com/Morgscode"
+                target="_blank"
+              >
+                <p class="github-cta__text">
+                  View my GitHub&nbsp;<i class="fas fa-code-branch"></i>
+                </p>
+              </a>
+            </div>
+            <div class="col-4 col-xs-12">
+              <a
+                class="github-cta__link github-cta__link--icon"
+                href="https://github.com/Morgscode"
+                target="_blank"
+                ><i class="fab fa-github-alt"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__text">
+        <p class="heading__primary-light footer__credits-small">
+          &copy; 2019-present Luke Morgan
+        </p>
+      </div>
+    </footer>
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/f2ad0cb5b1.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- page script -->
+    <script type="module" src="./src/js/index.js"></script>
+  </body>
 </html>
