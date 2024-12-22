@@ -19,7 +19,6 @@ export default defineConfig({
         'contact.html',
         'little-lebowski.html',
         'crappy-bird.html',
-        'sopost-links.html',
         '404.html',
       ],
     },
