@@ -43,7 +43,7 @@ const config: Types.Core.GameConfig = {
 
 const game: Game = new Game(config);
 
-export async function triggerGameOver() {
+export function triggerGameOver() {
   game.scene.start('GameOverScene');
   const main = game.scene.getScene('CrappyBird');
   main.physics.pause();
