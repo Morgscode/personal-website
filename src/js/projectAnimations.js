@@ -9,7 +9,11 @@ export function animate() {
     '.project-slide__shadow',
   );
 
-  if (projectSlides.length && projectSlideShadows.length) {
+  if (
+    projectSlides.length &&
+    projectSlideShadows.length &&
+    window.width > 576
+  ) {
     projectSlides.forEach((element, index) => {
       const timeline = new TimelineMax();
       let triggerElement;
