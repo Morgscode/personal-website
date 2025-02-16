@@ -1,6 +1,6 @@
 import { controller } from './animationController';
 import { Scene } from 'scrollmagic';
-import { TimelineMax, TweenMax, Power1, Power2 } from 'gsap';
+import { TimelineMax, Power1, Power2 } from 'gsap';
 
 function textWrap(el) {
   // split heading into words
@@ -75,41 +75,6 @@ export function animate() {
       .setTween(textTl)
       /*.addIndicators()*/
       .addTo(controller);
-  }
-  //---------- skill col animations
-
-  const skillCols = document.querySelectorAll('.skill-col');
-
-  if (skillCols.length) {
-    skillCols.forEach((element) => {
-      const skillColTween = TweenMax.fromTo(
-        element,
-        1,
-        {
-          y: '50px',
-          opacity: 0,
-          scale: 0.8,
-          boxShadow: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          boxShadow: '20px 20px 60px #d4d4d4, -20px -20px 60px #ffffff;',
-          ease: Power2.easeOut,
-        },
-        '0.15',
-      );
-
-      new Scene({
-        triggerElement: element,
-        triggerHook: 0.7,
-        reverse: true,
-      })
-        .setTween(skillColTween)
-        //.addIndicators({ name: "skill-col-trigger" })
-        .addTo(controller);
-    });
   }
 
   const headings = document.querySelectorAll(
