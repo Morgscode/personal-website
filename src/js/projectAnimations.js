@@ -12,7 +12,7 @@ export function animate() {
   if (
     projectSlides.length &&
     projectSlideShadows.length &&
-    window.width > 576
+    window.innerWidth > 576
   ) {
     projectSlides.forEach((element, index) => {
       const timeline = new TimelineMax();
