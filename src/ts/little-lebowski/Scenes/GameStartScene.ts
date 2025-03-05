@@ -14,7 +14,8 @@ export class GameStartScene extends Scene {
 
   create() {
     this.sound.stopAll();
-    this.sound.play('intro', { volume: 0.25 });
+    const intro = this.sound.add('intro');
+    intro.play();
     renderSky(this);
     this.platforms = renderPlatforms(this);
 
