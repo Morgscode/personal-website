@@ -92,23 +92,15 @@ export class GameStartScene extends Scene {
 
     this.clouds = setupClouds(-800, this.clouds, this);
 
-    this.sound.play('tweet-1', {
-      name: 'tweet-1',
-      volume: 0.25,
-      duration: 7,
-      config: {
-        loop: true,
-      },
+    const tweet1 = this.sound.add('tweet-1', {
+      loop: true,
     });
-    this.sound.play('tweet-2', {
-      name: 'tweet-2',
-      volume: 0.25,
-      duration: 7,
-      config: {
-        delay: 3,
-        loop: true,
-      },
+    tweet1.play();
+
+    const tweet2 = this.sound.add('tweet-2', {
+      loop: true,
     });
+    tweet2.play();
   }
 
   update() {
