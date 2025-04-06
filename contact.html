@@ -1,77 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Luke | Web developer - Contact</title>
+    <meta
+      name="description"
+      content="Contact me about anything. I may or may not reply."
+    />
+    <!-- content directives -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- canoncial tag -->
+    <link rel="canonical" href="https://luke-morgan.com/contact" />
+    <!-- favicons and icons -->
+    <link rel=" icon" type="image/png" href="./favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="./favicon.png" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Luke | Web developer - Contact</title>
-  <meta name="description" content="Contact me about anything. I may or may not reply.">
-  <!-- content directives -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- canoncial tag -->
-  <link rel="canonical" href="https://luke-morgan.com/contact">
-  <!-- favicons and icons -->
-  <link rel=" icon" type="image/png" href="./favicon.png" />
-  <link rel="shortcut icon" type="image/png" href="./favicon.png" />
-</head>
+  <body ontouchstart="">
+    <div class="nav__container">
+      <img
+        class="nav__logo logo"
+        src="./assets/svg/logo-no-text-v1.svg"
+        alt="Luke | Web Developer"
+      />
+      <nav class="nav">
+        <div class="nav__close"><i class="fas fa-times"></i></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="/" class="nav__link">About</a></li>
+          <li class="nav__item">
+            <a href="/personal-projects" class="nav__link">Side Projects</a>
+          </li>
 
-<body ontouchstart="">
-  <div class="nav__container">
-    <img class="nav__logo logo" src="./assets/svg/logo-no-text-v1.svg" alt="Luke | Web Developer">
-    <nav class="nav">
-      <div class="nav__close"><i class="fas fa-times"></i></div>
-      <ul class="nav__items">
-        <li class="nav__item"><a href="/" class="nav__link">About</a></li>
-        <li class="nav__item"><a href="/personal-projects" class="nav__link">Side
-            Projects</a></li>
-        
-        
-        <li class="nav__item"><a href="/contact" class=" nav__link">Contact</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-  <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
-  <header>
-    <div class="container-fluid page-banner">
-      <div class="sub-page-banner" style="background-image: url('./assets/svg/background-3.svg');"></div>
-      <div class=" page-banner__contents-wrapper">
-        <h1 class="heading__primary heading__primary-light page-banner__title">Contact</h1>
+          <li class="nav__item">
+            <a href="/contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="nav__button"><i class="fas fa-ellipsis-h"></i></div>
+    <header>
+      <div class="container-fluid page-banner">
+        <div
+          class="sub-page-banner"
+          style="background-image: url('./assets/svg/background-3.svg')"
+        ></div>
+        <div class="page-banner__contents-wrapper">
+          <h1
+            class="heading__primary heading__primary-light page-banner__title"
+          >
+            Contact
+          </h1>
+        </div>
       </div>
-    </div>
-  </header>
-  <main>
-    <article class="container bgGrey form-container">
-      <form id="portfolioContactForm" class="form m-b-m">
-        <div class="form-group">
-          <label class="form-label" for="from_name">Name:</label>
-          <input type="text" class="form-input" name="from_name" id="from_name" required minlength="2">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="from_name">Email:</label>
-          <input type="email" class="form-input" name="from_email" id="from_email" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="from_name">Message:</label>
-          <textarea name="message_html" class="form-input" id="message_html" cols="30" rows="10" required
-            minlength="15"></textarea>
-        </div>
-        <!-- <div class="g-recaptcha m-b-s" data-sitekey="6LfIPPAUAAAAAOmKUbqH6Hy4HwKNHUQdy4vV2-1O"
+    </header>
+    <main>
+      <article class="container bgGrey form-container">
+        <form id="portfolioContactForm" class="form m-b-m">
+          <div class="form-group">
+            <label class="form-label" for="from_name">Name:</label>
+            <input
+              type="text"
+              class="form-input"
+              name="from_name"
+              id="from_name"
+              required
+              minlength="2"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="from_name">Email:</label>
+            <input
+              type="email"
+              class="form-input"
+              name="from_email"
+              id="from_email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="from_name">Message:</label>
+            <textarea
+              name="message_html"
+              class="form-input"
+              id="message_html"
+              cols="30"
+              rows="10"
+              required
+              minlength="15"
+            ></textarea>
+          </div>
+          <!-- <div class="g-recaptcha m-b-s" data-sitekey="6LfIPPAUAAAAAOmKUbqH6Hy4HwKNHUQdy4vV2-1O"
           data-callback="enableSubmitButton"></div> -->
-        <button type="button" class="btn form-submit" id="portfolioContactSubmit">Submit</button>
-      </form>
-    </article>
-  </main>
-  <footer class="footer">
-    <div class="footer__text">
-
-      <p class="heading__primary-light footer__credits-small">&copy; 2019-present Luke Morgan</p>
-    </div>
-  </footer>
-  <!-- font awesome -->
-  <script src="https://kit.fontawesome.com/f2ad0cb5b1.js" crossorigin="anonymous"></script>
-  <!-- page script -->
-  <script type="module" src="./src/js/index.js"></script>
-</body>
-
+          <button
+            type="button"
+            class="btn form-submit"
+            id="portfolioContactSubmit"
+          >
+            Submit
+          </button>
+        </form>
+      </article>
+    </main>
+    <footer class="footer">
+      <div class="footer__text">
+        <p class="heading__primary-light footer__credits-small">
+          &copy; 2019-present Luke Morgan
+        </p>
+      </div>
+    </footer>
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/f2ad0cb5b1.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- page script -->
+    <script type="module" src="./src/js/index.js"></script>
+  </body>
 </html>
