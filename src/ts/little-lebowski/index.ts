@@ -38,7 +38,7 @@ const config: Types.Core.GameConfig = {
 };
 
 export const game: Game = new Game(config);
-game.sound.volume = 0.01;
+game.sound.volume = 0.1;
 
 export function triggerGameOver() {
   game.scene.start('GameOverScene');
